@@ -2,6 +2,11 @@
 
 The OpenZeppelin Relayer SDK provides a TypeScript/JavaScript client for interacting with the OpenZeppelin Relayer service. This SDK allows developers to easily integrate relayer functionality into their applications for various blockchain networks.
 
+## Requirements
+
+- Node.js 22.11.0 or higher
+- Package manager: pnpm 9.0.0 or higher
+
 ## Installation
 
 ```bash
@@ -18,6 +23,11 @@ pnpm add @openzeppelin/relayer-sdk
 - Support for multiple blockchain networks (EVM, Solana)
 - TypeScript typings for better development experience
 - Built-in configuration management
+
+## Architecture
+
+The SDK is built on top of an OpenAPI-generated TypeScript client that communicates with the OpenZeppelin Relayer API. It uses Axios for HTTP requests and provides type-safe interfaces for all API operations.
+
 
 ## Usage Examples
 
@@ -61,7 +71,7 @@ The SDK is built on top of an OpenAPI specification which can be found in the [o
 pnpm install
 
 # Build the SDK
-pnpm build
+pnpm generate
 ```
 
 ## Generating a New Client
