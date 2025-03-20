@@ -1,0 +1,15 @@
+{
+  "supportsES6": true,
+  "modelPropertyNaming": "camelCase",
+  "withSeparateModelsAndApi": true,
+  "apiPackage": "apis",
+  "modelPackage": "models",
+  "enumPropertyNaming": "UPPERCASE",
+  "additionalProperties": {
+    "useSingleRequestParameter": false,
+    "npmName": "@openzeppelin/relayer-sdk",
+    "npmVersion": "0.0.1",
+    "typescriptThreePlus": true,
+    "stringEnums": true
+  }
+}
