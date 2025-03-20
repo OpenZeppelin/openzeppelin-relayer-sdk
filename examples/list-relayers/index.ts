@@ -13,12 +13,12 @@
  * Usage:
  *   ts-node index.ts
  */
-import { Configuration, RelayersApi } from "../../src";
+import { Configuration, RelayersApi } from '../../src';
 
 // example dev config
 const config = new Configuration({
-  basePath: "http://localhost:8080/api/v1/",
-  accessToken: "Bearer example-123456",
+  basePath: 'http://localhost:8080/api/v1/',
+  accessToken: 'Bearer example-123456',
 });
 
 const relayersApi = new RelayersApi(config);

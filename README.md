@@ -28,30 +28,31 @@ pnpm add @openzeppelin/relayer-sdk
 
 The SDK is built on top of an OpenAPI-generated TypeScript client that communicates with the OpenZeppelin Relayer API. It uses Axios for HTTP requests and provides type-safe interfaces for all API operations.
 
-
 ## Usage Examples
 
 The SDK includes various examples demonstrating how to interact with relayers:
 
 ### EVM Networks
+
 See the [examples/evm](examples/evm) directory for EVM-specific examples.
 
 ### Solana
+
 See the [examples/solana](examples/solana) directory for Solana-specific examples.
 
 ### Common Operations
 
 #### Get Relayer
+
 ```typescript
 import { RelayerAPI } from '@openzeppelin/relayer-sdk';
 
 const config = new Configuration({
-  basePath: "https://your-path.com/api/v1/",
-  accessToken: "Bearer example-123456",
+  basePath: 'https://your-path.com/api/v1/',
+  accessToken: 'Bearer example-123456',
 });
 
 const relayersApi = new RelayersApi(config);
-
 
 const relayer = await api.getRelayer('relayer-id');
 console.log(relayer);
@@ -66,6 +67,7 @@ The SDK is built on top of an OpenAPI specification which can be found in the [o
 ## Development
 
 ### Setup
+
 ```bash
 # Install dependencies
 pnpm install
@@ -86,13 +88,14 @@ pnpm run generate
 ```
 
 This command performs the following steps:
+
 - Cleans the existing source files
 - Generates a TypeScript Axios client from the OpenAPI specification
 - Runs post-generation scripts to customize the output
 - Builds the final client
 
-
 ### Testing
+
 ```bash
 pnpm test
 ```
@@ -106,4 +109,7 @@ Contributions are welcome! Please read our [Code of Conduct](CODE_OF_CONDUCT.md)
 This project is licensed under the **AGPL-3.0-or-later** license. See the [LICENSE](LICENSE) file for more details.
 
 ---
+
+```
+
 ```

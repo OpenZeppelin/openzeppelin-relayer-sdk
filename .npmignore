@@ -1,0 +1,11 @@
+src/
+scripts/
+tests/
+.github/
+openapi.json
+config.json
+husky/
+.eslintrc
+.prettierrc
+tsconfig.json
+commitlint.config.js

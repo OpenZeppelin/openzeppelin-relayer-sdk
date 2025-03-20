@@ -1,17 +1,10 @@
-import * as solana from "@solana/web3.js";
+import * as solana from '@solana/web3.js';
 
 // util fn to create sol transfer transaction
-export function createSolTransfer(
-  payer: string,
-  recipient: string,
-  amount: number,
-  recentBlockhash: string
-) {
+export function createSolTransfer(payer: string, recipient: string, amount: number, recentBlockhash: string) {
   // Convert string addresses to PublicKey objects if needed
-  const payerPubkey =
-    typeof payer === "string" ? new solana.PublicKey(payer) : payer;
-  const recipientPubkey =
-    typeof recipient === "string" ? new solana.PublicKey(recipient) : recipient;
+  const payerPubkey = typeof payer === 'string' ? new solana.PublicKey(payer) : payer;
+  const recipientPubkey = typeof recipient === 'string' ? new solana.PublicKey(recipient) : recipient;
 
   // Create the transfer instruction
   const transferIx = solana.SystemProgram.transfer({

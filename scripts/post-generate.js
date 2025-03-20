@@ -15,17 +15,17 @@ if (!fs.existsSync(generatedModelsDir)) {
 // Read all custom model files and copy them over the generated ones
 try {
   const files = fs.readdirSync(customModelsDir);
-  
-  files.forEach(file => {
+
+  files.forEach((file) => {
     if (file.endsWith('.ts')) {
       const source = path.join(customModelsDir, file);
       const destination = path.join(generatedModelsDir, file);
-      
+
       console.log(`Copying custom model ${file} to ${destination}`);
       fs.copyFileSync(source, destination);
     }
   });
-  
+
   console.log('Successfully replaced generated models with custom ones.');
 } catch (error) {
   console.error('Error during post-generation script:', error);

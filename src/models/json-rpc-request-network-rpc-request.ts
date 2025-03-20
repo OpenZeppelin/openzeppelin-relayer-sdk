@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+ 
 /**
  * Custom type definitions for JSON-RPC requests.
  * Out of the box generation does not produce the desired output.
