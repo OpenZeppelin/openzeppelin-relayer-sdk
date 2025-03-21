@@ -58,8 +58,8 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -100,7 +100,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Deletes all pending transactions for a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -138,7 +138,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Retrieves details of a specific relayer by ID.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -176,7 +176,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Retrieves the balance of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -214,7 +214,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Fetches the current status of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -252,8 +252,8 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Retrieves a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -294,7 +294,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Retrieves a transaction by its nonce value.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} nonce The nonce of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -380,7 +380,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Lists all transactions for a specific relayer with pagination.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -428,7 +428,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Performs a JSON-RPC call using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {JsonRpcRequestNetworkRpcRequest} jsonRpcRequestNetworkRpcRequest JSON-RPC request with method and parameters
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -472,7 +472,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Sends a transaction through the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -516,7 +516,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Signs data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignDataRequest} signDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -560,7 +560,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Signs typed data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignTypedDataRequest} signTypedDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -604,7 +604,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {RelayerUpdateRequest} relayerUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -658,8 +658,8 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -672,7 +672,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Deletes all pending transactions for a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -685,7 +685,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Retrieves details of a specific relayer by ID.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -698,7 +698,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Retrieves the balance of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -711,7 +711,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Fetches the current status of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -724,8 +724,8 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Retrieves a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -738,7 +738,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Retrieves a transaction by its nonce value.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} nonce The nonce of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -766,7 +766,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Lists all transactions for a specific relayer with pagination.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -781,7 +781,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Performs a JSON-RPC call using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {JsonRpcRequestNetworkRpcRequest} jsonRpcRequestNetworkRpcRequest JSON-RPC request with method and parameters
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -795,7 +795,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Sends a transaction through the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -809,7 +809,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Signs data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignDataRequest} signDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -823,7 +823,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Signs typed data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignTypedDataRequest} signTypedDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -837,7 +837,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {RelayerUpdateRequest} relayerUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -861,8 +861,8 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -872,7 +872,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Deletes all pending transactions for a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -882,7 +882,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Retrieves details of a specific relayer by ID.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -892,7 +892,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Retrieves the balance of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -902,7 +902,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Fetches the current status of a specific relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -912,8 +912,8 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Retrieves a specific transaction by its ID.
-         * @param {string} relayerId The ID of the relayer
-         * @param {string} transactionId The ID of the transaction
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -923,7 +923,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Retrieves a transaction by its nonce value.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} nonce The nonce of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -945,7 +945,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Lists all transactions for a specific relayer with pagination.
-         * @param {string} relayerId The ID of the relayer
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -957,7 +957,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Performs a JSON-RPC call using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {JsonRpcRequestNetworkRpcRequest} jsonRpcRequestNetworkRpcRequest JSON-RPC request with method and parameters
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -968,7 +968,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Sends a transaction through the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -979,7 +979,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Signs data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignDataRequest} signDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -990,7 +990,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Signs typed data using the specified relayer.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {SignTypedDataRequest} signTypedDataRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1001,7 +1001,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
-         * @param {string} relayerId 
+         * @param {string} relayerId The unique identifier of the relayer
          * @param {RelayerUpdateRequest} relayerUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1022,8 +1022,8 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Cancels a specific transaction by its ID.
-     * @param {string} relayerId The ID of the relayer
-     * @param {string} transactionId The ID of the transaction
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {string} transactionId The unique identifier of the transaction
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1035,7 +1035,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Deletes all pending transactions for a specific relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1047,7 +1047,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Retrieves details of a specific relayer by ID.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1059,7 +1059,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Retrieves the balance of a specific relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1071,7 +1071,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Fetches the current status of a specific relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1083,8 +1083,8 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Retrieves a specific transaction by its ID.
-     * @param {string} relayerId The ID of the relayer
-     * @param {string} transactionId The ID of the transaction
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {string} transactionId The unique identifier of the transaction
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
@@ -1096,7 +1096,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Retrieves a transaction by its nonce value.
-     * @param {string} relayerId The ID of the relayer
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {number} nonce The nonce of the transaction
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1122,7 +1122,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Lists all transactions for a specific relayer with pagination.
-     * @param {string} relayerId The ID of the relayer
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {number} [page] Page number for pagination (starts at 1)
      * @param {number} [perPage] Number of items per page (default: 10)
      * @param {*} [options] Override http request option.
@@ -1136,7 +1136,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Performs a JSON-RPC call using the specified relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {JsonRpcRequestNetworkRpcRequest} jsonRpcRequestNetworkRpcRequest JSON-RPC request with method and parameters
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1149,7 +1149,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Sends a transaction through the specified relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {NetworkTransactionRequest} networkTransactionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1162,7 +1162,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Signs data using the specified relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {SignDataRequest} signDataRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1175,7 +1175,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Signs typed data using the specified relayer.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {SignTypedDataRequest} signTypedDataRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1188,7 +1188,7 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Updates a relayer\'s information based on the provided update request.
-     * @param {string} relayerId 
+     * @param {string} relayerId The unique identifier of the relayer
      * @param {RelayerUpdateRequest} relayerUpdateRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

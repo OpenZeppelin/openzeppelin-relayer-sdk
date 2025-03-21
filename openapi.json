@@ -21,7 +21,7 @@
           "Relayers"
         ],
         "summary": "Lists all relayers with pagination support.",
-        "operationId": "list_relayers",
+        "operationId": "listRelayers",
         "parameters": [
           {
             "name": "page",
@@ -46,7 +46,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Relayers list",
+            "description": "Relayer list retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -55,8 +55,65 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -72,11 +129,12 @@
           "Relayers"
         ],
         "summary": "Retrieves details of a specific relayer by ID.",
-        "operationId": "get_relayer",
+        "operationId": "getRelayer",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -85,7 +143,7 @@
         ],
         "responses": {
           "200": {
-            "description": "success",
+            "description": "Relayer details retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -94,15 +152,77 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
           },
           "500": {
-            "description": "internal server error",
+            "description": "Internal server error",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
                 }
               }
             }
@@ -119,11 +239,12 @@
           "Relayers"
         ],
         "summary": "Updates a relayer's information based on the provided update request.",
-        "operationId": "update_relayer",
+        "operationId": "updateRelayer",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -142,7 +263,7 @@
         },
         "responses": {
           "200": {
-            "description": "Update relayer",
+            "description": "Relayer updated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -151,8 +272,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -168,11 +361,12 @@
           "Relayers"
         ],
         "summary": "Retrieves the balance of a specific relayer.",
-        "operationId": "get_relayer_balance",
+        "operationId": "getRelayerBalance",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -181,7 +375,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Relayer balance",
+            "description": "Relayer balance retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -190,8 +384,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -212,6 +478,7 @@
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -241,7 +508,7 @@
         },
         "responses": {
           "200": {
-            "description": "RPC",
+            "description": "RPC method executed successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -250,8 +517,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -272,6 +611,7 @@
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -290,7 +630,7 @@
         },
         "responses": {
           "200": {
-            "description": "Sign transaction",
+            "description": "Relayer signed data successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -299,8 +639,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -316,11 +728,12 @@
           "Relayers"
         ],
         "summary": "Signs typed data using the specified relayer.",
-        "operationId": "sign_typed_data",
+        "operationId": "signTypedData",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -339,7 +752,7 @@
         },
         "responses": {
           "200": {
-            "description": "Sign transaction",
+            "description": "Relayer signed typed data successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -348,8 +761,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -365,11 +850,12 @@
           "Relayers"
         ],
         "summary": "Fetches the current status of a specific relayer.",
-        "operationId": "get_relayer_status",
+        "operationId": "getRelayerStatus",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -378,7 +864,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Relayer status",
+            "description": "Relayer status retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -387,8 +873,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -404,11 +962,12 @@
           "Relayers"
         ],
         "summary": "Sends a transaction through the specified relayer.",
-        "operationId": "send_transaction",
+        "operationId": "sendTransaction",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -427,7 +986,7 @@
         },
         "responses": {
           "200": {
-            "description": "Transaction response",
+            "description": "Relayer transactions sent successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -436,15 +995,85 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
           {
-            "bearer_auth": [
-              "read"
-            ]
+            "bearer_auth": []
           }
         ]
       }
@@ -455,12 +1084,12 @@
           "Relayers"
         ],
         "summary": "Lists all transactions for a specific relayer with pagination.",
-        "operationId": "list_transactions",
+        "operationId": "listTransactions",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
-            "description": "The ID of the relayer",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -489,7 +1118,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Transaction list response",
+            "description": "Relayer transactions retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -498,8 +1127,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -515,12 +1216,12 @@
           "Relayers"
         ],
         "summary": "Retrieves a transaction by its nonce value.",
-        "operationId": "get_transaction_by_nonce",
+        "operationId": "getTransactionByNonce",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
-            "description": "The ID of the relayer",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -539,7 +1240,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Transaction response",
+            "description": "Relayer transaction retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -548,8 +1249,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -565,11 +1338,12 @@
           "Relayers"
         ],
         "summary": "Deletes all pending transactions for a specific relayer.",
-        "operationId": "delete_pending_transactions",
+        "operationId": "deletePendingTransactions",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -578,7 +1352,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Delete Pending transactions",
+            "description": "Relayer pending transactions successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -587,8 +1361,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -604,12 +1450,12 @@
           "Relayers"
         ],
         "summary": "Retrieves a specific transaction by its ID.",
-        "operationId": "get_transaction_by_id",
+        "operationId": "getTransactionById",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
-            "description": "The ID of the relayer",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -618,7 +1464,7 @@
           {
             "name": "transaction_id",
             "in": "path",
-            "description": "The ID of the transaction",
+            "description": "The unique identifier of the transaction",
             "required": true,
             "schema": {
               "type": "string"
@@ -627,7 +1473,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Transaction response",
+            "description": "Relayer transaction retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -636,8 +1482,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Not Found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [
@@ -651,12 +1569,12 @@
           "Relayers"
         ],
         "summary": "Cancels a specific transaction by its ID.",
-        "operationId": "cancel_transaction",
+        "operationId": "cancelTransaction",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
-            "description": "The ID of the relayer",
+            "description": "The unique identifier of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -665,7 +1583,7 @@
           {
             "name": "transaction_id",
             "in": "path",
-            "description": "The ID of the transaction",
+            "description": "The unique identifier of the transaction",
             "required": true,
             "schema": {
               "type": "string"
@@ -674,7 +1592,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Cancel transaction",
+            "description": "Relayer transaction canceled successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -683,8 +1601,80 @@
               }
             }
           },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
           }
         },
         "security": [

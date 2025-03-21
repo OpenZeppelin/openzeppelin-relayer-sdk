@@ -25,7 +25,9 @@ const relayersApi = new RelayersApi(config);
 
 const relayer_id = 'sepolia-example';
 
+const nonce = 44;
+
 relayersApi
-  .getTransactionByNonce(relayer_id, 44)
+  .getTransactionByNonce(relayer_id, nonce)
   .then((transaction) => console.log(JSON.stringify(transaction.data, null, 2)))
   .catch(console.error);
