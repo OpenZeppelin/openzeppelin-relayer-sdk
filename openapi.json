@@ -15,106 +15,11 @@
     "version": "0.1.0"
   },
   "paths": {
-    "/debug/metrics/scrape": {
+    "/api/v1/relayers": {
       "get": {
-        "tags": ["Metrics"],
-        "summary": "Triggers an update of system metrics and returns the result in plain text format.",
-        "description": "# Returns\n\nAn `HttpResponse` containing the updated metrics in plain text, or an error message if the\nupdate fails.",
-        "operationId": "scrape_metrics",
-        "responses": {
-          "200": {
-            "description": "Complete metrics in Prometheus exposition format",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/metrics": {
-      "get": {
-        "tags": ["Metrics"],
-        "summary": "Returns a list of all available metric names in JSON format.",
-        "description": "# Returns\n\nAn `HttpResponse` containing a JSON array of metric names.",
-        "operationId": "list_metrics",
-        "responses": {
-          "200": {
-            "description": "Metric names list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/metrics/{metric_name}": {
-      "get": {
-        "tags": ["Metrics"],
-        "summary": "Returns the details of a specific metric in plain text format.",
-        "description": "# Parameters\n\n- `path`: The name of the metric to retrieve details for.\n\n# Returns\n\nAn `HttpResponse` containing the metric details in plain text, or a 404 error if the metric is\nnot found.",
-        "operationId": "metric_detail",
-        "parameters": [
-          {
-            "name": "metric_name",
-            "in": "path",
-            "description": "Name of the metric to retrieve, e.g. utopia_transactions_total",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Relayers"
         ],
-        "responses": {
-          "200": {
-            "description": "Metric details in Prometheus text format",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized - missing or invalid API key"
-          },
-          "403": {
-            "description": "Forbidden - insufficient permissions to access this metric"
-          },
-          "404": {
-            "description": "Metric not found"
-          },
-          "429": {
-            "description": "Too many requests - rate limit for metrics access exceeded"
-          }
-        },
-        "security": [
-          {
-            "bearer_auth": ["metrics:read"]
-          }
-        ]
-      }
-    },
-    "/relayers": {
-      "get": {
-        "tags": ["Relayers"],
         "summary": "Lists all relayers with pagination support.",
         "operationId": "list_relayers",
         "parameters": [
@@ -161,9 +66,58 @@
         ]
       }
     },
-    "/relayers/{relayer_id}": {
+    "/api/v1/relayers/{relayer_id}": {
+      "get": {
+        "tags": [
+          "Relayers"
+        ],
+        "summary": "Retrieves details of a specific relayer by ID.",
+        "operationId": "get_relayer",
+        "parameters": [
+          {
+            "name": "relayer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_RelayerResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ]
+      },
       "patch": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Updates a relayer's information based on the provided update request.",
         "operationId": "update_relayer",
         "parameters": [
@@ -208,9 +162,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/balance": {
+    "/api/v1/relayers/{relayer_id}/balance": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves the balance of a specific relayer.",
         "operationId": "get_relayer_balance",
         "parameters": [
@@ -245,9 +201,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/rpc": {
+    "/api/v1/relayers/{relayer_id}/rpc": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Performs a JSON-RPC call using the specified relayer.",
         "operationId": "rpc",
         "parameters": [
@@ -303,9 +261,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/sign": {
+    "/api/v1/relayers/{relayer_id}/sign": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Signs data using the specified relayer.",
         "operationId": "sign",
         "parameters": [
@@ -350,9 +310,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/sign-typed-data": {
+    "/api/v1/relayers/{relayer_id}/sign-typed-data": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Signs typed data using the specified relayer.",
         "operationId": "sign_typed_data",
         "parameters": [
@@ -397,9 +359,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/status": {
+    "/api/v1/relayers/{relayer_id}/status": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Fetches the current status of a specific relayer.",
         "operationId": "get_relayer_status",
         "parameters": [
@@ -434,9 +398,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/transactions": {
+    "/api/v1/relayers/{relayer_id}/transactions": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Sends a transaction through the specified relayer.",
         "operationId": "send_transaction",
         "parameters": [
@@ -476,14 +442,18 @@
         },
         "security": [
           {
-            "bearer_auth": ["read"]
+            "bearer_auth": [
+              "read"
+            ]
           }
         ]
       }
     },
-    "/relayers/{relayer_id}/transactions/": {
+    "/api/v1/relayers/{relayer_id}/transactions/": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Lists all transactions for a specific relayer with pagination.",
         "operationId": "list_transactions",
         "parameters": [
@@ -539,9 +509,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/transactions/by-nonce/{nonce}": {
+    "/api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce}": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves a transaction by its nonce value.",
         "operationId": "get_transaction_by_nonce",
         "parameters": [
@@ -587,9 +559,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/transactions/pending": {
+    "/api/v1/relayers/{relayer_id}/transactions/pending": {
       "delete": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Deletes all pending transactions for a specific relayer.",
         "operationId": "delete_pending_transactions",
         "parameters": [
@@ -624,9 +598,11 @@
         ]
       }
     },
-    "/relayers/{relayer_id}/transactions/{transaction_id}": {
+    "/api/v1/relayers/{relayer_id}/transactions/{transaction_id}": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves a specific transaction by its ID.",
         "operationId": "get_transaction_by_id",
         "parameters": [
@@ -671,13 +647,16 @@
         ]
       },
       "delete": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Cancels a specific transaction by its ID.",
         "operationId": "cancel_transaction",
         "parameters": [
           {
             "name": "relayer_id",
             "in": "path",
+            "description": "The ID of the relayer",
             "required": true,
             "schema": {
               "type": "string"
@@ -686,6 +665,7 @@
           {
             "name": "transaction_id",
             "in": "path",
+            "description": "The ID of the transaction",
             "required": true,
             "schema": {
               "type": "string"
@@ -714,15 +694,72 @@
         ]
       }
     },
-    "/v1/relayers/{relayer_id}": {
+    "/debug/metrics/scrape": {
       "get": {
-        "tags": ["Relayers"],
-        "summary": "Retrieves details of a specific relayer by ID.",
-        "operationId": "get_relayer",
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Triggers an update of system metrics and returns the result in plain text format.",
+        "description": "# Returns\n\nAn `HttpResponse` containing the updated metrics in plain text, or an error message if the\nupdate fails.",
+        "operationId": "scrape_metrics",
+        "responses": {
+          "200": {
+            "description": "Complete metrics in Prometheus exposition format",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Returns a list of all available metric names in JSON format.",
+        "description": "# Returns\n\nAn `HttpResponse` containing a JSON array of metric names.",
+        "operationId": "list_metrics",
+        "responses": {
+          "200": {
+            "description": "Metric names list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/metrics/{metric_name}": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Returns the details of a specific metric in plain text format.",
+        "description": "# Parameters\n\n- `path`: The name of the metric to retrieve details for.\n\n# Returns\n\nAn `HttpResponse` containing the metric details in plain text, or a 404 error if the metric is\nnot found.",
+        "operationId": "metric_detail",
         "parameters": [
           {
-            "name": "relayer_id",
+            "name": "metric_name",
             "in": "path",
+            "description": "Name of the metric to retrieve, e.g. utopia_transactions_total",
             "required": true,
             "schema": {
               "type": "string"
@@ -731,20 +768,7 @@
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponse_RelayerResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "internal server error",
+            "description": "Metric details in Prometheus text format",
             "content": {
               "text/plain": {
                 "schema": {
@@ -752,11 +776,25 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "403": {
+            "description": "Forbidden - insufficient permissions to access this metric"
+          },
+          "404": {
+            "description": "Metric not found"
+          },
+          "429": {
+            "description": "Too many requests - rate limit for metrics access exceeded"
           }
         },
         "security": [
           {
-            "bearer_auth": []
+            "bearer_auth": [
+              "metrics:read"
+            ]
           }
         ]
       }
@@ -766,11 +804,16 @@
     "schemas": {
       "ApiResponse_BalanceResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
-            "required": ["balance", "unit"],
+            "required": [
+              "balance",
+              "unit"
+            ],
             "properties": {
               "balance": {
                 "type": "integer",
@@ -795,11 +838,22 @@
       },
       "ApiResponse_RelayerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
-            "required": ["id", "name", "network", "network_type", "paused", "policies", "address", "system_disabled"],
+            "required": [
+              "id",
+              "name",
+              "network",
+              "network_type",
+              "paused",
+              "policies",
+              "address",
+              "system_disabled"
+            ],
             "properties": {
               "address": {
                 "type": "string"
@@ -840,7 +894,9 @@
       },
       "ApiResponse_SignDataResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
@@ -865,7 +921,9 @@
       },
       "ApiResponse_String": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "string"
@@ -883,7 +941,9 @@
       },
       "ApiResponse_TransactionResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
@@ -911,13 +971,24 @@
       },
       "ApiResponse_Vec_RelayerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["id", "name", "network", "network_type", "paused", "policies", "address", "system_disabled"],
+              "required": [
+                "id",
+                "name",
+                "network",
+                "network_type",
+                "paused",
+                "policies",
+                "address",
+                "system_disabled"
+              ],
               "properties": {
                 "address": {
                   "type": "string"
@@ -959,7 +1030,9 @@
       },
       "ApiResponse_Vec_TransactionResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
@@ -990,7 +1063,9 @@
       },
       "ApiResponse_bool": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "boolean"
@@ -1008,7 +1083,10 @@
       },
       "BalanceResponse": {
         "type": "object",
-        "required": ["balance", "unit"],
+        "required": [
+          "balance",
+          "unit"
+        ],
         "properties": {
           "balance": {
             "type": "integer",
@@ -1025,7 +1103,10 @@
       },
       "EvmPolicyResponse": {
         "type": "object",
-        "required": ["private_transactions", "min_balance"],
+        "required": [
+          "private_transactions",
+          "min_balance"
+        ],
         "properties": {
           "eip1559_pricing": {
             "type": "boolean"
@@ -1053,11 +1134,16 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["GenericRpcRequest"]
+                "enum": [
+                  "GenericRpcRequest"
+                ]
               },
               "params": {
                 "type": "string"
@@ -1075,7 +1161,10 @@
       },
       "EvmTransactionRequest": {
         "type": "object",
-        "required": ["value", "gas_limit"],
+        "required": [
+          "value",
+          "gas_limit"
+        ],
         "properties": {
           "data": {
             "type": "string"
@@ -1115,7 +1204,15 @@
       },
       "EvmTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "gas_limit", "value", "from", "relayer_id"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "gas_limit",
+          "value",
+          "from",
+          "relayer_id"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -1165,7 +1262,10 @@
       },
       "FeeEstimateRequestParams": {
         "type": "object",
-        "required": ["transaction", "fee_token"],
+        "required": [
+          "transaction",
+          "fee_token"
+        ],
         "properties": {
           "fee_token": {
             "type": "string"
@@ -1178,7 +1278,10 @@
       },
       "FeeEstimateResult": {
         "type": "object",
-        "required": ["estimated_fee", "conversion_rate"],
+        "required": [
+          "estimated_fee",
+          "conversion_rate"
+        ],
         "properties": {
           "conversion_rate": {
             "type": "string"
@@ -1194,7 +1297,9 @@
       },
       "GetFeaturesEnabledResult": {
         "type": "object",
-        "required": ["features"],
+        "required": [
+          "features"
+        ],
         "properties": {
           "features": {
             "type": "array",
@@ -1206,7 +1311,11 @@
       },
       "GetSupportedTokensItem": {
         "type": "object",
-        "required": ["mint", "symbol", "decimals"],
+        "required": [
+          "mint",
+          "symbol",
+          "decimals"
+        ],
         "properties": {
           "conversion_slippage_percentage": {
             "type": "number",
@@ -1236,7 +1345,9 @@
       },
       "GetSupportedTokensResult": {
         "type": "object",
-        "required": ["tokens"],
+        "required": [
+          "tokens"
+        ],
         "properties": {
           "tokens": {
             "type": "array",
@@ -1248,7 +1359,11 @@
       },
       "JsonRpcError": {
         "type": "object",
-        "required": ["code", "message", "description"],
+        "required": [
+          "code",
+          "message",
+          "description"
+        ],
         "properties": {
           "code": {
             "type": "integer",
@@ -1279,7 +1394,10 @@
           },
           {
             "type": "object",
-            "required": ["jsonrpc", "id"],
+            "required": [
+              "jsonrpc",
+              "id"
+            ],
             "properties": {
               "id": {
                 "type": "integer",
@@ -1295,7 +1413,9 @@
       },
       "JsonRpcResponse_NetworkRpcResult": {
         "type": "object",
-        "required": ["jsonrpc"],
+        "required": [
+          "jsonrpc"
+        ],
         "properties": {
           "error": {
             "$ref": "#/components/schemas/JsonRpcError"
@@ -1377,11 +1497,19 @@
       },
       "NetworkType": {
         "type": "string",
-        "enum": ["evm", "stellar", "solana"]
+        "enum": [
+          "evm",
+          "stellar",
+          "solana"
+        ]
       },
       "PaginationMeta": {
         "type": "object",
-        "required": ["current_page", "per_page", "total_items"],
+        "required": [
+          "current_page",
+          "per_page",
+          "total_items"
+        ],
         "properties": {
           "current_page": {
             "type": "integer",
@@ -1402,7 +1530,10 @@
       },
       "PrepareTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction", "fee_token"],
+        "required": [
+          "transaction",
+          "fee_token"
+        ],
         "properties": {
           "fee_token": {
             "type": "string"
@@ -1415,7 +1546,13 @@
       },
       "PrepareTransactionResult": {
         "type": "object",
-        "required": ["transaction", "fee_in_spl", "fee_in_lamports", "fee_token", "valid_until_blockheight"],
+        "required": [
+          "transaction",
+          "fee_in_spl",
+          "fee_in_lamports",
+          "fee_token",
+          "valid_until_blockheight"
+        ],
         "properties": {
           "fee_in_lamports": {
             "type": "string"
@@ -1438,7 +1575,16 @@
       },
       "RelayerResponse": {
         "type": "object",
-        "required": ["id", "name", "network", "network_type", "paused", "policies", "address", "system_disabled"],
+        "required": [
+          "id",
+          "name",
+          "network",
+          "network_type",
+          "paused",
+          "policies",
+          "address",
+          "system_disabled"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -1476,7 +1622,9 @@
       },
       "SignAndSendTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction"],
+        "required": [
+          "transaction"
+        ],
         "properties": {
           "transaction": {
             "$ref": "#/components/schemas/EncodedSerializedTransaction"
@@ -1486,7 +1634,10 @@
       },
       "SignAndSendTransactionResult": {
         "type": "object",
-        "required": ["transaction", "signature"],
+        "required": [
+          "transaction",
+          "signature"
+        ],
         "properties": {
           "signature": {
             "type": "string"
@@ -1498,7 +1649,9 @@
       },
       "SignDataRequest": {
         "type": "object",
-        "required": ["message"],
+        "required": [
+          "message"
+        ],
         "properties": {
           "message": {
             "type": "string"
@@ -1517,7 +1670,12 @@
       },
       "SignDataResponseEvm": {
         "type": "object",
-        "required": ["r", "s", "v", "sig"],
+        "required": [
+          "r",
+          "s",
+          "v",
+          "sig"
+        ],
         "properties": {
           "r": {
             "type": "string"
@@ -1537,7 +1695,10 @@
       },
       "SignDataResponseSolana": {
         "type": "object",
-        "required": ["signature", "public_key"],
+        "required": [
+          "signature",
+          "public_key"
+        ],
         "properties": {
           "public_key": {
             "type": "string"
@@ -1549,7 +1710,9 @@
       },
       "SignTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction"],
+        "required": [
+          "transaction"
+        ],
         "properties": {
           "transaction": {
             "$ref": "#/components/schemas/EncodedSerializedTransaction"
@@ -1559,7 +1722,10 @@
       },
       "SignTransactionResult": {
         "type": "object",
-        "required": ["transaction", "signature"],
+        "required": [
+          "transaction",
+          "signature"
+        ],
         "properties": {
           "signature": {
             "type": "string"
@@ -1571,7 +1737,10 @@
       },
       "SignTypedDataRequest": {
         "type": "object",
-        "required": ["domain_separator", "hash_struct_message"],
+        "required": [
+          "domain_separator",
+          "hash_struct_message"
+        ],
         "properties": {
           "domain_separator": {
             "type": "string"
@@ -1583,7 +1752,9 @@
       },
       "SolanaAllowedTokensPolicy": {
         "type": "object",
-        "required": ["mint"],
+        "required": [
+          "mint"
+        ],
         "properties": {
           "conversion_slippage_percentage": {
             "type": "number",
@@ -1609,7 +1780,10 @@
       },
       "SolanaPolicyResponse": {
         "type": "object",
-        "required": ["max_tx_data_size", "min_balance"],
+        "required": [
+          "max_tx_data_size",
+          "min_balance"
+        ],
         "properties": {
           "allowed_accounts": {
             "type": "array",
@@ -1661,11 +1835,16 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["feeEstimate"]
+                "enum": [
+                  "feeEstimate"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/FeeEstimateRequestParams"
@@ -1675,11 +1854,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["transferTransaction"]
+                "enum": [
+                  "transferTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/TransferTransactionRequestParams"
@@ -1689,11 +1873,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["prepareTransaction"]
+                "enum": [
+                  "prepareTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/PrepareTransactionRequestParams"
@@ -1703,11 +1892,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["signTransaction"]
+                "enum": [
+                  "signTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/SignTransactionRequestParams"
@@ -1717,11 +1911,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["signAndSendTransaction"]
+                "enum": [
+                  "signAndSendTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/SignAndSendTransactionRequestParams"
@@ -1731,11 +1930,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["getSupportedTokens"]
+                "enum": [
+                  "getSupportedTokens"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/GetSupportedTokensRequestParams"
@@ -1745,11 +1949,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["getFeaturesEnabled"]
+                "enum": [
+                  "getFeaturesEnabled"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/GetFeaturesEnabledRequestParams"
@@ -1786,7 +1995,10 @@
       },
       "SolanaTransactionRequest": {
         "type": "object",
-        "required": ["fee_payer", "instructions"],
+        "required": [
+          "fee_payer",
+          "instructions"
+        ],
         "properties": {
           "fee_payer": {
             "type": "string"
@@ -1801,7 +2013,13 @@
       },
       "SolanaTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "recent_blockhash", "fee_payer"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "recent_blockhash",
+          "fee_payer"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -1831,11 +2049,18 @@
       },
       "Speed": {
         "type": "string",
-        "enum": ["fastest", "fast", "average", "safeLow"]
+        "enum": [
+          "fastest",
+          "fast",
+          "average",
+          "safeLow"
+        ]
       },
       "StellarPolicyResponse": {
         "type": "object",
-        "required": ["min_balance"],
+        "required": [
+          "min_balance"
+        ],
         "properties": {
           "max_fee": {
             "type": "integer",
@@ -1853,11 +2078,16 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["GenericRpcRequest"]
+                "enum": [
+                  "GenericRpcRequest"
+                ]
               },
               "params": {
                 "type": "string"
@@ -1875,7 +2105,14 @@
       },
       "StellarTransactionRequest": {
         "type": "object",
-        "required": ["source_account", "destination_account", "amount", "asset_code", "fee", "sequence_number"],
+        "required": [
+          "source_account",
+          "destination_account",
+          "amount",
+          "asset_code",
+          "fee",
+          "sequence_number"
+        ],
         "properties": {
           "amount": {
             "type": "string"
@@ -1906,7 +2143,14 @@
       },
       "StellarTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "source_account", "fee", "sequence_number"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "source_account",
+          "fee",
+          "sequence_number"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -1955,11 +2199,24 @@
       },
       "TransactionStatus": {
         "type": "string",
-        "enum": ["pending", "sent", "submitted", "mined", "confirmed", "failed", "expired"]
+        "enum": [
+          "pending",
+          "sent",
+          "submitted",
+          "mined",
+          "confirmed",
+          "failed",
+          "expired"
+        ]
       },
       "TransferTransactionRequestParams": {
         "type": "object",
-        "required": ["amount", "token", "source", "destination"],
+        "required": [
+          "amount",
+          "token",
+          "source",
+          "destination"
+        ],
         "properties": {
           "amount": {
             "type": "integer",
@@ -1980,7 +2237,13 @@
       },
       "TransferTransactionResult": {
         "type": "object",
-        "required": ["transaction", "fee_in_spl", "fee_in_lamports", "fee_token", "valid_until_blockheight"],
+        "required": [
+          "transaction",
+          "fee_in_spl",
+          "fee_in_lamports",
+          "fee_token",
+          "valid_until_blockheight"
+        ],
         "properties": {
           "fee_in_lamports": {
             "type": "string"

@@ -58,8 +58,8 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId 
-         * @param {string} transactionId 
+         * @param {string} relayerId The ID of the relayer
+         * @param {string} transactionId The ID of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -68,7 +68,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('cancelTransaction', 'relayerId', relayerId)
             // verify required parameter 'transactionId' is not null or undefined
             assertParamExists('cancelTransaction', 'transactionId', transactionId)
-            const localVarPath = `/relayers/{relayer_id}/transactions/{transaction_id}`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/{transaction_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transactionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -107,7 +107,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         deletePendingTransactions: async (relayerId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('deletePendingTransactions', 'relayerId', relayerId)
-            const localVarPath = `/relayers/{relayer_id}/transactions/pending`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/pending`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -145,7 +145,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         getRelayer: async (relayerId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('getRelayer', 'relayerId', relayerId)
-            const localVarPath = `/v1/relayers/{relayer_id}`
+            const localVarPath = `/api/v1/relayers/{relayer_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -183,7 +183,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         getRelayerBalance: async (relayerId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('getRelayerBalance', 'relayerId', relayerId)
-            const localVarPath = `/relayers/{relayer_id}/balance`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/balance`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -221,7 +221,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         getRelayerStatus: async (relayerId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('getRelayerStatus', 'relayerId', relayerId)
-            const localVarPath = `/relayers/{relayer_id}/status`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/status`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -262,7 +262,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('getTransactionById', 'relayerId', relayerId)
             // verify required parameter 'transactionId' is not null or undefined
             assertParamExists('getTransactionById', 'transactionId', transactionId)
-            const localVarPath = `/relayers/{relayer_id}/transactions/{transaction_id}`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/{transaction_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transactionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -304,7 +304,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('getTransactionByNonce', 'relayerId', relayerId)
             // verify required parameter 'nonce' is not null or undefined
             assertParamExists('getTransactionByNonce', 'nonce', nonce)
-            const localVarPath = `/relayers/{relayer_id}/transactions/by-nonce/{nonce}`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)))
                 .replace(`{${"nonce"}}`, encodeURIComponent(String(nonce)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -342,7 +342,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
          * @throws {RequiredError}
          */
         listRelayers: async (page?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/relayers`;
+            const localVarPath = `/api/v1/relayers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -389,7 +389,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         listTransactions: async (relayerId: string, page?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('listTransactions', 'relayerId', relayerId)
-            const localVarPath = `/relayers/{relayer_id}/transactions/`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -438,7 +438,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('rpc', 'relayerId', relayerId)
             // verify required parameter 'jsonRpcRequestNetworkRpcRequest' is not null or undefined
             assertParamExists('rpc', 'jsonRpcRequestNetworkRpcRequest', jsonRpcRequestNetworkRpcRequest)
-            const localVarPath = `/relayers/{relayer_id}/rpc`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/rpc`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -482,7 +482,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('sendTransaction', 'relayerId', relayerId)
             // verify required parameter 'networkTransactionRequest' is not null or undefined
             assertParamExists('sendTransaction', 'networkTransactionRequest', networkTransactionRequest)
-            const localVarPath = `/relayers/{relayer_id}/transactions`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -526,7 +526,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('sign', 'relayerId', relayerId)
             // verify required parameter 'signDataRequest' is not null or undefined
             assertParamExists('sign', 'signDataRequest', signDataRequest)
-            const localVarPath = `/relayers/{relayer_id}/sign`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/sign`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -570,7 +570,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('signTypedData', 'relayerId', relayerId)
             // verify required parameter 'signTypedDataRequest' is not null or undefined
             assertParamExists('signTypedData', 'signTypedDataRequest', signTypedDataRequest)
-            const localVarPath = `/relayers/{relayer_id}/sign-typed-data`
+            const localVarPath = `/api/v1/relayers/{relayer_id}/sign-typed-data`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -614,7 +614,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('updateRelayer', 'relayerId', relayerId)
             // verify required parameter 'relayerUpdateRequest' is not null or undefined
             assertParamExists('updateRelayer', 'relayerUpdateRequest', relayerUpdateRequest)
-            const localVarPath = `/relayers/{relayer_id}`
+            const localVarPath = `/api/v1/relayers/{relayer_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -658,8 +658,8 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId 
-         * @param {string} transactionId 
+         * @param {string} relayerId The ID of the relayer
+         * @param {string} transactionId The ID of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -861,8 +861,8 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
-         * @param {string} relayerId 
-         * @param {string} transactionId 
+         * @param {string} relayerId The ID of the relayer
+         * @param {string} transactionId The ID of the transaction
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1022,8 +1022,8 @@ export class RelayersApi extends BaseAPI {
     /**
      * 
      * @summary Cancels a specific transaction by its ID.
-     * @param {string} relayerId 
-     * @param {string} transactionId 
+     * @param {string} relayerId The ID of the relayer
+     * @param {string} transactionId The ID of the transaction
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi

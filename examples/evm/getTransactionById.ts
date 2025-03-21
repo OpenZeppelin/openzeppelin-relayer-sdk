@@ -17,7 +17,7 @@ import { Configuration, RelayersApi } from '../../src';
 
 // example dev config
 const config = new Configuration({
-  basePath: 'http://localhost:8080/api/v1/',
+  basePath: 'http://localhost:8080',
   accessToken: 'Bearer example-123456',
 });
 
@@ -25,7 +25,9 @@ const relayersApi = new RelayersApi(config);
 
 const relayer_id = 'sepolia-example';
 
+const transaction_id = '305ff83d-6653-465f-8fa3-e8a46271fb83';
+
 relayersApi
-  .getTransactionById(relayer_id, 'd7e1c505-aaf3-4a13-80a7-da96697ae66c')
+  .getTransactionById(relayer_id, transaction_id)
   .then((transaction) => console.log(JSON.stringify(transaction.data, null, 2)))
   .catch(console.error);

@@ -1,5 +1,5 @@
 /* tslint:disable */
- 
+
 /**
  * Custom type definitions for JSON-RPC requests.
  * Out of the box generation does not produce the desired output.
@@ -12,41 +12,41 @@ export type JsonRpcRequestNetworkRpcRequest = {
 
 type SolanaRpcRequest =
   | {
-      method: "feeEstimate";
+      method: 'feeEstimate';
       params: FeeEstimateRequestParams;
     }
   | {
-      method: "transferTransaction";
+      method: 'transferTransaction';
       params: TransferTransactionRequestParams;
     }
   | {
-      method: "prepareTransaction";
+      method: 'prepareTransaction';
       params: PrepareTransactionRequestParams;
     }
   | {
-      method: "signTransaction";
+      method: 'signTransaction';
       params: SignTransactionRequestParams;
     }
   | {
-      method: "signAndSendTransaction";
+      method: 'signAndSendTransaction';
       params: SignAndSendTransactionRequestParams;
     }
   | {
-      method: "getSupportedTokens";
+      method: 'getSupportedTokens';
       params: GetSupportedTokensRequestParams;
     }
   | {
-      method: "getFeaturesEnabled";
+      method: 'getFeaturesEnabled';
       params: GetFeaturesEnabledRequestParams;
     };
 
 type StellarRpcRequest = {
-  method: "GenericRpcRequest";
+  method: 'GenericRpcRequest';
   params: string;
 };
 
 type EvmRpcRequest = {
-  method: "GenericRpcRequest";
+  method: 'GenericRpcRequest';
   params: string;
 };
 
