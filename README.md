@@ -45,10 +45,10 @@ See the [examples/solana](examples/solana) directory for Solana-specific example
 #### Get Relayer
 
 ```typescript
-import { RelayerAPI } from '@openzeppelin/relayer-sdk';
+import { Configuration, RelayersApi } from '@openzeppelin/relayer-sdk';
 
 const config = new Configuration({
-  basePath: 'https://your-path.com/api/v1/',
+  basePath: 'https://your-path.com',
   accessToken: 'Bearer example-123456',
 });
 
