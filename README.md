@@ -62,7 +62,10 @@ For more examples, check the [examples directory](examples).
 
 ## API Documentation
 
-The SDK is built on top of an OpenAPI specification which can be found in the [openapi.json](openapi.json) file. For detailed API documentation, please refer to the OpenZeppelin Relayer documentation.
+The SDK is built on top of an OpenAPI specification which can be found in the [openapi.json](openapi.json) file.
+
+For detailed API documentation, please refer to the [API Reference](docs/README.md) in the docs folder. This documentation provides comprehensive information about all available endpoints, request parameters, and response types.
+
 
 ## Development
 

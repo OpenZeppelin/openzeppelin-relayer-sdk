@@ -21,6 +21,7 @@
     "clean:client": "rimraf ./src",
     "clean:dist": "rimraf ./dist",
     "generate:client": "pnpm clean:client && pnpm openapi-generator-cli generate -i ./openapi.json -g typescript-axios -o ./src  -c ./config.json",
+    "generate:docs": "pnpm openapi-generator-cli generate -i ./openapi.json -g markdown -o docs",
     "post:generate:client": "node scripts/post-generate.js",
     "build:client": "pnpm clean:dist && tsc",
     "generate": "pnpm generate:client && pnpm post:generate:client && pnpm build:client",
