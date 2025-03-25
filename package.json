@@ -27,7 +27,10 @@
     "generate": "pnpm generate:client && pnpm post:generate:client && pnpm build:client",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "lint": "prettier --check --write ."
+    "lint": "prettier --check --write .",
+    "publish:package": "node ./scripts/publish.js",
+    "install-pnpm": "npm install -g pnpm",
+    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline"
   },
   "keywords": [
     "relayer",
@@ -51,6 +54,7 @@
     "typescript-eslint": "8.27.0"
   },
   "dependencies": {
+    "@actions/exec": "^1.1.1",
     "@solana/web3.js": "1",
     "axios": "^1.7.7"
   },
