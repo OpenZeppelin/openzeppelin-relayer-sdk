@@ -3,7 +3,6 @@ on:
  push:
    branches:
      - main
-     - PLAT-6439-release-wf
 jobs:
  update_release_draft:
    runs-on: ubuntu-24.04
