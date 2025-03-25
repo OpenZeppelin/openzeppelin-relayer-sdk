@@ -28,6 +28,7 @@
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "lint": "prettier --check --write .",
+    "test": "nx run-many -t test --parallel=1 --output-style=static",
     "publish:package": "node ./scripts/publish.js",
     "install-pnpm": "npm install -g pnpm",
     "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline"
@@ -51,7 +52,8 @@
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "typescript-eslint": "8.27.0"
+    "typescript-eslint": "8.27.0",
+    "nx": "^20.6.0"
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
