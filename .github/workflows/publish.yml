@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - release-v*
+      - PLAT-6439-release-wf
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
