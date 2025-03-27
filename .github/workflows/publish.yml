@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ secrets.TEMP_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: state
@@ -58,6 +60,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ secrets.TEMP_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: start
@@ -80,6 +84,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ secrets.TEMP_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - name: Import GPG key
@@ -110,7 +116,9 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
+          token: ${{ secrets.TEMP_PAT }}
           fetch-depth: 0
+          
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - name: Set release title
@@ -141,6 +149,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ secrets.TEMP_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: pack
@@ -178,7 +188,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.SAI_PAT }}
+          token: ${{ secrets.TEMP_PAT }}
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
