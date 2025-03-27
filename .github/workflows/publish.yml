@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: state
@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: start
@@ -85,7 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - name: Import GPG key
@@ -116,7 +116,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
           fetch-depth: 0
           
       - name: Prepare pre-requisites
@@ -150,7 +150,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: pack
@@ -188,7 +188,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ secrets.TEMP_PAT }}
+          token: ${{ secrets.SAI_PAT }}
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
