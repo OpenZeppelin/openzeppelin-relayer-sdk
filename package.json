@@ -58,7 +58,8 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "typescript-eslint": "8.27.0",
-    "nx": "^20.6.0"
+    "nx": "^20.6.0",
+    "undici": "^7.4.0"
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
