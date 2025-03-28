@@ -28,7 +28,7 @@ function shouldRunStart({ isDevelop, isWorkflowDispatch, botRun }) {
 }
 
 function shouldRunPromote({ isMain, isWorkflowDispatch, botRun }) {
-  return isMain && isWorkflowDispatch && !botRun;
+  return isMain && !isWorkflowDispatch && !botRun;
 }
 
 function shouldRunChangesets({ isMain, isPush, isWorkflowDispatch, botRun }) {
@@ -63,7 +63,7 @@ async function getState({ github, context, core }) {
     hasPendingChangesets: changesets.length > 0,
     prerelease: preState?.mode === 'pre',
     isDevelop: refName === 'PLAT-6439-release-wf',
-    isMain: refName === 'main',
+    isMain: refName === 'PLAT-6439-release-wf',
     isWorkflowDispatch: context.eventName === 'workflow_dispatch',
     isPush: context.eventName === 'push',
     isCurrentFinalVersion: !version.includes('-rc.'),

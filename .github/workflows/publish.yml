@@ -218,14 +218,22 @@ jobs:
     permissions:
       contents: write
       actions: write
+      pull-requests: write
     if: needs.state.outputs.promote == 'true'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Exit prerelease state
         if: needs.state.outputs.is_prerelease == 'true'
         run: npx changeset pre exit rc
@@ -235,8 +243,9 @@ jobs:
         with:
           commit-message: "🤖 chore: Push changes to exit RC"
           title: "chore: 🤖 [Automated PR] Push changes to exit RC"
-          committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
-          author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
             This PR pushes changes to exit RC
       - name: Re-run workflow
@@ -253,12 +262,19 @@ jobs:
     if: needs.state.outputs.changesets == 'true'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
           fetch-depth: 0
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Create PR
         uses: changesets/action@v1
         env:
@@ -278,11 +294,18 @@ jobs:
     if: needs.state.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
       - name: Set up environment
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - id: pack
         name: Pack
         run: bash scripts/release/workflow/pack.sh
@@ -305,42 +328,42 @@ jobs:
     outputs:
       tarball_name: ${{ steps.pack.outputs.tarball_name }}
 
-  publish:
-    needs: [state, gh-app-token]
-    name: Publish to npm
-    environment: npm
-    permissions:
-      contents: write
-    if: needs.state.outputs.publish == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/setup
-      - id: pack
-        name: Pack
-        run: bash scripts/release/workflow/pack.sh
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-      - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish
-        run: bash scripts/release/workflow/publish.sh
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
-      - name: Create Github Release
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-        with:
-          script: await require('./scripts/release/workflow/github-release.js')({ github, context })
+  # publish:
+  #   needs: [state, gh-app-token]
+  #   name: Publish to npm
+  #   environment: npm
+  #   permissions:
+  #     contents: write
+  #   if: needs.state.outputs.publish == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Set up environment
+  #       uses: ./.github/actions/prepare
+  #     - id: pack
+  #       name: Pack
+  #       run: bash scripts/release/workflow/pack.sh
+  #       env:
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #     - name: Upload tarball artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ github.ref_name }}
+  #         path: ${{ steps.pack.outputs.tarball }}
+  #     - name: Publish
+  #       run: bash scripts/release/workflow/publish.sh
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #         TARBALL: ${{ steps.pack.outputs.tarball }}
+  #         TAG: ${{ steps.pack.outputs.tag }}
+  #     - name: Create Github Release
+  #       uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+  #       env:
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #       with:
+  #         script: await require('./scripts/release/workflow/github-release.js')({ github, context })
 ### NEW END
 
 
