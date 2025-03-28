@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version_tag:
-        required: true
+        required: false
         description: The release version
         type: string
   push:
