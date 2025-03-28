@@ -53,6 +53,8 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
         # with:
         #   gh-app-id: ${{ vars.GH_APP_ID }}
         #   gh-app-private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
@@ -141,8 +143,7 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
         with:
-          gh-app-id: ${{ vars.GH_APP_ID }}
-          gh-app-private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          token: ${{ steps.gh-app-token.outputs.token }}
       - run: npx changeset pre enter rc
         shell: bash
       - name: Commit changes

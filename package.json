@@ -41,6 +41,10 @@
   ],
   "author": "OpenZeppelin <contact@openzeppelin.com>",
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.26.0",
+    "@changesets/pre": "^2.0.0",
+    "@changesets/read": "^0.6.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "commitizen": "^4.3.1",
