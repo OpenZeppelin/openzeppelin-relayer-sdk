@@ -31,7 +31,8 @@
     "test": "nx run-many -t test --parallel=1 --output-style=static",
     "publish:package": "node ./scripts/publish.js",
     "install-pnpm": "npm install -g pnpm",
-    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline"
+    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
+    "ci:version": "pnpm changeset version"
   },
   "keywords": [
     "relayer",
