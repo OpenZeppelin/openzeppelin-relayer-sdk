@@ -17,7 +17,7 @@ runs:
       with:
         app-id: ${{ inputs.gh-app-id }}
         private-key: ${{ inputs.gh-app-private-key }}
-        persist-credentials: false
+        persist-credentials: true
     - uses: pnpm/action-setup@v4
       with:
         version: 9
