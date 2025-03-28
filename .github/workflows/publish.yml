@@ -109,8 +109,22 @@ jobs:
       #     NPM_CONFIG_PROVENANCE: true
 
 ### NEW START
+  gh-app-token:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
   start:
-    needs: state
+    needs: [state,gh-app-token]
     name: Start new release candidate
     permissions:
       contents: write
@@ -119,6 +133,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - run: npx changeset pre enter rc
@@ -140,12 +156,15 @@ jobs:
           script: await require('./scripts/dispatch.js')({ github, context })
 
   state:
+    needs: gh-app-token
     name: Check state
     permissions:
       pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - id: state
@@ -168,7 +187,7 @@ jobs:
       is_prerelease: ${{ steps.state.outputs.is_prerelease }}
 
   promote:
-    needs: state
+    needs: [state, gh-app-token]
     name: Promote to final release
     permissions:
       contents: write
@@ -177,6 +196,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
       - name: Exit prerelease state
@@ -198,7 +219,7 @@ jobs:
           script: await require('./scripts/dispatch.js')({ github, context })
 
   changesets:
-    needs: state
+    needs: [state, gh-app-token]
     name: Update PR to release
     permissions:
       contents: write
@@ -208,6 +229,7 @@ jobs:
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
+          token: ${{ steps.gh-app-token.outputs.token }}
           fetch-depth: 0
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
@@ -222,7 +244,7 @@ jobs:
           commit: "ci: update the version packages"
 
   publish-rc:
-    needs: state
+   needs: [state, gh-app-token]
     name: Publish to npm
     environment: npm
     permissions:
@@ -231,6 +253,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Set up environment
         uses: ./.github/actions/setup
       - id: pack
@@ -256,7 +280,7 @@ jobs:
       tarball_name: ${{ steps.pack.outputs.tarball_name }}
 
   publish:
-    needs: state
+    needs: [state, gh-app-token]
     name: Publish to npm
     environment: npm
     permissions:
@@ -265,6 +289,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - name: Set up environment
         uses: ./.github/actions/setup
       - id: pack
