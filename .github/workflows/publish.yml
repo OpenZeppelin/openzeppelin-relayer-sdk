@@ -325,8 +325,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           TARBALL: ${{ steps.pack.outputs.tarball }}
           TAG: ${{ steps.pack.outputs.tag }}
-    outputs:
-      tarball_name: ${{ steps.pack.outputs.tarball_name }}
 
   # publish:
   #   needs: [state, gh-app-token]
