@@ -4,9 +4,7 @@ description: |
   Setup Pre-requisites
 
 inputs:
-  gh-app-id:
-    required: true
-  gh-app-private-key:
+  gh-app-token:
     required: true
 
 runs:
@@ -15,8 +13,7 @@ runs:
     - name: Checkout Repo
       uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
       with:
-        gh-app-id: ${{ inputs.gh-app-id }}
-        gh-app-private-key: ${{ inputs.gh-app-private-key }}
+        token: ${{ inputs.gh-app-token }}
         persist-credentials: true
     - uses: pnpm/action-setup@v4
       with:
