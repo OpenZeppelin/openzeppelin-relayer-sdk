@@ -158,8 +158,9 @@ jobs:
         with:
           commit-message: "🤖 chore: Push the release candidate change"
           title: "chore: 🤖 [Automated PR] Push the release candidate change"
-          committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
-          author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
+          # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
             This PR adds the RC changes
       - name: Re-run workflow
