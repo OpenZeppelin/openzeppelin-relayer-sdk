@@ -134,6 +134,7 @@ jobs:
     permissions:
       contents: write
       actions: write
+      pull-requests: write
     if: needs.state.outputs.start == 'true'
     runs-on: ubuntu-latest
     steps:
