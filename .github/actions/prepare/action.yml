@@ -5,6 +5,7 @@ description: |
 
 runs:
   using: composite
+  runs-on: ubuntu-latest
   steps:
     - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
       id: gh-app-token
