@@ -53,9 +53,9 @@ jobs:
 
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
-        with:
-          gh-app-id: ${{ vars.GH_APP_ID }}
-          gh-app-private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+        # with:
+        #   gh-app-id: ${{ vars.GH_APP_ID }}
+        #   gh-app-private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       # - name: Import GPG key
       #   uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4

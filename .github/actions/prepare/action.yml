@@ -15,8 +15,8 @@ runs:
     - name: Checkout Repo
       uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
       with:
-        app-id: ${{ inputs.gh-app-id }}
-        private-key: ${{ inputs.gh-app-private-key }}
+        gh-app-id: ${{ inputs.gh-app-id }}
+        gh-app-private-key: ${{ inputs.gh-app-private-key }}
         persist-credentials: true
     - uses: pnpm/action-setup@v4
       with:
