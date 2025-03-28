@@ -244,7 +244,7 @@ jobs:
           commit: "ci: update the version packages"
 
   publish-rc:
-   needs: [state, gh-app-token]
+    needs: [state, gh-app-token]
     name: Publish to npm
     environment: npm
     permissions:
