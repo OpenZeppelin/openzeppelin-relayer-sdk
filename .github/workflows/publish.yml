@@ -135,7 +135,7 @@ jobs:
       contents: write
       actions: write
       pull-requests: write
-    if: needs.state.outputs.start == 'true'
+    if: needs.state.outputs.start == 'false'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
@@ -308,7 +308,7 @@ jobs:
           token: ${{ steps.gh-app-token.outputs.token }}
       - id: pack
         name: Pack
-        run: bash scripts/release/workflow/pack.sh
+        run: bash scripts/pack.sh
         env:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
       - name: Upload tarball artifact
