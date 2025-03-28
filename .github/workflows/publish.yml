@@ -182,7 +182,7 @@ jobs:
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
         with:
-          gh-app-token: ${{ steps.gh-app-token.outputs.token }}
+          token: ${{ steps.gh-app-token.outputs.token }}
       - id: state
         name: Get state
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
