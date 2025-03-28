@@ -24,7 +24,7 @@ module.exports = async ({ github, context, core }) => {
 };
 
 function shouldRunStart({ isDevelop, isWorkflowDispatch, botRun }) {
-  return isDevelop && isWorkflowDispatch && !botRun;
+  return isDevelop && !isWorkflowDispatch && !botRun;
 }
 
 function shouldRunPromote({ isMain, isWorkflowDispatch, botRun }) {
@@ -62,7 +62,7 @@ async function getState({ github, context, core }) {
     refName,
     hasPendingChangesets: changesets.length > 0,
     prerelease: preState?.mode === 'pre',
-    isDevelop: refName === 'develop',
+    isDevelop: refName === 'PLAT-6439-release-wf',
     isMain: refName === 'main',
     isWorkflowDispatch: context.eventName === 'workflow_dispatch',
     isPush: context.eventName === 'push',
