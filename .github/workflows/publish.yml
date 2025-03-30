@@ -123,10 +123,10 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Checkout Repo
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
+      # - name: Checkout Repo
+      #   uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+      #   with:
+      #     token: ${{ steps.gh-app-token.outputs.token }}
 
   start:
     needs: [state,gh-app-token]
@@ -138,18 +138,18 @@ jobs:
     if: needs.state.outputs.start == 'false'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      # - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+      #   id: gh-app-token
+      #   with:
+      #     app-id: ${{ vars.GH_APP_ID }}
+      #     private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
-          token: ${{ steps.gh-app-token.outputs.token }}
+          token: ${{ needs.gh-app-token.outputs.token }}
       - name: Prepare pre-requisites
         uses: ./.github/actions/prepare
         with:
-          token: ${{ steps.gh-app-token.outputs.token }}
+          token: ${{ needs.gh-app-token.outputs.token }}
       - run: npx changeset pre enter rc
         shell: bash
       - run: git status
@@ -211,118 +211,118 @@ jobs:
       # Global variables
       is_prerelease: ${{ steps.state.outputs.is_prerelease }}
 
-  promote:
-    needs: [state, gh-app-token]
-    name: Promote to final release
-    permissions:
-      contents: write
-      actions: write
-      pull-requests: write
-    if: needs.state.outputs.promote == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Prepare pre-requisites
-        uses: ./.github/actions/prepare
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Exit prerelease state
-        if: needs.state.outputs.is_prerelease == 'true'
-        run: npx changeset pre exit rc
-        shell: bash
-      - name: Commit changes
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
-        with:
-          commit-message: "🤖 chore: Push changes to exit RC"
-          title: "chore: 🤖 [Automated PR] Push changes to exit RC"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          sign-commits: true
-          body: |
-            This PR pushes changes to exit RC
-      - name: Re-run workflow
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        with:
-          script: await require('./scripts/dispatch.js')({ github, context })
+  # promote:
+  #   needs: [state, gh-app-token]
+  #   name: Promote to final release
+  #   permissions:
+  #     contents: write
+  #     actions: write
+  #     pull-requests: write
+  #   if: needs.state.outputs.promote == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+  #       id: gh-app-token
+  #       with:
+  #         app-id: ${{ vars.GH_APP_ID }}
+  #         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Prepare pre-requisites
+  #       uses: ./.github/actions/prepare
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Exit prerelease state
+  #       if: needs.state.outputs.is_prerelease == 'true'
+  #       run: npx changeset pre exit rc
+  #       shell: bash
+  #     - name: Commit changes
+  #       uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+  #       with:
+  #         commit-message: "🤖 chore: Push changes to exit RC"
+  #         title: "chore: 🤖 [Automated PR] Push changes to exit RC"
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         sign-commits: true
+  #         body: |
+  #           This PR pushes changes to exit RC
+  #     - name: Re-run workflow
+  #       uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+  #       with:
+  #         script: await require('./scripts/dispatch.js')({ github, context })
 
-  changesets:
-    needs: [state, gh-app-token]
-    name: Update PR to release
-    permissions:
-      contents: write
-      pull-requests: write
-    if: needs.state.outputs.changesets == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-          fetch-depth: 0
-      - name: Prepare pre-requisites
-        uses: ./.github/actions/prepare
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Create PR
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-        with:
-          version: pnpm ci:version
-          title: "ci: update the version packages"
-          commit: "ci: update the version packages"
+  # changesets:
+  #   needs: [state, gh-app-token]
+  #   name: Update PR to release
+  #   permissions:
+  #     contents: write
+  #     pull-requests: write
+  #   if: needs.state.outputs.changesets == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+  #       id: gh-app-token
+  #       with:
+  #         app-id: ${{ vars.GH_APP_ID }}
+  #         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #         fetch-depth: 0
+  #     - name: Prepare pre-requisites
+  #       uses: ./.github/actions/prepare
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Create PR
+  #       uses: changesets/action@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #       with:
+  #         version: pnpm ci:version
+  #         title: "ci: update the version packages"
+  #         commit: "ci: update the version packages"
 
-  publish-rc:
-    needs: [state, gh-app-token]
-    name: Publish RC to npm
-    environment: npm
-    permissions:
-      contents: write
-    if: needs.state.outputs.publish == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/prepare
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - id: pack
-        name: Pack
-        run: bash scripts/pack.sh
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-      - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish
-        run: |
-            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
+  # publish-rc:
+  #   needs: [state, gh-app-token]
+  #   name: Publish RC to npm
+  #   environment: npm
+  #   permissions:
+  #     contents: write
+  #   if: needs.state.outputs.publish == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+  #       id: gh-app-token
+  #       with:
+  #         app-id: ${{ vars.GH_APP_ID }}
+  #         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Set up environment
+  #       uses: ./.github/actions/prepare
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - id: pack
+  #       name: Pack
+  #       run: bash scripts/pack.sh
+  #       env:
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #     - name: Upload tarball artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ github.ref_name }}
+  #         path: ${{ steps.pack.outputs.tarball }}
+  #     - name: Publish
+  #       run: |
+  #           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  #           pnpm publish "$TARBALL" --tag "$TAG"
+  #       shell: bash
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #         TARBALL: ${{ steps.pack.outputs.tarball }}
+  #         TAG: ${{ steps.pack.outputs.tag }}
 
   # publish:
   #   needs: [state, gh-app-token]
@@ -364,24 +364,24 @@ jobs:
 
 
 
-      - name: Generate SBOM
-        uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5
-        with:
-          artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
-          upload-artifact: false
-          upload-release-assets: false
+      # - name: Generate SBOM
+      #   uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5
+      #   with:
+      #     artifact-name: sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+      #     output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+      #     upload-artifact: false
+      #     upload-release-assets: false
 
-      - name: Download Artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+      # - name: Download Artifacts
+      #   uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
 
-      - name: Upload attestations SLSA
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-        with:
-          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
-          subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
+      # - name: Upload attestations SLSA
+      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+      #   with:
+      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+      #     subject-name: ${{ github.event.repository.name }}-${{ inputs.version_tag }}
 
-      - name: Upload attestations SBOM
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-        with:
-          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
+      # - name: Upload attestations SBOM
+      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+      #   with:
+      #     subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ inputs.version_tag }}.spdx.json
