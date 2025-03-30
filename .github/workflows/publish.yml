@@ -161,7 +161,7 @@ jobs:
           commit-message: "🤖 chore: Push the release candidate change"
           title: "chore: 🤖 [Automated PR] Push the release candidate change"
           token: ${{ secrets.GITHUB_TOKEN }}
-          sign-commit: true
+          sign-commits: true
           # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
@@ -246,7 +246,7 @@ jobs:
           commit-message: "🤖 chore: Push changes to exit RC"
           title: "chore: 🤖 [Automated PR] Push changes to exit RC"
           token: ${{ secrets.GITHUB_TOKEN }}
-          sign-commit: true
+          sign-commits: true
           # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
