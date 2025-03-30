@@ -24,7 +24,7 @@ jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
     with:
-      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, skip-lib-ignore"
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
       node-version: "20.11.1"
 
   harden-runner:

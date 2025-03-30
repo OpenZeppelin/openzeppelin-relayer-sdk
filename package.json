@@ -32,7 +32,14 @@
     "publish:package": "node ./scripts/publish.js",
     "install-pnpm": "npm install -g pnpm",
     "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
-    "ci:version": "pnpm changeset version"
+    "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
+    "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
+    "ci:version": "pnpm changeset version",
+    "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
+    "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
+    "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
+    "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
+    "style": "pnpm lint:fix"
   },
   "keywords": [
     "relayer",
