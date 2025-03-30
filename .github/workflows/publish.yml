@@ -10,7 +10,6 @@ on:
   push:
     branches:
       - PLAT-6439-release-wf
-      - PLAT-6439-release-wf1
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -162,8 +161,6 @@ jobs:
           title: "chore: 🤖 [Automated PR] Push the release candidate change"
           token: ${{ secrets.GITHUB_TOKEN }}
           sign-commits: true
-          # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
-          # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
             This PR adds the RC changes
       - name: Re-run workflow
@@ -247,8 +244,6 @@ jobs:
           title: "chore: 🤖 [Automated PR] Push changes to exit RC"
           token: ${{ secrets.GITHUB_TOKEN }}
           sign-commits: true
-          # committer: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
-          # author: svc-gh-is-01 <116854830+svc-gh-is-01@users.noreply.github.com>
           body: |
             This PR pushes changes to exit RC
       - name: Re-run workflow
