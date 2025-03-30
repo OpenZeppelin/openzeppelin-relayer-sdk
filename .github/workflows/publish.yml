@@ -156,7 +156,7 @@ jobs:
       - run: git status
         shell: bash
       - name: Commit changes
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
         with:
           commit-message: "🤖 chore: Push the release candidate change"
           title: "chore: 🤖 [Automated PR] Push the release candidate change"
@@ -241,7 +241,7 @@ jobs:
         run: npx changeset pre exit rc
         shell: bash
       - name: Commit changes
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
         with:
           commit-message: "🤖 chore: Push changes to exit RC"
           title: "chore: 🤖 [Automated PR] Push changes to exit RC"
