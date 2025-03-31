@@ -23,31 +23,31 @@ module.exports = async ({ github, context, core }) => {
   setOutput('is_prerelease', state.prerelease);
 };
 
-function shouldRunStart({ isDevelop, isWorkflowDispatch, botRun }) {
-  return isDevelop && isWorkflowDispatch && !botRun;
-}
-
-function shouldRunPromote({ isMain, isWorkflowDispatch, botRun }) {
+function shouldRunStart({ isMain, isWorkflowDispatch, botRun }) {
   return isMain && isWorkflowDispatch && !botRun;
 }
 
-function shouldRunChangesets({ isMain, isPush, isWorkflowDispatch, botRun }) {
-  return (isMain && isPush) || (isMain && isWorkflowDispatch && botRun);
+function shouldRunPromote({ isReleaseBranch, isWorkflowDispatch, botRun }) {
+  return isReleaseBranch && isWorkflowDispatch && !botRun;
 }
 
-function shouldRunPublish({ isMain, isPush, hasPendingChangesets, isPublishedOnNpm }) {
-  return isMain && isPush && !hasPendingChangesets && !isPublishedOnNpm;
+function shouldRunChangesets({ isReleaseBranch, isPush, isWorkflowDispatch, botRun }) {
+  return (isReleaseBranch && isPush) || (isReleaseBranch && isWorkflowDispatch && botRun);
+}
+
+function shouldRunPublish({ isReleaseBranch, isPush, hasPendingChangesets, isPublishedOnNpm }) {
+  return isReleaseBranch && isPush && !hasPendingChangesets && !isPublishedOnNpm;
 }
 
 function shouldRunMerge({
-  isMain,
+  isReleaseBranch,
   isPush,
   prerelease,
   isCurrentFinalVersion,
   hasPendingChangesets,
   prBackExists,
 }) {
-  return isMain && isPush && !prerelease && isCurrentFinalVersion && !hasPendingChangesets && !prBackExists;
+  return isReleaseBranch && isPush && !prerelease && isCurrentFinalVersion && !hasPendingChangesets && !prBackExists;
 }
 
 async function getState({ github, context, core }) {
@@ -62,8 +62,8 @@ async function getState({ github, context, core }) {
     refName,
     hasPendingChangesets: changesets.length > 0,
     prerelease: preState?.mode === 'pre',
-    isDevelop: refName === 'develop',
     isMain: refName === 'main',
+    isReleaseBranch: refName.startsWith('release-v'),
     isWorkflowDispatch: context.eventName === 'workflow_dispatch',
     isPush: context.eventName === 'push',
     isCurrentFinalVersion: !version.includes('-rc.'),
@@ -75,7 +75,7 @@ async function getState({ github, context, core }) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     head: `${context.repo.owner}:merge/${state.refName}`,
-    base: 'develop',
+    base: 'main',
     state: 'open',
   });
 

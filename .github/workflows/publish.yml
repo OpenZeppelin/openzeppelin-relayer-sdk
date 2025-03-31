@@ -1,14 +1,10 @@
 name: Publish Package
 
 on:
-  workflow_dispatch:
-    inputs:
-      version_tag:
-        required: false
-        description: The release version
-        type: string
+  workflow_dispatch: {}
   push:
     branches:
+      - release-v*
       - PLAT-6439-release-wf # temporary - to be removed before merge
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -66,7 +62,7 @@ jobs:
         uses: ./.github/actions/prepare
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
-      - run: npx changeset pre enter rc
+      - run: bash scripts/start.sh
         shell: bash
       - name: Commit changes
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
@@ -184,64 +180,9 @@ jobs:
           title: "ci: update the version packages"
           commit: "ci: update the version packages"
 
-  publish-rc:
+  publish:
     needs: state
-    name: Publish RC to npm
-    environment: npm
-    permissions:
-      contents: write
-    if: needs.state.outputs.publish == 'true' && github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/prepare
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - id: pack
-        name: Pack
-        run: bash scripts/pack.sh
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-      - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish RC
-        run: |
-            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
-          NPM_CONFIG_PROVENANCE: true
-      - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8
-        id: extract_release_notes
-        with:
-          changelog_file: CHANGELOG.md
-      - name: Create Github Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda
-        with:
-          tag_name: v${{ steps.pack.outputs.tag }}
-          body: ${{ steps.extract_release_notes.outputs.release_notes }}
-          prerelease: ${{ needs.state.outputs.is_prerelease }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  publish-main:
-    needs: state
-    name: Publish main to npm
+    name: Publish package to npm
     environment: npm
     permissions:
       contents: write
@@ -261,7 +202,7 @@ jobs:
         env:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
       - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392
         with:
           name: ${{ github.ref_name }}
           path: ${{ steps.pack.outputs.tarball }}
@@ -289,9 +230,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  merge-main-to-develop:
+  merge-release-to-main:
     needs: state
-    name: Create PR back to develop branch
+    name: Create PR back to main branch
     permissions:
       contents: write
       pull-requests: write
@@ -317,7 +258,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: process.env.MERGE_BRANCH,
-              base: 'develop',
+              base: 'main',
               title: '${{ format('Merge {0} branch', github.ref_name) }}'
 
   sbom:
