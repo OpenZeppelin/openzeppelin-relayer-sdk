@@ -3,7 +3,7 @@
 set -euo pipefail
 
 git fetch
-git checkout main
+
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
 
 # Save changeset status to temp file
