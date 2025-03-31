@@ -254,10 +254,9 @@ jobs:
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
+  publish-main:
     needs: [state, gh-app-token]
-    id: publish
-    name: Publish to npm
+    name: Publish main to npm
     environment: npm
     permissions:
       contents: write
@@ -281,7 +280,7 @@ jobs:
         with:
           name: ${{ github.ref_name }}
           path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish
+      - name: Publish main
         run: |
             echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
             pnpm publish "$TARBALL" --tag "$TAG"
