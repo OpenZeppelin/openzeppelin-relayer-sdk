@@ -2,16 +2,10 @@
 
 set -euo pipefail
 
-git fetch
-
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
-
-echo $CHANGESETS_STATUS_JSON
 
 # Save changeset status to temp file
 npx changeset status --output="$CHANGESETS_STATUS_JSON"
-
-echo $BRANCH_SUFFIX
 
 # Create branch
 BRANCH_SUFFIX="$(jq -r '.releases[0].newVersion | gsub("\\.\\d+$"; "")' $CHANGESETS_STATUS_JSON)"
