@@ -254,51 +254,51 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
-    needs: [state, gh-app-token]
-    id: publish
-    name: Publish to npm
-    environment: npm
-    permissions:
-      contents: write
-    if: needs.state.outputs.publish == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/prepare
-      - id: pack
-        name: Pack
-        run: bash scripts/release/workflow/pack.sh
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-      - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish
-        run: bash scripts/release/workflow/publish.sh
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
-          NPM_CONFIG_PROVENANCE: true
-      - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@v1
-        id: extract_release_notes
-        with:
-          changelog_file: CHANGELOG.md
-      - name: Create Github Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.pack.outputs.tag }}
-          body: ${{ steps.extract_release_notes.outputs.release_notes }}
-          prerelease: ${{ needs.state.outputs.is_prerelease }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # publish:
+  #   needs: [state, gh-app-token]
+  #   id: publish
+  #   name: Publish to npm
+  #   environment: npm
+  #   permissions:
+  #     contents: write
+  #   if: needs.state.outputs.publish == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Set up environment
+  #       uses: ./.github/actions/prepare
+  #     - id: pack
+  #       name: Pack
+  #       run: bash scripts/release/workflow/pack.sh
+  #       env:
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #     - name: Upload tarball artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ github.ref_name }}
+  #         path: ${{ steps.pack.outputs.tarball }}
+  #     - name: Publish
+  #       run: bash scripts/release/workflow/publish.sh
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #         TARBALL: ${{ steps.pack.outputs.tarball }}
+  #         TAG: ${{ steps.pack.outputs.tag }}
+  #         NPM_CONFIG_PROVENANCE: true
+  #     - name: Extract release notes
+  #       uses: ffurrer2/extract-release-notes@v1
+  #       id: extract_release_notes
+  #       with:
+  #         changelog_file: CHANGELOG.md
+  #     - name: Create Github Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         tag_name: v${{ steps.pack.outputs.tag }}
+  #         body: ${{ steps.extract_release_notes.outputs.release_notes }}
+  #         prerelease: ${{ needs.state.outputs.is_prerelease }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # merge-main-to-develop:
   #   needs: state
