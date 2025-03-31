@@ -49,8 +49,6 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           skip-token-revoke: true
-    outputs:
-      token: ${{ steps.gh-app-token.outputs.token }}
 
   start:
     needs: [state,gh-app-token]
@@ -62,6 +60,8 @@ jobs:
     if: needs.state.outputs.start == 'false'
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ needs.gh-app-token.outputs.token }}
+        shell: bash
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
         with:
           token: ${{ needs.gh-app-token.outputs.token }}
