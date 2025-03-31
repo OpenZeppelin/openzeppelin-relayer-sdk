@@ -300,36 +300,36 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  merge-main-to-develop:
-    needs: state
-    name: Create PR back to develop branch
-    permissions:
-      contents: write
-      pull-requests: write
-    if: needs.state.outputs.merge == 'true'
-    runs-on: ubuntu-latest
-    env:
-      MERGE_BRANCH: merge/${{ github.ref_name }}
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/prepare
-      - name: Create branch to merge
-        run: |
-          git checkout -b "$MERGE_BRANCH" "$GITHUB_REF_NAME"
-          git push -f origin "$MERGE_BRANCH"
-      - name: Create PR back to main
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        with:
-          script: |
-            await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: process.env.MERGE_BRANCH,
-              base: 'develop',
-              title: '${{ format('Merge {0} branch', github.ref_name) }}'
+  # merge-main-to-develop:
+  #   needs: state
+  #   name: Create PR back to develop branch
+  #   permissions:
+  #     contents: write
+  #     pull-requests: write
+  #   if: needs.state.outputs.merge == 'true'
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     MERGE_BRANCH: merge/${{ github.ref_name }}
+  #   steps:
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Set up environment
+  #       uses: ./.github/actions/prepare
+  #     - name: Create branch to merge
+  #       run: |
+  #         git checkout -b "$MERGE_BRANCH" "$GITHUB_REF_NAME"
+  #         git push -f origin "$MERGE_BRANCH"
+  #     - name: Create PR back to main
+  #       uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+  #       with:
+  #         script: |
+  #           await github.rest.pulls.create({
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             head: process.env.MERGE_BRANCH,
+  #             base: 'develop',
+  #             title: '${{ format('Merge {0} branch', github.ref_name) }}'
 
   # sbom:
   #   needs: [publish]
