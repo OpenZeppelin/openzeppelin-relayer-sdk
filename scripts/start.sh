@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# git fetch
+git checkout PLAT-6439-release-wf
+
 CHANGESETS_STATUS_JSON="$(realpath --relative-to=. "$RUNNER_TEMP/status.json")"
 
 # Save changeset status to temp file
