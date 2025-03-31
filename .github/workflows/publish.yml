@@ -199,60 +199,60 @@ jobs:
           title: "ci: update the version packages"
           commit: "ci: update the version packages"
 
-  publish-rc:
-    needs: [state, gh-app-token]
-    name: Publish RC to npm
-    environment: npm
-    permissions:
-      contents: write
-    if: needs.state.outputs.publish == 'true' && github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
-        id: gh-app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - name: Set up environment
-        uses: ./.github/actions/prepare
-        with:
-          token: ${{ steps.gh-app-token.outputs.token }}
-      - id: pack
-        name: Pack
-        run: bash scripts/pack.sh
-        env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
-      - name: Upload tarball artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
-      - name: Publish RC
-        run: |
-            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
-          NPM_CONFIG_PROVENANCE: true
-      - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8
-        id: extract_release_notes
-        with:
-          changelog_file: CHANGELOG.md
-      - name: Create Github Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda
-        with:
-          tag_name: v${{ steps.pack.outputs.tag }}
-          body: ${{ steps.extract_release_notes.outputs.release_notes }}
-          prerelease: ${{ needs.state.outputs.is_prerelease }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # publish-rc:
+  #   needs: [state, gh-app-token]
+  #   name: Publish RC to npm
+  #   environment: npm
+  #   permissions:
+  #     contents: write
+  #   if: needs.state.outputs.publish == 'true' && github.ref == 'refs/heads/develop'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+  #       id: gh-app-token
+  #       with:
+  #         app-id: ${{ vars.GH_APP_ID }}
+  #         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  #     - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - name: Set up environment
+  #       uses: ./.github/actions/prepare
+  #       with:
+  #         token: ${{ steps.gh-app-token.outputs.token }}
+  #     - id: pack
+  #       name: Pack
+  #       run: bash scripts/pack.sh
+  #       env:
+  #         PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+  #     - name: Upload tarball artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ github.ref_name }}
+  #         path: ${{ steps.pack.outputs.tarball }}
+  #     - name: Publish RC
+  #       run: |
+  #           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  #           pnpm publish "$TARBALL" --tag "$TAG"
+  #       shell: bash
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #         TARBALL: ${{ steps.pack.outputs.tarball }}
+  #         TAG: ${{ steps.pack.outputs.tag }}
+  #         NPM_CONFIG_PROVENANCE: true
+  #     - name: Extract release notes
+  #       uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8
+  #       id: extract_release_notes
+  #       with:
+  #         changelog_file: CHANGELOG.md
+  #     - name: Create Github Release
+  #       uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda
+  #       with:
+  #         tag_name: v${{ steps.pack.outputs.tag }}
+  #         body: ${{ steps.extract_release_notes.outputs.release_notes }}
+  #         prerelease: ${{ needs.state.outputs.is_prerelease }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
     needs: [state, gh-app-token]
@@ -269,6 +269,8 @@ jobs:
           token: ${{ steps.gh-app-token.outputs.token }}
       - name: Set up environment
         uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
       - id: pack
         name: Pack
         run: bash scripts/pack.sh
