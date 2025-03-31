@@ -192,7 +192,7 @@ jobs:
           commit: "ci: update the version packages"
 
   # publish-rc:
-  #   needs: [state, gh-app-token]
+  #   needs: state
   #   name: Publish RC to npm
   #   environment: npm
   #   permissions:
@@ -247,7 +247,7 @@ jobs:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-main:
-    needs: [state, gh-app-token]
+    needs: state
     name: Publish main to npm
     environment: npm
     permissions:
