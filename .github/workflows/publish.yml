@@ -21,14 +21,14 @@ permissions:
   id-token: write
 
 jobs:
-  # provenance:
-  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
-  #   with:
-  #     run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
-  #     node-version: "20.11.1"
+  provenance:
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
+    with:
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+      node-version: "20.11.1"
 
   harden-runner:
-    # needs: [provenance]
+    needs: [provenance]
     name: Harden runner
     runs-on: ubuntu-latest
     steps:
@@ -190,7 +190,7 @@ jobs:
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
       - name: Create PR
-        uses: changesets/action@v1
+        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
@@ -241,12 +241,12 @@ jobs:
           TAG: ${{ steps.pack.outputs.tag }}
           NPM_CONFIG_PROVENANCE: true
       - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8
         id: extract_release_notes
         with:
           changelog_file: CHANGELOG.md
       - name: Create Github Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda
         with:
           tag_name: v${{ steps.pack.outputs.tag }}
           body: ${{ steps.extract_release_notes.outputs.release_notes }}
