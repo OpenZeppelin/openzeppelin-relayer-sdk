@@ -48,8 +48,8 @@ jobs:
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      outputs:
-        token: ${{ steps.gh-app-token.outputs.token }}
+        outputs:
+          token: ${{ steps.gh-app-token.outputs.token }}
 
   start:
     needs: [state,gh-app-token]
