@@ -3,6 +3,7 @@
 .openapi-generator-ignore
 README.md
 api.ts
+apis/health-api.ts
 apis/metrics-api.ts
 apis/relayers-api.ts
 base.ts
@@ -59,6 +60,7 @@ models/sign-transaction-request-params.ts
 models/sign-transaction-result.ts
 models/sign-typed-data-request.ts
 models/solana-allowed-tokens-policy.ts
+models/solana-fee-payment-strategy.ts
 models/solana-policy-response.ts
 models/solana-rpc-request-one-of.ts
 models/solana-rpc-request-one-of1.ts

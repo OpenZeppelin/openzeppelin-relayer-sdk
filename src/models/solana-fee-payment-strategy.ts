@@ -20,15 +20,9 @@
  * @enum {string}
  */
 
-export enum TransactionStatus {
-    CANCELED = 'canceled',
-    PENDING = 'pending',
-    SENT = 'sent',
-    SUBMITTED = 'submitted',
-    MINED = 'mined',
-    CONFIRMED = 'confirmed',
-    FAILED = 'failed',
-    EXPIRED = 'expired'
+export enum SolanaFeePaymentStrategy {
+    USER = 'user',
+    RELAYER = 'relayer'
 }
 
 

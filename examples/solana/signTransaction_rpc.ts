@@ -19,34 +19,42 @@
  */
 import { Configuration, RelayersApi } from '../../src';
 import * as solana from '@solana/web3.js';
-import { createSolTransfer } from './util';
+import { createTokenTransfer } from './util';
+import { getAssociatedTokenAddress } from '@solana/spl-token';
 
 const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
 
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'Bearer example-123456',
+  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546',
 });
 
 const relayersApi = new RelayersApi(config);
 
+// Replace with your actual values
 const relayer_id = 'solana-example';
+const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
+const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
+const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
 
-const fromAddress = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
-const toAddress = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
+const usdcMint = new solana.PublicKey(token);
+const sourceWalletAddress = new solana.PublicKey(source);
+const destinationWalletAddress = new solana.PublicKey(destination);
 
 async function signTransaction() {
   try {
-    // Get the latest blockhash from devnet
+    const sourceTokenAccount = await getAssociatedTokenAddress(usdcMint, sourceWalletAddress);
+    const destinationTokenAccount = await getAssociatedTokenAddress(usdcMint, destinationWalletAddress);
     const { blockhash } = await connection.getLatestBlockhash();
     console.log(`Latest blockhash: ${blockhash}`);
 
-    // Create transaction with the latest blockhash
-    const transaction = createSolTransfer(
-      fromAddress,
-      toAddress,
-      1000000, // lamports (0.001 SOL)
+    const transaction = createTokenTransfer(
+      source,
+      sourceTokenAccount,
+      destinationTokenAccount,
+      source,
+      1000000, // Amount (consider token decimals)
       blockhash,
     );
 

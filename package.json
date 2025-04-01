@@ -48,10 +48,13 @@
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "typescript-eslint": "8.27.0"
+    "typescript-eslint": "8.27.0",
+    "@types/node": "^22.0.0",
+    "bs58": "^6.0.0"
   },
   "dependencies": {
     "@solana/web3.js": "1",
+    "@solana/spl-token": "0.4",
     "axios": "^1.7.7"
   },
   "engines": {

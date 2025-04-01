@@ -20,7 +20,8 @@
         "tags": [
           "Relayers"
         ],
-        "summary": "Lists all relayers with pagination support.",
+        "summary": "Relayer routes implementation",
+        "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\n\nLists all relayers with pagination support.",
         "operationId": "listRelayers",
         "parameters": [
           {
@@ -1564,6 +1565,125 @@
           }
         ]
       },
+      "put": {
+        "tags": [
+          "Relayers"
+        ],
+        "summary": "Replaces a specific transaction with a new one.",
+        "operationId": "replaceTransaction",
+        "parameters": [
+          {
+            "name": "relayer_id",
+            "in": "path",
+            "description": "The unique identifier of the relayer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "The unique identifier of the transaction",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relayer transaction replaced successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_TransactionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Relayers"
@@ -1714,8 +1834,8 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Returns a list of all available metric names in JSON format.",
-        "description": "# Returns\n\nAn `HttpResponse` containing a JSON array of metric names.",
+        "summary": "Metrics routes implementation",
+        "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\nReturns a list of all available metric names in JSON format.\n\n# Returns\n\nAn `HttpResponse` containing a JSON array of metric names.",
         "operationId": "list_metrics",
         "responses": {
           "200": {
@@ -1787,6 +1907,38 @@
             ]
           }
         ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Health routes implementation",
+        "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\nHandles the `/health` endpoint.\n\nReturns an `HttpResponse` with a status of `200 OK` and a body of `\"OK\"`.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -2768,9 +2920,17 @@
           }
         }
       },
+      "SolanaFeePaymentStrategy": {
+        "type": "string",
+        "enum": [
+          "user",
+          "relayer"
+        ]
+      },
       "SolanaPolicyResponse": {
         "type": "object",
         "required": [
+          "fee_payment_strategy",
           "max_tx_data_size",
           "min_balance"
         ],
@@ -2799,7 +2959,17 @@
               "type": "string"
             }
           },
-          "max_allowed_transfer_amount_lamports": {
+          "fee_margin_percentage": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "float"
+          },
+          "fee_payment_strategy": {
+            "$ref": "#/components/schemas/SolanaFeePaymentStrategy"
+          },
+          "max_allowed_fee_lamports": {
             "type": "integer",
             "format": "int64",
             "minimum": 0
@@ -3190,6 +3360,7 @@
       "TransactionStatus": {
         "type": "string",
         "enum": [
+          "canceled",
           "pending",
           "sent",
           "submitted",
