@@ -22,7 +22,7 @@ jobs:
     with:
       run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
       node-version: "20.11.1"
-      private-repository: true
+      rekor-log-public: true
 
   harden-runner:
     needs: [provenance]
