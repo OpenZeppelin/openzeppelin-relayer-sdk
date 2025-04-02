@@ -1,11 +1,12 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
-  "changelog": "@changesets/cli/changelog",
+  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "OpenZeppelin/openzeppelin-relayer-sdk"
+    }
+  ],
   "commit": false,
-  "fixed": [],
-  "linked": [],
   "access": "restricted",
-  "baseBranch": "main",
-  "updateInternalDependencies": "patch",
-  "ignore": []
+  "baseBranch": "main"
 }
