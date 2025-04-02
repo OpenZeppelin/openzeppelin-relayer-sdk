@@ -28,7 +28,7 @@ const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546',
+  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546', // replace with your actual access token
 });
 
 const relayersApi = new RelayersApi(config);
@@ -73,8 +73,7 @@ async function signAndSendTransaction() {
       id: 1,
       jsonrpc: '2.0',
       params: {
-        transaction:
-          'AVAM699pXNx5SpzruK/TM67PrB+fZB0LABDI9jS8yfyjO8tQOeCsK7ED9jnJmfi1ULGdroVhd5psF36yb8KSMAoBAAIFpNhTBS0w2fqEkg0sAghld4KIZNFW3kt5Co2TA75icpEMsnnyKbZZ5yUtDsJ/8r0KO7Li3BEwZoWs+nOJzoXwvldSjMnOXIaqFH+2IdwWgBUestsRYNi+MhhFOIrxyayVBt324ddloZPZy+FGzut5rBy0he1fWzeROoz1hX7/AKnpKDlVCWX/1NZKyq9G1F33MY5bT1fJDEh9YGJdgpuDewFm5bliG7IcL6XJi6NR+KV5t7RK359dsvyhq11GYmDHAgMEAQQBAAoM/xEBAAAAAAAGAwMBAgAJA0BCDwAAAAAA',
+        transaction: serializedTransaction,
       },
     });
 
