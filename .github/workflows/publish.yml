@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - release-v*
+      - PLAT-6439-release-wf
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -68,7 +69,7 @@ jobs:
         with:
           commit-message: "🤖 chore: Push the release candidate change"
           title: "chore: 🤖 [Automated PR] Push the release candidate change"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.gh-app-token.outputs.token }}
           sign-commits: true
           body: |
             This PR adds the RC changes
@@ -142,7 +143,7 @@ jobs:
         with:
           commit-message: "🤖 chore: Push changes to exit RC"
           title: "chore: 🤖 [Automated PR] Push changes to exit RC"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.gh-app-token.outputs.token }}
           sign-commits: true
           body: |
             This PR pushes changes to exit RC
