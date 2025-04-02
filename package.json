@@ -35,6 +35,7 @@
     "build": "nx run-many -t build --parallel=1 --output-style=static",
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
+    "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
     "ci:version": "pnpm changeset version",
     "lint:check": "eslint 'src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
