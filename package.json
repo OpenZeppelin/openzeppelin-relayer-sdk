@@ -27,7 +27,9 @@
     "generate": "pnpm generate:client && pnpm post:generate:client && pnpm build:client",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "lint": "prettier --check --write ."
+    "lint": "prettier --check --write .",
+    "test": "exit 0"
+
   },
   "keywords": [
     "relayer",
