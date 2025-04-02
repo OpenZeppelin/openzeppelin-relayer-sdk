@@ -62,7 +62,7 @@ jobs:
         uses: ./.github/actions/prepare
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
-      - run: bash scripts/start.sh
+      - run: npx changeset pre enter rc
         shell: bash
       - name: Commit changes
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
