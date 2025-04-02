@@ -35,7 +35,7 @@
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "ci:version": "pnpm changeset version",
-    "lint:check": "eslint 'packages/**/src/**/*.{js,ts}' --quiet",
+    "lint:check": "eslint 'src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
