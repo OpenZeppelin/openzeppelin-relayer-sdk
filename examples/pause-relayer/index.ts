@@ -18,7 +18,7 @@ import { Configuration, RelayersApi } from '../../src';
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'Bearer example-123456',
+  accessToken: '', // replace with your actual access token
 });
 
 const relayersApi = new RelayersApi(config);
