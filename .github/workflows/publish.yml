@@ -260,7 +260,7 @@ jobs:
   #             title: '${{ format('Merge {0} branch', github.ref_name) }}'
 
   sbom:
-    # needs: [publish]
+    needs: [provenance]
     runs-on: ubuntu-latest
     steps:
       - name: Create temp dir
