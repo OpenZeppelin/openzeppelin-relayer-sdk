@@ -20,10 +20,10 @@ runs:
         version: 9
         run_install: false
 
-    - name: Use node@20
+    - name: Use node@22
       uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with:
-        node-version: 20.11.1
+        node-version: 22.14.0
         cache: 'pnpm'
 
     - name: Install dependencies
