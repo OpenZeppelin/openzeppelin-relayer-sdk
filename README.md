@@ -113,6 +113,7 @@ This project is licensed under the **AGPL-3.0-or-later** license. See the [LICEN
 
 ---
 
-```
+### Release Workflow
 
-```
+![Release workflow](assets/release-workflow.png)
+

@@ -65,7 +65,7 @@ jobs:
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
 
-      - run: npx changeset pre enter rc
+      - run: bash scripts/start.sh
         shell: bash
 
       - name: Commit changes
