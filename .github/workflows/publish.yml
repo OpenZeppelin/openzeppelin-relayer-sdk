@@ -15,6 +15,9 @@ permissions:
   actions: write
   id-token: write
 
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@v2.0.0
@@ -35,7 +38,7 @@ jobs:
 
       - name: Download Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
-
+  
   start:
     needs: state
     name: Start new release candidate
@@ -75,6 +78,14 @@ jobs:
           body: |
             This PR adds the RC changes
 
+      - name: Start Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ vars.SLACK_CHANNEL }}
+        if: always()
+
   state:
     name: Check state
     permissions:
@@ -105,6 +116,15 @@ jobs:
         with:
           result-encoding: string
           script: await require('./scripts/state.js')({ github, context, core })
+
+      - name: State Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
     outputs:
       # Job Flags
       start: ${{ steps.state.outputs.start }}
@@ -156,6 +176,14 @@ jobs:
           body: |
             This PR pushes changes to exit RC
 
+      - name: Promote Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
   changesets:
     needs: state
     name: Update PR to release
@@ -190,6 +218,14 @@ jobs:
           version: pnpm ci:version
           title: "ci: update the version packages"
           commit: "ci: update the version packages"
+
+      - name: Changesets Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
 
   publish:
     needs: state
@@ -253,6 +289,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
 
+      - name: Publish Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
   merge-release-to-main:
     needs: state
     name: Create PR back to main branch
@@ -295,6 +339,14 @@ jobs:
           branch: ${{ env.MERGE_BRANCH }}
           body: |
             This PR merges the ${{ env.MERGE_BRANCH }} branch to the main branch.
+
+      - name: Merge Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
 
   sbom:
     needs: [provenance, publish]
@@ -356,3 +408,11 @@ jobs:
       #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
       #   with:
       #     subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
+
+      - name: SBOM Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
