@@ -266,13 +266,14 @@ jobs:
       - name: Publish main
         run: |
             echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
+            pnpm publish --no-git-checks "$TARBALL" --tag "$TAG"
         shell: bash
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           TARBALL: ${{ steps.pack.outputs.tarball }}
           TAG: ${{ steps.pack.outputs.tag }}
-          NPM_CONFIG_PROVENANCE: true
+          # NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_ACCESS: public
 
       - name: Extract release notes
         uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8 # v2.3.0
