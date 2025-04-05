@@ -12,10 +12,13 @@ dist_tag() {
   elif npx semver -r ">$LATEST_NPM_VERSION" "$PACKAGE_JSON_VERSION" > /dev/null; then
     echo "latest"
   else
-    # This is a patch for an older version
-    # npm can't publish without a tag
     echo "tmp"
   fi
 }
 
+gh_tag() {
+  jq -r .version package.json
+}
+
 echo "tag=$(dist_tag)" >> $GITHUB_OUTPUT
+echo "version=$(gh_tag)" >> $GITHUB_OUTPUT
