@@ -2,7 +2,6 @@
   "name": "@openzeppelin/relayer-sdk",
   "version": "0.0.1",
   "description": "OpenZeppelin Relayer SDK",
-  "private": true,
   "license": "AGPL-3.0-or-later",
   "files": [
     "dist",
@@ -68,7 +67,8 @@
     "eslint-plugin-prettier": "^5.2.3",
     "typescript-eslint": "8.27.0",
     "nx": "^20.6.0",
-    "undici": "^7.4.0"
+    "undici": "^7.4.0",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
