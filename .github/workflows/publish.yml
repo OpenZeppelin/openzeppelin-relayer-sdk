@@ -270,9 +270,6 @@ jobs:
           path: ${{ needs.provenance.outputs.package-name }}
           sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
-
       - name: Publish main
         run: |
             echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
