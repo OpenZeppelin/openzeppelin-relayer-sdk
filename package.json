@@ -27,7 +27,21 @@
     "generate": "pnpm generate:client && pnpm post:generate:client && pnpm build:client",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "lint": "prettier --check --write ."
+    "lint": "prettier --check --write .",
+    "test": "nx run-many -t test --parallel=1 --output-style=static",
+    "publish:package": "node ./scripts/publish.js",
+    "install-pnpm": "npm install -g pnpm",
+    "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
+    "build": "nx run-many -t build --parallel=1 --output-style=static",
+    "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
+    "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
+    "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
+    "ci:version": "pnpm changeset version",
+    "lint:check": "eslint 'src/**/*.{js,ts}' --quiet",
+    "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
+    "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
+    "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
+    "style": "pnpm lint:fix"
   },
   "keywords": [
     "relayer",
@@ -36,6 +50,10 @@
   ],
   "author": "OpenZeppelin <contact@openzeppelin.com>",
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.26.0",
+    "@changesets/pre": "^2.0.0",
+    "@changesets/read": "^0.6.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "commitizen": "^4.3.1",
@@ -48,14 +66,17 @@
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "typescript-eslint": "8.27.0"
+    "typescript-eslint": "8.27.0",
+    "nx": "^20.6.0",
+    "undici": "^7.4.0"
   },
   "dependencies": {
+    "@actions/exec": "^1.1.1",
     "@solana/web3.js": "1",
     "axios": "^1.7.7"
   },
   "engines": {
-    "node": "22.11.0",
+    "node": "22.14.0",
     "npm": "use pnpm",
     "pnpm": ">=9",
     "yarn": "use pnpm"
