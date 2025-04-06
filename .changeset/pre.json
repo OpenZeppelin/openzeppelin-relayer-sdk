@@ -4,5 +4,7 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "0.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "cool-llamas-cough"
+  ]
 }
