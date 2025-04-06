@@ -22,7 +22,7 @@ jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
     with:
-      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, generate"
       node-version: "22.14.0"
       rekor-log-public: true
 
@@ -228,7 +228,7 @@ jobs:
         if: always()
 
   publish:
-    needs: state
+    needs: [state, provenance]
     name: Publish package to npm
     environment: npm
     permissions:
@@ -251,9 +251,9 @@ jobs:
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
 
-      - id: pack
-        name: Pack
-        run: bash scripts/pack.sh
+      - id: tag
+        name: Tag
+        run: bash scripts/tag.sh
         env:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
 
@@ -261,29 +261,38 @@ jobs:
         uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392
         with:
           name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
+          path: ${{ needs.provenance.outputs.package-name }}
+
+      - name: Download tarball
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@3bcecb4ade4f265cff30488059a9dca39e26b360 # main
+        with:
+          name: ${{ needs.provenance.outputs.package-download-name }}
+          path: ${{ needs.provenance.outputs.package-name }}
+          sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
 
       - name: Publish main
         run: |
             echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
+            pnpm publish --no-git-checks "$TARBALL" --tag "$TAG"
         shell: bash
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
-          NPM_CONFIG_PROVENANCE: true
+          TARBALL: ${{ needs.provenance.outputs.package-name }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          # NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_ACCESS: public
 
       - name: Extract release notes
         uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8 # v2.3.0
         id: extract_release_notes
         with:
           changelog_file: CHANGELOG.md
+          prerelease: ${{ needs.state.outputs.is_prerelease }}
 
       - name: Create Github Release
         uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
         with:
-          tag_name: v${{ steps.pack.outputs.tag }}
+          tag_name: v${{ steps.tag.outputs.version }}
           body: ${{ steps.extract_release_notes.outputs.release_notes }}
           prerelease: ${{ needs.state.outputs.is_prerelease }}
         env:
