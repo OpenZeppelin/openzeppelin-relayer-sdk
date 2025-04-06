@@ -35,8 +35,8 @@ function shouldRunChangesets({ isReleaseBranch, isPush, isWorkflowDispatch, botR
   return (isReleaseBranch && isPush) || (isReleaseBranch && isWorkflowDispatch && botRun);
 }
 
-function shouldRunPublish({ isReleaseBranch, isPush, hasPendingChangesets, isPublishedOnNpm }) {
-  return isReleaseBranch && isPush && !hasPendingChangesets && !isPublishedOnNpm;
+function shouldRunPublish({ isReleaseBranch, isPush, hasPendingChangesets }) {
+  return isReleaseBranch && isPush && !hasPendingChangesets;
 }
 
 function shouldRunMerge({
