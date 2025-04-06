@@ -62,7 +62,7 @@ async function getState({ github, context, core }) {
     refName,
     hasPendingChangesets: changesets.length > 0,
     prerelease: preState?.mode === 'pre',
-    isMain: refName === 'main',
+    isMain: refName === 'v0-1-0',
     isReleaseBranch: refName.startsWith('release-v'),
     isWorkflowDispatch: context.eventName === 'workflow_dispatch',
     isPush: context.eventName === 'push',
@@ -75,7 +75,7 @@ async function getState({ github, context, core }) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     head: `${context.repo.owner}:merge/${state.refName}`,
-    base: 'main',
+    base: 'v0-1-0',
     state: 'open',
   });
 
