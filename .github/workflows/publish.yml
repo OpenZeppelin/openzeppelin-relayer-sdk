@@ -404,7 +404,6 @@ jobs:
         env:
           GITHUB_TOKEN:  ${{ steps.gh-app-token.outputs.token }}
 
-
       #### Disable because of;
       #### Error: Failed to persist attestation: Feature not available for the OpenZeppelin organization.
       #### To enable this feature, please upgrade the billing plan, or make this repository public.
