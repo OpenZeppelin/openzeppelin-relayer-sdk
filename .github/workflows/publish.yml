@@ -1,0 +1,419 @@
+name: Publish Package
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - release-v*
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  attestations: write
+  actions: write
+  id-token: write
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  provenance:
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
+    with:
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+      node-version: "22.14.0"
+      rekor-log-public: true
+
+  harden-runner:
+    needs: [provenance]
+    name: Harden runner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16  # v4.1.8
+  
+  start:
+    needs: state
+    name: Start new release candidate
+    permissions:
+      contents: write
+      actions: write
+      pull-requests: write
+    if: needs.state.outputs.start == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - run: bash scripts/start.sh
+        shell: bash
+
+      - name: Commit changes
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          commit-message: "🤖 chore: Push the release candidate change"
+          title: "chore: 🤖 [Automated PR] Push the release candidate change"
+          token: ${{ steps.gh-app-token.outputs.token }}
+          sign-commits: true
+          body: |
+            This PR adds the RC changes
+
+      - name: Start Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ vars.SLACK_CHANNEL }}
+        if: always()
+
+  state:
+    name: Check state
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - id: state
+        name: Get state
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        env:
+          TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+        with:
+          result-encoding: string
+          script: await require('./scripts/state.js')({ github, context, core })
+
+      - name: State Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
+    outputs:
+      # Job Flags
+      start: ${{ steps.state.outputs.start }}
+      changesets: ${{ steps.state.outputs.changesets }}
+      promote: ${{ steps.state.outputs.promote }}
+      publish: ${{ steps.state.outputs.publish }}
+      merge: ${{ steps.state.outputs.merge }}
+
+      # Global variables
+      is_prerelease: ${{ steps.state.outputs.is_prerelease }}
+
+  promote:
+    needs: state
+    name: Promote to final release
+    permissions:
+      contents: write
+      actions: write
+      pull-requests: write
+    if: needs.state.outputs.promote == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Exit prerelease state
+        if: needs.state.outputs.is_prerelease == 'true'
+        run: npx changeset pre exit rc
+        shell: bash
+
+      - name: Commit changes
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          commit-message: "🤖 chore: Push changes to exit RC"
+          title: "chore: 🤖 [Automated PR] Push changes to exit RC"
+          token: ${{ steps.gh-app-token.outputs.token }}
+          sign-commits: true
+          body: |
+            This PR pushes changes to exit RC
+
+      - name: Promote Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
+  changesets:
+    needs: state
+    name: Update PR to release
+    permissions:
+      contents: write
+      pull-requests: write
+    if: needs.state.outputs.changesets == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+          fetch-depth: 0
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Create PR
+        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
+        env:
+          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
+          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+        with:
+          version: pnpm ci:version
+          title: "ci: update the version packages"
+          commit: "ci: update the version packages"
+
+      - name: Changesets Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
+  publish:
+    needs: state
+    name: Publish package to npm
+    environment: npm
+    permissions:
+      contents: write
+    if: needs.state.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - id: pack
+        name: Pack
+        run: bash scripts/pack.sh
+        env:
+          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+
+      - name: Upload tarball artifact
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392
+        with:
+          name: ${{ github.ref_name }}
+          path: ${{ steps.pack.outputs.tarball }}
+
+      - name: Publish main
+        run: |
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            pnpm publish "$TARBALL" --tag "$TAG"
+        shell: bash
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+          TAG: ${{ steps.pack.outputs.tag }}
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Extract release notes
+        uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8 # v2.3.0
+        id: extract_release_notes
+        with:
+          changelog_file: CHANGELOG.md
+
+      - name: Create Github Release
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        with:
+          tag_name: v${{ steps.pack.outputs.tag }}
+          body: ${{ steps.extract_release_notes.outputs.release_notes }}
+          prerelease: ${{ needs.state.outputs.is_prerelease }}
+        env:
+          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Publish Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
+  merge-release-to-main:
+    needs: state
+    name: Create PR back to main branch
+    permissions:
+      contents: write
+      pull-requests: write
+    if: needs.state.outputs.merge == 'true'
+    runs-on: ubuntu-latest
+    env:
+      MERGE_BRANCH: merge/${{ github.ref_name }}
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Prepare pre-requisites
+        uses: ./.github/actions/prepare
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+
+      - name: Create branch to merge
+        run: |
+          git checkout -b "$MERGE_BRANCH" "$GITHUB_REF_NAME"
+          git push -f origin "$MERGE_BRANCH"
+
+      - name: Create PR back to main
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          commit-message: "🤖 chore: Push changes to exit RC"
+          title: "chore: 🤖 [Automated PR] Merge ${{ env.MERGE_BRANCH }} into the main branch"
+          token: ${{ steps.gh-app-token.outputs.token }}
+          sign-commits: true
+          base: "main"
+          branch: ${{ env.MERGE_BRANCH }}
+          body: |
+            This PR merges the ${{ env.MERGE_BRANCH }} branch to the main branch.
+
+      - name: Merge Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
+
+  sbom:
+    needs: [provenance, publish]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: gh-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
+        with:
+          token: ${{ steps.gh-app-token.outputs.token }}
+        
+      - name: Create temp dir
+        id: temp-dir
+        run: |
+          set -euo pipefail
+
+          temp_dir=$(mktemp -d)
+          echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
+
+      - name: Get package version
+        run: echo "PACKAGE_VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5
+        with:
+          artifact-name: sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
+          output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
+          upload-artifact: true
+          upload-release-assets: true
+          upload-artifact-retention: 1
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+
+      - name: Upload SBOM to GitHub Release
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        with:
+          files: |
+            ${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
+            ${{ needs.provenance.outputs.provenance-download-name }}
+          tag_name: v${{ env.PACKAGE_VERSION }}
+        env:
+          GITHUB_TOKEN:  ${{ steps.gh-app-token.outputs.token }}
+
+
+      #### Disable because of;
+      #### Error: Failed to persist attestation: Feature not available for the OpenZeppelin organization.
+      #### To enable this feature, please upgrade the billing plan, or make this repository public.
+      # - name: Upload attestations SLSA
+      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+      #   with:
+      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+      #     subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
+
+      # - name: Upload attestations SBOM
+      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+      #   with:
+      #     subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
+
+      # - name: SBOM Job Slack Notification
+      #   uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+      #   with:
+      #     status: ${{ job.status }}
+      #     steps: ${{ toJson(steps) }}
+      #     channel: "${{ vars.SLACK_CHANNEL }}"
+      #   if: always()

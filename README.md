@@ -4,7 +4,7 @@ The OpenZeppelin Relayer SDK provides a TypeScript/JavaScript client for interac
 
 ## Requirements
 
-- Node.js 22.11.0 or higher
+- Node.js 22.14.0 or higher
 - Package manager: pnpm 9.0.0 or higher
 
 ## Installation
@@ -113,6 +113,7 @@ This project is licensed under the **AGPL-3.0-or-later** license. See the [LICEN
 
 ---
 
-```
+### Release Workflow
 
-```
+![Release workflow](assets/release-workflow.png)
+
