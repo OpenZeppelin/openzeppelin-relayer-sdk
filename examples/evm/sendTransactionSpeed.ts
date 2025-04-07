@@ -23,8 +23,8 @@ const config = new Configuration({
 
 const relayersApi = new RelayersApi(config);
 
-// replace with your actual ids
-const relayer_id = 'worldchain-example';
+// replace with your actual id
+const relayer_id = 'sepolia-example';
 
 relayersApi
   .sendTransaction(relayer_id, {
