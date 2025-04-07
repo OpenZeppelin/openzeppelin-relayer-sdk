@@ -18,13 +18,13 @@ import { Configuration, RelayersApi, Speed } from '../../src';
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: '', // replace with your actual access token
+  accessToken: '', // replace with your actual api key
 });
 
 const relayersApi = new RelayersApi(config);
 
 // replace with your actual ids
-const relayer_id = 'sepolia-example';
+const relayer_id = 'worldchain-example';
 
 relayersApi
   .sendTransaction(relayer_id, {
