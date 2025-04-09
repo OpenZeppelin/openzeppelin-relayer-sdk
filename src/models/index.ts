@@ -46,6 +46,7 @@ export * from './sign-transaction-request-params';
 export * from './sign-transaction-result';
 export * from './sign-typed-data-request';
 export * from './solana-allowed-tokens-policy';
+export * from './solana-fee-payment-strategy';
 export * from './solana-policy-response';
 export * from './solana-rpc-request';
 export * from './solana-rpc-request-one-of';

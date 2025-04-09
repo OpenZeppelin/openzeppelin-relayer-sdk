@@ -49,7 +49,7 @@ import { Configuration, RelayersApi } from '@openzeppelin/relayer-sdk';
 
 const config = new Configuration({
   basePath: 'https://your-path.com',
-  accessToken: 'Bearer example-123456',
+  accessToken: '',
 });
 
 const relayersApi = new RelayersApi(config);

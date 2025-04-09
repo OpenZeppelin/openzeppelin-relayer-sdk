@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaFeePaymentStrategy } from './solana-fee-payment-strategy';
 
 /**
  * 
@@ -52,7 +55,19 @@ export interface SolanaPolicyResponse {
      * @type {number}
      * @memberof SolanaPolicyResponse
      */
-    'max_allowed_transfer_amount_lamports'?: number;
+    'fee_margin_percentage'?: number | null;
+    /**
+     * 
+     * @type {SolanaFeePaymentStrategy}
+     * @memberof SolanaPolicyResponse
+     */
+    'fee_payment_strategy': SolanaFeePaymentStrategy;
+    /**
+     * 
+     * @type {number}
+     * @memberof SolanaPolicyResponse
+     */
+    'max_allowed_fee_lamports'?: number;
     /**
      * 
      * @type {number}
@@ -72,4 +87,6 @@ export interface SolanaPolicyResponse {
      */
     'min_balance': number;
 }
+
+
 

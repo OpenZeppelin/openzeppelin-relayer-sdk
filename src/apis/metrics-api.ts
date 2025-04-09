@@ -28,8 +28,8 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 export const MetricsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * # Returns  An `HttpResponse` containing a JSON array of metric names.
-         * @summary Returns a list of all available metric names in JSON format.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file Returns a list of all available metric names in JSON format.  # Returns  An `HttpResponse` containing a JSON array of metric names.
+         * @summary Metrics routes implementation
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -136,8 +136,8 @@ export const MetricsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MetricsApiAxiosParamCreator(configuration)
     return {
         /**
-         * # Returns  An `HttpResponse` containing a JSON array of metric names.
-         * @summary Returns a list of all available metric names in JSON format.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file Returns a list of all available metric names in JSON format.  # Returns  An `HttpResponse` containing a JSON array of metric names.
+         * @summary Metrics routes implementation
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -183,8 +183,8 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = MetricsApiFp(configuration)
     return {
         /**
-         * # Returns  An `HttpResponse` containing a JSON array of metric names.
-         * @summary Returns a list of all available metric names in JSON format.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file Returns a list of all available metric names in JSON format.  # Returns  An `HttpResponse` containing a JSON array of metric names.
+         * @summary Metrics routes implementation
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -221,8 +221,8 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
  */
 export class MetricsApi extends BaseAPI {
     /**
-     * # Returns  An `HttpResponse` containing a JSON array of metric names.
-     * @summary Returns a list of all available metric names in JSON format.
+     * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file Returns a list of all available metric names in JSON format.  # Returns  An `HttpResponse` containing a JSON array of metric names.
+     * @summary Metrics routes implementation
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetricsApi
