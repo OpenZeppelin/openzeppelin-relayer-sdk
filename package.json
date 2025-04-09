@@ -70,7 +70,7 @@
     "@types/node": "^22.0.0",
     "bs58": "^6.0.0",
     "nx": "^20.6.0",
-    "undici": "^7.4.0"
+    "undici": "^7.7.0"
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
