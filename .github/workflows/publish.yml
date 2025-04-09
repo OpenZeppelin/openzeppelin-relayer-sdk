@@ -210,7 +210,7 @@ jobs:
           token: ${{ steps.gh-app-token.outputs.token }}
 
       - name: Create PR
-        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
+        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc # v1.4.10
         env:
           GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
