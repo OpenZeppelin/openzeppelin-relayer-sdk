@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
         with:
           repository: OpenZeppelin/cla-sigs
-          token: ${{ steps.gh-app-token.outputs.token }}
+          token: ${{ secrets.CLA_SIGS_ACCESS_PAT }}
           sparse-checkout: |
             allowlist.txt
           sparse-checkout-cone-mode: false
@@ -45,8 +45,8 @@ jobs:
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I confirm that I have read and hereby agree to the OpenZeppelin Contributor License Agreement') || github.event_name == 'pull_request_target'
         uses: contributor-assistant/github-action@ca4a40a7d1004f18d9960b404b97e5f30a505a08 #v2.6.1
         env:
-          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
-          PERSONAL_ACCESS_TOKEN: ${{ steps.gh-app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_SIGS_ACCESS_PAT }}
         with:
           path-to-signatures: 'signatures/${{ github.event.repository.name }}/v1_cla.json'
           path-to-document: 'https://github.com/OpenZeppelin/cla-assistant/blob/main/openzeppelin_2025_cla.md'
