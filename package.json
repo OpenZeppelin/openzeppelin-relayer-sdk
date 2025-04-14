@@ -66,6 +66,8 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "typescript-eslint": "8.27.0",
+    "@types/node": "^22.0.0",
+    "bs58": "^6.0.0",
     "nx": "^20.6.0",
     "undici": "^7.4.0",
     "typescript": "^5.8.3"
@@ -73,6 +75,7 @@
   "dependencies": {
     "@actions/exec": "^1.1.1",
     "@solana/web3.js": "1",
+    "@solana/spl-token": "0.4",
     "axios": "^1.7.7"
   },
   "engines": {

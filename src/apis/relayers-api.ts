@@ -334,8 +334,8 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
-         * @summary Lists all relayers with pagination support.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file  Lists all relayers with pagination support.
+         * @summary Relayer routes implementation
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -413,6 +413,48 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             if (perPage !== undefined) {
                 localVarQueryParameter['per_page'] = perPage;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Replaces a specific transaction with a new one.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceTransaction: async (relayerId: string, transactionId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'relayerId' is not null or undefined
+            assertParamExists('replaceTransaction', 'relayerId', relayerId)
+            // verify required parameter 'transactionId' is not null or undefined
+            assertParamExists('replaceTransaction', 'transactionId', transactionId)
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/{transaction_id}`
+                .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)))
+                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transactionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -750,8 +792,8 @@ export const RelayersApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary Lists all relayers with pagination support.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file  Lists all relayers with pagination support.
+         * @summary Relayer routes implementation
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -776,6 +818,20 @@ export const RelayersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listTransactions(relayerId, page, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.listTransactions']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Replaces a specific transaction with a new one.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceTransaction(relayerId, transactionId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RelayersApi.replaceTransaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -932,8 +988,8 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getTransactionByNonce(relayerId, nonce, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary Lists all relayers with pagination support.
+         * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file  Lists all relayers with pagination support.
+         * @summary Relayer routes implementation
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
          * @param {*} [options] Override http request option.
@@ -953,6 +1009,17 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          */
         listTransactions(relayerId: string, page?: number, perPage?: number, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseVecTransactionResponse> {
             return localVarFp.listTransactions(relayerId, page, perPage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Replaces a specific transaction with a new one.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {string} transactionId The unique identifier of the transaction
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseTransactionResponse> {
+            return localVarFp.replaceTransaction(relayerId, transactionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1107,8 +1174,8 @@ export class RelayersApi extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary Lists all relayers with pagination support.
+     * Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file  Lists all relayers with pagination support.
+     * @summary Relayer routes implementation
      * @param {number} [page] Page number for pagination (starts at 1)
      * @param {number} [perPage] Number of items per page (default: 10)
      * @param {*} [options] Override http request option.
@@ -1131,6 +1198,19 @@ export class RelayersApi extends BaseAPI {
      */
     public listTransactions(relayerId: string, page?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return RelayersApiFp(this.configuration).listTransactions(relayerId, page, perPage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Replaces a specific transaction with a new one.
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {string} transactionId The unique identifier of the transaction
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RelayersApi
+     */
+    public replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).replaceTransaction(relayerId, transactionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

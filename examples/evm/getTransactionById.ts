@@ -18,14 +18,14 @@ import { Configuration, RelayersApi } from '../../src';
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'Bearer example-123456',
+  accessToken: '', // replace with your actual api key
 });
 
 const relayersApi = new RelayersApi(config);
 
+// replace with your actual ids
 const relayer_id = 'sepolia-example';
-
-const transaction_id = '305ff83d-6653-465f-8fa3-e8a46271fb83';
+const transaction_id = '7283c042-86e8-4831-9439-90da9e28a0f1';
 
 relayersApi
   .getTransactionById(relayer_id, transaction_id)

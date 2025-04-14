@@ -21,6 +21,9 @@ import type { EvmPolicyResponse } from './evm-policy-response';
 import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { SolanaFeePaymentStrategy } from './solana-fee-payment-strategy';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SolanaPolicyResponse } from './solana-policy-response';
 // May contain unused imports in some cases
 // @ts-ignore
