@@ -35,11 +35,11 @@ jobs:
             allowlist.txt
           sparse-checkout-cone-mode: false
 
-      # - name: Read Allowlist File
-      #   id: read_allowlist
-      #   run: |
-      #     ALLOWLIST=$(cat allowlist.txt)
-      #     echo "allowlist=$ALLOWLIST" >> $GITHUB_OUTPUT
+      - name: Read Allowlist File
+        id: read_allowlist
+        run: |
+          ALLOWLIST=$(cat allowlist.txt)
+          echo "allowlist=$ALLOWLIST" >> $GITHUB_OUTPUT
 
       - name: "CLA Assistant"
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I confirm that I have read and hereby agree to the OpenZeppelin Contributor License Agreement') || github.event_name == 'pull_request_target'
@@ -59,5 +59,5 @@ jobs:
             Before being able to integrate those changes, we would like you to
             sign our [Contributor License Agreement](https://github.com/OpenZeppelin/cla-assistant/blob/main/openzeppelin_2025_cla.md).
 
-      #       You can sign the CLA by just posting a Pull Request Comment with the sentence below. Thanks.
-      #     custom-pr-sign-comment: 'I confirm that I have read and hereby agree to the OpenZeppelin Contributor License Agreement'
+            You can sign the CLA by just posting a Pull Request Comment with the sentence below. Thanks.
+          custom-pr-sign-comment: 'I confirm that I have read and hereby agree to the OpenZeppelin Contributor License Agreement'

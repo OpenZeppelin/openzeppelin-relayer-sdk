@@ -35,7 +35,7 @@
     "nx-build-skip-cache": "pnpm run build --skip-nx-cache",
     "nx-build-test-skip-cache": "pnpm run build-test --skip-nx-cache",
     "nx-test-skip-cache": "pnpm run test --skip-nx-cache",
-    "ci:version": "pnpm changeset version",
+    "ci:version": "scripts/version.sh",
     "lint:check": "eslint 'src/**/*.{js,ts}' --quiet",
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
@@ -70,7 +70,8 @@
     "bs58": "^6.0.0",
     "nx": "^20.6.0",
     "undici": "^7.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "semver": "^7.3.5"
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
