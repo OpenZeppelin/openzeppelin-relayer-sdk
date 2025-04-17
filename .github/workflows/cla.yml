@@ -36,6 +36,7 @@ jobs:
           sparse-checkout: |
             allowlist.txt
           sparse-checkout-cone-mode: false
+          ref: 'main'
 
       - name: Read Allowlist File
         id: read_allowlist
