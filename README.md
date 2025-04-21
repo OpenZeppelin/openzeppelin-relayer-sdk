@@ -1,5 +1,10 @@
 # OpenZeppelin Relayer SDK
 
+[![NPM Package](https://img.shields.io/npm/v/@openzeppelin/relayer-sdk.svg)](https://www.npmjs.org/package/@openzeppelin/relayer-sdk)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/openzeppelin-relayer-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/OpenZeppelin/openzeppelin-relayer-sdk)
+[![Scorecard supply-chain security](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/actions/workflows/scorecard.yml/badge.svg)](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/actions/workflows/scorecard.yml)
+[![CI](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/actions/workflows/ci.yaml/badge.svg)](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/actions/workflows/ci.yaml)
+
 The OpenZeppelin Relayer SDK provides a TypeScript/JavaScript client for interacting with the OpenZeppelin Relayer service. This SDK allows developers to easily integrate relayer functionality into their applications for various blockchain networks.
 
 ## Requirements

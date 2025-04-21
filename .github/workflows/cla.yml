@@ -46,10 +46,10 @@ jobs:
         with:
           path-to-signatures: 'signatures/${{ github.event.repository.name }}/v1_cla.json'
           path-to-document: 'https://github.com/OpenZeppelin/cla-assistant/blob/main/openzeppelin_2025_cla.md'
-          branch: 'main'
+          branch: main
           allowlist: ${{ steps.read_allowlist.outputs.allowlist }}
-          remote-organization-name: 'OpenZeppelin'
-          remote-repository-name: 'cla-sigs'
+          remote-organization-name: OpenZeppelin
+          remote-repository-name: cla-sigs
           custom-notsigned-prcomment: >
             Thank you for your contribution to OpenZeppelin Relayer SDK.
             Before being able to integrate those changes, we would like you to
