@@ -393,25 +393,21 @@ jobs:
         env:
           GITHUB_TOKEN:  ${{ steps.gh-app-token.outputs.token }}
 
+      - name: Upload attestations SLSA
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
 
-      #### Disable because of;
-      #### Error: Failed to persist attestation: Feature not available for the OpenZeppelin organization.
-      #### To enable this feature, please upgrade the billing plan, or make this repository public.
-      # - name: Upload attestations SLSA
-      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-      #   with:
-      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
-      #     subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
+      - name: Upload attestations SBOM
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
 
-      # - name: Upload attestations SBOM
-      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-      #   with:
-      #     subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
-
-      # - name: SBOM Job Slack Notification
-      #   uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
-      #   with:
-      #     status: ${{ job.status }}
-      #     steps: ${{ toJson(steps) }}
-      #     channel: "${{ vars.SLACK_CHANNEL }}"
-      #   if: always()
+      - name: SBOM Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
