@@ -22,7 +22,7 @@ jobs:
   provenance:
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
     with:
-      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache"
+      run-scripts: "install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, generate"
       node-version: "22.14.0"
       rekor-log-public: true
 
@@ -228,7 +228,7 @@ jobs:
         if: always()
 
   publish:
-    needs: state
+    needs: [state, provenance]
     name: Publish package to npm
     environment: npm
     permissions:
@@ -251,9 +251,9 @@ jobs:
         with:
           token: ${{ steps.gh-app-token.outputs.token }}
 
-      - id: pack
-        name: Pack
-        run: bash scripts/pack.sh
+      - id: tag
+        name: Tag
+        run: bash scripts/tag.sh
         env:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
 
@@ -261,33 +261,33 @@ jobs:
         uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392
         with:
           name: ${{ github.ref_name }}
-          path: ${{ steps.pack.outputs.tarball }}
+          path: ${{ needs.provenance.outputs.package-name }}
+
+      - name: Download tarball
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-download-artifact@3bcecb4ade4f265cff30488059a9dca39e26b360 # main
+        with:
+          name: ${{ needs.provenance.outputs.package-download-name }}
+          path: ${{ needs.provenance.outputs.package-name }}
+          sha256: ${{ needs.provenance.outputs.package-download-sha256 }}
 
       - name: Publish main
         run: |
             echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            pnpm publish "$TARBALL" --tag "$TAG"
+            pnpm publish --no-git-checks "$TARBALL" --tag "$TAG"
         shell: bash
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TARBALL: ${{ steps.pack.outputs.tarball }}
-          TAG: ${{ steps.pack.outputs.tag }}
+          TARBALL: ${{ needs.provenance.outputs.package-name }}
+          TAG: ${{ steps.tag.outputs.tag }}
           NPM_CONFIG_PROVENANCE: true
-
-      - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8 # v2.3.0
-        id: extract_release_notes
-        with:
-          changelog_file: CHANGELOG.md
+          NPM_CONFIG_ACCESS: public
 
       - name: Create Github Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
-        with:
-          tag_name: v${{ steps.pack.outputs.tag }}
-          body: ${{ steps.extract_release_notes.outputs.release_notes }}
-          prerelease: ${{ needs.state.outputs.is_prerelease }}
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
-          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
+          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
+        with:
+          script: await require('./scripts/github-release.js')({ github, context })
 
       - name: Publish Job Slack Notification
         uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
@@ -329,16 +329,14 @@ jobs:
           git push -f origin "$MERGE_BRANCH"
 
       - name: Create PR back to main
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
-        with:
-          commit-message: "🤖 chore: Push changes to exit RC"
-          title: "chore: 🤖 [Automated PR] Merge ${{ env.MERGE_BRANCH }} into the main branch"
-          token: ${{ steps.gh-app-token.outputs.token }}
-          sign-commits: true
-          base: "main"
-          branch: ${{ env.MERGE_BRANCH }}
-          body: |
-            This PR merges the ${{ env.MERGE_BRANCH }} branch to the main branch.
+        run: |
+          gh pr create \
+            --title "chore: 🤖 [Automated PR] Merge $MERGE_BRANCH into the main branch" \
+            --body "This PR merges the $MERGE_BRANCH branch to the main branch." \
+            --base main \
+            --head $MERGE_BRANCH
+        env:
+          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
 
       - name: Merge Job Slack Notification
         uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
@@ -395,25 +393,21 @@ jobs:
         env:
           GITHUB_TOKEN:  ${{ steps.gh-app-token.outputs.token }}
 
+      - name: Upload attestations SLSA
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
+          subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
 
-      #### Disable because of;
-      #### Error: Failed to persist attestation: Feature not available for the OpenZeppelin organization.
-      #### To enable this feature, please upgrade the billing plan, or make this repository public.
-      # - name: Upload attestations SLSA
-      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-      #   with:
-      #     subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
-      #     subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
+      - name: Upload attestations SBOM
+        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        with:
+          subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
 
-      # - name: Upload attestations SBOM
-      #   uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
-      #   with:
-      #     subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
-
-      # - name: SBOM Job Slack Notification
-      #   uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
-      #   with:
-      #     status: ${{ job.status }}
-      #     steps: ${{ toJson(steps) }}
-      #     channel: "${{ vars.SLACK_CHANNEL }}"
-      #   if: always()
+      - name: SBOM Job Slack Notification
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: "${{ vars.SLACK_CHANNEL }}"
+        if: always()
