@@ -94,6 +94,12 @@ export interface EvmTransactionResponse {
      * @type {string}
      * @memberof EvmTransactionResponse
      */
+    'status_reason'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EvmTransactionResponse
+     */
     'to'?: string;
     /**
      * 

@@ -2223,6 +2223,62 @@
           }
         }
       },
+      "AssetSpec": {
+        "oneOf": [
+          {
+            "type": "string",
+            "enum": [
+              "NATIVE"
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "CREDIT4"
+            ],
+            "properties": {
+              "CREDIT4": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "issuer"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "issuer": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "CREDIT12"
+            ],
+            "properties": {
+              "CREDIT12": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "issuer"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "issuer": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "BalanceResponse": {
         "type": "object",
         "required": [
@@ -2393,6 +2449,12 @@
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatus"
+          },
+          "status_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "to": {
             "type": "string"
@@ -2585,6 +2647,134 @@
           }
         }
       },
+      "JupiterSwapOptions": {
+        "type": "object",
+        "properties": {
+          "dynamic_compute_unit_limit": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "priority_fee_max_lamports": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0
+          },
+          "priority_level": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemoSpec": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "NONE"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "value",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "TEXT"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "value",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ID"
+                ]
+              },
+              "value": {
+                "type": "integer",
+                "format": "int64",
+                "minimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "value",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "HASH"
+                ]
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "value",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "RETURN"
+                ]
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        ]
+      },
       "NetworkPolicyResponse": {
         "oneOf": [
           {
@@ -2643,6 +2833,37 @@
           "evm",
           "stellar",
           "solana"
+        ]
+      },
+      "OperationSpec": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "destination",
+              "amount",
+              "asset",
+              "op"
+            ],
+            "properties": {
+              "amount": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "asset": {
+                "$ref": "#/components/schemas/AssetSpec"
+              },
+              "destination": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "payment"
+                ]
+              }
+            }
+          }
         ]
       },
       "PaginationMeta": {
@@ -2753,6 +2974,46 @@
             "type": "boolean"
           }
         }
+      },
+      "RelayerSolanaSwapConfig": {
+        "type": "object",
+        "properties": {
+          "cron_schedule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "jupiter_swap_options": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JupiterSwapOptions"
+              }
+            ]
+          },
+          "min_balance_threshold": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0
+          },
+          "strategy": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SolanaSwapStrategy"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
       },
       "RelayerUpdateRequest": {
         "type": "object",
@@ -2898,10 +3159,6 @@
           "mint"
         ],
         "properties": {
-          "conversion_slippage_percentage": {
-            "type": "number",
-            "format": "float"
-          },
           "decimals": {
             "type": "integer",
             "format": "int32",
@@ -2915,8 +3172,35 @@
           "mint": {
             "type": "string"
           },
+          "swap_config": {
+            "$ref": "#/components/schemas/SolanaAllowedTokensSwapConfig"
+          },
           "symbol": {
             "type": "string"
+          }
+        }
+      },
+      "SolanaAllowedTokensSwapConfig": {
+        "type": "object",
+        "properties": {
+          "max_amount": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "min_amount": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "retain_min_amount": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "slippage_percentage": {
+            "type": "number",
+            "format": "float"
           }
         }
       },
@@ -2988,6 +3272,9 @@
             "type": "integer",
             "format": "int64",
             "minimum": 0
+          },
+          "swap_config": {
+            "$ref": "#/components/schemas/RelayerSolanaSwapConfig"
           }
         }
       },
@@ -3153,6 +3440,14 @@
           }
         ]
       },
+      "SolanaSwapStrategy": {
+        "type": "string",
+        "enum": [
+          "jupiter-swap",
+          "jupiter-ultra",
+          "noop"
+        ]
+      },
       "SolanaTransactionRequest": {
         "type": "object",
         "required": [
@@ -3267,37 +3562,37 @@
         "type": "object",
         "required": [
           "source_account",
-          "destination_account",
-          "amount",
-          "asset_code",
-          "fee",
-          "sequence_number"
+          "network",
+          "operations"
         ],
         "properties": {
-          "amount": {
-            "type": "string"
-          },
-          "asset_code": {
-            "type": "string"
-          },
-          "asset_issuer": {
-            "type": "string"
-          },
-          "destination_account": {
-            "type": "string"
-          },
-          "fee": {
-            "type": "integer",
-            "minimum": 0
-          },
           "memo": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/MemoSpec"
+              }
+            ]
+          },
+          "network": {
             "type": "string"
           },
-          "sequence_number": {
-            "type": "string"
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperationSpec"
+            }
           },
           "source_account": {
             "type": "string"
+          },
+          "valid_until": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -3320,6 +3615,7 @@
           },
           "fee": {
             "type": "integer",
+            "format": "int32",
             "minimum": 0
           },
           "hash": {
@@ -3333,8 +3629,7 @@
           },
           "sequence_number": {
             "type": "integer",
-            "format": "int64",
-            "minimum": 0
+            "format": "int64"
           },
           "source_account": {
             "type": "string"

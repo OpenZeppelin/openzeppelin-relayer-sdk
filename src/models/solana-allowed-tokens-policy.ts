@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaAllowedTokensSwapConfig } from './solana-allowed-tokens-swap-config';
 
 /**
  * 
@@ -20,12 +23,6 @@
  * @interface SolanaAllowedTokensPolicy
  */
 export interface SolanaAllowedTokensPolicy {
-    /**
-     * 
-     * @type {number}
-     * @memberof SolanaAllowedTokensPolicy
-     */
-    'conversion_slippage_percentage'?: number;
     /**
      * 
      * @type {number}
@@ -44,6 +41,12 @@ export interface SolanaAllowedTokensPolicy {
      * @memberof SolanaAllowedTokensPolicy
      */
     'mint': string;
+    /**
+     * 
+     * @type {SolanaAllowedTokensSwapConfig}
+     * @memberof SolanaAllowedTokensPolicy
+     */
+    'swap_config'?: SolanaAllowedTokensSwapConfig;
     /**
      * 
      * @type {string}

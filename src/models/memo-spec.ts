@@ -15,27 +15,24 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { EvmTransactionRequest } from './evm-transaction-request';
+import type { MemoSpecOneOf } from './memo-spec-one-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { MemoSpec } from './memo-spec';
+import type { MemoSpecOneOf1 } from './memo-spec-one-of1';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OperationSpec } from './operation-spec';
+import type { MemoSpecOneOf2 } from './memo-spec-one-of2';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SolanaTransactionRequest } from './solana-transaction-request';
+import type { MemoSpecOneOf3 } from './memo-spec-one-of3';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Speed } from './speed';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { StellarTransactionRequest } from './stellar-transaction-request';
+import type { MemoSpecOneOf4 } from './memo-spec-one-of4';
 
 /**
- * @type NetworkTransactionRequest
+ * @type MemoSpec
  * @export
  */
-export type NetworkTransactionRequest = EvmTransactionRequest | SolanaTransactionRequest | StellarTransactionRequest;
+export type MemoSpec = MemoSpecOneOf | MemoSpecOneOf1 | MemoSpecOneOf2 | MemoSpecOneOf3 | MemoSpecOneOf4;
 
 

@@ -18,6 +18,9 @@
 import type { EvmPolicyResponse } from './evm-policy-response';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { RelayerSolanaSwapConfig } from './relayer-solana-swap-config';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
 // May contain unused imports in some cases
 // @ts-ignore
