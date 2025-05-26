@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * OpenZeppelin Relayer API
+ * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { EvmPolicyResponse } from './evm-policy-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RelayerSolanaSwapConfig } from './relayer-solana-swap-config';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';

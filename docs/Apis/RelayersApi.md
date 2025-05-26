@@ -11,8 +11,9 @@ All URIs are relative to *http://localhost*
 | [**getRelayerStatus**](RelayersApi.md#getRelayerStatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
 | [**getTransactionById**](RelayersApi.md#getTransactionById) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
 | [**getTransactionByNonce**](RelayersApi.md#getTransactionByNonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
-| [**listRelayers**](RelayersApi.md#listRelayers) | **GET** /api/v1/relayers | Lists all relayers with pagination support. |
+| [**listRelayers**](RelayersApi.md#listRelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
 | [**listTransactions**](RelayersApi.md#listTransactions) | **GET** /api/v1/relayers/{relayer_id}/transactions/ | Lists all transactions for a specific relayer with pagination. |
+| [**replaceTransaction**](RelayersApi.md#replaceTransaction) | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Replaces a specific transaction with a new one. |
 | [**rpc**](RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
 | [**sendTransaction**](RelayersApi.md#sendTransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
 | [**sign**](RelayersApi.md#sign) | **POST** /api/v1/relayers/{relayer_id}/sign | Signs data using the specified relayer. |
@@ -202,7 +203,9 @@ Retrieves a transaction by its nonce value.
 # **listRelayers**
 > ApiResponse_Vec_RelayerResponse listRelayers(page, per\_page)
 
-Lists all relayers with pagination support.
+Relayer routes implementation
+
+    Note: OpenAPI documentation for these endpoints can be found in the &#x60;openapi.rs&#x60; file  Lists all relayers with pagination support.
 
 ### Parameters
 
@@ -241,6 +244,32 @@ Lists all transactions for a specific relayer with pagination.
 ### Return type
 
 [**ApiResponse_Vec_TransactionResponse**](../Models/ApiResponse_Vec_TransactionResponse.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="replaceTransaction"></a>
+# **replaceTransaction**
+> ApiResponse_TransactionResponse replaceTransaction(relayer\_id, transaction\_id)
+
+Replaces a specific transaction with a new one.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| **transaction\_id** | **String**| The unique identifier of the transaction | [default to null] |
+
+### Return type
+
+[**ApiResponse_TransactionResponse**](../Models/ApiResponse_TransactionResponse.md)
 
 ### Authorization
 

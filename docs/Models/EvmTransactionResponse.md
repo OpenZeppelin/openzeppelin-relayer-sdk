@@ -14,6 +14,7 @@
 | **relayer\_id** | **String** |  | [default to null] |
 | **sent\_at** | **String** |  | [optional] [default to null] |
 | **status** | [**TransactionStatus**](TransactionStatus.md) |  | [default to null] |
+| **status\_reason** | **String** |  | [optional] [default to null] |
 | **to** | **String** |  | [optional] [default to null] |
 | **value** | **String** |  | [default to null] |
 

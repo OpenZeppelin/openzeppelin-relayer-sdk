@@ -7,7 +7,8 @@ All URIs are relative to *http://localhost*
 
 | Class | Method | HTTP request | Description |
 |------------ | ------------- | ------------- | -------------|
-| *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Returns a list of all available metric names in JSON format. |
+| *HealthApi* | [**health**](Apis/HealthApi.md#health) | **GET** /v1/health | Health routes implementation |
+| *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Metrics routes implementation |
 *MetricsApi* | [**metricDetail**](Apis/MetricsApi.md#metricdetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 *MetricsApi* | [**scrapeMetrics**](Apis/MetricsApi.md#scrapemetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
 | *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
@@ -17,8 +18,9 @@ All URIs are relative to *http://localhost*
 *RelayersApi* | [**getRelayerStatus**](Apis/RelayersApi.md#getrelayerstatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
 *RelayersApi* | [**getTransactionById**](Apis/RelayersApi.md#gettransactionbyid) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
 *RelayersApi* | [**getTransactionByNonce**](Apis/RelayersApi.md#gettransactionbynonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
-*RelayersApi* | [**listRelayers**](Apis/RelayersApi.md#listrelayers) | **GET** /api/v1/relayers | Lists all relayers with pagination support. |
+*RelayersApi* | [**listRelayers**](Apis/RelayersApi.md#listrelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
 *RelayersApi* | [**listTransactions**](Apis/RelayersApi.md#listtransactions) | **GET** /api/v1/relayers/{relayer_id}/transactions/ | Lists all transactions for a specific relayer with pagination. |
+*RelayersApi* | [**replaceTransaction**](Apis/RelayersApi.md#replacetransaction) | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Replaces a specific transaction with a new one. |
 *RelayersApi* | [**rpc**](Apis/RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
 *RelayersApi* | [**sendTransaction**](Apis/RelayersApi.md#sendtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
 *RelayersApi* | [**sign**](Apis/RelayersApi.md#sign) | **POST** /api/v1/relayers/{relayer_id}/sign | Signs data using the specified relayer. |
@@ -41,6 +43,10 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_Vec_RelayerResponse](./Models/ApiResponse_Vec_RelayerResponse.md)
  - [ApiResponse_Vec_TransactionResponse](./Models/ApiResponse_Vec_TransactionResponse.md)
  - [ApiResponse_bool](./Models/ApiResponse_bool.md)
+ - [AssetSpec](./Models/AssetSpec.md)
+ - [AssetSpec_oneOf](./Models/AssetSpec_oneOf.md)
+ - [AssetSpec_oneOf_1](./Models/AssetSpec_oneOf_1.md)
+ - [AssetSpec_oneOf_CREDIT4](./Models/AssetSpec_oneOf_CREDIT4.md)
  - [BalanceResponse](./Models/BalanceResponse.md)
  - [EvmPolicyResponse](./Models/EvmPolicyResponse.md)
  - [EvmRpcRequest](./Models/EvmRpcRequest.md)
@@ -57,15 +63,25 @@ All URIs are relative to *http://localhost*
  - [JsonRpcRequest_NetworkRpcRequest](./Models/JsonRpcRequest_NetworkRpcRequest.md)
  - [JsonRpcResponse_NetworkRpcResult](./Models/JsonRpcResponse_NetworkRpcResult.md)
  - [JsonRpcResponse_NetworkRpcResult_result](./Models/JsonRpcResponse_NetworkRpcResult_result.md)
+ - [JupiterSwapOptions](./Models/JupiterSwapOptions.md)
+ - [MemoSpec](./Models/MemoSpec.md)
+ - [MemoSpec_oneOf](./Models/MemoSpec_oneOf.md)
+ - [MemoSpec_oneOf_1](./Models/MemoSpec_oneOf_1.md)
+ - [MemoSpec_oneOf_2](./Models/MemoSpec_oneOf_2.md)
+ - [MemoSpec_oneOf_3](./Models/MemoSpec_oneOf_3.md)
+ - [MemoSpec_oneOf_4](./Models/MemoSpec_oneOf_4.md)
  - [NetworkPolicyResponse](./Models/NetworkPolicyResponse.md)
  - [NetworkRpcRequest](./Models/NetworkRpcRequest.md)
  - [NetworkRpcResult](./Models/NetworkRpcResult.md)
  - [NetworkTransactionRequest](./Models/NetworkTransactionRequest.md)
  - [NetworkType](./Models/NetworkType.md)
+ - [OperationSpec](./Models/OperationSpec.md)
+ - [OperationSpec_oneOf](./Models/OperationSpec_oneOf.md)
  - [PaginationMeta](./Models/PaginationMeta.md)
  - [PrepareTransactionRequestParams](./Models/PrepareTransactionRequestParams.md)
  - [PrepareTransactionResult](./Models/PrepareTransactionResult.md)
  - [RelayerResponse](./Models/RelayerResponse.md)
+ - [RelayerSolanaSwapConfig](./Models/RelayerSolanaSwapConfig.md)
  - [RelayerUpdateRequest](./Models/RelayerUpdateRequest.md)
  - [SignAndSendTransactionRequestParams](./Models/SignAndSendTransactionRequestParams.md)
  - [SignAndSendTransactionResult](./Models/SignAndSendTransactionResult.md)
@@ -77,6 +93,8 @@ All URIs are relative to *http://localhost*
  - [SignTransactionResult](./Models/SignTransactionResult.md)
  - [SignTypedDataRequest](./Models/SignTypedDataRequest.md)
  - [SolanaAllowedTokensPolicy](./Models/SolanaAllowedTokensPolicy.md)
+ - [SolanaAllowedTokensSwapConfig](./Models/SolanaAllowedTokensSwapConfig.md)
+ - [SolanaFeePaymentStrategy](./Models/SolanaFeePaymentStrategy.md)
  - [SolanaPolicyResponse](./Models/SolanaPolicyResponse.md)
  - [SolanaRpcRequest](./Models/SolanaRpcRequest.md)
  - [SolanaRpcRequest_oneOf](./Models/SolanaRpcRequest_oneOf.md)
@@ -87,6 +105,7 @@ All URIs are relative to *http://localhost*
  - [SolanaRpcRequest_oneOf_5](./Models/SolanaRpcRequest_oneOf_5.md)
  - [SolanaRpcRequest_oneOf_6](./Models/SolanaRpcRequest_oneOf_6.md)
  - [SolanaRpcResult](./Models/SolanaRpcResult.md)
+ - [SolanaSwapStrategy](./Models/SolanaSwapStrategy.md)
  - [SolanaTransactionRequest](./Models/SolanaTransactionRequest.md)
  - [SolanaTransactionResponse](./Models/SolanaTransactionResponse.md)
  - [Speed](./Models/Speed.md)

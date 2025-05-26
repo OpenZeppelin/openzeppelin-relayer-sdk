@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * OpenZeppelin Relayer API
+ * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -13,6 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { MemoSpec } from './memo-spec';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OperationSpec } from './operation-spec';
 
 /**
  * 
@@ -22,51 +28,33 @@
 export interface StellarTransactionRequest {
     /**
      * 
-     * @type {string}
+     * @type {MemoSpec}
      * @memberof StellarTransactionRequest
      */
-    'amount': string;
+    'memo'?: MemoSpec | null;
     /**
      * 
      * @type {string}
      * @memberof StellarTransactionRequest
      */
-    'asset_code': string;
+    'network': string;
     /**
      * 
-     * @type {string}
+     * @type {Array<OperationSpec>}
      * @memberof StellarTransactionRequest
      */
-    'asset_issuer'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StellarTransactionRequest
-     */
-    'destination_account': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof StellarTransactionRequest
-     */
-    'fee': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StellarTransactionRequest
-     */
-    'memo'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof StellarTransactionRequest
-     */
-    'sequence_number': string;
+    'operations': Array<OperationSpec>;
     /**
      * 
      * @type {string}
      * @memberof StellarTransactionRequest
      */
     'source_account': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StellarTransactionRequest
+     */
+    'valid_until'?: string | null;
 }
 

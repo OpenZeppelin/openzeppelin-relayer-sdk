@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**listMetrics**](MetricsApi.md#listMetrics) | **GET** /metrics | Returns a list of all available metric names in JSON format. |
+| [**listMetrics**](MetricsApi.md#listMetrics) | **GET** /metrics | Metrics routes implementation |
 | [**metricDetail**](MetricsApi.md#metricDetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 | [**scrapeMetrics**](MetricsApi.md#scrapeMetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
 
@@ -13,9 +13,9 @@ All URIs are relative to *http://localhost*
 # **listMetrics**
 > List listMetrics()
 
-Returns a list of all available metric names in JSON format.
+Metrics routes implementation
 
-    # Returns  An &#x60;HttpResponse&#x60; containing a JSON array of metric names.
+    Note: OpenAPI documentation for these endpoints can be found in the &#x60;openapi.rs&#x60; file Returns a list of all available metric names in JSON format.  # Returns  An &#x60;HttpResponse&#x60; containing a JSON array of metric names.
 
 ### Parameters
 This endpoint does not need any parameter.
