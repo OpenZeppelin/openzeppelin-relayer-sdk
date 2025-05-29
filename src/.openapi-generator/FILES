@@ -13,9 +13,12 @@ git_push.sh
 index.ts
 models/api-response-balance-response-data.ts
 models/api-response-balance-response.ts
-models/api-response-bool.ts
 models/api-response-relayer-response-data.ts
 models/api-response-relayer-response.ts
+models/api-response-relayer-status-data-one-of.ts
+models/api-response-relayer-status-data-one-of1.ts
+models/api-response-relayer-status-data.ts
+models/api-response-relayer-status.ts
 models/api-response-sign-data-response-data.ts
 models/api-response-sign-data-response.ts
 models/api-response-string.ts
@@ -63,6 +66,7 @@ models/prepare-transaction-request-params.ts
 models/prepare-transaction-result.ts
 models/relayer-response.ts
 models/relayer-solana-swap-config.ts
+models/relayer-status.ts
 models/relayer-update-request.ts
 models/sign-and-send-transaction-request-params.ts
 models/sign-and-send-transaction-result.ts

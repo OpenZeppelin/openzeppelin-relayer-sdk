@@ -24,9 +24,9 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ApiResponseBalanceResponse } from '../models';
 // @ts-ignore
-import type { ApiResponseBool } from '../models';
-// @ts-ignore
 import type { ApiResponseRelayerResponse } from '../models';
+// @ts-ignore
+import type { ApiResponseRelayerStatus } from '../models';
 // @ts-ignore
 import type { ApiResponseSignDataResponse } from '../models';
 // @ts-ignore
@@ -757,7 +757,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseBool>> {
+        async getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseRelayerStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRelayerStatus(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.getRelayerStatus']?.[localVarOperationServerIndex]?.url;
@@ -962,7 +962,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseBool> {
+        getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerStatus> {
             return localVarFp.getRelayerStatus(relayerId, options).then((request) => request(axios, basePath));
         },
         /**
