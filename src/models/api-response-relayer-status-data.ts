@@ -15,37 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PaginationMeta } from './pagination-meta';
+import type { ApiResponseRelayerStatusDataOneOf } from './api-response-relayer-status-data-one-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ApiResponseRelayerStatusDataOneOf1 } from './api-response-relayer-status-data-one-of1';
 
 /**
- * 
+ * @type ApiResponseRelayerStatusData
  * @export
- * @interface ApiResponseBool
  */
-export interface ApiResponseBool {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ApiResponseBool
-     */
-    'data'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiResponseBool
-     */
-    'error'?: string;
-    /**
-     * 
-     * @type {PaginationMeta}
-     * @memberof ApiResponseBool
-     */
-    'pagination'?: PaginationMeta;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ApiResponseBool
-     */
-    'success': boolean;
-}
+export type ApiResponseRelayerStatusData = ApiResponseRelayerStatusDataOneOf | ApiResponseRelayerStatusDataOneOf1;
+
 
