@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "k6": "./k6 run -o output-statsd single-network.js"
+  },
+  "dependencies": {
+    "k6": "^0.0.0"
+  }
+}
