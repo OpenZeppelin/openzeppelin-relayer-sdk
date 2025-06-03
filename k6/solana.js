@@ -4,48 +4,26 @@ import { Rate } from 'k6/metrics';
 
 const errorRate = new Rate('errors');
 
-export const options = {
+export let options = {
   scenarios: {
-    ramp_up_load: {
-      executor: 'ramping-vus',
-      startVUs: 1,
-      stages: [
-        { duration: '30s', target: 5 },
-        { duration: '1m', target: 10 },
-        { duration: '30s', target: 20 },
-        { duration: '2m', target: 20 },
-        { duration: '30s', target: 0 },
-      ],
-    },
-
-    spike_test: {
-      executor: 'ramping-vus',
-      startTime: '5m',
-      stages: [
-        { duration: '10s', target: 100 },
-        { duration: '30s', target: 100 },
-        { duration: '10s', target: 0 },
-      ],
+    constant_15m_100rpm: {
+      executor: 'constant-arrival-rate',
+      rate: 500,
+      timeUnit: '1m',
+      duration: '15m',
+      preAllocatedVUs: 1,
+      maxVUs: 100,
     },
   },
   thresholds: {
-    http_req_duration: ['p(95)<2000'],
+    http_req_duration: ['p(95)<500'],
     http_req_failed: ['rate<0.05'],
-    errors: ['rate<0.1'],
   },
 };
 
 const BASE_URL = 'http://localhost:8080';
 const API_KEY = '';
 const RELAYER_ID = 'solana-example';
-
-const TEST_ADDRESSES = [
-  {
-    source: 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8',
-    destination: 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew',
-    token: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr',
-  }
-];
 
 const EXAMPLE_TRANSACTIONS = [
   "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEEpNhTBS0w2fqEkg0sAghld4KIZNFW3kt5Co2TA75icpFXUozJzlyGqhR/tiHcFoAVHrLbEWDYvjIYRTiK8cmslQyyefIptlnnJS0Own/yvQo7suLcETBmhaz6c4nOhfC+Bt324ddloZPZy+FGzut5rBy0he1fWzeROoz1hX7/AKmUfaCdojgspoywgTVm0HurasSwec7WqVD5Ad7bLTKPyQEDAwIBAAkDQEIPAAAAAAA=",
