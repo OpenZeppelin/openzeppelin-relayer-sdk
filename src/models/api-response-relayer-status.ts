@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
+ * OpenZeppelin Relayer API
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -15,36 +15,39 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { ApiResponseRelayerStatusData } from './api-response-relayer-status-data';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { PaginationMeta } from './pagination-meta';
 
 /**
  * 
  * @export
- * @interface ApiResponseBool
+ * @interface ApiResponseRelayerStatus
  */
-export interface ApiResponseBool {
+export interface ApiResponseRelayerStatus {
     /**
      * 
-     * @type {boolean}
-     * @memberof ApiResponseBool
+     * @type {ApiResponseRelayerStatusData}
+     * @memberof ApiResponseRelayerStatus
      */
-    'data'?: boolean;
+    'data'?: ApiResponseRelayerStatusData;
     /**
      * 
      * @type {string}
-     * @memberof ApiResponseBool
+     * @memberof ApiResponseRelayerStatus
      */
     'error'?: string;
     /**
      * 
      * @type {PaginationMeta}
-     * @memberof ApiResponseBool
+     * @memberof ApiResponseRelayerStatus
      */
     'pagination'?: PaginationMeta;
     /**
      * 
      * @type {boolean}
-     * @memberof ApiResponseBool
+     * @memberof ApiResponseRelayerStatus
      */
     'success': boolean;
 }

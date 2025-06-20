@@ -1,24 +1,24 @@
 # NetworkPolicyResponse
+
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-| **eip1559\_pricing** | **Boolean** |  | [optional] [default to null] |
-| **gas\_price\_cap** | **Integer** |  | [optional] [default to null] |
-| **min\_balance** | **Long** |  | [default to null] |
-| **private\_transactions** | **Boolean** |  | [default to null] |
-| **whitelist\_receivers** | **List** |  | [optional] [default to null] |
-| **allowed\_accounts** | **List** |  | [optional] [default to null] |
-| **allowed\_programs** | **List** |  | [optional] [default to null] |
-| **allowed\_tokens** | [**List**](SolanaAllowedTokensPolicy.md) |  | [optional] [default to null] |
-| **disallowed\_accounts** | **List** |  | [optional] [default to null] |
-| **fee\_margin\_percentage** | **Float** |  | [optional] [default to null] |
-| **fee\_payment\_strategy** | [**SolanaFeePaymentStrategy**](SolanaFeePaymentStrategy.md) |  | [default to null] |
-| **max\_allowed\_fee\_lamports** | **Long** |  | [optional] [default to null] |
-| **max\_signatures** | **Integer** |  | [optional] [default to null] |
-| **max\_tx\_data\_size** | **Integer** |  | [default to null] |
-| **swap\_config** | [**RelayerSolanaSwapConfig**](RelayerSolanaSwapConfig.md) |  | [optional] [default to null] |
-| **max\_fee** | **Integer** |  | [optional] [default to null] |
+| Name                         | Type                                                        | Description | Notes                        |
+| ---------------------------- | ----------------------------------------------------------- | ----------- | ---------------------------- |
+| **eip1559_pricing**          | **Boolean**                                                 |             | [optional] [default to null] |
+| **gas_price_cap**            | **Integer**                                                 |             | [optional] [default to null] |
+| **min_balance**              | **Long**                                                    |             | [default to null]            |
+| **private_transactions**     | **Boolean**                                                 |             | [default to null]            |
+| **whitelist_receivers**      | **List**                                                    |             | [optional] [default to null] |
+| **allowed_accounts**         | **List**                                                    |             | [optional] [default to null] |
+| **allowed_programs**         | **List**                                                    |             | [optional] [default to null] |
+| **allowed_tokens**           | [**List**](SolanaAllowedTokensPolicy.md)                    |             | [optional] [default to null] |
+| **disallowed_accounts**      | **List**                                                    |             | [optional] [default to null] |
+| **fee_margin_percentage**    | **Float**                                                   |             | [optional] [default to null] |
+| **fee_payment_strategy**     | [**SolanaFeePaymentStrategy**](SolanaFeePaymentStrategy.md) |             | [default to null]            |
+| **max_allowed_fee_lamports** | **Long**                                                    |             | [optional] [default to null] |
+| **max_signatures**           | **Integer**                                                 |             | [optional] [default to null] |
+| **max_tx_data_size**         | **Integer**                                                 |             | [default to null]            |
+| **swap_config**              | [**RelayerSolanaSwapConfig**](RelayerSolanaSwapConfig.md)   |             | [optional] [default to null] |
+| **max_fee**                  | **Integer**                                                 |             | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-

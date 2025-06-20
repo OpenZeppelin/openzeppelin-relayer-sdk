@@ -28,6 +28,6 @@ const formatted = changelog
   // Add date to new version
   .replace(VERSION_TITLE_REGEX, `\n## $1 (${new Date().toISOString().split('T')[0]})`)
   // Conditionally allow vX.Y.Z-rc.W sections only in prerelease
-  .replace(/^## \d\.\d\.\d-rc\S+[^]+?(?=^#)/gm, section => (isPrerelease ? section : ''));
+  .replace(/^## \d\.\d\.\d-rc\S+[^]+?(?=^#)/gm, (section) => (isPrerelease ? section : ''));
 
 fs.writeFileSync('CHANGELOG.md', formatted);
