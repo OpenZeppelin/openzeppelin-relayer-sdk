@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
+ * OpenZeppelin Relayer API
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -24,9 +24,11 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ApiResponseBalanceResponse } from '../models';
 // @ts-ignore
-import type { ApiResponseBool } from '../models';
+import type { ApiResponseDeletePendingTransactionsResponse } from '../models';
 // @ts-ignore
 import type { ApiResponseRelayerResponse } from '../models';
+// @ts-ignore
+import type { ApiResponseRelayerStatus } from '../models';
 // @ts-ignore
 import type { ApiResponseSignDataResponse } from '../models';
 // @ts-ignore
@@ -718,7 +720,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseString>> {
+        async deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseDeletePendingTransactionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePendingTransactions(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.deletePendingTransactions']?.[localVarOperationServerIndex]?.url;
@@ -757,7 +759,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseBool>> {
+        async getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseRelayerStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRelayerStatus(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.getRelayerStatus']?.[localVarOperationServerIndex]?.url;
@@ -932,7 +934,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseString> {
+        deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseDeletePendingTransactionsResponse> {
             return localVarFp.deletePendingTransactions(relayerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -962,7 +964,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseBool> {
+        getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerStatus> {
             return localVarFp.getRelayerStatus(relayerId, options).then((request) => request(axios, basePath));
         },
         /**

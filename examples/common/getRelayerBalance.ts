@@ -1,7 +1,7 @@
 /**
- * Get Relayer Example
+ * Get Relayer Balance Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to pause a specific relayer.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to query balance of specific relayer.
  *  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Use proper error handling and transaction confirmation checks
@@ -11,7 +11,7 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node index.ts
+ *   ts-node getRelayerBalance.ts
  */
 import { Configuration, RelayersApi } from '../../src';
 
@@ -23,11 +23,10 @@ const config = new Configuration({
 
 const relayersApi = new RelayersApi(config);
 
+// replace with your actual ids
 const relayer_id = 'solana-example';
 
 relayersApi
-  .updateRelayer(relayer_id, {
-    paused: false, // set to true to unpause
-  })
+  .getRelayerBalance(relayer_id)
   .then((tokens) => console.log(JSON.stringify(tokens.data, null, 2)))
   .catch(console.error);

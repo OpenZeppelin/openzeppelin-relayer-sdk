@@ -10,10 +10,10 @@ Security patches will be released for the latest minor of a given major release.
 
 Only critical severity bug fixes will be backported to past major releases.
 
-| Version   | Supported          |
-| --------- | ------------------ |
-| >= 0.1.x  | :white_check_mark: |
-| <= 0.0.9  | :x:                |
+| Version  | Supported          |
+| -------- | ------------------ |
+| >= 0.1.x | :white_check_mark: |
+| <= 0.0.9 | :x:                |
 
 ## Reporting a Vulnerability
 

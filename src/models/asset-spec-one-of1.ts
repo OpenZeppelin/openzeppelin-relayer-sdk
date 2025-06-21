@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
+ * OpenZeppelin Relayer API
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AssetSpecOneOfCREDIT4 } from './asset-spec-one-of-credit4';
 
 /**
  * 
@@ -25,9 +22,30 @@ import type { AssetSpecOneOfCREDIT4 } from './asset-spec-one-of-credit4';
 export interface AssetSpecOneOf1 {
     /**
      * 
-     * @type {AssetSpecOneOfCREDIT4}
+     * @type {string}
      * @memberof AssetSpecOneOf1
      */
-    'CREDIT12': AssetSpecOneOfCREDIT4;
+    'code': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AssetSpecOneOf1
+     */
+    'issuer': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AssetSpecOneOf1
+     */
+    'type': AssetSpecOneOf1TypeEnum;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum AssetSpecOneOf1TypeEnum {
+    CREDIT4 = 'credit4'
+}
+
 

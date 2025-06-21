@@ -11,7 +11,7 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node index.ts
+ *   ts-node listRelayers.ts
  */
 import { Configuration, RelayersApi } from '../../src';
 
