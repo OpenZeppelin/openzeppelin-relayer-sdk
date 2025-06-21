@@ -231,8 +231,6 @@ jobs:
     needs: [state, provenance]
     name: Publish package to npm
     environment: npm
-    permissions:
-      contents: write
     if: needs.state.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
