@@ -4,5 +4,7 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "plenty-mugs-visit"
+  ]
 }
