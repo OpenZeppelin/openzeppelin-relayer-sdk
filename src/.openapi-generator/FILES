@@ -5,6 +5,7 @@ README.md
 api.ts
 apis/health-api.ts
 apis/metrics-api.ts
+apis/plugins-api.ts
 apis/relayers-api.ts
 base.ts
 common.ts
@@ -15,6 +16,8 @@ models/api-response-balance-response-data.ts
 models/api-response-balance-response.ts
 models/api-response-delete-pending-transactions-response-data.ts
 models/api-response-delete-pending-transactions-response.ts
+models/api-response-plugin-call-response-data.ts
+models/api-response-plugin-call-response.ts
 models/api-response-relayer-response-data.ts
 models/api-response-relayer-response.ts
 models/api-response-relayer-status-data-one-of.ts
@@ -77,6 +80,7 @@ models/operation-spec-one-of2.ts
 models/operation-spec-one-of3.ts
 models/operation-spec.ts
 models/pagination-meta.ts
+models/plugin-call-request.ts
 models/prepare-transaction-request-params.ts
 models/prepare-transaction-result.ts
 models/relayer-response.ts
