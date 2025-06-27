@@ -11,7 +11,7 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node invokePlugin.ts
+ *   ts-node callPlugin.ts
  */
 import { Configuration, PluginsApi } from '../../src';
 
