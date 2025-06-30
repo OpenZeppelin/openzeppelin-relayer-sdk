@@ -84,9 +84,12 @@ export type StellarOperationSpec =
 
 // Main transaction request type
 export interface StellarTransactionRequest {
-  source_account: string;
   network: string;
-  operations: StellarOperationSpec[];
+  source_account?: string;
+  operations?: StellarOperationSpec[];
+  transaction_xdr?: string;
+  fee_bump?: boolean;
+  max_fee?: number;
   memo?: StellarMemoSpec;
   valid_until?: string;
 }
