@@ -47,7 +47,7 @@ const transaction: StellarTransactionRequest = {
   operations: [
     {
       type: OperationSpecOneOf3TypeEnum.UPLOAD_WASM,
-      wasm: { hex: WASM_HEX },
+      wasm: { type: 'hex', hex: WASM_HEX },
       auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
     },
   ],
