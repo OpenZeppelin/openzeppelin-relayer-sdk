@@ -27,6 +27,18 @@ import type { OperationSpec } from './operation-spec';
  */
 export interface StellarTransactionRequest {
     /**
+     * Explicitly request fee-bump wrapper Only valid when transaction_xdr contains a signed transaction
+     * @type {boolean}
+     * @memberof StellarTransactionRequest
+     */
+    'fee_bump'?: boolean | null;
+    /**
+     * Maximum fee in stroops (defaults to 0.1 XLM = 1,000,000 stroops)
+     * @type {number}
+     * @memberof StellarTransactionRequest
+     */
+    'max_fee'?: number | null;
+    /**
      * 
      * @type {MemoSpec}
      * @memberof StellarTransactionRequest
@@ -43,13 +55,19 @@ export interface StellarTransactionRequest {
      * @type {Array<OperationSpec>}
      * @memberof StellarTransactionRequest
      */
-    'operations': Array<OperationSpec>;
+    'operations'?: Array<OperationSpec> | null;
     /**
      * 
      * @type {string}
      * @memberof StellarTransactionRequest
      */
-    'source_account': string;
+    'source_account'?: string | null;
+    /**
+     * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field
+     * @type {string}
+     * @memberof StellarTransactionRequest
+     */
+    'transaction_xdr'?: string | null;
     /**
      * 
      * @type {string}
