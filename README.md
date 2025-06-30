@@ -11,6 +11,7 @@ The OpenZeppelin Relayer SDK provides a TypeScript/JavaScript client for interac
 
 - Node.js 22.14.0 or higher
 - Package manager: pnpm 9.0.0 or higher
+- [JDK](https://www.oracle.com/java/technologies/downloads/) 21 or higher
 
 ## Installation
 
@@ -71,7 +72,6 @@ The SDK is built on top of an OpenAPI specification which can be found in the [o
 
 For detailed API documentation, please refer to the [API Reference](docs/README.md) in the docs folder. This documentation provides comprehensive information about all available endpoints, request parameters, and response types.
 
-
 ## Development
 
 ### Setup
@@ -121,4 +121,3 @@ This project is licensed under the **AGPL-3.0-or-later** license. See the [LICEN
 ### Release Workflow
 
 ![Release workflow](assets/release-workflow.png)
-

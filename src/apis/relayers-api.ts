@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
+ * OpenZeppelin Relayer API
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -23,6 +23,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { ApiResponseBalanceResponse } from '../models';
+// @ts-ignore
+import type { ApiResponseDeletePendingTransactionsResponse } from '../models';
 // @ts-ignore
 import type { ApiResponseRelayerResponse } from '../models';
 // @ts-ignore
@@ -718,7 +720,7 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseString>> {
+        async deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseDeletePendingTransactionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePendingTransactions(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.deletePendingTransactions']?.[localVarOperationServerIndex]?.url;
@@ -932,7 +934,7 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseString> {
+        deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseDeletePendingTransactionsResponse> {
             return localVarFp.deletePendingTransactions(relayerId, options).then((request) => request(axios, basePath));
         },
         /**

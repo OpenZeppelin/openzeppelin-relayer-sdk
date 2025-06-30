@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * OpenZeppelin Relayer API
- * The OpenZeppelin Relayer API provides endpoints for managing, monitoring, and interacting with relayers. It enables developers to relay and manage blockchain transactions across EVM and non-EVM networks, making it ideal for dApps and backend services that require secure and scalable transaction infrastructure.
+ * OpenZeppelin Relayer API
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -18,10 +18,13 @@
 import type { JsonRpcError } from './json-rpc-error';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { JsonRpcId } from './json-rpc-id';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { JsonRpcResponseNetworkRpcResultResult } from './json-rpc-response-network-rpc-result-result';
 
 /**
- * 
+ * JSON-RPC 2.0 Response structure.  Represents a JSON-RPC response that can contain either a result or an error.
  * @export
  * @interface JsonRpcResponseNetworkRpcResult
  */
@@ -34,10 +37,10 @@ export interface JsonRpcResponseNetworkRpcResult {
     'error'?: JsonRpcError;
     /**
      * 
-     * @type {number}
+     * @type {JsonRpcId}
      * @memberof JsonRpcResponseNetworkRpcResult
      */
-    'id'?: number;
+    'id'?: JsonRpcId;
     /**
      * 
      * @type {string}

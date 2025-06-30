@@ -1,38 +1,39 @@
 # RelayersApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to _http://localhost_
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**cancelTransaction**](RelayersApi.md#cancelTransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
-| [**deletePendingTransactions**](RelayersApi.md#deletePendingTransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending | Deletes all pending transactions for a specific relayer. |
-| [**getRelayer**](RelayersApi.md#getRelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
-| [**getRelayerBalance**](RelayersApi.md#getRelayerBalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
-| [**getRelayerStatus**](RelayersApi.md#getRelayerStatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
-| [**getTransactionById**](RelayersApi.md#getTransactionById) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
-| [**getTransactionByNonce**](RelayersApi.md#getTransactionByNonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
-| [**listRelayers**](RelayersApi.md#listRelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
-| [**listTransactions**](RelayersApi.md#listTransactions) | **GET** /api/v1/relayers/{relayer_id}/transactions/ | Lists all transactions for a specific relayer with pagination. |
-| [**replaceTransaction**](RelayersApi.md#replaceTransaction) | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Replaces a specific transaction with a new one. |
-| [**rpc**](RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
-| [**sendTransaction**](RelayersApi.md#sendTransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
-| [**sign**](RelayersApi.md#sign) | **POST** /api/v1/relayers/{relayer_id}/sign | Signs data using the specified relayer. |
-| [**signTypedData**](RelayersApi.md#signTypedData) | **POST** /api/v1/relayers/{relayer_id}/sign-typed-data | Signs typed data using the specified relayer. |
-| [**updateRelayer**](RelayersApi.md#updateRelayer) | **PATCH** /api/v1/relayers/{relayer_id} | Updates a relayer&#39;s information based on the provided update request. |
-
+| Method                                                                    | HTTP request                                                           | Description                                                               |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [**cancelTransaction**](RelayersApi.md#cancelTransaction)                 | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID.                                 |
+| [**deletePendingTransactions**](RelayersApi.md#deletePendingTransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending          | Deletes all pending transactions for a specific relayer.                  |
+| [**getRelayer**](RelayersApi.md#getRelayer)                               | **GET** /api/v1/relayers/{relayer_id}                                  | Retrieves details of a specific relayer by ID.                            |
+| [**getRelayerBalance**](RelayersApi.md#getRelayerBalance)                 | **GET** /api/v1/relayers/{relayer_id}/balance                          | Retrieves the balance of a specific relayer.                              |
+| [**getRelayerStatus**](RelayersApi.md#getRelayerStatus)                   | **GET** /api/v1/relayers/{relayer_id}/status                           | Fetches the current status of a specific relayer.                         |
+| [**getTransactionById**](RelayersApi.md#getTransactionById)               | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id}    | Retrieves a specific transaction by its ID.                               |
+| [**getTransactionByNonce**](RelayersApi.md#getTransactionByNonce)         | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce}    | Retrieves a transaction by its nonce value.                               |
+| [**listRelayers**](RelayersApi.md#listRelayers)                           | **GET** /api/v1/relayers                                               | Relayer routes implementation                                             |
+| [**listTransactions**](RelayersApi.md#listTransactions)                   | **GET** /api/v1/relayers/{relayer_id}/transactions/                    | Lists all transactions for a specific relayer with pagination.            |
+| [**replaceTransaction**](RelayersApi.md#replaceTransaction)               | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id}    | Replaces a specific transaction with a new one.                           |
+| [**rpc**](RelayersApi.md#rpc)                                             | **POST** /api/v1/relayers/{relayer_id}/rpc                             | Performs a JSON-RPC call using the specified relayer.                     |
+| [**sendTransaction**](RelayersApi.md#sendTransaction)                     | **POST** /api/v1/relayers/{relayer_id}/transactions                    | Sends a transaction through the specified relayer.                        |
+| [**sign**](RelayersApi.md#sign)                                           | **POST** /api/v1/relayers/{relayer_id}/sign                            | Signs data using the specified relayer.                                   |
+| [**signTypedData**](RelayersApi.md#signTypedData)                         | **POST** /api/v1/relayers/{relayer_id}/sign-typed-data                 | Signs typed data using the specified relayer.                             |
+| [**updateRelayer**](RelayersApi.md#updateRelayer)                         | **PATCH** /api/v1/relayers/{relayer_id}                                | Updates a relayer&#39;s information based on the provided update request. |
 
 <a name="cancelTransaction"></a>
+
 # **cancelTransaction**
-> ApiResponse_TransactionResponse cancelTransaction(relayer\_id, transaction\_id)
+
+> ApiResponse_TransactionResponse cancelTransaction(relayer_id, transaction_id)
 
 Cancels a specific transaction by its ID.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **transaction\_id** | **String**| The unique identifier of the transaction | [default to null] |
+| Name               | Type       | Description                              | Notes             |
+| ------------------ | ---------- | ---------------------------------------- | ----------------- |
+| **relayer_id**     | **String** | The unique identifier of the relayer     | [default to null] |
+| **transaction_id** | **String** | The unique identifier of the transaction | [default to null] |
 
 ### Return type
 
@@ -48,16 +49,18 @@ Cancels a specific transaction by its ID.
 - **Accept**: application/json
 
 <a name="deletePendingTransactions"></a>
+
 # **deletePendingTransactions**
-> ApiResponse_String deletePendingTransactions(relayer\_id)
+
+> ApiResponse_String deletePendingTransactions(relayer_id)
 
 Deletes all pending transactions for a specific relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| Name           | Type       | Description                          | Notes             |
+| -------------- | ---------- | ------------------------------------ | ----------------- |
+| **relayer_id** | **String** | The unique identifier of the relayer | [default to null] |
 
 ### Return type
 
@@ -73,16 +76,18 @@ Deletes all pending transactions for a specific relayer.
 - **Accept**: application/json
 
 <a name="getRelayer"></a>
+
 # **getRelayer**
-> ApiResponse_RelayerResponse getRelayer(relayer\_id)
+
+> ApiResponse_RelayerResponse getRelayer(relayer_id)
 
 Retrieves details of a specific relayer by ID.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| Name           | Type       | Description                          | Notes             |
+| -------------- | ---------- | ------------------------------------ | ----------------- |
+| **relayer_id** | **String** | The unique identifier of the relayer | [default to null] |
 
 ### Return type
 
@@ -98,16 +103,18 @@ Retrieves details of a specific relayer by ID.
 - **Accept**: application/json
 
 <a name="getRelayerBalance"></a>
+
 # **getRelayerBalance**
-> ApiResponse_BalanceResponse getRelayerBalance(relayer\_id)
+
+> ApiResponse_BalanceResponse getRelayerBalance(relayer_id)
 
 Retrieves the balance of a specific relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| Name           | Type       | Description                          | Notes             |
+| -------------- | ---------- | ------------------------------------ | ----------------- |
+| **relayer_id** | **String** | The unique identifier of the relayer | [default to null] |
 
 ### Return type
 
@@ -123,16 +130,18 @@ Retrieves the balance of a specific relayer.
 - **Accept**: application/json
 
 <a name="getRelayerStatus"></a>
+
 # **getRelayerStatus**
-> ApiResponse_bool getRelayerStatus(relayer\_id)
+
+> ApiResponse_bool getRelayerStatus(relayer_id)
 
 Fetches the current status of a specific relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| Name           | Type       | Description                          | Notes             |
+| -------------- | ---------- | ------------------------------------ | ----------------- |
+| **relayer_id** | **String** | The unique identifier of the relayer | [default to null] |
 
 ### Return type
 
@@ -148,17 +157,19 @@ Fetches the current status of a specific relayer.
 - **Accept**: application/json
 
 <a name="getTransactionById"></a>
+
 # **getTransactionById**
-> ApiResponse_TransactionResponse getTransactionById(relayer\_id, transaction\_id)
+
+> ApiResponse_TransactionResponse getTransactionById(relayer_id, transaction_id)
 
 Retrieves a specific transaction by its ID.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **transaction\_id** | **String**| The unique identifier of the transaction | [default to null] |
+| Name               | Type       | Description                              | Notes             |
+| ------------------ | ---------- | ---------------------------------------- | ----------------- |
+| **relayer_id**     | **String** | The unique identifier of the relayer     | [default to null] |
+| **transaction_id** | **String** | The unique identifier of the transaction | [default to null] |
 
 ### Return type
 
@@ -174,17 +185,19 @@ Retrieves a specific transaction by its ID.
 - **Accept**: application/json
 
 <a name="getTransactionByNonce"></a>
+
 # **getTransactionByNonce**
-> ApiResponse_TransactionResponse getTransactionByNonce(relayer\_id, nonce)
+
+> ApiResponse_TransactionResponse getTransactionByNonce(relayer_id, nonce)
 
 Retrieves a transaction by its nonce value.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **nonce** | **Integer**| The nonce of the transaction | [default to null] |
+| Name           | Type        | Description                          | Notes             |
+| -------------- | ----------- | ------------------------------------ | ----------------- |
+| **relayer_id** | **String**  | The unique identifier of the relayer | [default to null] |
+| **nonce**      | **Integer** | The nonce of the transaction         | [default to null] |
 
 ### Return type
 
@@ -200,8 +213,10 @@ Retrieves a transaction by its nonce value.
 - **Accept**: application/json
 
 <a name="listRelayers"></a>
+
 # **listRelayers**
-> ApiResponse_Vec_RelayerResponse listRelayers(page, per\_page)
+
+> ApiResponse_Vec_RelayerResponse listRelayers(page, per_page)
 
 Relayer routes implementation
 
@@ -209,10 +224,10 @@ Relayer routes implementation
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **page** | **Integer**| Page number for pagination (starts at 1) | [optional] [default to null] |
-| **per\_page** | **Integer**| Number of items per page (default: 10) | [optional] [default to null] |
+| Name         | Type        | Description                              | Notes                        |
+| ------------ | ----------- | ---------------------------------------- | ---------------------------- |
+| **page**     | **Integer** | Page number for pagination (starts at 1) | [optional] [default to null] |
+| **per_page** | **Integer** | Number of items per page (default: 10)   | [optional] [default to null] |
 
 ### Return type
 
@@ -228,18 +243,20 @@ Relayer routes implementation
 - **Accept**: application/json
 
 <a name="listTransactions"></a>
+
 # **listTransactions**
-> ApiResponse_Vec_TransactionResponse listTransactions(relayer\_id, page, per\_page)
+
+> ApiResponse_Vec_TransactionResponse listTransactions(relayer_id, page, per_page)
 
 Lists all transactions for a specific relayer with pagination.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **page** | **Integer**| Page number for pagination (starts at 1) | [optional] [default to null] |
-| **per\_page** | **Integer**| Number of items per page (default: 10) | [optional] [default to null] |
+| Name           | Type        | Description                              | Notes                        |
+| -------------- | ----------- | ---------------------------------------- | ---------------------------- |
+| **relayer_id** | **String**  | The unique identifier of the relayer     | [default to null]            |
+| **page**       | **Integer** | Page number for pagination (starts at 1) | [optional] [default to null] |
+| **per_page**   | **Integer** | Number of items per page (default: 10)   | [optional] [default to null] |
 
 ### Return type
 
@@ -255,17 +272,19 @@ Lists all transactions for a specific relayer with pagination.
 - **Accept**: application/json
 
 <a name="replaceTransaction"></a>
+
 # **replaceTransaction**
-> ApiResponse_TransactionResponse replaceTransaction(relayer\_id, transaction\_id)
+
+> ApiResponse_TransactionResponse replaceTransaction(relayer_id, transaction_id)
 
 Replaces a specific transaction with a new one.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **transaction\_id** | **String**| The unique identifier of the transaction | [default to null] |
+| Name               | Type       | Description                              | Notes             |
+| ------------------ | ---------- | ---------------------------------------- | ----------------- |
+| **relayer_id**     | **String** | The unique identifier of the relayer     | [default to null] |
+| **transaction_id** | **String** | The unique identifier of the transaction | [default to null] |
 
 ### Return type
 
@@ -281,17 +300,19 @@ Replaces a specific transaction with a new one.
 - **Accept**: application/json
 
 <a name="rpc"></a>
+
 # **rpc**
-> JsonRpcResponse_NetworkRpcResult rpc(relayer\_id, JsonRpcRequest\_NetworkRpcRequest)
+
+> JsonRpcResponse_NetworkRpcResult rpc(relayer_id, JsonRpcRequest_NetworkRpcRequest)
 
 Performs a JSON-RPC call using the specified relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **JsonRpcRequest\_NetworkRpcRequest** | [**JsonRpcRequest_NetworkRpcRequest**](../Models/JsonRpcRequest_NetworkRpcRequest.md)| JSON-RPC request with method and parameters | |
+| Name                                 | Type                                                                                  | Description                                 | Notes             |
+| ------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------- | ----------------- |
+| **relayer_id**                       | **String**                                                                            | The unique identifier of the relayer        | [default to null] |
+| **JsonRpcRequest_NetworkRpcRequest** | [**JsonRpcRequest_NetworkRpcRequest**](../Models/JsonRpcRequest_NetworkRpcRequest.md) | JSON-RPC request with method and parameters |                   |
 
 ### Return type
 
@@ -307,17 +328,19 @@ Performs a JSON-RPC call using the specified relayer.
 - **Accept**: application/json
 
 <a name="sendTransaction"></a>
+
 # **sendTransaction**
-> ApiResponse_TransactionResponse sendTransaction(relayer\_id, NetworkTransactionRequest)
+
+> ApiResponse_TransactionResponse sendTransaction(relayer_id, NetworkTransactionRequest)
 
 Sends a transaction through the specified relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **NetworkTransactionRequest** | [**NetworkTransactionRequest**](../Models/NetworkTransactionRequest.md)|  | |
+| Name                          | Type                                                                    | Description                          | Notes             |
+| ----------------------------- | ----------------------------------------------------------------------- | ------------------------------------ | ----------------- |
+| **relayer_id**                | **String**                                                              | The unique identifier of the relayer | [default to null] |
+| **NetworkTransactionRequest** | [**NetworkTransactionRequest**](../Models/NetworkTransactionRequest.md) |                                      |                   |
 
 ### Return type
 
@@ -333,17 +356,19 @@ Sends a transaction through the specified relayer.
 - **Accept**: application/json
 
 <a name="sign"></a>
+
 # **sign**
-> ApiResponse_SignDataResponse sign(relayer\_id, SignDataRequest)
+
+> ApiResponse_SignDataResponse sign(relayer_id, SignDataRequest)
 
 Signs data using the specified relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **SignDataRequest** | [**SignDataRequest**](../Models/SignDataRequest.md)|  | |
+| Name                | Type                                                | Description                          | Notes             |
+| ------------------- | --------------------------------------------------- | ------------------------------------ | ----------------- |
+| **relayer_id**      | **String**                                          | The unique identifier of the relayer | [default to null] |
+| **SignDataRequest** | [**SignDataRequest**](../Models/SignDataRequest.md) |                                      |                   |
 
 ### Return type
 
@@ -359,17 +384,19 @@ Signs data using the specified relayer.
 - **Accept**: application/json
 
 <a name="signTypedData"></a>
+
 # **signTypedData**
-> ApiResponse_SignDataResponse signTypedData(relayer\_id, SignTypedDataRequest)
+
+> ApiResponse_SignDataResponse signTypedData(relayer_id, SignTypedDataRequest)
 
 Signs typed data using the specified relayer.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **SignTypedDataRequest** | [**SignTypedDataRequest**](../Models/SignTypedDataRequest.md)|  | |
+| Name                     | Type                                                          | Description                          | Notes             |
+| ------------------------ | ------------------------------------------------------------- | ------------------------------------ | ----------------- |
+| **relayer_id**           | **String**                                                    | The unique identifier of the relayer | [default to null] |
+| **SignTypedDataRequest** | [**SignTypedDataRequest**](../Models/SignTypedDataRequest.md) |                                      |                   |
 
 ### Return type
 
@@ -385,17 +412,19 @@ Signs typed data using the specified relayer.
 - **Accept**: application/json
 
 <a name="updateRelayer"></a>
+
 # **updateRelayer**
-> ApiResponse_RelayerResponse updateRelayer(relayer\_id, RelayerUpdateRequest)
+
+> ApiResponse_RelayerResponse updateRelayer(relayer_id, RelayerUpdateRequest)
 
 Updates a relayer&#39;s information based on the provided update request.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **RelayerUpdateRequest** | [**RelayerUpdateRequest**](../Models/RelayerUpdateRequest.md)|  | |
+| Name                     | Type                                                          | Description                          | Notes             |
+| ------------------------ | ------------------------------------------------------------- | ------------------------------------ | ----------------- |
+| **relayer_id**           | **String**                                                    | The unique identifier of the relayer | [default to null] |
+| **RelayerUpdateRequest** | [**RelayerUpdateRequest**](../Models/RelayerUpdateRequest.md) |                                      |                   |
 
 ### Return type
 
@@ -409,4 +438,3 @@ Updates a relayer&#39;s information based on the provided update request.
 
 - **Content-Type**: application/json
 - **Accept**: application/json
-

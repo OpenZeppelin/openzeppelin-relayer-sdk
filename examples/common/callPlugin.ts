@@ -1,7 +1,7 @@
 /**
- * Get Relayer Example
+ * Invoke Plugin Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to query balance of specific relayer.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to invoke a plugin.
  *  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Use proper error handling and transaction confirmation checks
@@ -11,9 +11,9 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node index.ts
+ *   ts-node callPlugin.ts
  */
-import { Configuration, RelayersApi } from '../../src';
+import { Configuration, PluginsApi } from '../../src';
 
 // example dev config
 const config = new Configuration({
@@ -21,12 +21,14 @@ const config = new Configuration({
   accessToken: '', // replace with your actual api key
 });
 
-const relayersApi = new RelayersApi(config);
+const pluginsApi = new PluginsApi(config);
 
-// replace with your actual ids
-const relayer_id = 'solana-example';
+const plugin_id = 'example';
 
-relayersApi
-  .getRelayerBalance(relayer_id)
-  .then((tokens) => console.log(JSON.stringify(tokens.data, null, 2)))
-  .catch(console.error);
+pluginsApi.callPlugin(plugin_id, {
+  // these params will be passed to the plugin.
+  params: {
+    foo: 'bar',
+    baz: 123,
+  },
+});
