@@ -17,6 +17,8 @@
 // @ts-ignore
 import type { SolanaSwapStrategy } from './solana-swap-strategy';
 
+type Null = null;
+
 /**
  * @type RelayerSolanaSwapConfigStrategy
  * @export

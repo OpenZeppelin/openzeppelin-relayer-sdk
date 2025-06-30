@@ -17,6 +17,8 @@
 // @ts-ignore
 import type { JupiterSwapOptions } from './jupiter-swap-options';
 
+type Null = null;
+
 /**
  * @type RelayerSolanaSwapConfigJupiterSwapOptions
  * @export

@@ -13,7 +13,13 @@
  * Usage:
  *   ts-node uploadWasm.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../src';
+import {
+  AuthSpecOneOf1TypeEnum,
+  Configuration,
+  OperationSpecOneOf3TypeEnum,
+  RelayersApi,
+  StellarTransactionRequest,
+} from '../../src';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -40,9 +46,9 @@ const transaction: StellarTransactionRequest = {
   network: 'testnet',
   operations: [
     {
-      type: 'upload_wasm',
-      wasm: { type: 'hex', hex: WASM_HEX },
-      auth: { type: 'source_account' },
+      type: OperationSpecOneOf3TypeEnum.UPLOAD_WASM,
+      wasm: { hex: WASM_HEX },
+      auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
     },
   ],
 };
