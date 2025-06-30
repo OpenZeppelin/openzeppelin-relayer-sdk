@@ -14,8 +14,17 @@
 
 
 
-export * from './apis/health-api';
-export * from './apis/metrics-api';
-export * from './apis/plugins-api';
-export * from './apis/relayers-api';
+/**
+ * 
+ * @export
+ * @interface PluginCallRequest
+ */
+export interface PluginCallRequest {
+    /**
+     * 
+     * @type {object}
+     * @memberof PluginCallRequest
+     */
+    'params': object;
+}
 

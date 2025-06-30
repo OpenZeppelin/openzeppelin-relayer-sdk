@@ -1871,6 +1871,126 @@
         ]
       }
     },
+    "/api/v1/plugins/{plugin_id}/call": {
+      "post": {
+        "tags": ["Plugins"],
+        "summary": "Calls a plugin",
+        "description": "Calls a plugin",
+        "operationId": "call_plugin",
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "description": "The ID of the plugin to call",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PluginCallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Plugin called successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_PluginCallResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ]
+      }
+    },
     "/v1/health": {
       "get": {
         "tags": ["Health"],
@@ -2440,6 +2560,44 @@
       },
       "EncodedSerializedTransaction": {
         "type": "string"
+      },
+      "ApiResponse_PluginCallResponse": {
+        "type": "object",
+        "required": ["success", "data"],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string"
+              },
+              "output": {
+                "type": "string"
+              },
+              "traces": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PluginCallRequest": {
+        "type": "object",
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object"
+          }
+        }
       },
       "EvmPolicyResponse": {
         "type": "object",
