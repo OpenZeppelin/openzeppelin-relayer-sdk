@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { RelayerSolanaSwapConfigJupiterSwapOptions } from './relayer-solana-swap-config-jupiter-swap-options';
+import type { JupiterSwapOptions } from './jupiter-swap-options';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { RelayerSolanaSwapConfigStrategy } from './relayer-solana-swap-config-strategy';
+import type { SolanaSwapStrategy } from './solana-swap-strategy';
 
 /**
  * 
@@ -36,10 +36,10 @@ export interface RelayerSolanaSwapConfig {
     'cron_schedule'?: string;
     /**
      * 
-     * @type {RelayerSolanaSwapConfigJupiterSwapOptions}
+     * @type {JupiterSwapOptions}
      * @memberof RelayerSolanaSwapConfig
      */
-    'jupiter_swap_options'?: RelayerSolanaSwapConfigJupiterSwapOptions;
+    'jupiter_swap_options'?: JupiterSwapOptions;
     /**
      * 
      * @type {number}
@@ -48,9 +48,11 @@ export interface RelayerSolanaSwapConfig {
     'min_balance_threshold'?: number;
     /**
      * 
-     * @type {RelayerSolanaSwapConfigStrategy}
+     * @type {SolanaSwapStrategy}
      * @memberof RelayerSolanaSwapConfig
      */
-    'strategy'?: RelayerSolanaSwapConfigStrategy;
+    'strategy'?: SolanaSwapStrategy;
 }
+
+
 

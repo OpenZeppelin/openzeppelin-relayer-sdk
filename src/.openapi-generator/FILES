@@ -87,8 +87,6 @@ models/plugin-call-response.ts
 models/prepare-transaction-request-params.ts
 models/prepare-transaction-result.ts
 models/relayer-response.ts
-models/relayer-solana-swap-config-jupiter-swap-options.ts
-models/relayer-solana-swap-config-strategy.ts
 models/relayer-solana-swap-config.ts
 models/relayer-status.ts
 models/relayer-update-request.ts

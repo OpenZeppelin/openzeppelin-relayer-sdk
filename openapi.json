@@ -3653,14 +3653,7 @@
             ]
           },
           "jupiter_swap_options": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/JupiterSwapOptions"
-              }
-            ]
+            "$ref": "#/components/schemas/JupiterSwapOptions"
           },
           "min_balance_threshold": {
             "type": [
@@ -3671,14 +3664,7 @@
             "minimum": 0
           },
           "strategy": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/SolanaSwapStrategy"
-              }
-            ]
+            "$ref": "#/components/schemas/SolanaSwapStrategy"
           }
         },
         "additionalProperties": false

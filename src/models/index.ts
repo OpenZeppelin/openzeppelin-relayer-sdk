@@ -73,8 +73,6 @@ export * from './prepare-transaction-request-params';
 export * from './prepare-transaction-result';
 export * from './relayer-response';
 export * from './relayer-solana-swap-config';
-export * from './relayer-solana-swap-config-jupiter-swap-options';
-export * from './relayer-solana-swap-config-strategy';
 export * from './relayer-status';
 export * from './relayer-update-request';
 export * from './sign-and-send-transaction-request-params';
