@@ -28,10 +28,10 @@ export interface SolanaRpcRequestOneOf5 {
     'method': SolanaRpcRequestOneOf5MethodEnum;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof SolanaRpcRequestOneOf5
      */
-    'params': object;
+    'params': { [key: string]: any; };
 }
 
 /**

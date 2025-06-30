@@ -13,26 +13,29 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { LogLevel } from './log-level';
 
 /**
  * 
  * @export
- * @interface PrepareTransactionRequestParams
+ * @interface LogEntry
  */
-export interface PrepareTransactionRequestParams {
-    [key: string]: any;
-
+export interface LogEntry {
+    /**
+     * 
+     * @type {LogLevel}
+     * @memberof LogEntry
+     */
+    'level': LogLevel;
     /**
      * 
      * @type {string}
-     * @memberof PrepareTransactionRequestParams
+     * @memberof LogEntry
      */
-    'fee_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrepareTransactionRequestParams
-     */
-    'transaction': string;
+    'message': string;
 }
+
+
 

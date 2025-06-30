@@ -13,20 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { JupiterSwapOptions } from './jupiter-swap-options';
 
 /**
- * 
+ * @type RelayerSolanaSwapConfigJupiterSwapOptions
  * @export
- * @interface SignTransactionRequestParams
  */
-export interface SignTransactionRequestParams {
-    [key: string]: any;
+export type RelayerSolanaSwapConfigJupiterSwapOptions = JupiterSwapOptions | Null;
 
-    /**
-     * 
-     * @type {string}
-     * @memberof SignTransactionRequestParams
-     */
-    'transaction': string;
-}
 

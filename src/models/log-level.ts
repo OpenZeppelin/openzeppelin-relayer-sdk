@@ -17,16 +17,17 @@
 /**
  * 
  * @export
- * @interface SignTransactionRequestParams
+ * @enum {string}
  */
-export interface SignTransactionRequestParams {
-    [key: string]: any;
 
-    /**
-     * 
-     * @type {string}
-     * @memberof SignTransactionRequestParams
-     */
-    'transaction': string;
+export enum LogLevel {
+    LOG = 'log',
+    INFO = 'info',
+    ERROR = 'error',
+    WARN = 'warn',
+    DEBUG = 'debug',
+    RESULT = 'result'
 }
+
+
 

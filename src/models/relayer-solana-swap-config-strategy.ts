@@ -13,20 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaSwapStrategy } from './solana-swap-strategy';
 
 /**
- * 
+ * @type RelayerSolanaSwapConfigStrategy
  * @export
- * @interface SignTransactionRequestParams
  */
-export interface SignTransactionRequestParams {
-    [key: string]: any;
+export type RelayerSolanaSwapConfigStrategy = Null | SolanaSwapStrategy;
 
-    /**
-     * 
-     * @type {string}
-     * @memberof SignTransactionRequestParams
-     */
-    'transaction': string;
-}
 

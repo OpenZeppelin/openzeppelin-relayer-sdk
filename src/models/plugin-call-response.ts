@@ -20,43 +20,43 @@ import type { LogEntry } from './log-entry';
 /**
  * 
  * @export
- * @interface ApiResponsePluginCallResponseData
+ * @interface PluginCallResponse
  */
-export interface ApiResponsePluginCallResponseData {
+export interface PluginCallResponse {
     /**
      * 
      * @type {string}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'error': string;
     /**
      * 
      * @type {Array<LogEntry>}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'logs': Array<LogEntry>;
     /**
      * 
      * @type {string}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'message': string;
     /**
      * 
      * @type {string}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'return_value': string;
     /**
      * 
      * @type {boolean}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'success': boolean;
     /**
      * 
      * @type {Array<any>}
-     * @memberof ApiResponsePluginCallResponseData
+     * @memberof PluginCallResponse
      */
     'traces': Array<any>;
 }
