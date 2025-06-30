@@ -63,6 +63,8 @@ models/json-rpc-request-network-rpc-request.ts
 models/json-rpc-response-network-rpc-result-result.ts
 models/json-rpc-response-network-rpc-result.ts
 models/jupiter-swap-options.ts
+models/log-entry.ts
+models/log-level.ts
 models/memo-spec-one-of.ts
 models/memo-spec-one-of1.ts
 models/memo-spec-one-of2.ts
@@ -81,6 +83,7 @@ models/operation-spec-one-of3.ts
 models/operation-spec.ts
 models/pagination-meta.ts
 models/plugin-call-request.ts
+models/plugin-call-response.ts
 models/prepare-transaction-request-params.ts
 models/prepare-transaction-result.ts
 models/relayer-response.ts

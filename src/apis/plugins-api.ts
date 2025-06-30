@@ -34,16 +34,18 @@ import type { PluginCallRequest } from '../models';
 export const PluginsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Calls a plugin
-         * @summary Calls a plugin
-         * @param {string} pluginId The ID of the plugin to call
-         * @param {PluginCallRequest} [pluginCallRequest] 
+         * 
+         * @summary Calls a plugin method.
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        callPlugin: async (pluginId: string, pluginCallRequest?: PluginCallRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        callPlugin: async (pluginId: string, pluginCallRequest: PluginCallRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'pluginId' is not null or undefined
             assertParamExists('callPlugin', 'pluginId', pluginId)
+            // verify required parameter 'pluginCallRequest' is not null or undefined
+            assertParamExists('callPlugin', 'pluginCallRequest', pluginCallRequest)
             const localVarPath = `/api/v1/plugins/{plugin_id}/call`
                 .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -86,14 +88,14 @@ export const PluginsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PluginsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Calls a plugin
-         * @summary Calls a plugin
-         * @param {string} pluginId The ID of the plugin to call
-         * @param {PluginCallRequest} [pluginCallRequest] 
+         * 
+         * @summary Calls a plugin method.
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async callPlugin(pluginId: string, pluginCallRequest?: PluginCallRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponsePluginCallResponse>> {
+        async callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponsePluginCallResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.callPlugin(pluginId, pluginCallRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PluginsApi.callPlugin']?.[localVarOperationServerIndex]?.url;
@@ -110,14 +112,14 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = PluginsApiFp(configuration)
     return {
         /**
-         * Calls a plugin
-         * @summary Calls a plugin
-         * @param {string} pluginId The ID of the plugin to call
-         * @param {PluginCallRequest} [pluginCallRequest] 
+         * 
+         * @summary Calls a plugin method.
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        callPlugin(pluginId: string, pluginCallRequest?: PluginCallRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePluginCallResponse> {
+        callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePluginCallResponse> {
             return localVarFp.callPlugin(pluginId, pluginCallRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -131,15 +133,15 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
  */
 export class PluginsApi extends BaseAPI {
     /**
-     * Calls a plugin
-     * @summary Calls a plugin
-     * @param {string} pluginId The ID of the plugin to call
-     * @param {PluginCallRequest} [pluginCallRequest] 
+     * 
+     * @summary Calls a plugin method.
+     * @param {string} pluginId The unique identifier of the plugin
+     * @param {PluginCallRequest} pluginCallRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PluginsApi
      */
-    public callPlugin(pluginId: string, pluginCallRequest?: PluginCallRequest, options?: RawAxiosRequestConfig) {
+    public callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig) {
         return PluginsApiFp(this.configuration).callPlugin(pluginId, pluginCallRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

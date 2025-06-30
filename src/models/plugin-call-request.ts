@@ -22,9 +22,9 @@
 export interface PluginCallRequest {
     /**
      * 
-     * @type {object}
+     * @type {any}
      * @memberof PluginCallRequest
      */
-    'params': object;
+    'params': any;
 }
 

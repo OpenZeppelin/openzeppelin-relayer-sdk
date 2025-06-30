@@ -26,30 +26,32 @@ import type { SolanaSwapStrategy } from './solana-swap-strategy';
  * @interface RelayerSolanaSwapConfig
  */
 export interface RelayerSolanaSwapConfig {
+    [key: string]: any;
+
     /**
      * 
      * @type {string}
      * @memberof RelayerSolanaSwapConfig
      */
-    'cron_schedule'?: string | null;
+    'cron_schedule'?: string;
     /**
      * 
      * @type {JupiterSwapOptions}
      * @memberof RelayerSolanaSwapConfig
      */
-    'jupiter_swap_options'?: JupiterSwapOptions | null;
+    'jupiter_swap_options'?: JupiterSwapOptions;
     /**
      * 
      * @type {number}
      * @memberof RelayerSolanaSwapConfig
      */
-    'min_balance_threshold'?: number | null;
+    'min_balance_threshold'?: number;
     /**
      * 
      * @type {SolanaSwapStrategy}
      * @memberof RelayerSolanaSwapConfig
      */
-    'strategy'?: SolanaSwapStrategy | null;
+    'strategy'?: SolanaSwapStrategy;
 }
 
 

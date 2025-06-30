@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { LogEntry } from './log-entry';
 
 /**
  * 
@@ -25,18 +28,36 @@ export interface ApiResponsePluginCallResponseData {
      * @type {string}
      * @memberof ApiResponsePluginCallResponseData
      */
-    'error'?: string;
+    'error': string;
+    /**
+     * 
+     * @type {Array<LogEntry>}
+     * @memberof ApiResponsePluginCallResponseData
+     */
+    'logs': Array<LogEntry>;
     /**
      * 
      * @type {string}
      * @memberof ApiResponsePluginCallResponseData
      */
-    'output'?: string;
+    'message': string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof ApiResponsePluginCallResponseData
      */
-    'traces'?: Array<string>;
+    'return_value': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ApiResponsePluginCallResponseData
+     */
+    'success': boolean;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof ApiResponsePluginCallResponseData
+     */
+    'traces': Array<any>;
 }
 
