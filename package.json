@@ -15,7 +15,6 @@
     "url": "https://github.com/OpenZeppelin/openzeppelin-relayer-sdk.git"
   },
   "scripts": {
-    "postinstall": "husky",
     "commit": "cz",
     "clean:client": "rimraf ./src",
     "clean:dist": "rimraf ./dist",
