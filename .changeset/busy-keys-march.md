@@ -1,5 +1,5 @@
 ---
-'@openzeppelin/relayer-sdk': minor
+'@openzeppelin/relayer-sdk': major
 ---
 
 fix(package): remove postinstall husky script command
