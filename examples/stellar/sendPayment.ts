@@ -13,7 +13,13 @@
  * Usage:
  *   ts-node sendPayment.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../src';
+import {
+  AssetSpecOneOfTypeEnum,
+  Configuration,
+  OperationSpecOneOfTypeEnum,
+  RelayersApi,
+  StellarTransactionRequest,
+} from '../../src';
 
 // example dev config
 const config = new Configuration({
@@ -35,10 +41,10 @@ const transaction: StellarTransactionRequest = {
   network: 'testnet',
   operations: [
     {
-      type: 'payment',
+      type: OperationSpecOneOfTypeEnum.PAYMENT,
       destination: DESTINATION_ACCOUNT,
       amount: 1,
-      asset: { type: 'native' },
+      asset: { type: AssetSpecOneOfTypeEnum.NATIVE },
     },
   ],
 };

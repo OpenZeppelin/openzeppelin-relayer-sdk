@@ -1,27 +1,27 @@
 # TransactionResponse
-
 ## Properties
 
-| Name                 | Type                                          | Description | Notes                        |
-| -------------------- | --------------------------------------------- | ----------- | ---------------------------- |
-| **confirmed_at**     | **String**                                    |             | [optional] [default to null] |
-| **created_at**       | **String**                                    |             | [default to null]            |
-| **from**             | **String**                                    |             | [default to null]            |
-| **gas_limit**        | **Long**                                      |             | [default to null]            |
-| **gas_price**        | **Integer**                                   |             | [optional] [default to null] |
-| **hash**             | **String**                                    |             | [optional] [default to null] |
-| **id**               | **String**                                    |             | [default to null]            |
-| **nonce**            | **Long**                                      |             | [optional] [default to null] |
-| **relayer_id**       | **String**                                    |             | [default to null]            |
-| **sent_at**          | **String**                                    |             | [optional] [default to null] |
-| **status**           | [**TransactionStatus**](TransactionStatus.md) |             | [default to null]            |
-| **status_reason**    | **String**                                    |             | [optional] [default to null] |
-| **to**               | **String**                                    |             | [optional] [default to null] |
-| **value**            | **String**                                    |             | [default to null]            |
-| **fee_payer**        | **String**                                    |             | [default to null]            |
-| **recent_blockhash** | **String**                                    |             | [default to null]            |
-| **fee**              | **Integer**                                   |             | [default to null]            |
-| **sequence_number**  | **Long**                                      |             | [default to null]            |
-| **source_account**   | **String**                                    |             | [default to null]            |
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+| **confirmed\_at** | **String** |  | [optional] [default to null] |
+| **created\_at** | **String** |  | [default to null] |
+| **from** | **String** |  | [default to null] |
+| **gas\_limit** | **Long** |  | [default to null] |
+| **gas\_price** | **Integer** |  | [optional] [default to null] |
+| **hash** | **String** |  | [optional] [default to null] |
+| **id** | **String** |  | [default to null] |
+| **nonce** | **Long** |  | [optional] [default to null] |
+| **relayer\_id** | **String** |  | [default to null] |
+| **sent\_at** | **String** |  | [optional] [default to null] |
+| **status** | [**TransactionStatus**](TransactionStatus.md) |  | [default to null] |
+| **status\_reason** | **String** |  | [optional] [default to null] |
+| **to** | **String** |  | [optional] [default to null] |
+| **value** | **String** |  | [default to null] |
+| **fee\_payer** | **String** |  | [default to null] |
+| **recent\_blockhash** | **String** |  | [default to null] |
+| **fee** | **Integer** |  | [default to null] |
+| **sequence\_number** | **Long** |  | [default to null] |
+| **source\_account** | **String** |  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

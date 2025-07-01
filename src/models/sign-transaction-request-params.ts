@@ -20,6 +20,8 @@
  * @interface SignTransactionRequestParams
  */
 export interface SignTransactionRequestParams {
+    [key: string]: any;
+
     /**
      * 
      * @type {string}

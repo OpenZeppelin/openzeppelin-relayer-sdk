@@ -16,5 +16,6 @@
 
 export * from './apis/health-api';
 export * from './apis/metrics-api';
+export * from './apis/plugins-api';
 export * from './apis/relayers-api';
 

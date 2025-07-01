@@ -20,6 +20,8 @@
  * @interface PrepareTransactionRequestParams
  */
 export interface PrepareTransactionRequestParams {
+    [key: string]: any;
+
     /**
      * 
      * @type {string}

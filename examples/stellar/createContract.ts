@@ -13,7 +13,14 @@
  * Usage:
  *   ts-node createContract.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../src';
+import {
+  AuthSpecOneOf1TypeEnum,
+  Configuration,
+  ContractSourceOneOfFromEnum,
+  OperationSpecOneOf2TypeEnum,
+  RelayersApi,
+  StellarTransactionRequest,
+} from '../../src';
 
 // example dev config
 const config = new Configuration({
@@ -40,14 +47,14 @@ const transaction: StellarTransactionRequest = {
   network: 'testnet',
   operations: [
     {
-      type: 'create_contract',
-      source: { from: 'address', address: SOURCE_ACCOUNT },
+      type: OperationSpecOneOf2TypeEnum.CREATE_CONTRACT,
+      source: { from: ContractSourceOneOfFromEnum.ADDRESS, address: SOURCE_ACCOUNT },
       wasm_hash: WASM_HASH,
       salt: SALT,
       constructor_args: [
         { address: SOURCE_ACCOUNT }, // Owner address
       ],
-      auth: { type: 'source_account' },
+      auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
     },
   ],
 };

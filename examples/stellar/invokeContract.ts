@@ -14,7 +14,14 @@
  *   ts-node invokeContract.ts mint      # Mint tokens (owner only)
  *   ts-node invokeContract.ts transfer  # Transfer tokens
  */
-import { Configuration, RelayersApi, StellarTransactionRequest, ScVal } from '../../src';
+import {
+  Configuration,
+  RelayersApi,
+  StellarTransactionRequest,
+  OperationSpecOneOf1TypeEnum,
+  AuthSpecOneOf1TypeEnum,
+} from '../../src';
+import { ScVal } from '../../custom-models/stellar-transaction-request';
 
 // example dev config
 const config = new Configuration({
@@ -52,14 +59,14 @@ if (command === 'mint') {
     network: 'testnet',
     operations: [
       {
-        type: 'invoke_contract',
+        type: OperationSpecOneOf1TypeEnum.INVOKE_CONTRACT,
         contract_address: CONTRACT_ADDRESS,
         function_name: 'mint',
         args: [
           { address: RECIPIENT_ADDRESS },
           stringToI128('1000000000000000000000'), // 1000 tokens (18 decimals)
         ],
-        auth: { type: 'source_account' },
+        auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
       },
     ],
   };
@@ -69,7 +76,7 @@ if (command === 'mint') {
     network: 'testnet',
     operations: [
       {
-        type: 'invoke_contract',
+        type: OperationSpecOneOf1TypeEnum.INVOKE_CONTRACT,
         contract_address: CONTRACT_ADDRESS,
         function_name: 'transfer',
         args: [
@@ -77,7 +84,7 @@ if (command === 'mint') {
           { address: RECIPIENT_ADDRESS }, // To
           stringToI128('100000000000000000000'), // 100 tokens (18 decimals)
         ],
-        auth: { type: 'source_account' },
+        auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
       },
     ],
   };

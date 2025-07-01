@@ -20,23 +20,25 @@
  * @interface JupiterSwapOptions
  */
 export interface JupiterSwapOptions {
+    [key: string]: any;
+
     /**
      * 
      * @type {boolean}
      * @memberof JupiterSwapOptions
      */
-    'dynamic_compute_unit_limit'?: boolean | null;
+    'dynamic_compute_unit_limit'?: boolean;
     /**
      * 
      * @type {number}
      * @memberof JupiterSwapOptions
      */
-    'priority_fee_max_lamports'?: number | null;
+    'priority_fee_max_lamports'?: number;
     /**
      * 
      * @type {string}
      * @memberof JupiterSwapOptions
      */
-    'priority_level'?: string | null;
+    'priority_level'?: string;
 }
 
