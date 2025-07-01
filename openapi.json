@@ -1713,6 +1713,16 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkTransactionRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Relayer transaction replaced successfully",
@@ -4302,14 +4312,22 @@
       },
       "StellarTransactionRequest": {
         "type": "object",
-        "required": ["network"],
+        "required": [
+          "network"
+        ],
         "properties": {
           "fee_bump": {
-            "type": ["boolean", "null"],
+            "type": [
+              "boolean",
+              "null"
+            ],
             "description": "Explicitly request fee-bump wrapper\nOnly valid when transaction_xdr contains a signed transaction"
           },
           "max_fee": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "description": "Maximum fee in stroops (defaults to 0.1 XLM = 1,000,000 stroops)"
           },
@@ -4327,16 +4345,25 @@
             "type": "string"
           },
           "operations": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "$ref": "#/components/schemas/OperationSpec"
             }
           },
           "source_account": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "transaction_xdr": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "Pre-built transaction XDR (base64 encoded, signed or unsigned)\nMutually exclusive with operations field"
           },
           "valid_until": {
