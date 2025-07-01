@@ -432,14 +432,17 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Replaces a specific transaction with a new one.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {string} transactionId The unique identifier of the transaction
+         * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceTransaction: async (relayerId: string, transactionId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        replaceTransaction: async (relayerId: string, transactionId: string, networkTransactionRequest: NetworkTransactionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('replaceTransaction', 'relayerId', relayerId)
             // verify required parameter 'transactionId' is not null or undefined
             assertParamExists('replaceTransaction', 'transactionId', transactionId)
+            // verify required parameter 'networkTransactionRequest' is not null or undefined
+            assertParamExists('replaceTransaction', 'networkTransactionRequest', networkTransactionRequest)
             const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/{transaction_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transactionId)));
@@ -460,9 +463,12 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(networkTransactionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -827,11 +833,12 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * @summary Replaces a specific transaction with a new one.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {string} transactionId The unique identifier of the transaction
+         * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseTransactionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceTransaction(relayerId, transactionId, options);
+        async replaceTransaction(relayerId: string, transactionId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceTransaction(relayerId, transactionId, networkTransactionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.replaceTransaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1017,11 +1024,12 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * @summary Replaces a specific transaction with a new one.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {string} transactionId The unique identifier of the transaction
+         * @param {NetworkTransactionRequest} networkTransactionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseTransactionResponse> {
-            return localVarFp.replaceTransaction(relayerId, transactionId, options).then((request) => request(axios, basePath));
+        replaceTransaction(relayerId: string, transactionId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseTransactionResponse> {
+            return localVarFp.replaceTransaction(relayerId, transactionId, networkTransactionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1207,12 +1215,13 @@ export class RelayersApi extends BaseAPI {
      * @summary Replaces a specific transaction with a new one.
      * @param {string} relayerId The unique identifier of the relayer
      * @param {string} transactionId The unique identifier of the transaction
+     * @param {NetworkTransactionRequest} networkTransactionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
      */
-    public replaceTransaction(relayerId: string, transactionId: string, options?: RawAxiosRequestConfig) {
-        return RelayersApiFp(this.configuration).replaceTransaction(relayerId, transactionId, options).then((request) => request(this.axios, this.basePath));
+    public replaceTransaction(relayerId: string, transactionId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).replaceTransaction(relayerId, transactionId, networkTransactionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
