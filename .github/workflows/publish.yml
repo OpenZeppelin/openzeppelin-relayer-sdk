@@ -20,7 +20,7 @@ env:
 
 jobs:
   provenance:
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@f7dd8c54c2067bafc12ca7a55595d5ee9b75204a  # v2.1.0
     with:
       run-scripts: 'install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, generate'
       node-version: '22.14.0'
@@ -231,8 +231,6 @@ jobs:
     needs: [state, provenance]
     name: Publish package to npm
     environment: npm
-    permissions:
-      contents: write
     if: needs.state.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
