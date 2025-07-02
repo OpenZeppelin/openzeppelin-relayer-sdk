@@ -4,5 +4,7 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "1.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "four-keys-know"
+  ]
 }
