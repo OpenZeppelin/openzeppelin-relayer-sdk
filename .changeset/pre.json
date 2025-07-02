@@ -4,5 +4,8 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "busy-keys-march",
+    "funny-carpets-love"
+  ]
 }
