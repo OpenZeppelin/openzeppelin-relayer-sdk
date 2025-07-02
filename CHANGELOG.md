@@ -1,7 +1,7 @@
 # @openzeppelin/relayer-sdk
 
 
-## 1.1.0-rc.0 (2025-07-02)
+## 1.1.0 (2025-07-02)
 
 - fix: generate a tsconfig pointing to root folder ([#109](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/109))
 
