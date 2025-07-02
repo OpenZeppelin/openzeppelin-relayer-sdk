@@ -1,7 +1,7 @@
 # @openzeppelin/relayer-sdk
 
 
-## 1.0.0-rc.0 (2025-07-02)
+## 1.0.0 (2025-07-02)
 
 - fix(package): remove postinstall husky script command ([#101](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/101))
   fix: correct package entry points
