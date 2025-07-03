@@ -1,6 +1,10 @@
 # @openzeppelin/relayer-sdk
 
 
+## 1.1.0 (2025-07-02)
+
+- fix: generate a tsconfig pointing to root folder ([#109](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/109))
+
 ## 1.0.0 (2025-07-02)
 
 - fix(package): remove postinstall husky script command ([#101](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/101))
