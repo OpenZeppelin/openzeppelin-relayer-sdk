@@ -256,7 +256,7 @@ Lists all transactions for a specific relayer with pagination.
 
 <a name="replaceTransaction"></a>
 # **replaceTransaction**
-> ApiResponse_TransactionResponse replaceTransaction(relayer\_id, transaction\_id)
+> ApiResponse_TransactionResponse replaceTransaction(relayer\_id, transaction\_id, NetworkTransactionRequest)
 
 Replaces a specific transaction with a new one.
 
@@ -266,6 +266,7 @@ Replaces a specific transaction with a new one.
 |------------- | ------------- | ------------- | -------------|
 | **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
 | **transaction\_id** | **String**| The unique identifier of the transaction | [default to null] |
+| **NetworkTransactionRequest** | [**NetworkTransactionRequest**](../Models/NetworkTransactionRequest.md)|  | |
 
 ### Return type
 
@@ -277,7 +278,7 @@ Replaces a specific transaction with a new one.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 <a name="rpc"></a>

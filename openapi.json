@@ -2834,18 +2834,45 @@
           {}
         ]
       },
+      "EvmTransactionDataSignature": {
+        "type": "object",
+        "required": [
+          "r",
+          "s",
+          "v",
+          "sig"
+        ],
+        "properties": {
+          "r": {
+            "type": "string"
+          },
+          "s": {
+            "type": "string"
+          },
+          "sig": {
+            "type": "string"
+          },
+          "v": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          }
+        }
+      },
       "EvmTransactionRequest": {
         "type": "object",
         "required": [
-          "value",
-          "gas_limit"
+          "value"
         ],
         "properties": {
           "data": {
             "type": "string"
           },
           "gas_limit": {
-            "type": "integer",
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
@@ -2883,7 +2910,6 @@
           "id",
           "status",
           "created_at",
-          "gas_limit",
           "value",
           "from",
           "relayer_id"
@@ -2895,11 +2921,17 @@
           "created_at": {
             "type": "string"
           },
+          "data": {
+            "type": "string"
+          },
           "from": {
             "type": "string"
           },
           "gas_limit": {
-            "type": "integer",
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
@@ -2913,6 +2945,14 @@
           "id": {
             "type": "string"
           },
+          "max_fee_per_gas": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "max_priority_fee_per_gas": {
+            "type": "integer",
+            "minimum": 0
+          },
           "nonce": {
             "type": "integer",
             "format": "int64",
@@ -2923,6 +2963,26 @@
           },
           "sent_at": {
             "type": "string"
+          },
+          "signature": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/EvmTransactionDataSignature"
+              }
+            ]
+          },
+          "speed": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Speed"
+              }
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatus"
@@ -3657,19 +3717,13 @@
         "type": "object",
         "properties": {
           "cron_schedule": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": "string"
           },
           "jupiter_swap_options": {
             "$ref": "#/components/schemas/JupiterSwapOptions"
           },
           "min_balance_threshold": {
-            "type": [
-              "integer",
-              "null"
-            ],
+            "type": "integer",
             "format": "int64",
             "minimum": 0
           },

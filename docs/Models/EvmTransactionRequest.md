@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **data** | **String** |  | [optional] [default to null] |
-| **gas\_limit** | **Long** |  | [default to null] |
+| **gas\_limit** | **Long** |  | [optional] [default to null] |
 | **gas\_price** | **Integer** |  | [optional] [default to null] |
 | **max\_fee\_per\_gas** | **Integer** |  | [optional] [default to null] |
 | **max\_priority\_fee\_per\_gas** | **Integer** |  | [optional] [default to null] |
