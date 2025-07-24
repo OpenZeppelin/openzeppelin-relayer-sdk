@@ -256,7 +256,7 @@ jobs:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
 
       - name: Upload tarball artifact
-        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ${{ github.ref_name }}
           path: ${{ needs.provenance.outputs.package-name }}
