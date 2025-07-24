@@ -34,7 +34,7 @@ export interface EvmTransactionRequest {
      * @type {number}
      * @memberof EvmTransactionRequest
      */
-    'gas_limit': number;
+    'gas_limit'?: number | null;
     /**
      * 
      * @type {number}

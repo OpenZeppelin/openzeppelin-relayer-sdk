@@ -39,6 +39,7 @@ Models/EvmPolicyResponse.md
 Models/EvmRpcRequest.md
 Models/EvmRpcRequest_oneOf.md
 Models/EvmRpcRequest_oneOf_1.md
+Models/EvmTransactionDataSignature.md
 Models/EvmTransactionRequest.md
 Models/EvmTransactionResponse.md
 Models/FeeEstimateRequestParams.md
@@ -77,8 +78,6 @@ Models/PrepareTransactionRequestParams.md
 Models/PrepareTransactionResult.md
 Models/RelayerResponse.md
 Models/RelayerSolanaSwapConfig.md
-Models/RelayerSolanaSwapConfig_jupiter_swap_options.md
-Models/RelayerSolanaSwapConfig_strategy.md
 Models/RelayerStatus.md
 Models/RelayerUpdateRequest.md
 Models/SignAndSendTransactionRequestParams.md

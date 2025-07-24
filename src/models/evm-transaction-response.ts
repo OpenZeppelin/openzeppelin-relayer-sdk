@@ -15,6 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { EvmTransactionDataSignature } from './evm-transaction-data-signature';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Speed } from './speed';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { TransactionStatus } from './transaction-status';
 
 /**
@@ -40,13 +46,19 @@ export interface EvmTransactionResponse {
      * @type {string}
      * @memberof EvmTransactionResponse
      */
+    'data'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EvmTransactionResponse
+     */
     'from': string;
     /**
      * 
      * @type {number}
      * @memberof EvmTransactionResponse
      */
-    'gas_limit': number;
+    'gas_limit'?: number | null;
     /**
      * 
      * @type {number}
@@ -70,6 +82,18 @@ export interface EvmTransactionResponse {
      * @type {number}
      * @memberof EvmTransactionResponse
      */
+    'max_fee_per_gas'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EvmTransactionResponse
+     */
+    'max_priority_fee_per_gas'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EvmTransactionResponse
+     */
     'nonce'?: number;
     /**
      * 
@@ -83,6 +107,18 @@ export interface EvmTransactionResponse {
      * @memberof EvmTransactionResponse
      */
     'sent_at'?: string;
+    /**
+     * 
+     * @type {EvmTransactionDataSignature}
+     * @memberof EvmTransactionResponse
+     */
+    'signature'?: EvmTransactionDataSignature | null;
+    /**
+     * 
+     * @type {Speed}
+     * @memberof EvmTransactionResponse
+     */
+    'speed'?: Speed | null;
     /**
      * 
      * @type {TransactionStatus}

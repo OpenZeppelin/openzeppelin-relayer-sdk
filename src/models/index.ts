@@ -35,6 +35,7 @@ export * from './evm-policy-response';
 export * from './evm-rpc-request';
 export * from './evm-rpc-request-one-of';
 export * from './evm-rpc-request-one-of1';
+export * from './evm-transaction-data-signature';
 export * from './evm-transaction-request';
 export * from './evm-transaction-response';
 export * from './fee-estimate-request-params';

@@ -49,6 +49,7 @@ models/evm-policy-response.ts
 models/evm-rpc-request-one-of.ts
 models/evm-rpc-request-one-of1.ts
 models/evm-rpc-request.ts
+models/evm-transaction-data-signature.ts
 models/evm-transaction-request.ts
 models/evm-transaction-response.ts
 models/fee-estimate-request-params.ts
