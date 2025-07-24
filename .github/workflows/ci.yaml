@@ -4,18 +4,26 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 
+permissions:
+  contents: read
+
 jobs:
   lint-format:
     runs-on: ubuntu-latest
 
     steps:
       # Checkout the repository
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
       - name: Checkout Code
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
 
       # Set up Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22.14.0'
 
@@ -48,6 +56,11 @@ jobs:
 
     steps:
       # Checkout the repository
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
       - name: Checkout Code
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.5.4
 
