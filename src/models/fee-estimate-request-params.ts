@@ -20,8 +20,6 @@
  * @interface FeeEstimateRequestParams
  */
 export interface FeeEstimateRequestParams {
-    [key: string]: any;
-
     /**
      * 
      * @type {string}

@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Solana swap strategy
  * @export
  * @enum {string}
  */

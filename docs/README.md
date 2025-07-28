@@ -11,9 +11,16 @@ All URIs are relative to *http://localhost*
 | *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Metrics routes implementation |
 *MetricsApi* | [**metricDetail**](Apis/MetricsApi.md#metricdetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 *MetricsApi* | [**scrapeMetrics**](Apis/MetricsApi.md#scrapemetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
+| *NotificationsApi* | [**createNotification**](Apis/NotificationsApi.md#createnotification) | **POST** /api/v1/notifications | Creates a new notification. |
+*NotificationsApi* | [**deleteNotification**](Apis/NotificationsApi.md#deletenotification) | **DELETE** /api/v1/notifications/{notification_id} | Deletes a notification by ID. |
+*NotificationsApi* | [**getNotification**](Apis/NotificationsApi.md#getnotification) | **GET** /api/v1/notifications/{notification_id} | Retrieves details of a specific notification by ID. |
+*NotificationsApi* | [**listNotifications**](Apis/NotificationsApi.md#listnotifications) | **GET** /api/v1/notifications | Notification routes implementation |
+*NotificationsApi* | [**updateNotification**](Apis/NotificationsApi.md#updatenotification) | **PATCH** /api/v1/notifications/{notification_id} | Updates an existing notification. |
 | *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Calls a plugin method. |
 | *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
+*RelayersApi* | [**createRelayer**](Apis/RelayersApi.md#createrelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
 *RelayersApi* | [**deletePendingTransactions**](Apis/RelayersApi.md#deletependingtransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending | Deletes all pending transactions for a specific relayer. |
+*RelayersApi* | [**deleteRelayer**](Apis/RelayersApi.md#deleterelayer) | **DELETE** /api/v1/relayers/{relayer_id} | Deletes a relayer by ID. |
 *RelayersApi* | [**getRelayer**](Apis/RelayersApi.md#getrelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
 *RelayersApi* | [**getRelayerBalance**](Apis/RelayersApi.md#getrelayerbalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
 *RelayersApi* | [**getRelayerStatus**](Apis/RelayersApi.md#getrelayerstatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
@@ -27,6 +34,11 @@ All URIs are relative to *http://localhost*
 *RelayersApi* | [**sign**](Apis/RelayersApi.md#sign) | **POST** /api/v1/relayers/{relayer_id}/sign | Signs data using the specified relayer. |
 *RelayersApi* | [**signTypedData**](Apis/RelayersApi.md#signtypeddata) | **POST** /api/v1/relayers/{relayer_id}/sign-typed-data | Signs typed data using the specified relayer. |
 *RelayersApi* | [**updateRelayer**](Apis/RelayersApi.md#updaterelayer) | **PATCH** /api/v1/relayers/{relayer_id} | Updates a relayer's information based on the provided update request. |
+| *SignersApi* | [**createSigner**](Apis/SignersApi.md#createsigner) | **POST** /api/v1/signers | Creates a new signer. |
+*SignersApi* | [**deleteSigner**](Apis/SignersApi.md#deletesigner) | **DELETE** /api/v1/signers/{signer_id} | Deletes a signer by ID. |
+*SignersApi* | [**getSigner**](Apis/SignersApi.md#getsigner) | **GET** /api/v1/signers/{signer_id} | Retrieves details of a specific signer by ID. |
+*SignersApi* | [**listSigners**](Apis/SignersApi.md#listsigners) | **GET** /api/v1/signers | Signer routes implementation |
+*SignersApi* | [**updateSigner**](Apis/SignersApi.md#updatesigner) | **PATCH** /api/v1/signers/{signer_id} | Updates an existing signer. |
 
 
 <a name="documentation-for-models"></a>
@@ -36,6 +48,8 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_BalanceResponse_data](./Models/ApiResponse_BalanceResponse_data.md)
  - [ApiResponse_DeletePendingTransactionsResponse](./Models/ApiResponse_DeletePendingTransactionsResponse.md)
  - [ApiResponse_DeletePendingTransactionsResponse_data](./Models/ApiResponse_DeletePendingTransactionsResponse_data.md)
+ - [ApiResponse_NotificationResponse](./Models/ApiResponse_NotificationResponse.md)
+ - [ApiResponse_NotificationResponse_data](./Models/ApiResponse_NotificationResponse_data.md)
  - [ApiResponse_PluginCallResponse](./Models/ApiResponse_PluginCallResponse.md)
  - [ApiResponse_PluginCallResponse_data](./Models/ApiResponse_PluginCallResponse_data.md)
  - [ApiResponse_RelayerResponse](./Models/ApiResponse_RelayerResponse.md)
@@ -44,12 +58,17 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_RelayerStatus_data](./Models/ApiResponse_RelayerStatus_data.md)
  - [ApiResponse_RelayerStatus_data_oneOf](./Models/ApiResponse_RelayerStatus_data_oneOf.md)
  - [ApiResponse_RelayerStatus_data_oneOf_1](./Models/ApiResponse_RelayerStatus_data_oneOf_1.md)
+ - [ApiResponse_RelayerStatus_data_oneOf_2](./Models/ApiResponse_RelayerStatus_data_oneOf_2.md)
  - [ApiResponse_SignDataResponse](./Models/ApiResponse_SignDataResponse.md)
  - [ApiResponse_SignDataResponse_data](./Models/ApiResponse_SignDataResponse_data.md)
+ - [ApiResponse_SignerResponse](./Models/ApiResponse_SignerResponse.md)
+ - [ApiResponse_SignerResponse_data](./Models/ApiResponse_SignerResponse_data.md)
  - [ApiResponse_String](./Models/ApiResponse_String.md)
  - [ApiResponse_TransactionResponse](./Models/ApiResponse_TransactionResponse.md)
  - [ApiResponse_TransactionResponse_data](./Models/ApiResponse_TransactionResponse_data.md)
+ - [ApiResponse_Vec_NotificationResponse](./Models/ApiResponse_Vec_NotificationResponse.md)
  - [ApiResponse_Vec_RelayerResponse](./Models/ApiResponse_Vec_RelayerResponse.md)
+ - [ApiResponse_Vec_SignerResponse](./Models/ApiResponse_Vec_SignerResponse.md)
  - [ApiResponse_Vec_TransactionResponse](./Models/ApiResponse_Vec_TransactionResponse.md)
  - [AssetSpec](./Models/AssetSpec.md)
  - [AssetSpec_oneOf](./Models/AssetSpec_oneOf.md)
@@ -60,10 +79,16 @@ All URIs are relative to *http://localhost*
  - [AuthSpec_oneOf_1](./Models/AuthSpec_oneOf_1.md)
  - [AuthSpec_oneOf_2](./Models/AuthSpec_oneOf_2.md)
  - [AuthSpec_oneOf_3](./Models/AuthSpec_oneOf_3.md)
+ - [AwsKmsSignerRequestConfig](./Models/AwsKmsSignerRequestConfig.md)
  - [BalanceResponse](./Models/BalanceResponse.md)
  - [ContractSource](./Models/ContractSource.md)
  - [ContractSource_oneOf](./Models/ContractSource_oneOf.md)
  - [ContractSource_oneOf_1](./Models/ContractSource_oneOf_1.md)
+ - [CreateRelayerPolicyRequest](./Models/CreateRelayerPolicyRequest.md)
+ - [CreateRelayerPolicyRequest_oneOf](./Models/CreateRelayerPolicyRequest_oneOf.md)
+ - [CreateRelayerPolicyRequest_oneOf_1](./Models/CreateRelayerPolicyRequest_oneOf_1.md)
+ - [CreateRelayerPolicyRequest_oneOf_2](./Models/CreateRelayerPolicyRequest_oneOf_2.md)
+ - [CreateRelayerRequest](./Models/CreateRelayerRequest.md)
  - [DeletePendingTransactionsResponse](./Models/DeletePendingTransactionsResponse.md)
  - [EvmPolicyResponse](./Models/EvmPolicyResponse.md)
  - [EvmRpcRequest](./Models/EvmRpcRequest.md)
@@ -77,12 +102,18 @@ All URIs are relative to *http://localhost*
  - [GetFeaturesEnabledResult](./Models/GetFeaturesEnabledResult.md)
  - [GetSupportedTokensItem](./Models/GetSupportedTokensItem.md)
  - [GetSupportedTokensResult](./Models/GetSupportedTokensResult.md)
+ - [GoogleCloudKmsSignerKeyRequestConfig](./Models/GoogleCloudKmsSignerKeyRequestConfig.md)
+ - [GoogleCloudKmsSignerKeyResponseConfig](./Models/GoogleCloudKmsSignerKeyResponseConfig.md)
+ - [GoogleCloudKmsSignerRequestConfig](./Models/GoogleCloudKmsSignerRequestConfig.md)
+ - [GoogleCloudKmsSignerServiceAccountRequestConfig](./Models/GoogleCloudKmsSignerServiceAccountRequestConfig.md)
+ - [GoogleCloudKmsSignerServiceAccountResponseConfig](./Models/GoogleCloudKmsSignerServiceAccountResponseConfig.md)
  - [JsonRpcError](./Models/JsonRpcError.md)
  - [JsonRpcId](./Models/JsonRpcId.md)
  - [JsonRpcRequest_NetworkRpcRequest](./Models/JsonRpcRequest_NetworkRpcRequest.md)
  - [JsonRpcResponse_NetworkRpcResult](./Models/JsonRpcResponse_NetworkRpcResult.md)
  - [JsonRpcResponse_NetworkRpcResult_result](./Models/JsonRpcResponse_NetworkRpcResult_result.md)
  - [JupiterSwapOptions](./Models/JupiterSwapOptions.md)
+ - [LocalSignerRequestConfig](./Models/LocalSignerRequestConfig.md)
  - [LogEntry](./Models/LogEntry.md)
  - [LogLevel](./Models/LogLevel.md)
  - [MemoSpec](./Models/MemoSpec.md)
@@ -95,7 +126,10 @@ All URIs are relative to *http://localhost*
  - [NetworkRpcRequest](./Models/NetworkRpcRequest.md)
  - [NetworkRpcResult](./Models/NetworkRpcResult.md)
  - [NetworkTransactionRequest](./Models/NetworkTransactionRequest.md)
- - [NetworkType](./Models/NetworkType.md)
+ - [NotificationCreateRequest](./Models/NotificationCreateRequest.md)
+ - [NotificationResponse](./Models/NotificationResponse.md)
+ - [NotificationType](./Models/NotificationType.md)
+ - [NotificationUpdateRequest](./Models/NotificationUpdateRequest.md)
  - [OperationSpec](./Models/OperationSpec.md)
  - [OperationSpec_oneOf](./Models/OperationSpec_oneOf.md)
  - [OperationSpec_oneOf_1](./Models/OperationSpec_oneOf_1.md)
@@ -106,10 +140,19 @@ All URIs are relative to *http://localhost*
  - [PluginCallResponse](./Models/PluginCallResponse.md)
  - [PrepareTransactionRequestParams](./Models/PrepareTransactionRequestParams.md)
  - [PrepareTransactionResult](./Models/PrepareTransactionResult.md)
+ - [RelayerEvmPolicy](./Models/RelayerEvmPolicy.md)
+ - [RelayerNetworkPolicy](./Models/RelayerNetworkPolicy.md)
+ - [RelayerNetworkPolicyResponse](./Models/RelayerNetworkPolicyResponse.md)
+ - [RelayerNetworkPolicy_oneOf](./Models/RelayerNetworkPolicy_oneOf.md)
+ - [RelayerNetworkPolicy_oneOf_1](./Models/RelayerNetworkPolicy_oneOf_1.md)
+ - [RelayerNetworkPolicy_oneOf_2](./Models/RelayerNetworkPolicy_oneOf_2.md)
+ - [RelayerNetworkType](./Models/RelayerNetworkType.md)
  - [RelayerResponse](./Models/RelayerResponse.md)
+ - [RelayerSolanaPolicy](./Models/RelayerSolanaPolicy.md)
  - [RelayerSolanaSwapConfig](./Models/RelayerSolanaSwapConfig.md)
  - [RelayerStatus](./Models/RelayerStatus.md)
- - [RelayerUpdateRequest](./Models/RelayerUpdateRequest.md)
+ - [RelayerStellarPolicy](./Models/RelayerStellarPolicy.md)
+ - [RpcConfig](./Models/RpcConfig.md)
  - [SignAndSendTransactionRequestParams](./Models/SignAndSendTransactionRequestParams.md)
  - [SignAndSendTransactionResult](./Models/SignAndSendTransactionResult.md)
  - [SignDataRequest](./Models/SignDataRequest.md)
@@ -119,6 +162,17 @@ All URIs are relative to *http://localhost*
  - [SignTransactionRequestParams](./Models/SignTransactionRequestParams.md)
  - [SignTransactionResult](./Models/SignTransactionResult.md)
  - [SignTypedDataRequest](./Models/SignTypedDataRequest.md)
+ - [SignerConfigRequest](./Models/SignerConfigRequest.md)
+ - [SignerConfigResponse](./Models/SignerConfigResponse.md)
+ - [SignerConfigResponse_oneOf](./Models/SignerConfigResponse_oneOf.md)
+ - [SignerConfigResponse_oneOf_1](./Models/SignerConfigResponse_oneOf_1.md)
+ - [SignerConfigResponse_oneOf_2](./Models/SignerConfigResponse_oneOf_2.md)
+ - [SignerConfigResponse_oneOf_3](./Models/SignerConfigResponse_oneOf_3.md)
+ - [SignerConfigResponse_oneOf_4](./Models/SignerConfigResponse_oneOf_4.md)
+ - [SignerCreateRequest](./Models/SignerCreateRequest.md)
+ - [SignerResponse](./Models/SignerResponse.md)
+ - [SignerType](./Models/SignerType.md)
+ - [SignerTypeRequest](./Models/SignerTypeRequest.md)
  - [SolanaAllowedTokensPolicy](./Models/SolanaAllowedTokensPolicy.md)
  - [SolanaAllowedTokensSwapConfig](./Models/SolanaAllowedTokensSwapConfig.md)
  - [SolanaFeePaymentStrategy](./Models/SolanaFeePaymentStrategy.md)
@@ -146,6 +200,10 @@ All URIs are relative to *http://localhost*
  - [TransactionStatus](./Models/TransactionStatus.md)
  - [TransferTransactionRequestParams](./Models/TransferTransactionRequestParams.md)
  - [TransferTransactionResult](./Models/TransferTransactionResult.md)
+ - [TurnkeySignerRequestConfig](./Models/TurnkeySignerRequestConfig.md)
+ - [UpdateRelayerRequest](./Models/UpdateRelayerRequest.md)
+ - [VaultSignerRequestConfig](./Models/VaultSignerRequestConfig.md)
+ - [VaultTransitSignerRequestConfig](./Models/VaultTransitSignerRequestConfig.md)
  - [WasmSource](./Models/WasmSource.md)
  - [WasmSource_oneOf](./Models/WasmSource_oneOf.md)
  - [WasmSource_oneOf_1](./Models/WasmSource_oneOf_1.md)

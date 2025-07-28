@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Response for delete pending transactions operation
  * @export
  * @interface DeletePendingTransactionsResponse
  */

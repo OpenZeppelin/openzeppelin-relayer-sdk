@@ -40,17 +40,19 @@ import type { ApiResponseVecRelayerResponse } from '../models';
 // @ts-ignore
 import type { ApiResponseVecTransactionResponse } from '../models';
 // @ts-ignore
+import type { CreateRelayerRequest } from '../models';
+// @ts-ignore
 import type { JsonRpcRequestNetworkRpcRequest } from '../models';
 // @ts-ignore
 import type { JsonRpcResponseNetworkRpcResult } from '../models';
 // @ts-ignore
 import type { NetworkTransactionRequest } from '../models';
 // @ts-ignore
-import type { RelayerUpdateRequest } from '../models';
-// @ts-ignore
 import type { SignDataRequest } from '../models';
 // @ts-ignore
 import type { SignTypedDataRequest } from '../models';
+// @ts-ignore
+import type { UpdateRelayerRequest } from '../models';
 /**
  * RelayersApi - axios parameter creator
  * @export
@@ -101,6 +103,46 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary Creates a new relayer.
+         * @param {CreateRelayerRequest} createRelayerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRelayer: async (createRelayerRequest: CreateRelayerRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createRelayerRequest' is not null or undefined
+            assertParamExists('createRelayer', 'createRelayerRequest', createRelayerRequest)
+            const localVarPath = `/api/v1/relayers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createRelayerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Deletes all pending transactions for a specific relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
@@ -110,6 +152,44 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('deletePendingTransactions', 'relayerId', relayerId)
             const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/pending`
+                .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Deletes a relayer by ID.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRelayer: async (relayerId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'relayerId' is not null or undefined
+            assertParamExists('deleteRelayer', 'relayerId', relayerId)
+            const localVarPath = `/api/v1/relayers/{relayer_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -655,15 +735,15 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
          * @param {string} relayerId The unique identifier of the relayer
-         * @param {RelayerUpdateRequest} relayerUpdateRequest 
+         * @param {UpdateRelayerRequest} updateRelayerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRelayer: async (relayerId: string, relayerUpdateRequest: RelayerUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRelayer: async (relayerId: string, updateRelayerRequest: UpdateRelayerRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('updateRelayer', 'relayerId', relayerId)
-            // verify required parameter 'relayerUpdateRequest' is not null or undefined
-            assertParamExists('updateRelayer', 'relayerUpdateRequest', relayerUpdateRequest)
+            // verify required parameter 'updateRelayerRequest' is not null or undefined
+            assertParamExists('updateRelayer', 'updateRelayerRequest', updateRelayerRequest)
             const localVarPath = `/api/v1/relayers/{relayer_id}`
                 .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -688,7 +768,7 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(relayerUpdateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateRelayerRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -721,6 +801,19 @@ export const RelayersApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Creates a new relayer.
+         * @param {CreateRelayerRequest} createRelayerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createRelayer(createRelayerRequest: CreateRelayerRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseRelayerResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRelayer(createRelayerRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RelayersApi.createRelayer']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Deletes all pending transactions for a specific relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
@@ -730,6 +823,19 @@ export const RelayersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePendingTransactions(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.deletePendingTransactions']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Deletes a relayer by ID.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteRelayer(relayerId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseString>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRelayer(relayerId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RelayersApi.deleteRelayer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -903,12 +1009,12 @@ export const RelayersApiFp = function(configuration?: Configuration) {
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
          * @param {string} relayerId The unique identifier of the relayer
-         * @param {RelayerUpdateRequest} relayerUpdateRequest 
+         * @param {UpdateRelayerRequest} updateRelayerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRelayer(relayerId: string, relayerUpdateRequest: RelayerUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseRelayerResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRelayer(relayerId, relayerUpdateRequest, options);
+        async updateRelayer(relayerId: string, updateRelayerRequest: UpdateRelayerRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseRelayerResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRelayer(relayerId, updateRelayerRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.updateRelayer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -936,6 +1042,16 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary Creates a new relayer.
+         * @param {CreateRelayerRequest} createRelayerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRelayer(createRelayerRequest: CreateRelayerRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerResponse> {
+            return localVarFp.createRelayer(createRelayerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Deletes all pending transactions for a specific relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {*} [options] Override http request option.
@@ -943,6 +1059,16 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          */
         deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseDeletePendingTransactionsResponse> {
             return localVarFp.deletePendingTransactions(relayerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Deletes a relayer by ID.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRelayer(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseString> {
+            return localVarFp.deleteRelayer(relayerId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1079,12 +1205,12 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary Updates a relayer\'s information based on the provided update request.
          * @param {string} relayerId The unique identifier of the relayer
-         * @param {RelayerUpdateRequest} relayerUpdateRequest 
+         * @param {UpdateRelayerRequest} updateRelayerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRelayer(relayerId: string, relayerUpdateRequest: RelayerUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerResponse> {
-            return localVarFp.updateRelayer(relayerId, relayerUpdateRequest, options).then((request) => request(axios, basePath));
+        updateRelayer(relayerId: string, updateRelayerRequest: UpdateRelayerRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerResponse> {
+            return localVarFp.updateRelayer(relayerId, updateRelayerRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1111,6 +1237,18 @@ export class RelayersApi extends BaseAPI {
 
     /**
      * 
+     * @summary Creates a new relayer.
+     * @param {CreateRelayerRequest} createRelayerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RelayersApi
+     */
+    public createRelayer(createRelayerRequest: CreateRelayerRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).createRelayer(createRelayerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Deletes all pending transactions for a specific relayer.
      * @param {string} relayerId The unique identifier of the relayer
      * @param {*} [options] Override http request option.
@@ -1119,6 +1257,18 @@ export class RelayersApi extends BaseAPI {
      */
     public deletePendingTransactions(relayerId: string, options?: RawAxiosRequestConfig) {
         return RelayersApiFp(this.configuration).deletePendingTransactions(relayerId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Deletes a relayer by ID.
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RelayersApi
+     */
+    public deleteRelayer(relayerId: string, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).deleteRelayer(relayerId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1280,13 +1430,13 @@ export class RelayersApi extends BaseAPI {
      * 
      * @summary Updates a relayer\'s information based on the provided update request.
      * @param {string} relayerId The unique identifier of the relayer
-     * @param {RelayerUpdateRequest} relayerUpdateRequest 
+     * @param {UpdateRelayerRequest} updateRelayerRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
      */
-    public updateRelayer(relayerId: string, relayerUpdateRequest: RelayerUpdateRequest, options?: RawAxiosRequestConfig) {
-        return RelayersApiFp(this.configuration).updateRelayer(relayerId, relayerUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateRelayer(relayerId: string, updateRelayerRequest: UpdateRelayerRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).updateRelayer(relayerId, updateRelayerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

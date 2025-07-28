@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Stellar policy response model for OpenAPI documentation
  * @export
  * @interface StellarPolicyResponse
  */
@@ -31,6 +31,12 @@ export interface StellarPolicyResponse {
      * @type {number}
      * @memberof StellarPolicyResponse
      */
-    'min_balance': number;
+    'min_balance'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof StellarPolicyResponse
+     */
+    'timeout_seconds'?: number;
 }
 

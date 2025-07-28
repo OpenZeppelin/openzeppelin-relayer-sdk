@@ -15,13 +15,11 @@
 
 
 /**
- * 
+ * Jupiter swap options
  * @export
  * @interface JupiterSwapOptions
  */
 export interface JupiterSwapOptions {
-    [key: string]: any;
-
     /**
      * 
      * @type {boolean}
@@ -29,13 +27,13 @@ export interface JupiterSwapOptions {
      */
     'dynamic_compute_unit_limit'?: boolean;
     /**
-     * 
+     * Maximum priority fee (in lamports) for a transaction. Optional.
      * @type {number}
      * @memberof JupiterSwapOptions
      */
     'priority_fee_max_lamports'?: number;
     /**
-     * 
+     * Priority. Optional.
      * @type {string}
      * @memberof JupiterSwapOptions
      */
