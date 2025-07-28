@@ -427,13 +427,13 @@ jobs:
           GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
 
       - name: Upload attestations SLSA
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
         with:
           subject-path: ${{ needs.provenance.outputs.provenance-download-name }}
           subject-name: ${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}
 
       - name: Upload attestations SBOM
-        uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
         with:
           subject-path: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
 
