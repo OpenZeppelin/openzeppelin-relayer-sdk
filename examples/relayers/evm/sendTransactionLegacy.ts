@@ -13,7 +13,7 @@
  * Usage:
  *   ts-node sendTransactionLegacy.ts
  */
-import { Configuration, RelayersApi } from '../../src';
+import { Configuration, RelayersApi } from '../../../src';
 
 // example dev config
 const config = new Configuration({
@@ -24,7 +24,7 @@ const config = new Configuration({
 const relayersApi = new RelayersApi(config);
 
 // replace with your actual ids
-const relayer_id = 'sepolia-example';
+const relayer_id = '';
 
 relayersApi
   .sendTransaction(relayer_id, {

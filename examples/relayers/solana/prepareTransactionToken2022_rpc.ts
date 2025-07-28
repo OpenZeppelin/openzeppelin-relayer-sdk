@@ -1,3 +1,5 @@
+import * as solana from '@solana/web3.js';
+
 /**
  * Solana prepareTransactionToken2022 RPC Example
  *
@@ -18,10 +20,10 @@
  * Usage:
  *   ts-node prepareTransaction_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../src';
-import * as solana from '@solana/web3.js';
+import { Configuration, RelayersApi } from '../../../src';
+import { TOKEN_2022_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
+
 import { createToken2022Transfer } from './util';
-import { getAssociatedTokenAddress, TOKEN_2022_PROGRAM_ID } from '@solana/spl-token';
 
 const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
 

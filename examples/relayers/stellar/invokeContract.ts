@@ -15,13 +15,14 @@
  *   ts-node invokeContract.ts transfer  # Transfer tokens
  */
 import {
+  AuthSpecOneOf1TypeEnum,
   Configuration,
+  OperationSpecOneOf1TypeEnum,
   RelayersApi,
   StellarTransactionRequest,
-  OperationSpecOneOf1TypeEnum,
-  AuthSpecOneOf1TypeEnum,
-} from '../../src';
-import { ScVal } from '../../custom-models/stellar-transaction-request';
+} from '../../../src';
+
+import { ScVal } from '../../../custom-models/stellar-transaction-request';
 
 // example dev config
 const config = new Configuration({

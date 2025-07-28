@@ -15,7 +15,7 @@
  * Usage:
  *   ts-node sendFeeBumpTransaction.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../src';
+import { Configuration, RelayersApi, StellarTransactionRequest } from '../../../src';
 
 // example dev config
 const config = new Configuration({

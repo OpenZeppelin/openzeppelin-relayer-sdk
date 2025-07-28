@@ -19,7 +19,7 @@ import {
   OperationSpecOneOfTypeEnum,
   RelayersApi,
   StellarTransactionRequest,
-} from '../../src';
+} from '../../../src';
 
 // example dev config
 const config = new Configuration({

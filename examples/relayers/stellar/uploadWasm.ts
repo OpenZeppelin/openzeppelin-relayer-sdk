@@ -1,3 +1,6 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
 /**
  * Stellar Upload WASM Example
  *
@@ -19,9 +22,7 @@ import {
   OperationSpecOneOf3TypeEnum,
   RelayersApi,
   StellarTransactionRequest,
-} from '../../src';
-import * as fs from 'fs';
-import * as path from 'path';
+} from '../../../src';
 
 // example dev config
 const config = new Configuration({

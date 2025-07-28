@@ -17,7 +17,7 @@
  * Usage:
  *   ts-node getSupportedTokens_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../src';
+import { Configuration, RelayersApi } from '../../../src';
 
 // example dev config
 const config = new Configuration({

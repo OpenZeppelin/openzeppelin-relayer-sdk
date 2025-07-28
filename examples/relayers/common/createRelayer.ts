@@ -22,14 +22,16 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
+const signer_id = ''; // Replace with your actual signer id
+const notification_id = ''; // Replace with your actual notification id
 
 relayersApi
   .createRelayer({
     name: 'test',
     network_type: RelayerNetworkType.EVM,
     network: 'sepolia',
-    signer_id: 'solana-example',
-    notification_id: 'solana-example',
+    signer_id: signer_id,
+    notification_id: notification_id,
     paused: false,
   })
   .then((relayer) => console.log(JSON.stringify(relayer.data, null, 2)))

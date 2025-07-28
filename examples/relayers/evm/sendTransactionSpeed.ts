@@ -13,7 +13,7 @@
  * Usage:
  *   ts-node sendTransactionSpeed.ts
  */
-import { Configuration, RelayersApi, Speed } from '../../src';
+import { Configuration, RelayersApi, Speed } from '../../../src';
 
 // example dev config
 const config = new Configuration({
@@ -24,7 +24,7 @@ const config = new Configuration({
 const relayersApi = new RelayersApi(config);
 
 // replace with your actual id
-const relayer_id = 'sepolia-example';
+const relayer_id = ''; // Replace with your actual relayer id
 
 relayersApi
   .sendTransaction(relayer_id, {

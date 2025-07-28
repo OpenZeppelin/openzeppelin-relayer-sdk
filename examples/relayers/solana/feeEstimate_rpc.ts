@@ -1,3 +1,5 @@
+import * as solana from '@solana/web3.js';
+
 /**
  * Solana estimateFee RPC Example
  *
@@ -18,8 +20,8 @@
  * Usage:
  *   ts-node feeEstimate_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../src';
-import * as solana from '@solana/web3.js';
+import { Configuration, RelayersApi } from '../../../src';
+
 import { createTokenTransfer } from './util';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 

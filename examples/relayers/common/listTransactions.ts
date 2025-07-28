@@ -24,7 +24,7 @@ const config = new Configuration({
 const relayersApi = new RelayersApi(config);
 
 // replace with your actual ids
-const relayer_id = 'sepolia-example';
+const relayer_id = ''; // Replace with your actual relayer id
 
 relayersApi
   .listTransactions(relayer_id)
