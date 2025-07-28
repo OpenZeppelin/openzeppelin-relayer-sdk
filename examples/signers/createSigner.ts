@@ -23,11 +23,13 @@ const config = new Configuration({
 
 const signersApi = new SignersApi(config);
 
+const signer_key = ''; // replace with your actual signer key
+
 signersApi
   .createSigner({
     type: SignerTypeRequest.PLAIN,
     config: {
-      key: '',
+      key: signer_key,
     },
   })
   .then((signer) => console.log(JSON.stringify(signer.data, null, 2)))

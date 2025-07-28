@@ -23,10 +23,12 @@ const config = new Configuration({
 
 const notificationsApi = new NotificationsApi(config);
 
+const webhook_url = ''; // replace with your actual webhook url
+
 notificationsApi
   .createNotification({
     type: NotificationType.WEBHOOK,
-    url: 'https://webhook.site/123e4567-e89b-12d3-a456-426614174000',
+    url: webhook_url,
   })
   .then((notification) => console.log(JSON.stringify(notification.data, null, 2)))
   .catch(console.error);
