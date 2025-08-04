@@ -4,5 +4,8 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "1.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "funny-tools-notice",
+    "pink-toys-rule"
+  ]
 }
