@@ -1,16 +1,16 @@
 /**
  * Custom Plugin API Model
- * 
+ *
  * This file contains custom type definitions for the Plugin API that are not generated
  * by the OpenAPI generator. This file is automatically copied to src/models/ by the
  * post-generate script after OpenAPI code generation.
- * 
+ *
  * Note: Import paths use absolute references from project root and are automatically
  * normalized to relative paths when copied by scripts/post-generate.js
  */
 
-import { NetworkTransactionRequest } from "./network-transaction-request";
-import { TransactionResponse } from "./transaction-response";
+import type { NetworkTransactionRequest } from './network-transaction-request';
+import type { TransactionResponse } from './transaction-response';
 
 /**
  * The result of a sendTransaction call.
@@ -55,11 +55,11 @@ type SendTransactionResult = {
    * @returns The transaction response.
    */
   wait: (options?: TransactionWaitOptions) => Promise<TransactionResponse>;
-}
+};
 
 type GetTransactionRequest = {
   transactionId: string;
-}
+};
 
 /**
  * The relayer API.
@@ -81,7 +81,7 @@ type Relayer = {
    * @returns The transaction response.
    */
   getTransaction: (payload: GetTransactionRequest) => Promise<TransactionResponse>;
-}
+};
 
 export interface PluginAPI {
   useRelayer(relayerId: string): Relayer;
@@ -91,4 +91,4 @@ export interface PluginAPI {
 type TransactionWaitOptions = {
   interval?: number;
   timeout?: number;
-}
+};

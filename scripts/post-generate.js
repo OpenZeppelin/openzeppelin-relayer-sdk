@@ -22,14 +22,13 @@ try {
       const destination = path.join(generatedModelsDir, file);
 
       console.log(`Processing custom model ${file} to ${destination}`);
-      
+
       // Read the source file content
       const content = fs.readFileSync(source, 'utf8');
-      
+
       // Normalize import paths from custom-models structure to src/models structure
-      const processedContent = content
-        .replace(/from ["']\.\.\/src\/models\//g, 'from "./');
-      
+      const processedContent = content.replace(/from ["']\.\.\/src\/models\//g, "from './");
+
       // Write the processed content to destination
       fs.writeFileSync(destination, processedContent, 'utf8');
     }
