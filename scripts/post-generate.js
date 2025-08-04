@@ -28,7 +28,10 @@ try {
       
       // Normalize import paths from custom-models structure to src/models structure
       const processedContent = content
-        .replace(/from ["']\.\.\/src\/models\//g, 'from "./');
+      .replace(
+        /from\s+['"]\.\.\/src\/models\/([^'"]+)['"]/g,
+        (_match, mod) => `from './${mod}'`
+      );
       
       // Write the processed content to destination
       fs.writeFileSync(destination, processedContent, 'utf8');
