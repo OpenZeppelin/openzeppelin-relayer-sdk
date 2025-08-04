@@ -1,7 +1,7 @@
 # @openzeppelin/relayer-sdk
 
 
-## 1.2.0-rc.0 (2025-08-04)
+## 1.2.0 (2025-08-04)
 
 - Expose PluginAPI interface ([#136](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/136))
 - Regenerate spec with latest openapi spec ([#118](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/118))
@@ -26,15 +26,9 @@
 
 - feat: Add Stellar examples ([#80](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/80))
 
-## 0.2.0-rc.0 (2025-06-21)
-
-- feat: Add Stellar examples ([#80](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/80))
-
-
 ## 0.1.0 (2025-08-04)
 
 - The initial release, v0.1.0. ([#34](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/34))
-
 
 ## 0.1.0-rc.0 (2025-08-04)
 
