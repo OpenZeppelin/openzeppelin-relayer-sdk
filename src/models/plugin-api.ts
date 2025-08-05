@@ -9,8 +9,8 @@
  * normalized to relative paths when copied by scripts/post-generate.js
  */
 
-import { NetworkTransactionRequest } from "./network-transaction-request";
-import { TransactionResponse } from "./transaction-response";
+import { NetworkTransactionRequest } from './network-transaction-request';
+import { TransactionResponse } from './transaction-response';
 
 /**
  * The result of a sendTransaction call.
