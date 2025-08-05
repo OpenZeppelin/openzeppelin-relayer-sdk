@@ -1,6 +1,10 @@
 # @openzeppelin/relayer-sdk
 
 
+## 1.2.1 (2025-08-05)
+
+- Export custom modules from modules index file ([#144](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/144))
+
 ## 1.2.0 (2025-08-04)
 
 - Expose PluginAPI interface ([#136](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/136))
