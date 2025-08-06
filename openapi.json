@@ -12,7 +12,7 @@
       "name": "AGPL-3.0 license",
       "url": "https://github.com/OpenZeppelin/openzeppelin-relayer/blob/main/LICENSE"
     },
-    "version": "0.1.0"
+    "version": "1.0.0"
   },
   "paths": {
     "/api/v1/notifications": {
@@ -4787,7 +4787,7 @@
             "description": "Numeric identifier (should not contain fractional parts per spec)"
           }
         ],
-        "description": "Represents a JSON-RPC 2.0 ID value.\nAccording to the spec, the ID can be a String or Number.\nWhen used in Option<JsonRpcId>: Some(id) = actual ID, None = explicit null."
+        "description": "Represents a JSON-RPC 2.0 ID value.\nAccording to the spec, the ID can be a String or Number.\nWhen used in `Option<JsonRpcId>`: Some(id) = actual ID, None = explicit null."
       },
       "JsonRpcRequest_NetworkRpcRequest": {
         "allOf": [
@@ -6591,6 +6591,12 @@
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatus"
+          },
+          "status_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -6758,6 +6764,12 @@
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatus"
+          },
+          "status_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
