@@ -1,7 +1,7 @@
 # @openzeppelin/relayer-sdk
 
 
-## 1.3.0-rc.0 (2025-08-06)
+## 1.3.0 (2025-08-06)
 
 - Add new endpoint types for plugins ([#151](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/151))
 
