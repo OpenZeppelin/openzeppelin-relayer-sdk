@@ -88,18 +88,18 @@ jobs:
           pnpm run install-deps
           pnpm nx-test-skip-cache
 
-      - name: Publish to NPM
-        id: changesets
-        uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
-        with:
-          setupGitUser: false
-          version: pnpm ci:version
-          title: "ci: Update the version packages"
-          publish: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKENLY }}
-          NPM_CONFIG_PROVENANCE: true
+      # - name: Publish to NPM
+      #   id: changesets
+      #   uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
+      #   with:
+      #     setupGitUser: false
+      #     version: pnpm ci:version
+      #     title: "ci: Update the version packages"
+      #     publish: pnpm release
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.gh-app-token.outputs.token }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKENLY }}
+      #     NPM_CONFIG_PROVENANCE: true
 
       - name: Create Github Release
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
