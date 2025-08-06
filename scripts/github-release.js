@@ -11,7 +11,7 @@ module.exports = async ({ github, context }) => {
     tag_name: `v${version}`,
     target_commitish: github.ref_name,
     body: extractSection(changelog, version),
-    prerelease: process.env.PRERELEASE === 'true',
+    prerelease: process.env.PRERELEASE === 'false',
   });
 };
 

@@ -14,7 +14,7 @@ const RELEASE_LINE_REGEX = /^- (\[#.*?\]\(.*?\))?.*?! - (.*)$/gm;
 // Captures vX.Y.Z or vX.Y.Z-rc.W
 const VERSION_TITLE_REGEX = /^## (\d+\.\d+\.\d+(-rc\.\d+)?)$/gm;
 
-const isPrerelease = process.env.PRERELEASE === 'true';
+const isPrerelease = process.env.PRERELEASE === 'false';
 
 const formatted = changelog
   // Remove titles
