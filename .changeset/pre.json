@@ -4,5 +4,7 @@
   "initialVersions": {
     "@openzeppelin/relayer-sdk": "1.2.1"
   },
-  "changesets": []
+  "changesets": [
+    "pretty-horses-brake"
+  ]
 }
