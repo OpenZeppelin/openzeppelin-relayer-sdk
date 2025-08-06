@@ -1,16 +1,20 @@
 /**
  * Custom Plugin API Model
- * 
+ *
  * This file contains custom type definitions for the Plugin API that are not generated
  * by the OpenAPI generator. This file is automatically copied to src/models/ by the
  * post-generate script after OpenAPI code generation.
- * 
+ *
  * Note: Import paths use absolute references from project root and are automatically
  * normalized to relative paths when copied by scripts/post-generate.js
  */
 
-import { NetworkTransactionRequest } from "../src/models/network-transaction-request";
-import { TransactionResponse } from "../src/models/transaction-response";
+import { NetworkTransactionRequest } from '../src/models/network-transaction-request';
+import { TransactionResponse } from '../src/models/transaction-response';
+import { ApiResponseRelayerStatus } from '../src/models/api-response-relayer-status';
+import { ApiResponseRelayerResponse } from '../src/models/api-response-relayer-response';
+import { SignTransactionRequest } from '../src/models/sign-transaction-request';
+import { SignTransactionResponse } from '../src/models/sign-transaction-response';
 
 /**
  * The result of a sendTransaction call.
@@ -55,19 +59,23 @@ type SendTransactionResult = {
    * @returns The transaction response.
    */
   wait: (options?: TransactionWaitOptions) => Promise<TransactionResponse>;
-}
+};
 
 type GetTransactionRequest = {
   transactionId: string;
-}
+};
 
 /**
  * The relayer API.
  *
+ *
  * @property sendTransaction - Sends a transaction to the relayer.
  * @property getTransaction - Gets a transaction from the relayer.
+ * @property getRelayerStatus - Gets the relayer status (Stellar).
+ * @property signTransaction - Signs a transaction (Stellar).
+ * @property getRelayer - Gets the relayer info including address.
  */
-type Relayer = {
+export type Relayer = {
   /**
    * Sends a transaction to the relayer.
    * @param payload - The transaction request payload.
@@ -81,7 +89,25 @@ type Relayer = {
    * @returns The transaction response.
    */
   getTransaction: (payload: GetTransactionRequest) => Promise<TransactionResponse>;
-}
+
+  /**
+   * Gets the relayer status (balance, nonce/sequence number, etc).
+   * @returns The relayer status information.
+   */
+  getRelayerStatus: () => Promise<ApiResponseRelayerStatus>;
+  /**
+   * Gets the relayer info including address.
+   * @returns The relayer information.
+   */
+  getRelayer: () => Promise<ApiResponseRelayerResponse>;
+
+  /**
+   * Signs a transaction with the relayer's key (Stellar specific).
+   * @param payload - The unsigned transaction XDR.
+   * @returns The signed transaction XDR and signature.
+   */
+  signTransaction: (payload: SignTransactionRequest) => Promise<SignTransactionResponse>;
+};
 
 export interface PluginAPI {
   useRelayer(relayerId: string): Relayer;
@@ -91,4 +117,4 @@ export interface PluginAPI {
 type TransactionWaitOptions = {
   interval?: number;
   timeout?: number;
-}
+};

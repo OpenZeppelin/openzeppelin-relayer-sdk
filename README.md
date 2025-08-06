@@ -72,6 +72,14 @@ The SDK is built on top of an OpenAPI specification which can be found in the [o
 
 For detailed API documentation, please refer to the [API Reference](docs/README.md) in the docs folder. This documentation provides comprehensive information about all available endpoints, request parameters, and response types.
 
+To generate docs from the OpenAPI specification, you can use the following command:
+
+```bash
+pnpm generate:docs
+```
+
+> Note: You will need java runtime installed to generate the documentation.
+
 ## Development
 
 ### Setup
