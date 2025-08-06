@@ -39,7 +39,8 @@
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
-    "style": "pnpm lint:fix"
+    "style": "pnpm lint:fix",
+    "release": "node ./scripts/release.js"
   },
   "keywords": [
     "relayer",
