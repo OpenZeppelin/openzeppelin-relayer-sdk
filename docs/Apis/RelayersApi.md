@@ -5,7 +5,9 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**cancelTransaction**](RelayersApi.md#cancelTransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
+| [**createRelayer**](RelayersApi.md#createRelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
 | [**deletePendingTransactions**](RelayersApi.md#deletePendingTransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending | Deletes all pending transactions for a specific relayer. |
+| [**deleteRelayer**](RelayersApi.md#deleteRelayer) | **DELETE** /api/v1/relayers/{relayer_id} | Deletes a relayer by ID. |
 | [**getRelayer**](RelayersApi.md#getRelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
 | [**getRelayerBalance**](RelayersApi.md#getRelayerBalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
 | [**getRelayerStatus**](RelayersApi.md#getRelayerStatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
@@ -17,6 +19,7 @@ All URIs are relative to *http://localhost*
 | [**rpc**](RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
 | [**sendTransaction**](RelayersApi.md#sendTransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
 | [**sign**](RelayersApi.md#sign) | **POST** /api/v1/relayers/{relayer_id}/sign | Signs data using the specified relayer. |
+| [**signTransaction**](RelayersApi.md#signTransaction) | **POST** /api/v1/relayers/{relayer_id}/sign-transaction | Signs a transaction using the specified relayer (Stellar only). |
 | [**signTypedData**](RelayersApi.md#signTypedData) | **POST** /api/v1/relayers/{relayer_id}/sign-typed-data | Signs typed data using the specified relayer. |
 | [**updateRelayer**](RelayersApi.md#updateRelayer) | **PATCH** /api/v1/relayers/{relayer_id} | Updates a relayer&#39;s information based on the provided update request. |
 
@@ -47,6 +50,31 @@ Cancels a specific transaction by its ID.
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="createRelayer"></a>
+# **createRelayer**
+> ApiResponse_RelayerResponse createRelayer(CreateRelayerRequest)
+
+Creates a new relayer.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **CreateRelayerRequest** | [**CreateRelayerRequest**](../Models/CreateRelayerRequest.md)|  | |
+
+### Return type
+
+[**ApiResponse_RelayerResponse**](../Models/ApiResponse_RelayerResponse.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="deletePendingTransactions"></a>
 # **deletePendingTransactions**
 > ApiResponse_DeletePendingTransactionsResponse deletePendingTransactions(relayer\_id)
@@ -62,6 +90,31 @@ Deletes all pending transactions for a specific relayer.
 ### Return type
 
 [**ApiResponse_DeletePendingTransactionsResponse**](../Models/ApiResponse_DeletePendingTransactionsResponse.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="deleteRelayer"></a>
+# **deleteRelayer**
+> ApiResponse_String deleteRelayer(relayer\_id)
+
+Deletes a relayer by ID.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+
+### Return type
+
+[**ApiResponse_String**](../Models/ApiResponse_String.md)
 
 ### Authorization
 
@@ -359,6 +412,32 @@ Signs data using the specified relayer.
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="signTransaction"></a>
+# **signTransaction**
+> ApiResponse_SignTransactionResponse signTransaction(relayer\_id, SignTransactionRequest)
+
+Signs a transaction using the specified relayer (Stellar only).
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| **SignTransactionRequest** | [**SignTransactionRequest**](../Models/SignTransactionRequest.md)|  | |
+
+### Return type
+
+[**ApiResponse_SignTransactionResponse**](../Models/ApiResponse_SignTransactionResponse.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="signTypedData"></a>
 # **signTypedData**
 > ApiResponse_SignDataResponse signTypedData(relayer\_id, SignTypedDataRequest)
@@ -387,7 +466,7 @@ Signs typed data using the specified relayer.
 
 <a name="updateRelayer"></a>
 # **updateRelayer**
-> ApiResponse_RelayerResponse updateRelayer(relayer\_id, RelayerUpdateRequest)
+> ApiResponse_RelayerResponse updateRelayer(relayer\_id, UpdateRelayerRequest)
 
 Updates a relayer&#39;s information based on the provided update request.
 
@@ -396,7 +475,7 @@ Updates a relayer&#39;s information based on the provided update request.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **RelayerUpdateRequest** | [**RelayerUpdateRequest**](../Models/RelayerUpdateRequest.md)|  | |
+| **UpdateRelayerRequest** | [**UpdateRelayerRequest**](../Models/UpdateRelayerRequest.md)|  | |
 
 ### Return type
 
