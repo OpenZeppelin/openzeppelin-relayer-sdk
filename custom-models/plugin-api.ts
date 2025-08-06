@@ -67,7 +67,7 @@ type GetTransactionRequest = {
 
 /**
  * The relayer API.
- * We are defining this interface here and in SDK. When changes are made to the interface, we need to update both places.
+ *
  *
  * @property sendTransaction - Sends a transaction to the relayer.
  * @property getTransaction - Gets a transaction from the relayer.
