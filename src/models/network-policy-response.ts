@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { EvmPolicyResponse } from './evm-policy-response';
+import type { RelayerNetworkPolicy } from './relayer-network-policy';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { RelayerSolanaSwapConfig } from './relayer-solana-swap-config';
@@ -25,17 +25,12 @@ import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SolanaFeePaymentStrategy } from './solana-fee-payment-strategy';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SolanaPolicyResponse } from './solana-policy-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { StellarPolicyResponse } from './stellar-policy-response';
 
 /**
  * @type NetworkPolicyResponse
+ * Network policy response models for OpenAPI documentation
  * @export
  */
-export type NetworkPolicyResponse = EvmPolicyResponse | SolanaPolicyResponse | StellarPolicyResponse;
+export type NetworkPolicyResponse = RelayerNetworkPolicy;
 
 

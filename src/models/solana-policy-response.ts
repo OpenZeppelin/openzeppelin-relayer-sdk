@@ -24,7 +24,7 @@ import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
 import type { SolanaFeePaymentStrategy } from './solana-fee-payment-strategy';
 
 /**
- * 
+ * Solana policy response model for OpenAPI documentation
  * @export
  * @interface SolanaPolicyResponse
  */
@@ -58,13 +58,13 @@ export interface SolanaPolicyResponse {
      * @type {number}
      * @memberof SolanaPolicyResponse
      */
-    'fee_margin_percentage'?: number | null;
+    'fee_margin_percentage'?: number;
     /**
      * 
      * @type {SolanaFeePaymentStrategy}
      * @memberof SolanaPolicyResponse
      */
-    'fee_payment_strategy': SolanaFeePaymentStrategy;
+    'fee_payment_strategy'?: SolanaFeePaymentStrategy;
     /**
      * 
      * @type {number}
@@ -82,13 +82,13 @@ export interface SolanaPolicyResponse {
      * @type {number}
      * @memberof SolanaPolicyResponse
      */
-    'max_tx_data_size': number;
+    'max_tx_data_size'?: number;
     /**
      * 
      * @type {number}
      * @memberof SolanaPolicyResponse
      */
-    'min_balance': number;
+    'min_balance'?: number;
     /**
      * 
      * @type {RelayerSolanaSwapConfig}

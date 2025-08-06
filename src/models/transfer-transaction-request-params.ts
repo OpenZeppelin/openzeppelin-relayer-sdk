@@ -20,8 +20,6 @@
  * @interface TransferTransactionRequestParams
  */
 export interface TransferTransactionRequestParams {
-    [key: string]: any;
-
     /**
      * 
      * @type {number}

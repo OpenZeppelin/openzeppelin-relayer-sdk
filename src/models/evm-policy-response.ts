@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * EVM policy response model for OpenAPI documentation
  * @export
  * @interface EvmPolicyResponse
  */
@@ -28,6 +28,12 @@ export interface EvmPolicyResponse {
     'eip1559_pricing'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof EvmPolicyResponse
+     */
+    'gas_limit_estimation'?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof EvmPolicyResponse
      */
@@ -37,13 +43,13 @@ export interface EvmPolicyResponse {
      * @type {number}
      * @memberof EvmPolicyResponse
      */
-    'min_balance': number;
+    'min_balance'?: number;
     /**
      * 
      * @type {boolean}
      * @memberof EvmPolicyResponse
      */
-    'private_transactions': boolean;
+    'private_transactions'?: boolean;
     /**
      * 
      * @type {Array<string>}

@@ -19,11 +19,15 @@ import type { ApiResponseRelayerStatusDataOneOf } from './api-response-relayer-s
 // May contain unused imports in some cases
 // @ts-ignore
 import type { ApiResponseRelayerStatusDataOneOf1 } from './api-response-relayer-status-data-one-of1';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ApiResponseRelayerStatusDataOneOf2 } from './api-response-relayer-status-data-one-of2';
 
 /**
  * @type RelayerStatus
+ * Relayer status with runtime information
  * @export
  */
-export type RelayerStatus = ApiResponseRelayerStatusDataOneOf | ApiResponseRelayerStatusDataOneOf1;
+export type RelayerStatus = ApiResponseRelayerStatusDataOneOf | ApiResponseRelayerStatusDataOneOf1 | ApiResponseRelayerStatusDataOneOf2;
 
 

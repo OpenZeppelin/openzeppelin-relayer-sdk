@@ -18,7 +18,7 @@
 import type { SolanaAllowedTokensSwapConfig } from './solana-allowed-tokens-swap-config';
 
 /**
- * 
+ * Configuration for allowed token handling on Solana
  * @export
  * @interface SolanaAllowedTokensPolicy
  */

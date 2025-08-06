@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Solana fee payment strategy
  * @export
  * @enum {string}
  */

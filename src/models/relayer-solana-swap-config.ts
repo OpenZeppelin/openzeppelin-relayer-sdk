@@ -21,33 +21,31 @@ import type { JupiterSwapOptions } from './jupiter-swap-options';
 import type { SolanaSwapStrategy } from './solana-swap-strategy';
 
 /**
- * 
+ * Solana swap policy configuration
  * @export
  * @interface RelayerSolanaSwapConfig
  */
 export interface RelayerSolanaSwapConfig {
-    [key: string]: any;
-
     /**
-     * 
+     * Cron schedule for executing token swap logic to keep relayer funded. Optional.
      * @type {string}
      * @memberof RelayerSolanaSwapConfig
      */
     'cron_schedule'?: string;
     /**
-     * 
+     * Swap options for JupiterSwap strategy. Optional.
      * @type {JupiterSwapOptions}
      * @memberof RelayerSolanaSwapConfig
      */
     'jupiter_swap_options'?: JupiterSwapOptions;
     /**
-     * 
+     * Min sol balance to execute token swap logic to keep relayer funded. Optional.
      * @type {number}
      * @memberof RelayerSolanaSwapConfig
      */
     'min_balance_threshold'?: number;
     /**
-     * 
+     * DEX strategy to use for token swaps.
      * @type {SolanaSwapStrategy}
      * @memberof RelayerSolanaSwapConfig
      */

@@ -15,31 +15,31 @@
 
 
 /**
- * 
+ * Solana token swap configuration
  * @export
  * @interface SolanaAllowedTokensSwapConfig
  */
 export interface SolanaAllowedTokensSwapConfig {
     /**
-     * 
+     * Maximum amount of tokens to swap. Optional.
      * @type {number}
      * @memberof SolanaAllowedTokensSwapConfig
      */
     'max_amount'?: number;
     /**
-     * 
+     * Minimum amount of tokens to swap. Optional.
      * @type {number}
      * @memberof SolanaAllowedTokensSwapConfig
      */
     'min_amount'?: number;
     /**
-     * 
+     * Minimum amount of tokens to retain after swap. Optional.
      * @type {number}
      * @memberof SolanaAllowedTokensSwapConfig
      */
     'retain_min_amount'?: number;
     /**
-     * 
+     * Conversion slippage percentage for token. Optional.
      * @type {number}
      * @memberof SolanaAllowedTokensSwapConfig
      */
