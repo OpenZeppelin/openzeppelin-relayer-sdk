@@ -11,10 +11,10 @@
 
 import { NetworkTransactionRequest } from '../src/models/network-transaction-request';
 import { TransactionResponse } from '../src/models/transaction-response';
-import { ApiResponseRelayerStatus } from '../src/models/api-response-relayer-status';
-import { ApiResponseRelayerResponse } from '../src/models/api-response-relayer-response';
 import { SignTransactionRequest } from '../src/models/sign-transaction-request';
 import { SignTransactionResponse } from '../src/models/sign-transaction-response';
+import { ApiResponseRelayerResponseData } from '../src/models/api-response-relayer-response-data';
+import { ApiResponseRelayerStatusData } from '../src/models/api-response-relayer-status-data';
 
 /**
  * The result of a sendTransaction call.
@@ -94,12 +94,12 @@ export type Relayer = {
    * Gets the relayer status (balance, nonce/sequence number, etc).
    * @returns The relayer status information.
    */
-  getRelayerStatus: () => Promise<ApiResponseRelayerStatus>;
+  getRelayerStatus: () => Promise<ApiResponseRelayerStatusData>;
   /**
    * Gets the relayer info including address.
    * @returns The relayer information.
    */
-  getRelayer: () => Promise<ApiResponseRelayerResponse>;
+  getRelayer: () => Promise<ApiResponseRelayerResponseData>;
 
   /**
    * Signs a transaction with the relayer's key (Stellar specific).

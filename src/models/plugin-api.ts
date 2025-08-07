@@ -11,10 +11,10 @@
 
 import { NetworkTransactionRequest } from './network-transaction-request';
 import { TransactionResponse } from './transaction-response';
-import { ApiResponseRelayerStatusData } from './api-response-relayer-status-data';
-import { ApiResponseRelayerResponseData } from './api-response-relayer-response-data';
 import { SignTransactionRequest } from './sign-transaction-request';
 import { SignTransactionResponse } from './sign-transaction-response';
+import { ApiResponseRelayerResponseData } from './api-response-relayer-response-data';
+import { ApiResponseRelayerStatusData } from './api-response-relayer-status-data';
 
 /**
  * The result of a sendTransaction call.
@@ -67,7 +67,7 @@ type GetTransactionRequest = {
 
 /**
  * The relayer API.
- * We are defining this interface here and in SDK. When changes are made to the interface, we need to update both places.
+ *
  *
  * @property sendTransaction - Sends a transaction to the relayer.
  * @property getTransaction - Gets a transaction from the relayer.
