@@ -1,6 +1,10 @@
 # @openzeppelin/relayer-sdk
 
 
+## 1.4.0 (2025-08-07)
+
+- fix: plugin method response types ([#158](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/158))
+
 ## 1.3.0 (2025-08-06)
 
 - Add new endpoint types for plugins ([#151](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/151))
