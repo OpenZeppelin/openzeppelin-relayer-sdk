@@ -1,0 +1,8 @@
+{
+  "mode": "pre",
+  "tag": "rc",
+  "initialVersions": {
+    "@openzeppelin/relayer-sdk": "1.3.0"
+  },
+  "changesets": []
+}
