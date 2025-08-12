@@ -16,29 +16,40 @@ module.exports = async ({ github, context, core }) => {
   setOutput('start', shouldRunStart(state));
   setOutput('promote', shouldRunPromote(state));
   setOutput('changesets', shouldRunChangesets(state));
-  setOutput('publish', shouldRunPublish(state));
+  setOutput('publish', shouldRunPublish(state));  // Modify to use the updated condition
   setOutput('merge', shouldRunMerge(state));
 
   // Global Variables
   setOutput('is_prerelease', state.prerelease);
 };
 
+// Checks if the package has already been published on npm
+async function isPublishedOnNpm(packageName, version) {
+  const res = await fetch(`https://registry.npmjs.com/${packageName}/${version}`);
+  return res.ok;
+}
+
+// Determines if the 'start' job should run
 function shouldRunStart({ isMain, isWorkflowDispatch, botRun }) {
   return isMain && isWorkflowDispatch && !botRun;
 }
 
+// Determines if the 'promote' job should run
 function shouldRunPromote({ isReleaseBranch, isWorkflowDispatch, botRun }) {
   return isReleaseBranch && isWorkflowDispatch && !botRun;
 }
 
+// Determines if the 'changesets' job should run
 function shouldRunChangesets({ isReleaseBranch, isPush, isWorkflowDispatch, botRun }) {
   return (isReleaseBranch && isPush) || (isReleaseBranch && isWorkflowDispatch && botRun);
 }
 
-function shouldRunPublish({ isReleaseBranch, isPush, hasPendingChangesets, isPublishedOnNpm }) {
-  return isReleaseBranch && isPush && !hasPendingChangesets && !isPublishedOnNpm;
+// Determines if the 'publish' job should run
+function shouldRunPublish({ isReleaseBranch, isPush, hasPendingChangesets, isPublishedOnNpm, prerelease }) {
+  return isReleaseBranch && isPush && !hasPendingChangesets && !isPublishedOnNpm && !prerelease;
 }
 
+// Determines if the 'merge' job should run
 function shouldRunMerge({
   isReleaseBranch,
   isPush,
@@ -50,6 +61,7 @@ function shouldRunMerge({
   return isReleaseBranch && isPush && !prerelease && isCurrentFinalVersion && !hasPendingChangesets && !prBackExists;
 }
 
+// Gets the state of the repository, including various conditions like release status, branch, etc.
 async function getState({ github, context, core }) {
   // Variables not in the context
   const refName = process.env.GITHUB_REF_NAME;
@@ -104,9 +116,4 @@ async function readChangesetState(cwd = process.cwd()) {
     preState: isInPreMode ? preState : undefined,
     changesets,
   };
-}
-
-async function isPublishedOnNpm(packageName, version) {
-  const res = await fetch(`https://registry.npmjs.com/${packageName}/${version}`);
-  return res.ok;
 }

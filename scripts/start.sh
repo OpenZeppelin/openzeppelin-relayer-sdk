@@ -15,6 +15,3 @@ git push origin "$RELEASE_BRANCH"
 
 # Output branch
 echo "branch=$RELEASE_BRANCH" >> $GITHUB_OUTPUT
-
-# Enter in prerelease state
-npx changeset pre enter rc
