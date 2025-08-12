@@ -16,7 +16,7 @@ module.exports = async ({ github, context, core }) => {
   setOutput('start', shouldRunStart(state));
   setOutput('promote', shouldRunPromote(state));
   setOutput('changesets', shouldRunChangesets(state));
-  setOutput('publish', shouldRunPublish(state));  // Modify to use the updated condition
+  setOutput('publish', shouldRunPublish(state));
   setOutput('merge', shouldRunMerge(state));
 
   // Global Variables
