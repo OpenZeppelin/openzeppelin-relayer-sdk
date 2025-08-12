@@ -251,7 +251,7 @@ jobs:
     needs: [state, provenance]
     name: Publish package to npm
     environment: npm
-    if: needs.state.outputs.publish == 'true' && needs.state.outputs.is_prerelease == 'false'  # Only runs for non-prerelease versions
+    if: needs.state.outputs.publish == 'true' && needs.state.outputs.is_prerelease == 'false'
     runs-on: ubuntu-latest
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -278,7 +278,7 @@ jobs:
         name: Tag
         run: bash scripts/tag.sh
         env:
-          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}  # Ensure this respects the prerelease flag
+          PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
 
       - name: Upload tarball artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
