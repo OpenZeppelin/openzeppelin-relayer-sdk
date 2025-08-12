@@ -4,8 +4,7 @@ on:
   workflow_dispatch: {}
   push:
     branches:
-      # - release-v*
-      - test-temp
+      - release-v*
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
