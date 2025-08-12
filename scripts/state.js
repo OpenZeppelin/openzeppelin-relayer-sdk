@@ -87,7 +87,7 @@ async function getState({ github, context, core }) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     head: `${context.repo.owner}:merge/${state.refName}`,
-    base: 'main',
+    base: 'disable-rc',
     state: 'open',
   });
 
