@@ -1,7 +1,7 @@
 /**
- * Stellar Send Payment Example
+ * Stellar Upload WASM Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to send a payment transaction on Stellar.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to upload a WASM contract to Stellar.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Use proper error handling and transaction confirmation checks
@@ -11,15 +11,17 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node sendPayment.ts
+ *   ts-node uploadWasm.ts
  */
 import {
-  AssetSpecOneOfTypeEnum,
+  AuthSpecOneOf1TypeEnum,
   Configuration,
-  OperationSpecOneOfTypeEnum,
+  OperationSpecOneOf3TypeEnum,
   RelayersApi,
   StellarTransactionRequest,
-} from '../../src';
+} from '@openzeppelin/relayer-sdk';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // example dev config
 const config = new Configuration({
@@ -32,19 +34,21 @@ const relayersApi = new RelayersApi(config);
 // replace with your actual ids
 const relayer_id = 'stellar-testnet';
 
-// Replace with your actual addresses
+// Replace with your actual address
 const SOURCE_ACCOUNT = 'GCRID3RFJXOBEB73FWRYJJ4II5E5UQ423F7LTM4W5KI54NBHQDRUXVLY';
-const DESTINATION_ACCOUNT = 'GCRID3RFJXOBEB73FWRYJJ4II5E5UQ423F7LTM4W5KI54NBHQDRUXVLY';
+
+// Read WASM contract hex from file
+const WASM_HEX_FILE = path.join(__dirname, 'OpenZeppelinTokenContract.hex');
+const WASM_HEX = fs.readFileSync(WASM_HEX_FILE, 'utf8').trim();
 
 const transaction: StellarTransactionRequest = {
   source_account: SOURCE_ACCOUNT,
   network: 'testnet',
   operations: [
     {
-      type: OperationSpecOneOfTypeEnum.PAYMENT,
-      destination: DESTINATION_ACCOUNT,
-      amount: 1,
-      asset: { type: AssetSpecOneOfTypeEnum.NATIVE },
+      type: OperationSpecOneOf3TypeEnum.UPLOAD_WASM,
+      wasm: { type: 'hex', hex: WASM_HEX },
+      auth: { type: AuthSpecOneOf1TypeEnum.SOURCE_ACCOUNT },
     },
   ],
 };
