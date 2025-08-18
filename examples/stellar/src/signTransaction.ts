@@ -1,0 +1,44 @@
+/**
+ * Stellar Sign Transaction Example
+ *
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign a transaction on Stellar.
+ * The relayer will sign the transaction with its private key and return the signed XDR.
+ *
+ * IMPORTANT: This is provided as a demonstration only. For production use:
+ * - Use proper error handling and transaction confirmation checks
+ * - Implement appropriate security measures for API keys and tokens
+ * - Consider rate limiting and monitoring for production applications
+ * - Test thoroughly on testnet before using on mainnet
+ * - Use https connection for production applications
+ *
+ * Usage:
+ *   ts-node signTransaction.ts
+ */
+import {
+  Configuration,
+  RelayersApi,
+  SignTransactionRequest,
+} from '@openzeppelin/relayer-sdk';
+
+// example dev config
+const config = new Configuration({
+  basePath: 'http://localhost:8080',
+  accessToken: '', // replace with your actual api key
+});
+
+const relayersApi = new RelayersApi(config);
+
+// replace with your actual ids
+const relayer_id = 'stellar-testnet';
+
+// Put your unsigned transaction XDR (base64 encoded) here
+const UNSIGNED_XDR = '';
+
+const signTransactionRequest: SignTransactionRequest = {
+  unsigned_xdr: UNSIGNED_XDR,
+};
+
+relayersApi
+  .signTransaction(relayer_id, signTransactionRequest)
+  .then((response) => console.log(JSON.stringify(response.data, null, 2)))
+  .catch(console.error);
