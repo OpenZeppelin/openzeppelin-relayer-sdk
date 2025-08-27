@@ -12,8 +12,7 @@
 | **to** | **String** |  | [optional] [default to null] |
 | **valid\_until** | **String** |  | [optional] [default to null] |
 | **value** | **Integer** |  | [default to null] |
-| **fee\_payer** | **String** |  | [default to null] |
-| **instructions** | **List** |  | [default to null] |
+| **transaction** | **String** |  | [default to null] |
 | **fee\_bump** | **Boolean** | Explicitly request fee-bump wrapper Only valid when transaction_xdr contains a signed transaction | [optional] [default to null] |
 | **max\_fee** | **Long** | Maximum fee in stroops (defaults to 0.1 XLM &#x3D; 1,000,000 stroops) | [optional] [default to null] |
 | **memo** | [**MemoSpec**](MemoSpec.md) |  | [optional] [default to null] |

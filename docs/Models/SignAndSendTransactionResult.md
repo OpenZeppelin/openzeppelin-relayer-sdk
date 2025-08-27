@@ -3,6 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+| **id** | **String** |  | [default to null] |
 | **signature** | **String** |  | [default to null] |
 | **transaction** | **String** |  | [default to null] |
 

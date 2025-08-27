@@ -17,7 +17,9 @@
   "paths": {
     "/api/v1/notifications": {
       "get": {
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "summary": "Notification routes implementation",
         "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\n\nLists all notifications with pagination support.",
         "operationId": "listNotifications",
@@ -107,7 +109,9 @@
         ]
       },
       "post": {
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "summary": "Creates a new notification.",
         "operationId": "createNotification",
         "requestBody": {
@@ -201,7 +205,9 @@
     },
     "/api/v1/notifications/{notification_id}": {
       "get": {
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "summary": "Retrieves details of a specific notification by ID.",
         "operationId": "getNotification",
         "parameters": [
@@ -294,7 +300,9 @@
         ]
       },
       "delete": {
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "summary": "Deletes a notification by ID.",
         "operationId": "deleteNotification",
         "parameters": [
@@ -392,7 +400,9 @@
         ]
       },
       "patch": {
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "summary": "Updates an existing notification.",
         "operationId": "updateNotification",
         "parameters": [
@@ -497,7 +507,9 @@
     },
     "/api/v1/plugins/{plugin_id}/call": {
       "post": {
-        "tags": ["Plugins"],
+        "tags": [
+          "Plugins"
+        ],
         "summary": "Calls a plugin method.",
         "operationId": "callPlugin",
         "parameters": [
@@ -617,7 +629,9 @@
     },
     "/api/v1/relayers": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Relayer routes implementation",
         "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\n\nLists all relayers with pagination support.",
         "operationId": "listRelayers",
@@ -722,7 +736,9 @@
         ]
       },
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Creates a new relayer.",
         "operationId": "createRelayer",
         "requestBody": {
@@ -816,7 +832,9 @@
     },
     "/api/v1/relayers/{relayer_id}": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves details of a specific relayer by ID.",
         "operationId": "getRelayer",
         "parameters": [
@@ -924,7 +942,9 @@
         ]
       },
       "delete": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Deletes a relayer by ID.",
         "operationId": "deleteRelayer",
         "parameters": [
@@ -1017,7 +1037,9 @@
         ]
       },
       "patch": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Updates a relayer's information based on the provided update request.",
         "operationId": "updateRelayer",
         "parameters": [
@@ -1137,7 +1159,9 @@
     },
     "/api/v1/relayers/{relayer_id}/balance": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves the balance of a specific relayer.",
         "operationId": "getRelayerBalance",
         "parameters": [
@@ -1247,7 +1271,9 @@
     },
     "/api/v1/relayers/{relayer_id}/rpc": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Performs a JSON-RPC call using the specified relayer.",
         "operationId": "rpc",
         "parameters": [
@@ -1378,7 +1404,9 @@
     },
     "/api/v1/relayers/{relayer_id}/sign": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Signs data using the specified relayer.",
         "operationId": "sign",
         "parameters": [
@@ -1498,7 +1526,9 @@
     },
     "/api/v1/relayers/{relayer_id}/sign-transaction": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Signs a transaction using the specified relayer (Stellar only).",
         "operationId": "signTransaction",
         "parameters": [
@@ -1618,7 +1648,9 @@
     },
     "/api/v1/relayers/{relayer_id}/sign-typed-data": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Signs typed data using the specified relayer.",
         "operationId": "signTypedData",
         "parameters": [
@@ -1738,7 +1770,9 @@
     },
     "/api/v1/relayers/{relayer_id}/status": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Fetches the current status of a specific relayer.",
         "operationId": "getRelayerStatus",
         "parameters": [
@@ -1848,7 +1882,9 @@
     },
     "/api/v1/relayers/{relayer_id}/transactions": {
       "post": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Sends a transaction through the specified relayer.",
         "operationId": "sendTransaction",
         "parameters": [
@@ -1968,7 +2004,9 @@
     },
     "/api/v1/relayers/{relayer_id}/transactions/": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Lists all transactions for a specific relayer with pagination.",
         "operationId": "listTransactions",
         "parameters": [
@@ -2098,7 +2136,9 @@
     },
     "/api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce}": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves a transaction by its nonce value.",
         "operationId": "getTransactionByNonce",
         "parameters": [
@@ -2218,7 +2258,9 @@
     },
     "/api/v1/relayers/{relayer_id}/transactions/pending": {
       "delete": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Deletes all pending transactions for a specific relayer.",
         "operationId": "deletePendingTransactions",
         "parameters": [
@@ -2328,7 +2370,9 @@
     },
     "/api/v1/relayers/{relayer_id}/transactions/{transaction_id}": {
       "get": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Retrieves a specific transaction by its ID.",
         "operationId": "getTransactionById",
         "parameters": [
@@ -2445,7 +2489,9 @@
         ]
       },
       "put": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Replaces a specific transaction with a new one.",
         "operationId": "replaceTransaction",
         "parameters": [
@@ -2572,7 +2618,9 @@
         ]
       },
       "delete": {
-        "tags": ["Relayers"],
+        "tags": [
+          "Relayers"
+        ],
         "summary": "Cancels a specific transaction by its ID.",
         "operationId": "cancelTransaction",
         "parameters": [
@@ -2691,7 +2739,9 @@
     },
     "/api/v1/signers": {
       "get": {
-        "tags": ["Signers"],
+        "tags": [
+          "Signers"
+        ],
         "summary": "Signer routes implementation",
         "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\n\nLists all signers with pagination support.",
         "operationId": "listSigners",
@@ -2781,7 +2831,9 @@
         ]
       },
       "post": {
-        "tags": ["Signers"],
+        "tags": [
+          "Signers"
+        ],
         "summary": "Creates a new signer.",
         "operationId": "createSigner",
         "requestBody": {
@@ -2875,7 +2927,9 @@
     },
     "/api/v1/signers/{signer_id}": {
       "get": {
-        "tags": ["Signers"],
+        "tags": [
+          "Signers"
+        ],
         "summary": "Retrieves details of a specific signer by ID.",
         "operationId": "getSigner",
         "parameters": [
@@ -2968,7 +3022,9 @@
         ]
       },
       "delete": {
-        "tags": ["Signers"],
+        "tags": [
+          "Signers"
+        ],
         "summary": "Deletes a signer by ID.",
         "operationId": "deleteSigner",
         "parameters": [
@@ -3066,7 +3122,9 @@
         ]
       },
       "patch": {
-        "tags": ["Signers"],
+        "tags": [
+          "Signers"
+        ],
         "summary": "Updates an existing signer.",
         "operationId": "updateSigner",
         "parameters": [
@@ -3171,7 +3229,9 @@
     },
     "/debug/metrics/scrape": {
       "get": {
-        "tags": ["Metrics"],
+        "tags": [
+          "Metrics"
+        ],
         "summary": "Triggers an update of system metrics and returns the result in plain text format.",
         "description": "# Returns\n\nAn `HttpResponse` containing the updated metrics in plain text, or an error message if the\nupdate fails.",
         "operationId": "scrape_metrics",
@@ -3194,7 +3254,9 @@
     },
     "/metrics": {
       "get": {
-        "tags": ["Metrics"],
+        "tags": [
+          "Metrics"
+        ],
         "summary": "Metrics routes implementation",
         "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\nReturns a list of all available metric names in JSON format.\n\n# Returns\n\nAn `HttpResponse` containing a JSON array of metric names.",
         "operationId": "list_metrics",
@@ -3220,7 +3282,9 @@
     },
     "/metrics/{metric_name}": {
       "get": {
-        "tags": ["Metrics"],
+        "tags": [
+          "Metrics"
+        ],
         "summary": "Returns the details of a specific metric in plain text format.",
         "description": "# Parameters\n\n- `path`: The name of the metric to retrieve details for.\n\n# Returns\n\nAn `HttpResponse` containing the metric details in plain text, or a 404 error if the metric is\nnot found.",
         "operationId": "metric_detail",
@@ -3261,14 +3325,18 @@
         },
         "security": [
           {
-            "bearer_auth": ["metrics:read"]
+            "bearer_auth": [
+              "metrics:read"
+            ]
           }
         ]
       }
     },
     "/v1/health": {
       "get": {
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "summary": "Health routes implementation",
         "description": "Note: OpenAPI documentation for these endpoints can be found in the `openapi.rs` file\nHandles the `/health` endpoint.\n\nReturns an `HttpResponse` with a status of `200 OK` and a body of `\"OK\"`.",
         "operationId": "health",
@@ -3301,11 +3369,16 @@
     "schemas": {
       "ApiResponse_BalanceResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
-            "required": ["balance", "unit"],
+            "required": [
+              "balance",
+              "unit"
+            ],
             "properties": {
               "balance": {
                 "type": "integer",
@@ -3330,7 +3403,9 @@
       },
       "ApiResponse_DeletePendingTransactionsResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
@@ -3373,12 +3448,19 @@
       },
       "ApiResponse_NotificationResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
             "description": "Response structure for notification API endpoints",
-            "required": ["id", "type", "url", "has_signing_key"],
+            "required": [
+              "id",
+              "type",
+              "url",
+              "has_signing_key"
+            ],
             "properties": {
               "has_signing_key": {
                 "type": "boolean",
@@ -3408,11 +3490,20 @@
       },
       "ApiResponse_PluginCallResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
-            "required": ["success", "return_value", "message", "logs", "error", "traces"],
+            "required": [
+              "success",
+              "return_value",
+              "message",
+              "logs",
+              "error",
+              "traces"
+            ],
             "properties": {
               "error": {
                 "type": "string"
@@ -3451,12 +3542,21 @@
       },
       "ApiResponse_RelayerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
             "description": "Relayer response model for API endpoints",
-            "required": ["id", "name", "network", "network_type", "paused", "signer_id"],
+            "required": [
+              "id",
+              "name",
+              "network",
+              "network_type",
+              "paused",
+              "signer_id"
+            ],
             "properties": {
               "address": {
                 "type": "string"
@@ -3510,7 +3610,9 @@
       },
       "ApiResponse_RelayerStatus": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
@@ -3529,11 +3631,16 @@
                     "type": "string"
                   },
                   "last_confirmed_transaction_timestamp": {
-                    "type": ["string", "null"]
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "network_type": {
                     "type": "string",
-                    "enum": ["evm"]
+                    "enum": [
+                      "evm"
+                    ]
                   },
                   "nonce": {
                     "type": "string"
@@ -3566,11 +3673,16 @@
                     "type": "string"
                   },
                   "last_confirmed_transaction_timestamp": {
-                    "type": ["string", "null"]
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "network_type": {
                     "type": "string",
-                    "enum": ["stellar"]
+                    "enum": [
+                      "stellar"
+                    ]
                   },
                   "paused": {
                     "type": "boolean"
@@ -3590,17 +3702,28 @@
               },
               {
                 "type": "object",
-                "required": ["balance", "pending_transactions_count", "system_disabled", "paused", "network_type"],
+                "required": [
+                  "balance",
+                  "pending_transactions_count",
+                  "system_disabled",
+                  "paused",
+                  "network_type"
+                ],
                 "properties": {
                   "balance": {
                     "type": "string"
                   },
                   "last_confirmed_transaction_timestamp": {
-                    "type": ["string", "null"]
+                    "type": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "network_type": {
                     "type": "string",
-                    "enum": ["solana"]
+                    "enum": [
+                      "solana"
+                    ]
                   },
                   "paused": {
                     "type": "boolean"
@@ -3631,7 +3754,9 @@
       },
       "ApiResponse_SignDataResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
@@ -3656,70 +3781,30 @@
       },
       "ApiResponse_SignTransactionResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
               {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SignTransactionResponseStellar"
-                  },
-                  {
-                    "type": "object",
-                    "required": ["network"],
-                    "properties": {
-                      "network": {
-                        "type": "string",
-                        "enum": ["stellar"]
-                      }
-                    }
-                  }
-                ]
+                "$ref": "#/components/schemas/SignTransactionResponseStellar"
               },
               {
-                "allOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "minimum": 0
-                    }
-                  },
-                  {
-                    "type": "object",
-                    "required": ["network"],
-                    "properties": {
-                      "network": {
-                        "type": "string",
-                        "enum": ["evm"]
-                      }
-                    }
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
               },
               {
-                "allOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "minimum": 0
-                    }
-                  },
-                  {
-                    "type": "object",
-                    "required": ["network"],
-                    "properties": {
-                      "network": {
-                        "type": "string",
-                        "enum": ["solana"]
-                      }
-                    }
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
               }
             ]
           },
@@ -3736,11 +3821,17 @@
       },
       "ApiResponse_SignerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "object",
-            "required": ["id", "type", "config"],
+            "required": [
+              "id",
+              "type",
+              "config"
+            ],
             "properties": {
               "config": {
                 "$ref": "#/components/schemas/SignerConfigResponse",
@@ -3769,7 +3860,9 @@
       },
       "ApiResponse_String": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "string"
@@ -3787,7 +3880,9 @@
       },
       "ApiResponse_TransactionResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "oneOf": [
@@ -3815,14 +3910,21 @@
       },
       "ApiResponse_Vec_NotificationResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
             "items": {
               "type": "object",
               "description": "Response structure for notification API endpoints",
-              "required": ["id", "type", "url", "has_signing_key"],
+              "required": [
+                "id",
+                "type",
+                "url",
+                "has_signing_key"
+              ],
               "properties": {
                 "has_signing_key": {
                   "type": "boolean",
@@ -3853,14 +3955,23 @@
       },
       "ApiResponse_Vec_RelayerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
             "items": {
               "type": "object",
               "description": "Relayer response model for API endpoints",
-              "required": ["id", "name", "network", "network_type", "paused", "signer_id"],
+              "required": [
+                "id",
+                "name",
+                "network",
+                "network_type",
+                "paused",
+                "signer_id"
+              ],
               "properties": {
                 "address": {
                   "type": "string"
@@ -3915,13 +4026,19 @@
       },
       "ApiResponse_Vec_SignerResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["id", "type", "config"],
+              "required": [
+                "id",
+                "type",
+                "config"
+              ],
               "properties": {
                 "config": {
                   "$ref": "#/components/schemas/SignerConfigResponse",
@@ -3951,7 +4068,9 @@
       },
       "ApiResponse_Vec_TransactionResponse": {
         "type": "object",
-        "required": ["success"],
+        "required": [
+          "success"
+        ],
         "properties": {
           "data": {
             "type": "array",
@@ -3984,17 +4103,25 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["type"],
+            "required": [
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["native"]
+                "enum": [
+                  "native"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["code", "issuer", "type"],
+            "required": [
+              "code",
+              "issuer",
+              "type"
+            ],
             "properties": {
               "code": {
                 "type": "string"
@@ -4004,13 +4131,19 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["credit4"]
+                "enum": [
+                  "credit4"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["code", "issuer", "type"],
+            "required": [
+              "code",
+              "issuer",
+              "type"
+            ],
             "properties": {
               "code": {
                 "type": "string"
@@ -4020,7 +4153,9 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["credit12"]
+                "enum": [
+                  "credit12"
+                ]
               }
             }
           }
@@ -4031,29 +4166,40 @@
           {
             "type": "object",
             "description": "No authorization required",
-            "required": ["type"],
+            "required": [
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["none"]
+                "enum": [
+                  "none"
+                ]
               }
             }
           },
           {
             "type": "object",
             "description": "Use the transaction source account for authorization",
-            "required": ["type"],
+            "required": [
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["source_account"]
+                "enum": [
+                  "source_account"
+                ]
               }
             }
           },
           {
             "type": "object",
             "description": "Use specific addresses for authorization",
-            "required": ["signers", "type"],
+            "required": [
+              "signers",
+              "type"
+            ],
             "properties": {
               "signers": {
                 "type": "array",
@@ -4063,14 +4209,19 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["addresses"]
+                "enum": [
+                  "addresses"
+                ]
               }
             }
           },
           {
             "type": "object",
             "description": "Advanced format - provide complete XDR auth entries as base64-encoded strings",
-            "required": ["entries", "type"],
+            "required": [
+              "entries",
+              "type"
+            ],
             "properties": {
               "entries": {
                 "type": "array",
@@ -4080,7 +4231,9 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["xdr"]
+                "enum": [
+                  "xdr"
+                ]
               }
             }
           }
@@ -4090,7 +4243,10 @@
       "AwsKmsSignerRequestConfig": {
         "type": "object",
         "description": "AWS KMS signer configuration for API requests",
-        "required": ["region", "key_id"],
+        "required": [
+          "region",
+          "key_id"
+        ],
         "properties": {
           "key_id": {
             "type": "string"
@@ -4103,7 +4259,10 @@
       },
       "BalanceResponse": {
         "type": "object",
-        "required": ["balance", "unit"],
+        "required": [
+          "balance",
+          "unit"
+        ],
         "properties": {
           "balance": {
             "type": "integer",
@@ -4119,27 +4278,37 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["address", "from"],
+            "required": [
+              "address",
+              "from"
+            ],
             "properties": {
               "address": {
                 "type": "string"
               },
               "from": {
                 "type": "string",
-                "enum": ["address"]
+                "enum": [
+                  "address"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["contract", "from"],
+            "required": [
+              "contract",
+              "from"
+            ],
             "properties": {
               "contract": {
                 "type": "string"
               },
               "from": {
                 "type": "string",
-                "enum": ["contract"]
+                "enum": [
+                  "contract"
+                ]
               }
             }
           }
@@ -4150,7 +4319,9 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["Evm"],
+            "required": [
+              "Evm"
+            ],
             "properties": {
               "Evm": {
                 "$ref": "#/components/schemas/RelayerEvmPolicy"
@@ -4159,7 +4330,9 @@
           },
           {
             "type": "object",
-            "required": ["Solana"],
+            "required": [
+              "Solana"
+            ],
             "properties": {
               "Solana": {
                 "$ref": "#/components/schemas/RelayerSolanaPolicy"
@@ -4168,7 +4341,9 @@
           },
           {
             "type": "object",
-            "required": ["Stellar"],
+            "required": [
+              "Stellar"
+            ],
             "properties": {
               "Stellar": {
                 "$ref": "#/components/schemas/RelayerStellarPolicy"
@@ -4181,7 +4356,13 @@
       "CreateRelayerRequest": {
         "type": "object",
         "description": "Request model for creating a new relayer",
-        "required": ["name", "network", "paused", "network_type", "signer_id"],
+        "required": [
+          "name",
+          "network",
+          "paused",
+          "network_type",
+          "signer_id"
+        ],
         "properties": {
           "custom_rpc_urls": {
             "type": "array",
@@ -4220,7 +4401,11 @@
       "DeletePendingTransactionsResponse": {
         "type": "object",
         "description": "Response for delete pending transactions operation",
-        "required": ["queued_for_cancellation_transaction_ids", "failed_to_queue_transaction_ids", "total_processed"],
+        "required": [
+          "queued_for_cancellation_transaction_ids",
+          "failed_to_queue_transaction_ids",
+          "total_processed"
+        ],
         "properties": {
           "failed_to_queue_transaction_ids": {
             "type": "array",
@@ -4278,7 +4463,10 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["method", "params"],
+            "required": [
+              "method",
+              "params"
+            ],
             "properties": {
               "method": {
                 "type": "string"
@@ -4290,7 +4478,10 @@
           },
           {
             "type": "object",
-            "required": ["method", "params"],
+            "required": [
+              "method",
+              "params"
+            ],
             "properties": {
               "method": {
                 "type": "string"
@@ -4310,7 +4501,12 @@
       },
       "EvmTransactionDataSignature": {
         "type": "object",
-        "required": ["r", "s", "v", "sig"],
+        "required": [
+          "r",
+          "s",
+          "v",
+          "sig"
+        ],
         "properties": {
           "r": {
             "type": "string"
@@ -4330,13 +4526,18 @@
       },
       "EvmTransactionRequest": {
         "type": "object",
-        "required": ["value"],
+        "required": [
+          "value"
+        ],
         "properties": {
           "data": {
             "type": "string"
           },
           "gas_limit": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
@@ -4370,7 +4571,14 @@
       },
       "EvmTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "value", "from", "relayer_id"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "value",
+          "from",
+          "relayer_id"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -4385,7 +4593,10 @@
             "type": "string"
           },
           "gas_limit": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
@@ -4442,7 +4653,10 @@
             "$ref": "#/components/schemas/TransactionStatus"
           },
           "status_reason": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "to": {
             "type": "string"
@@ -4454,7 +4668,10 @@
       },
       "FeeEstimateRequestParams": {
         "type": "object",
-        "required": ["transaction", "fee_token"],
+        "required": [
+          "transaction",
+          "fee_token"
+        ],
         "properties": {
           "fee_token": {
             "type": "string"
@@ -4467,7 +4684,10 @@
       },
       "FeeEstimateResult": {
         "type": "object",
-        "required": ["estimated_fee", "conversion_rate"],
+        "required": [
+          "estimated_fee",
+          "conversion_rate"
+        ],
         "properties": {
           "conversion_rate": {
             "type": "string"
@@ -4483,7 +4703,9 @@
       },
       "GetFeaturesEnabledResult": {
         "type": "object",
-        "required": ["features"],
+        "required": [
+          "features"
+        ],
         "properties": {
           "features": {
             "type": "array",
@@ -4495,7 +4717,11 @@
       },
       "GetSupportedTokensItem": {
         "type": "object",
-        "required": ["mint", "symbol", "decimals"],
+        "required": [
+          "mint",
+          "symbol",
+          "decimals"
+        ],
         "properties": {
           "conversion_slippage_percentage": {
             "type": "number",
@@ -4525,7 +4751,9 @@
       },
       "GetSupportedTokensResult": {
         "type": "object",
-        "required": ["tokens"],
+        "required": [
+          "tokens"
+        ],
         "properties": {
           "tokens": {
             "type": "array",
@@ -4538,7 +4766,12 @@
       "GoogleCloudKmsSignerKeyRequestConfig": {
         "type": "object",
         "description": "Google Cloud KMS key configuration for API requests",
-        "required": ["location", "key_ring_id", "key_id", "key_version"],
+        "required": [
+          "location",
+          "key_ring_id",
+          "key_id",
+          "key_version"
+        ],
         "properties": {
           "key_id": {
             "type": "string"
@@ -4559,7 +4792,12 @@
       },
       "GoogleCloudKmsSignerKeyResponseConfig": {
         "type": "object",
-        "required": ["location", "key_ring_id", "key_id", "key_version"],
+        "required": [
+          "location",
+          "key_ring_id",
+          "key_id",
+          "key_version"
+        ],
         "properties": {
           "key_id": {
             "type": "string"
@@ -4580,7 +4818,10 @@
       "GoogleCloudKmsSignerRequestConfig": {
         "type": "object",
         "description": "Google Cloud KMS signer configuration for API requests",
-        "required": ["service_account", "key"],
+        "required": [
+          "service_account",
+          "key"
+        ],
         "properties": {
           "key": {
             "$ref": "#/components/schemas/GoogleCloudKmsSignerKeyRequestConfig"
@@ -4678,7 +4919,11 @@
       "JsonRpcError": {
         "type": "object",
         "description": "JSON-RPC 2.0 Error structure.\n\nRepresents an error in a JSON-RPC response.",
-        "required": ["code", "message", "description"],
+        "required": [
+          "code",
+          "message",
+          "description"
+        ],
         "properties": {
           "code": {
             "type": "integer",
@@ -4723,7 +4968,9 @@
           },
           {
             "type": "object",
-            "required": ["jsonrpc"],
+            "required": [
+              "jsonrpc"
+            ],
             "properties": {
               "id": {
                 "oneOf": [
@@ -4746,7 +4993,9 @@
       "JsonRpcResponse_NetworkRpcResult": {
         "type": "object",
         "description": "JSON-RPC 2.0 Response structure.\n\nRepresents a JSON-RPC response that can contain either a result or an error.",
-        "required": ["jsonrpc"],
+        "required": [
+          "jsonrpc"
+        ],
         "properties": {
           "error": {
             "$ref": "#/components/schemas/JsonRpcError"
@@ -4795,7 +5044,9 @@
       "LocalSignerRequestConfig": {
         "type": "object",
         "description": "Local signer configuration for API requests",
-        "required": ["key"],
+        "required": [
+          "key"
+        ],
         "properties": {
           "key": {
             "type": "string"
@@ -4805,7 +5056,10 @@
       },
       "LogEntry": {
         "type": "object",
-        "required": ["level", "message"],
+        "required": [
+          "level",
+          "message"
+        ],
         "properties": {
           "level": {
             "$ref": "#/components/schemas/LogLevel"
@@ -4817,27 +5071,43 @@
       },
       "LogLevel": {
         "type": "string",
-        "enum": ["log", "info", "error", "warn", "debug", "result"]
+        "enum": [
+          "log",
+          "info",
+          "error",
+          "warn",
+          "debug",
+          "result"
+        ]
       },
       "MemoSpec": {
         "oneOf": [
           {
             "type": "object",
-            "required": ["type"],
+            "required": [
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["none"]
+                "enum": [
+                  "none"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["value", "type"],
+            "required": [
+              "value",
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["text"]
+                "enum": [
+                  "text"
+                ]
               },
               "value": {
                 "type": "string"
@@ -4846,11 +5116,16 @@
           },
           {
             "type": "object",
-            "required": ["value", "type"],
+            "required": [
+              "value",
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["id"]
+                "enum": [
+                  "id"
+                ]
               },
               "value": {
                 "type": "integer",
@@ -4861,11 +5136,16 @@
           },
           {
             "type": "object",
-            "required": ["value", "type"],
+            "required": [
+              "value",
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["hash"]
+                "enum": [
+                  "hash"
+                ]
               },
               "value": {
                 "type": "array",
@@ -4879,11 +5159,16 @@
           },
           {
             "type": "object",
-            "required": ["value", "type"],
+            "required": [
+              "value",
+              "type"
+            ],
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["return"]
+                "enum": [
+                  "return"
+                ]
               },
               "value": {
                 "type": "array",
@@ -4947,7 +5232,9 @@
       "NotificationCreateRequest": {
         "type": "object",
         "description": "Request structure for creating a new notification",
-        "required": ["url"],
+        "required": [
+          "url"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -4968,7 +5255,12 @@
       "NotificationResponse": {
         "type": "object",
         "description": "Response structure for notification API endpoints",
-        "required": ["id", "type", "url", "has_signing_key"],
+        "required": [
+          "id",
+          "type",
+          "url",
+          "has_signing_key"
+        ],
         "properties": {
           "has_signing_key": {
             "type": "boolean",
@@ -4988,14 +5280,19 @@
       "NotificationType": {
         "type": "string",
         "description": "Notification type enum used by both config file and API",
-        "enum": ["webhook"]
+        "enum": [
+          "webhook"
+        ]
       },
       "NotificationUpdateRequest": {
         "type": "object",
         "description": "Request structure for updating an existing notification",
         "properties": {
           "signing_key": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "Optional signing key for securing webhook notifications.\n- None: don't change the existing signing key\n- Some(\"\"): remove the signing key\n- Some(\"key\"): set the signing key to the provided value"
           },
           "type": {
@@ -5011,7 +5308,12 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["destination", "amount", "asset", "type"],
+            "required": [
+              "destination",
+              "amount",
+              "asset",
+              "type"
+            ],
             "properties": {
               "amount": {
                 "type": "integer",
@@ -5025,13 +5327,20 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["payment"]
+                "enum": [
+                  "payment"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["contract_address", "function_name", "args", "type"],
+            "required": [
+              "contract_address",
+              "function_name",
+              "args",
+              "type"
+            ],
             "properties": {
               "args": {
                 "type": "array",
@@ -5055,13 +5364,19 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["invoke_contract"]
+                "enum": [
+                  "invoke_contract"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["source", "wasm_hash", "type"],
+            "required": [
+              "source",
+              "wasm_hash",
+              "type"
+            ],
             "properties": {
               "auth": {
                 "oneOf": [
@@ -5074,18 +5389,26 @@
                 ]
               },
               "constructor_args": {
-                "type": ["array", "null"],
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "items": {}
               },
               "salt": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "source": {
                 "$ref": "#/components/schemas/ContractSource"
               },
               "type": {
                 "type": "string",
-                "enum": ["create_contract"]
+                "enum": [
+                  "create_contract"
+                ]
               },
               "wasm_hash": {
                 "type": "string"
@@ -5094,7 +5417,10 @@
           },
           {
             "type": "object",
-            "required": ["wasm", "type"],
+            "required": [
+              "wasm",
+              "type"
+            ],
             "properties": {
               "auth": {
                 "oneOf": [
@@ -5108,7 +5434,9 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["upload_wasm"]
+                "enum": [
+                  "upload_wasm"
+                ]
               },
               "wasm": {
                 "$ref": "#/components/schemas/WasmSource"
@@ -5119,7 +5447,11 @@
       },
       "PaginationMeta": {
         "type": "object",
-        "required": ["current_page", "per_page", "total_items"],
+        "required": [
+          "current_page",
+          "per_page",
+          "total_items"
+        ],
         "properties": {
           "current_page": {
             "type": "integer",
@@ -5140,7 +5472,9 @@
       },
       "PluginCallRequest": {
         "type": "object",
-        "required": ["params"],
+        "required": [
+          "params"
+        ],
         "properties": {
           "params": {
             "description": "Plugin parameters"
@@ -5149,7 +5483,14 @@
       },
       "PluginCallResponse": {
         "type": "object",
-        "required": ["success", "return_value", "message", "logs", "error", "traces"],
+        "required": [
+          "success",
+          "return_value",
+          "message",
+          "logs",
+          "error",
+          "traces"
+        ],
         "properties": {
           "error": {
             "type": "string"
@@ -5177,7 +5518,10 @@
       },
       "PrepareTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction", "fee_token"],
+        "required": [
+          "transaction",
+          "fee_token"
+        ],
         "properties": {
           "fee_token": {
             "type": "string"
@@ -5190,7 +5534,13 @@
       },
       "PrepareTransactionResult": {
         "type": "object",
-        "required": ["transaction", "fee_in_spl", "fee_in_lamports", "fee_token", "valid_until_blockheight"],
+        "required": [
+          "transaction",
+          "fee_in_spl",
+          "fee_in_lamports",
+          "fee_token",
+          "valid_until_blockheight"
+        ],
         "properties": {
           "fee_in_lamports": {
             "type": "string"
@@ -5216,24 +5566,42 @@
         "description": "EVM-specific relayer policy configuration",
         "properties": {
           "eip1559_pricing": {
-            "type": ["boolean", "null"]
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
           "gas_limit_estimation": {
-            "type": ["boolean", "null"]
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
           "gas_price_cap": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "minimum": 0
           },
           "min_balance": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "minimum": 0
           },
           "private_transactions": {
-            "type": ["boolean", "null"]
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
           "whitelist_receivers": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "type": "string"
             }
@@ -5250,11 +5618,15 @@
               },
               {
                 "type": "object",
-                "required": ["network_type"],
+                "required": [
+                  "network_type"
+                ],
                 "properties": {
                   "network_type": {
                     "type": "string",
-                    "enum": ["evm"]
+                    "enum": [
+                      "evm"
+                    ]
                   }
                 }
               }
@@ -5267,11 +5639,15 @@
               },
               {
                 "type": "object",
-                "required": ["network_type"],
+                "required": [
+                  "network_type"
+                ],
                 "properties": {
                   "network_type": {
                     "type": "string",
-                    "enum": ["solana"]
+                    "enum": [
+                      "solana"
+                    ]
                   }
                 }
               }
@@ -5284,11 +5660,15 @@
               },
               {
                 "type": "object",
-                "required": ["network_type"],
+                "required": [
+                  "network_type"
+                ],
                 "properties": {
                   "network_type": {
                     "type": "string",
-                    "enum": ["stellar"]
+                    "enum": [
+                      "stellar"
+                    ]
                   }
                 }
               }
@@ -5314,12 +5694,23 @@
       "RelayerNetworkType": {
         "type": "string",
         "description": "Network type enum for relayers",
-        "enum": ["evm", "solana", "stellar"]
+        "enum": [
+          "evm",
+          "solana",
+          "stellar"
+        ]
       },
       "RelayerResponse": {
         "type": "object",
         "description": "Relayer response model for API endpoints",
-        "required": ["id", "name", "network", "network_type", "paused", "signer_id"],
+        "required": [
+          "id",
+          "name",
+          "network",
+          "network_type",
+          "paused",
+          "signer_id"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -5365,31 +5756,46 @@
         "description": "Solana-specific relayer policy configuration",
         "properties": {
           "allowed_accounts": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "type": "string"
             }
           },
           "allowed_programs": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "type": "string"
             }
           },
           "allowed_tokens": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "$ref": "#/components/schemas/SolanaAllowedTokensPolicy"
             }
           },
           "disallowed_accounts": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "type": "string"
             }
           },
           "fee_margin_percentage": {
-            "type": ["number", "null"],
+            "type": [
+              "number",
+              "null"
+            ],
             "format": "float"
           },
           "fee_payment_strategy": {
@@ -5403,22 +5809,34 @@
             ]
           },
           "max_allowed_fee_lamports": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
           "max_signatures": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int32",
             "minimum": 0
           },
           "max_tx_data_size": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int32",
             "minimum": 0
           },
           "min_balance": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
@@ -5464,17 +5882,29 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["balance", "pending_transactions_count", "system_disabled", "paused", "nonce", "network_type"],
+            "required": [
+              "balance",
+              "pending_transactions_count",
+              "system_disabled",
+              "paused",
+              "nonce",
+              "network_type"
+            ],
             "properties": {
               "balance": {
                 "type": "string"
               },
               "last_confirmed_transaction_timestamp": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "network_type": {
                 "type": "string",
-                "enum": ["evm"]
+                "enum": [
+                  "evm"
+                ]
               },
               "nonce": {
                 "type": "string"
@@ -5507,11 +5937,16 @@
                 "type": "string"
               },
               "last_confirmed_transaction_timestamp": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "network_type": {
                 "type": "string",
-                "enum": ["stellar"]
+                "enum": [
+                  "stellar"
+                ]
               },
               "paused": {
                 "type": "boolean"
@@ -5531,17 +5966,28 @@
           },
           {
             "type": "object",
-            "required": ["balance", "pending_transactions_count", "system_disabled", "paused", "network_type"],
+            "required": [
+              "balance",
+              "pending_transactions_count",
+              "system_disabled",
+              "paused",
+              "network_type"
+            ],
             "properties": {
               "balance": {
                 "type": "string"
               },
               "last_confirmed_transaction_timestamp": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "network_type": {
                 "type": "string",
-                "enum": ["solana"]
+                "enum": [
+                  "solana"
+                ]
               },
               "paused": {
                 "type": "boolean"
@@ -5563,18 +6009,33 @@
         "type": "object",
         "description": "Stellar-specific relayer policy configuration",
         "properties": {
+          "concurrent_transactions": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
           "max_fee": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int32",
             "minimum": 0
           },
           "min_balance": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           },
           "timeout_seconds": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "minimum": 0
           }
@@ -5584,7 +6045,9 @@
       "RpcConfig": {
         "type": "object",
         "description": "Configuration for an RPC endpoint.",
-        "required": ["url"],
+        "required": [
+          "url"
+        ],
         "properties": {
           "url": {
             "type": "string",
@@ -5600,7 +6063,9 @@
       },
       "SignAndSendTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction"],
+        "required": [
+          "transaction"
+        ],
         "properties": {
           "transaction": {
             "$ref": "#/components/schemas/EncodedSerializedTransaction"
@@ -5610,8 +6075,15 @@
       },
       "SignAndSendTransactionResult": {
         "type": "object",
-        "required": ["transaction", "signature"],
+        "required": [
+          "transaction",
+          "signature",
+          "id"
+        ],
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "signature": {
             "type": "string"
           },
@@ -5622,7 +6094,9 @@
       },
       "SignDataRequest": {
         "type": "object",
-        "required": ["message"],
+        "required": [
+          "message"
+        ],
         "properties": {
           "message": {
             "type": "string"
@@ -5641,7 +6115,12 @@
       },
       "SignDataResponseEvm": {
         "type": "object",
-        "required": ["r", "s", "v", "sig"],
+        "required": [
+          "r",
+          "s",
+          "v",
+          "sig"
+        ],
         "properties": {
           "r": {
             "type": "string"
@@ -5661,7 +6140,10 @@
       },
       "SignDataResponseSolana": {
         "type": "object",
-        "required": ["signature", "public_key"],
+        "required": [
+          "signature",
+          "public_key"
+        ],
         "properties": {
           "public_key": {
             "type": "string"
@@ -5696,7 +6178,9 @@
       },
       "SignTransactionRequestParams": {
         "type": "object",
-        "required": ["transaction"],
+        "required": [
+          "transaction"
+        ],
         "properties": {
           "transaction": {
             "$ref": "#/components/schemas/EncodedSerializedTransaction"
@@ -5706,7 +6190,9 @@
       },
       "SignTransactionRequestStellar": {
         "type": "object",
-        "required": ["unsigned_xdr"],
+        "required": [
+          "unsigned_xdr"
+        ],
         "properties": {
           "unsigned_xdr": {
             "type": "string"
@@ -5716,71 +6202,32 @@
       "SignTransactionResponse": {
         "oneOf": [
           {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SignTransactionResponseStellar"
-              },
-              {
-                "type": "object",
-                "required": ["network"],
-                "properties": {
-                  "network": {
-                    "type": "string",
-                    "enum": ["stellar"]
-                  }
-                }
-              }
-            ]
+            "$ref": "#/components/schemas/SignTransactionResponseStellar"
           },
           {
-            "allOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32",
-                  "minimum": 0
-                }
-              },
-              {
-                "type": "object",
-                "required": ["network"],
-                "properties": {
-                  "network": {
-                    "type": "string",
-                    "enum": ["evm"]
-                  }
-                }
-              }
-            ]
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
           },
           {
-            "allOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32",
-                  "minimum": 0
-                }
-              },
-              {
-                "type": "object",
-                "required": ["network"],
-                "properties": {
-                  "network": {
-                    "type": "string",
-                    "enum": ["solana"]
-                  }
-                }
-              }
-            ]
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
           }
         ]
       },
       "SignTransactionResponseStellar": {
         "type": "object",
-        "required": ["signedXdr", "signature"],
+        "required": [
+          "signedXdr",
+          "signature"
+        ],
         "properties": {
           "signature": {
             "type": "string"
@@ -5792,7 +6239,10 @@
       },
       "SignTransactionResult": {
         "type": "object",
-        "required": ["transaction", "signature"],
+        "required": [
+          "transaction",
+          "signature"
+        ],
         "properties": {
           "signature": {
             "type": "string"
@@ -5804,7 +6254,10 @@
       },
       "SignTypedDataRequest": {
         "type": "object",
-        "required": ["domain_separator", "hash_struct_message"],
+        "required": [
+          "domain_separator",
+          "hash_struct_message"
+        ],
         "properties": {
           "domain_separator": {
             "type": "string"
@@ -5841,7 +6294,10 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["address", "key_name"],
+            "required": [
+              "address",
+              "key_name"
+            ],
             "properties": {
               "address": {
                 "type": "string"
@@ -5850,16 +6306,26 @@
                 "type": "string"
               },
               "mount_point": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "namespace": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["key_name", "address", "pubkey"],
+            "required": [
+              "key_name",
+              "address",
+              "pubkey"
+            ],
             "properties": {
               "address": {
                 "type": "string"
@@ -5868,10 +6334,16 @@
                 "type": "string"
               },
               "mount_point": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "namespace": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "pubkey": {
                 "type": "string"
@@ -5880,19 +6352,29 @@
           },
           {
             "type": "object",
-            "required": ["key_id"],
+            "required": [
+              "key_id"
+            ],
             "properties": {
               "key_id": {
                 "type": "string"
               },
               "region": {
-                "type": ["string", "null"]
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             }
           },
           {
             "type": "object",
-            "required": ["api_public_key", "organization_id", "private_key_id", "public_key"],
+            "required": [
+              "api_public_key",
+              "organization_id",
+              "private_key_id",
+              "public_key"
+            ],
             "properties": {
               "api_public_key": {
                 "type": "string"
@@ -5910,7 +6392,10 @@
           },
           {
             "type": "object",
-            "required": ["service_account", "key"],
+            "required": [
+              "service_account",
+              "key"
+            ],
             "properties": {
               "key": {
                 "$ref": "#/components/schemas/GoogleCloudKmsSignerKeyResponseConfig"
@@ -5929,7 +6414,10 @@
       "SignerCreateRequest": {
         "type": "object",
         "description": "Request model for creating a new signer",
-        "required": ["type", "config"],
+        "required": [
+          "type",
+          "config"
+        ],
         "properties": {
           "config": {
             "$ref": "#/components/schemas/SignerConfigRequest",
@@ -5948,7 +6436,11 @@
       },
       "SignerResponse": {
         "type": "object",
-        "required": ["id", "type", "config"],
+        "required": [
+          "id",
+          "type",
+          "config"
+        ],
         "properties": {
           "config": {
             "$ref": "#/components/schemas/SignerConfigResponse",
@@ -5967,12 +6459,26 @@
       "SignerType": {
         "type": "string",
         "description": "Signer type enum used for validation and API responses",
-        "enum": ["local", "aws_kms", "google_cloud_kms", "vault", "vault_transit", "turnkey"]
+        "enum": [
+          "local",
+          "aws_kms",
+          "google_cloud_kms",
+          "vault",
+          "vault_transit",
+          "turnkey"
+        ]
       },
       "SignerTypeRequest": {
         "type": "string",
         "description": "Signer type enum for API requests",
-        "enum": ["plain", "aws_kms", "vault", "vault_transit", "turnkey", "google_cloud_kms"]
+        "enum": [
+          "plain",
+          "aws_kms",
+          "vault",
+          "vault_transit",
+          "turnkey",
+          "google_cloud_kms"
+        ]
       },
       "SignerUpdateRequest": {
         "type": "object",
@@ -5982,7 +6488,9 @@
       "SolanaAllowedTokensPolicy": {
         "type": "object",
         "description": "Configuration for allowed token handling on Solana",
-        "required": ["mint"],
+        "required": [
+          "mint"
+        ],
         "properties": {
           "decimals": {
             "type": "integer",
@@ -6039,7 +6547,10 @@
       "SolanaFeePaymentStrategy": {
         "type": "string",
         "description": "Solana fee payment strategy",
-        "enum": ["user", "relayer"]
+        "enum": [
+          "user",
+          "relayer"
+        ]
       },
       "SolanaPolicyResponse": {
         "type": "object",
@@ -6106,11 +6617,16 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["feeEstimate"]
+                "enum": [
+                  "feeEstimate"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/FeeEstimateRequestParams"
@@ -6120,11 +6636,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["transferTransaction"]
+                "enum": [
+                  "transferTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/TransferTransactionRequestParams"
@@ -6134,11 +6655,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["prepareTransaction"]
+                "enum": [
+                  "prepareTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/PrepareTransactionRequestParams"
@@ -6148,11 +6674,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["signTransaction"]
+                "enum": [
+                  "signTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/SignTransactionRequestParams"
@@ -6162,11 +6693,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["signAndSendTransaction"]
+                "enum": [
+                  "signAndSendTransaction"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/SignAndSendTransactionRequestParams"
@@ -6176,11 +6712,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["getSupportedTokens"]
+                "enum": [
+                  "getSupportedTokens"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/GetSupportedTokensRequestParams"
@@ -6190,11 +6731,16 @@
           },
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["getFeaturesEnabled"]
+                "enum": [
+                  "getFeaturesEnabled"
+                ]
               },
               "params": {
                 "$ref": "#/components/schemas/GetFeaturesEnabledRequestParams"
@@ -6232,26 +6778,31 @@
       "SolanaSwapStrategy": {
         "type": "string",
         "description": "Solana swap strategy",
-        "enum": ["jupiter-swap", "jupiter-ultra", "noop"]
+        "enum": [
+          "jupiter-swap",
+          "jupiter-ultra",
+          "noop"
+        ]
       },
       "SolanaTransactionRequest": {
         "type": "object",
-        "required": ["fee_payer", "instructions"],
+        "required": [
+          "transaction"
+        ],
         "properties": {
-          "fee_payer": {
-            "type": "string"
-          },
-          "instructions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "transaction": {
+            "$ref": "#/components/schemas/EncodedSerializedTransaction"
           }
         }
       },
       "SolanaTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "recent_blockhash", "fee_payer"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "transaction"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -6259,37 +6810,45 @@
           "created_at": {
             "type": "string"
           },
-          "fee_payer": {
-            "type": "string"
-          },
-          "hash": {
-            "type": "string"
-          },
           "id": {
             "type": "string"
           },
-          "recent_blockhash": {
+          "sent_at": {
             "type": "string"
           },
-          "sent_at": {
+          "signature": {
             "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatus"
           },
           "status_reason": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "transaction": {
+            "type": "string"
           }
         }
       },
       "Speed": {
         "type": "string",
-        "enum": ["fastest", "fast", "average", "safeLow"]
+        "enum": [
+          "fastest",
+          "fast",
+          "average",
+          "safeLow"
+        ]
       },
       "StellarPolicyResponse": {
         "type": "object",
         "description": "Stellar policy response model for OpenAPI documentation",
         "properties": {
+          "concurrent_transactions": {
+            "type": "boolean"
+          },
           "max_fee": {
             "type": "integer",
             "format": "int32",
@@ -6312,11 +6871,16 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["params", "method"],
+            "required": [
+              "params",
+              "method"
+            ],
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["GenericRpcRequest"]
+                "enum": [
+                  "GenericRpcRequest"
+                ]
               },
               "params": {
                 "type": "string"
@@ -6334,14 +6898,22 @@
       },
       "StellarTransactionRequest": {
         "type": "object",
-        "required": ["network"],
+        "required": [
+          "network"
+        ],
         "properties": {
           "fee_bump": {
-            "type": ["boolean", "null"],
+            "type": [
+              "boolean",
+              "null"
+            ],
             "description": "Explicitly request fee-bump wrapper\nOnly valid when transaction_xdr contains a signed transaction"
           },
           "max_fee": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "format": "int64",
             "description": "Maximum fee in stroops (defaults to 0.1 XLM = 1,000,000 stroops)"
           },
@@ -6359,26 +6931,45 @@
             "type": "string"
           },
           "operations": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "$ref": "#/components/schemas/OperationSpec"
             }
           },
           "source_account": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "transaction_xdr": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "Pre-built transaction XDR (base64 encoded, signed or unsigned)\nMutually exclusive with operations field"
           },
           "valid_until": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
       "StellarTransactionResponse": {
         "type": "object",
-        "required": ["id", "status", "created_at", "source_account", "fee", "sequence_number"],
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "source_account",
+          "fee",
+          "sequence_number"
+        ],
         "properties": {
           "confirmed_at": {
             "type": "string"
@@ -6411,7 +7002,10 @@
             "$ref": "#/components/schemas/TransactionStatus"
           },
           "status_reason": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -6430,11 +7024,25 @@
       },
       "TransactionStatus": {
         "type": "string",
-        "enum": ["canceled", "pending", "sent", "submitted", "mined", "confirmed", "failed", "expired"]
+        "enum": [
+          "canceled",
+          "pending",
+          "sent",
+          "submitted",
+          "mined",
+          "confirmed",
+          "failed",
+          "expired"
+        ]
       },
       "TransferTransactionRequestParams": {
         "type": "object",
-        "required": ["amount", "token", "source", "destination"],
+        "required": [
+          "amount",
+          "token",
+          "source",
+          "destination"
+        ],
         "properties": {
           "amount": {
             "type": "integer",
@@ -6455,7 +7063,13 @@
       },
       "TransferTransactionResult": {
         "type": "object",
-        "required": ["transaction", "fee_in_spl", "fee_in_lamports", "fee_token", "valid_until_blockheight"],
+        "required": [
+          "transaction",
+          "fee_in_spl",
+          "fee_in_lamports",
+          "fee_token",
+          "valid_until_blockheight"
+        ],
         "properties": {
           "fee_in_lamports": {
             "type": "string"
@@ -6479,7 +7093,13 @@
       "TurnkeySignerRequestConfig": {
         "type": "object",
         "description": "Turnkey signer configuration for API requests",
-        "required": ["api_public_key", "api_private_key", "organization_id", "private_key_id", "public_key"],
+        "required": [
+          "api_public_key",
+          "api_private_key",
+          "organization_id",
+          "private_key_id",
+          "public_key"
+        ],
         "properties": {
           "api_private_key": {
             "type": "string"
@@ -6503,16 +7123,25 @@
         "type": "object",
         "properties": {
           "custom_rpc_urls": {
-            "type": ["array", "null"],
+            "type": [
+              "array",
+              "null"
+            ],
             "items": {
               "$ref": "#/components/schemas/RpcConfig"
             }
           },
           "name": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "notification_id": {
-            "type": ["string", "null"]
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "paused": {
             "type": "boolean"
@@ -6534,7 +7163,12 @@
       "VaultSignerRequestConfig": {
         "type": "object",
         "description": "Vault signer configuration for API requests",
-        "required": ["address", "role_id", "secret_id", "key_name"],
+        "required": [
+          "address",
+          "role_id",
+          "secret_id",
+          "key_name"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -6560,7 +7194,13 @@
       "VaultTransitSignerRequestConfig": {
         "type": "object",
         "description": "Vault Transit signer configuration for API requests",
-        "required": ["key_name", "address", "role_id", "secret_id", "pubkey"],
+        "required": [
+          "key_name",
+          "address",
+          "role_id",
+          "secret_id",
+          "pubkey"
+        ],
         "properties": {
           "address": {
             "type": "string"
@@ -6590,7 +7230,9 @@
         "oneOf": [
           {
             "type": "object",
-            "required": ["hex"],
+            "required": [
+              "hex"
+            ],
             "properties": {
               "hex": {
                 "type": "string"
@@ -6599,7 +7241,9 @@
           },
           {
             "type": "object",
-            "required": ["base64"],
+            "required": [
+              "base64"
+            ],
             "properties": {
               "base64": {
                 "type": "string"
