@@ -22,6 +22,12 @@
 export interface StellarPolicyResponse {
     /**
      * 
+     * @type {boolean}
+     * @memberof StellarPolicyResponse
+     */
+    'concurrent_transactions'?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof StellarPolicyResponse
      */

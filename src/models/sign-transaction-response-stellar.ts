@@ -17,14 +17,20 @@
 /**
  * 
  * @export
- * @interface SolanaTransactionRequest
+ * @interface SignTransactionResponseStellar
  */
-export interface SolanaTransactionRequest {
+export interface SignTransactionResponseStellar {
     /**
      * 
      * @type {string}
-     * @memberof SolanaTransactionRequest
+     * @memberof SignTransactionResponseStellar
      */
-    'transaction': string;
+    'signature': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTransactionResponseStellar
+     */
+    'signedXdr': string;
 }
 

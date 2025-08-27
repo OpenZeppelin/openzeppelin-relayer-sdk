@@ -1524,6 +1524,128 @@
         ]
       }
     },
+    "/api/v1/relayers/{relayer_id}/sign-transaction": {
+      "post": {
+        "tags": [
+          "Relayers"
+        ],
+        "summary": "Signs a transaction using the specified relayer (Stellar only).",
+        "operationId": "signTransaction",
+        "parameters": [
+          {
+            "name": "relayer_id",
+            "in": "path",
+            "description": "The unique identifier of the relayer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignTransactionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction signed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_SignTransactionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Bad Request",
+                  "success": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Unauthorized",
+                  "success": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Relayer with ID relayer_id not found",
+                  "success": false
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Too Many Requests",
+                  "success": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_String"
+                },
+                "example": {
+                  "data": null,
+                  "message": "Internal Server Error",
+                  "success": false
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ]
+      }
+    },
     "/api/v1/relayers/{relayer_id}/sign-typed-data": {
       "post": {
         "tags": [
@@ -3643,6 +3765,46 @@
               },
               {
                 "$ref": "#/components/schemas/SignDataResponseSolana"
+              }
+            ]
+          },
+          "error": {
+            "type": "string"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationMeta"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApiResponse_SignTransactionResponse": {
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "properties": {
+          "data": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SignTransactionResponseStellar"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
               }
             ]
           },
@@ -5847,6 +6009,12 @@
         "type": "object",
         "description": "Stellar-specific relayer policy configuration",
         "properties": {
+          "concurrent_transactions": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
           "max_fee": {
             "type": [
               "integer",
@@ -5909,9 +6077,13 @@
         "type": "object",
         "required": [
           "transaction",
-          "signature"
+          "signature",
+          "id"
         ],
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "signature": {
             "type": "string"
           },
@@ -5981,6 +6153,29 @@
           }
         }
       },
+      "SignTransactionRequest": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SignTransactionRequestStellar"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          }
+        ]
+      },
       "SignTransactionRequestParams": {
         "type": "object",
         "required": [
@@ -5992,6 +6187,55 @@
           }
         },
         "additionalProperties": false
+      },
+      "SignTransactionRequestStellar": {
+        "type": "object",
+        "required": [
+          "unsigned_xdr"
+        ],
+        "properties": {
+          "unsigned_xdr": {
+            "type": "string"
+          }
+        }
+      },
+      "SignTransactionResponse": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SignTransactionResponseStellar"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          }
+        ]
+      },
+      "SignTransactionResponseStellar": {
+        "type": "object",
+        "required": [
+          "signedXdr",
+          "signature"
+        ],
+        "properties": {
+          "signature": {
+            "type": "string"
+          },
+          "signedXdr": {
+            "type": "string"
+          }
+        }
       },
       "SignTransactionResult": {
         "type": "object",
@@ -6543,18 +6787,11 @@
       "SolanaTransactionRequest": {
         "type": "object",
         "required": [
-          "fee_payer",
-          "instructions"
+          "transaction"
         ],
         "properties": {
-          "fee_payer": {
-            "type": "string"
-          },
-          "instructions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "transaction": {
+            "$ref": "#/components/schemas/EncodedSerializedTransaction"
           }
         }
       },
@@ -6564,8 +6801,7 @@
           "id",
           "status",
           "created_at",
-          "recent_blockhash",
-          "fee_payer"
+          "transaction"
         ],
         "properties": {
           "confirmed_at": {
@@ -6574,19 +6810,13 @@
           "created_at": {
             "type": "string"
           },
-          "fee_payer": {
-            "type": "string"
-          },
-          "hash": {
-            "type": "string"
-          },
           "id": {
             "type": "string"
           },
-          "recent_blockhash": {
+          "sent_at": {
             "type": "string"
           },
-          "sent_at": {
+          "signature": {
             "type": "string"
           },
           "status": {
@@ -6597,6 +6827,9 @@
               "string",
               "null"
             ]
+          },
+          "transaction": {
+            "type": "string"
           }
         }
       },
@@ -6613,6 +6846,9 @@
         "type": "object",
         "description": "Stellar policy response model for OpenAPI documentation",
         "properties": {
+          "concurrent_transactions": {
+            "type": "boolean"
+          },
           "max_fee": {
             "type": "integer",
             "format": "int32",

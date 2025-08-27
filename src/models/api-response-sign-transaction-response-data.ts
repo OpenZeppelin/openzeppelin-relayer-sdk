@@ -13,18 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SignTransactionResponseStellar } from './sign-transaction-response-stellar';
 
 /**
- * 
+ * @type ApiResponseSignTransactionResponseData
  * @export
- * @interface SolanaTransactionRequest
  */
-export interface SolanaTransactionRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof SolanaTransactionRequest
-     */
-    'transaction': string;
-}
+export type ApiResponseSignTransactionResponseData = Array<number> | SignTransactionResponseStellar;
+
 

@@ -31,6 +31,8 @@ models/api-response-relayer-status-data.ts
 models/api-response-relayer-status.ts
 models/api-response-sign-data-response-data.ts
 models/api-response-sign-data-response.ts
+models/api-response-sign-transaction-response-data.ts
+models/api-response-sign-transaction-response.ts
 models/api-response-signer-response-data.ts
 models/api-response-signer-response.ts
 models/api-response-string.ts
@@ -131,6 +133,10 @@ models/sign-data-response-evm.ts
 models/sign-data-response-solana.ts
 models/sign-data-response.ts
 models/sign-transaction-request-params.ts
+models/sign-transaction-request-stellar.ts
+models/sign-transaction-request.ts
+models/sign-transaction-response-stellar.ts
+models/sign-transaction-response.ts
 models/sign-transaction-result.ts
 models/sign-typed-data-request.ts
 models/signer-config-request.ts

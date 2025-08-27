@@ -22,6 +22,12 @@
 export interface RelayerStellarPolicy {
     /**
      * 
+     * @type {boolean}
+     * @memberof RelayerStellarPolicy
+     */
+    'concurrent_transactions'?: boolean | null;
+    /**
+     * 
      * @type {number}
      * @memberof RelayerStellarPolicy
      */
