@@ -21,6 +21,8 @@ Models/ApiResponse_RelayerStatus_data_oneOf_1.md
 Models/ApiResponse_RelayerStatus_data_oneOf_2.md
 Models/ApiResponse_SignDataResponse.md
 Models/ApiResponse_SignDataResponse_data.md
+Models/ApiResponse_SignTransactionResponse.md
+Models/ApiResponse_SignTransactionResponse_data.md
 Models/ApiResponse_SignerResponse.md
 Models/ApiResponse_SignerResponse_data.md
 Models/ApiResponse_String.md
@@ -119,7 +121,11 @@ Models/SignDataRequest.md
 Models/SignDataResponse.md
 Models/SignDataResponseEvm.md
 Models/SignDataResponseSolana.md
+Models/SignTransactionRequest.md
 Models/SignTransactionRequestParams.md
+Models/SignTransactionRequestStellar.md
+Models/SignTransactionResponse.md
+Models/SignTransactionResponseStellar.md
 Models/SignTransactionResult.md
 Models/SignTypedDataRequest.md
 Models/SignerConfigRequest.md

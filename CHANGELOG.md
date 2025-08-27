@@ -1,5 +1,21 @@
 # @openzeppelin/relayer-sdk
 
+## 1.4.0 (2025-08-07)
+
+- fix: plugin method response types ([#158](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/158))
+
+## 1.3.0 (2025-08-06)
+
+- Add new endpoint types for plugins ([#151](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/151))
+
+## 1.2.1 (2025-08-05)
+
+- Export custom modules from modules index file ([#144](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/144))
+
+## 1.2.0 (2025-08-04)
+
+- Expose PluginAPI interface ([#136](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/136))
+- Regenerate spec with latest openapi spec ([#118](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/118))
 
 ## 1.1.0 (2025-07-02)
 
@@ -21,18 +37,10 @@
 
 - feat: Add Stellar examples ([#80](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/80))
 
-## 0.2.0-rc.0 (2025-06-21)
+## 0.1.0 (2025-08-04)
 
-- feat: Add Stellar examples ([#80](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/80))
+- The initial release, v0.1.0. ([#34](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/34))
 
-## 0.1.0
+## 0.1.0-rc.0 (2025-08-04)
 
-### Minor Changes
-
-- [#34](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/34) [`2697eee`](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/commit/2697eeef0e5e216244cf60d059584907d96d8e60) Thanks [@oz-release-app](https://github.com/apps/oz-release-app)! - The initial release, v0.1.0.
-
-## 0.1.0-rc.0
-
-### Minor Changes
-
-- [`2697eee`](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/commit/2697eeef0e5e216244cf60d059584907d96d8e60) Thanks [@collins-w](https://github.com/collins-w)! - The initial release, v0.1.0.
+- The initial release, v0.1.0.

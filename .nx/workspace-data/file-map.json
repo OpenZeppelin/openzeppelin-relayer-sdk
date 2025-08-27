@@ -1,0 +1,1919 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.6.4",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".changeset/README.md",
+        "hash": "4888845876018830777"
+      },
+      {
+        "file": ".changeset/config.json",
+        "hash": "18253567017153188464"
+      },
+      {
+        "file": ".changeset/fresh-kids-divide.md",
+        "hash": "1451251657486775908"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+        "hash": "1902946366719838502"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.md",
+        "hash": "6837882635170460448"
+      },
+      {
+        "file": ".github/actions/prepare/action.yml",
+        "hash": "3782540087188948819"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "8009217025591496739"
+      },
+      {
+        "file": ".github/pr-title-checker-config.json",
+        "hash": "3640456815817739977"
+      },
+      {
+        "file": ".github/pull_request_template.md",
+        "hash": "15096420578666450806"
+      },
+      {
+        "file": ".github/workflows/ci.yaml",
+        "hash": "6089458244010462880"
+      },
+      {
+        "file": ".github/workflows/cla.yml",
+        "hash": "4880622482650493345"
+      },
+      {
+        "file": ".github/workflows/codeql.yml",
+        "hash": "15014595943517520267"
+      },
+      {
+        "file": ".github/workflows/dependency-review.yml",
+        "hash": "213924028101847541"
+      },
+      {
+        "file": ".github/workflows/pr-title.yaml",
+        "hash": "8664901320046057178"
+      },
+      {
+        "file": ".github/workflows/publish.yml",
+        "hash": "12472964004123382498"
+      },
+      {
+        "file": ".github/workflows/scorecard.yml",
+        "hash": "2053423409338255109"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "3842521414187496084"
+      },
+      {
+        "file": ".hintrc",
+        "hash": "643195692404210340"
+      },
+      {
+        "file": ".husky/commit-msg",
+        "hash": "7543248607524875029"
+      },
+      {
+        "file": ".husky/pre-commit",
+        "hash": "12526886290413846195"
+      },
+      {
+        "file": ".lintstagedrc.json",
+        "hash": "10567005760977856355"
+      },
+      {
+        "file": ".npmignore",
+        "hash": "12643741964595806535"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "3043151806479803989"
+      },
+      {
+        "file": ".prettierrc.yaml",
+        "hash": "4665294759864659687"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "6071255618821449078"
+      },
+      {
+        "file": "CODEOWNERS",
+        "hash": "11790055960701838533"
+      },
+      {
+        "file": "CODE_OF_CONDUCT.md",
+        "hash": "7475580503962023472"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "3436599895438545929"
+      },
+      {
+        "file": "README.md",
+        "hash": "12889233345762285535"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "1305557917107666730"
+      },
+      {
+        "file": "assets/release-workflow.png",
+        "hash": "9525742866523796255"
+      },
+      {
+        "file": "commitlint.config.js",
+        "hash": "13840799604877199437"
+      },
+      {
+        "file": "config.json",
+        "hash": "8081396051288174540"
+      },
+      {
+        "file": "custom-models/json-rpc-request-network-rpc-request.ts",
+        "hash": "3373645574799834095"
+      },
+      {
+        "file": "custom-models/plugin-api.ts",
+        "hash": "12379619696153143226"
+      },
+      {
+        "file": "custom-models/stellar-transaction-request.ts",
+        "hash": "13638213730511962739"
+      },
+      {
+        "file": "docs/.openapi-generator-ignore",
+        "hash": "5921108589004068994"
+      },
+      {
+        "file": "docs/.openapi-generator/FILES",
+        "hash": "7069625108782213337"
+      },
+      {
+        "file": "docs/.openapi-generator/VERSION",
+        "hash": "9242823447386782183"
+      },
+      {
+        "file": "docs/Apis/HealthApi.md",
+        "hash": "7450603235709070234"
+      },
+      {
+        "file": "docs/Apis/MetricsApi.md",
+        "hash": "14977293573316645162"
+      },
+      {
+        "file": "docs/Apis/NotificationsApi.md",
+        "hash": "12314759782491765912"
+      },
+      {
+        "file": "docs/Apis/PluginsApi.md",
+        "hash": "8613804355421797865"
+      },
+      {
+        "file": "docs/Apis/RelayersApi.md",
+        "hash": "13224806100688043701"
+      },
+      {
+        "file": "docs/Apis/SignersApi.md",
+        "hash": "164988512359061894"
+      },
+      {
+        "file": "docs/Models/AllowedTokenSwapConfig.md",
+        "hash": "257125755430366186"
+      },
+      {
+        "file": "docs/Models/ApiResponse_BalanceResponse.md",
+        "hash": "12184482771636667640"
+      },
+      {
+        "file": "docs/Models/ApiResponse_BalanceResponse_data.md",
+        "hash": "7336478829843935468"
+      },
+      {
+        "file": "docs/Models/ApiResponse_DeletePendingTransactionsResponse.md",
+        "hash": "15408211938388403814"
+      },
+      {
+        "file": "docs/Models/ApiResponse_DeletePendingTransactionsResponse_data.md",
+        "hash": "16985386877850468822"
+      },
+      {
+        "file": "docs/Models/ApiResponse_NotificationResponse.md",
+        "hash": "2867184054097023335"
+      },
+      {
+        "file": "docs/Models/ApiResponse_NotificationResponse_data.md",
+        "hash": "11530936803510679355"
+      },
+      {
+        "file": "docs/Models/ApiResponse_PluginCallResponse.md",
+        "hash": "17930687755549687995"
+      },
+      {
+        "file": "docs/Models/ApiResponse_PluginCallResponse_data.md",
+        "hash": "1576685323256546839"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerResponse.md",
+        "hash": "9644096531082869723"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerResponse_data.md",
+        "hash": "12950753318896047214"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerStatus.md",
+        "hash": "16364657257718301155"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerStatus_data.md",
+        "hash": "1211292394824132183"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerStatus_data_oneOf.md",
+        "hash": "12981490002112136892"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerStatus_data_oneOf_1.md",
+        "hash": "15462535701352645760"
+      },
+      {
+        "file": "docs/Models/ApiResponse_RelayerStatus_data_oneOf_2.md",
+        "hash": "10648631753545320862"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignDataResponse.md",
+        "hash": "13145099492250248134"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignDataResponse_data.md",
+        "hash": "9590425036270709090"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignTransactionResponse.md",
+        "hash": "18252202779819520527"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignTransactionResponse_data.md",
+        "hash": "3390595706051419530"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignTransactionResponse_data_oneOf.md",
+        "hash": "2144526950512948308"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignTransactionResponse_data_oneOf_1.md",
+        "hash": "12826555113101963625"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignTransactionResponse_data_oneOf_2.md",
+        "hash": "13539277155111998845"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignerResponse.md",
+        "hash": "17829318412632872200"
+      },
+      {
+        "file": "docs/Models/ApiResponse_SignerResponse_data.md",
+        "hash": "4271078520227324680"
+      },
+      {
+        "file": "docs/Models/ApiResponse_String.md",
+        "hash": "16190778467872980551"
+      },
+      {
+        "file": "docs/Models/ApiResponse_TransactionResponse.md",
+        "hash": "4107368746360042926"
+      },
+      {
+        "file": "docs/Models/ApiResponse_TransactionResponse_data.md",
+        "hash": "2913478865651111865"
+      },
+      {
+        "file": "docs/Models/ApiResponse_Vec_NotificationResponse.md",
+        "hash": "4041143304320167392"
+      },
+      {
+        "file": "docs/Models/ApiResponse_Vec_RelayerResponse.md",
+        "hash": "6555640961588888365"
+      },
+      {
+        "file": "docs/Models/ApiResponse_Vec_SignerResponse.md",
+        "hash": "12279627682051836113"
+      },
+      {
+        "file": "docs/Models/ApiResponse_Vec_TransactionResponse.md",
+        "hash": "4171198464947072944"
+      },
+      {
+        "file": "docs/Models/ApiResponse_bool.md",
+        "hash": "10068851397071326035"
+      },
+      {
+        "file": "docs/Models/AssetSpec.md",
+        "hash": "4852040647360082589"
+      },
+      {
+        "file": "docs/Models/AssetSpec_oneOf.md",
+        "hash": "12234733344211097180"
+      },
+      {
+        "file": "docs/Models/AssetSpec_oneOf_1.md",
+        "hash": "17927194661962543490"
+      },
+      {
+        "file": "docs/Models/AssetSpec_oneOf_2.md",
+        "hash": "9884749070048377879"
+      },
+      {
+        "file": "docs/Models/AssetSpec_oneOf_CREDIT4.md",
+        "hash": "4233215329397207493"
+      },
+      {
+        "file": "docs/Models/AuthSpec.md",
+        "hash": "7326626685271309732"
+      },
+      {
+        "file": "docs/Models/AuthSpec_oneOf.md",
+        "hash": "7161412849027039766"
+      },
+      {
+        "file": "docs/Models/AuthSpec_oneOf_1.md",
+        "hash": "13839413196145582824"
+      },
+      {
+        "file": "docs/Models/AuthSpec_oneOf_2.md",
+        "hash": "16601733019879815974"
+      },
+      {
+        "file": "docs/Models/AuthSpec_oneOf_3.md",
+        "hash": "4713788427718754869"
+      },
+      {
+        "file": "docs/Models/AwsKmsSignerRequestConfig.md",
+        "hash": "9998029390154606186"
+      },
+      {
+        "file": "docs/Models/BalanceResponse.md",
+        "hash": "3158689585399172007"
+      },
+      {
+        "file": "docs/Models/ContractSource.md",
+        "hash": "3422476221163339150"
+      },
+      {
+        "file": "docs/Models/ContractSource_oneOf.md",
+        "hash": "510388438239229570"
+      },
+      {
+        "file": "docs/Models/ContractSource_oneOf_1.md",
+        "hash": "16604718117995159193"
+      },
+      {
+        "file": "docs/Models/CreateRelayerPolicyRequest.md",
+        "hash": "8874136562841086371"
+      },
+      {
+        "file": "docs/Models/CreateRelayerPolicyRequest_oneOf.md",
+        "hash": "6048057929630230816"
+      },
+      {
+        "file": "docs/Models/CreateRelayerPolicyRequest_oneOf_1.md",
+        "hash": "16275504547868332310"
+      },
+      {
+        "file": "docs/Models/CreateRelayerPolicyRequest_oneOf_2.md",
+        "hash": "15787470572888719863"
+      },
+      {
+        "file": "docs/Models/CreateRelayerRequest.md",
+        "hash": "17531829725373684187"
+      },
+      {
+        "file": "docs/Models/DeletePendingTransactionsResponse.md",
+        "hash": "9981585825382675896"
+      },
+      {
+        "file": "docs/Models/EvmPolicyResponse.md",
+        "hash": "6451869129954378823"
+      },
+      {
+        "file": "docs/Models/EvmRpcRequest.md",
+        "hash": "15359699545478558242"
+      },
+      {
+        "file": "docs/Models/EvmRpcRequest_oneOf.md",
+        "hash": "1546216136112365128"
+      },
+      {
+        "file": "docs/Models/EvmRpcRequest_oneOf_1.md",
+        "hash": "1162064190597256311"
+      },
+      {
+        "file": "docs/Models/EvmRpcResult.md",
+        "hash": "8299420025658863139"
+      },
+      {
+        "file": "docs/Models/EvmTransactionDataSignature.md",
+        "hash": "17718730857973433948"
+      },
+      {
+        "file": "docs/Models/EvmTransactionRequest.md",
+        "hash": "8471568673257962659"
+      },
+      {
+        "file": "docs/Models/EvmTransactionResponse.md",
+        "hash": "11973534111754311771"
+      },
+      {
+        "file": "docs/Models/FeeEstimateRequestParams.md",
+        "hash": "2927652157780492345"
+      },
+      {
+        "file": "docs/Models/FeeEstimateResult.md",
+        "hash": "9697422657954119891"
+      },
+      {
+        "file": "docs/Models/GetFeaturesEnabledResult.md",
+        "hash": "12670811306785532169"
+      },
+      {
+        "file": "docs/Models/GetSupportedTokensItem.md",
+        "hash": "7615230469544853746"
+      },
+      {
+        "file": "docs/Models/GetSupportedTokensResult.md",
+        "hash": "4859000576146189574"
+      },
+      {
+        "file": "docs/Models/GoogleCloudKmsSignerKeyRequestConfig.md",
+        "hash": "1687145241510771586"
+      },
+      {
+        "file": "docs/Models/GoogleCloudKmsSignerKeyResponseConfig.md",
+        "hash": "18118171773655766287"
+      },
+      {
+        "file": "docs/Models/GoogleCloudKmsSignerRequestConfig.md",
+        "hash": "4591030671391400061"
+      },
+      {
+        "file": "docs/Models/GoogleCloudKmsSignerServiceAccountRequestConfig.md",
+        "hash": "17286987283523579661"
+      },
+      {
+        "file": "docs/Models/GoogleCloudKmsSignerServiceAccountResponseConfig.md",
+        "hash": "16315020831760975317"
+      },
+      {
+        "file": "docs/Models/JsonRpcError.md",
+        "hash": "8278004813762983928"
+      },
+      {
+        "file": "docs/Models/JsonRpcId.md",
+        "hash": "2669064017557231668"
+      },
+      {
+        "file": "docs/Models/JsonRpcRequest_NetworkRpcRequest.md",
+        "hash": "3671446058328281424"
+      },
+      {
+        "file": "docs/Models/JsonRpcResponse_NetworkRpcResult.md",
+        "hash": "2073852202402938350"
+      },
+      {
+        "file": "docs/Models/JsonRpcResponse_NetworkRpcResult_result.md",
+        "hash": "2221902298348596374"
+      },
+      {
+        "file": "docs/Models/JupiterSwapOptions.md",
+        "hash": "13485655263232766850"
+      },
+      {
+        "file": "docs/Models/LocalSignerRequestConfig.md",
+        "hash": "3530033488567557632"
+      },
+      {
+        "file": "docs/Models/LogEntry.md",
+        "hash": "15887335395312314914"
+      },
+      {
+        "file": "docs/Models/LogLevel.md",
+        "hash": "12501781425086235832"
+      },
+      {
+        "file": "docs/Models/MemoSpec.md",
+        "hash": "14660364176600695946"
+      },
+      {
+        "file": "docs/Models/MemoSpec_oneOf.md",
+        "hash": "11761465364538369475"
+      },
+      {
+        "file": "docs/Models/MemoSpec_oneOf_1.md",
+        "hash": "14903024771003490867"
+      },
+      {
+        "file": "docs/Models/MemoSpec_oneOf_2.md",
+        "hash": "13884713536514231007"
+      },
+      {
+        "file": "docs/Models/MemoSpec_oneOf_3.md",
+        "hash": "11063653535932916376"
+      },
+      {
+        "file": "docs/Models/MemoSpec_oneOf_4.md",
+        "hash": "16739786588227911626"
+      },
+      {
+        "file": "docs/Models/NetworkPolicyResponse.md",
+        "hash": "6609330656743697035"
+      },
+      {
+        "file": "docs/Models/NetworkRpcRequest.md",
+        "hash": "16943317864720386303"
+      },
+      {
+        "file": "docs/Models/NetworkRpcResult.md",
+        "hash": "2959408660967947090"
+      },
+      {
+        "file": "docs/Models/NetworkTransactionRequest.md",
+        "hash": "18321168465781594909"
+      },
+      {
+        "file": "docs/Models/NetworkType.md",
+        "hash": "16249696315644773341"
+      },
+      {
+        "file": "docs/Models/NotificationCreateRequest.md",
+        "hash": "46450219911392240"
+      },
+      {
+        "file": "docs/Models/NotificationResponse.md",
+        "hash": "3899939004246958774"
+      },
+      {
+        "file": "docs/Models/NotificationType.md",
+        "hash": "15609312038088116595"
+      },
+      {
+        "file": "docs/Models/NotificationUpdateRequest.md",
+        "hash": "18326077927420594177"
+      },
+      {
+        "file": "docs/Models/OperationSpec.md",
+        "hash": "2890377100273264241"
+      },
+      {
+        "file": "docs/Models/OperationSpec_oneOf.md",
+        "hash": "1439825538782139383"
+      },
+      {
+        "file": "docs/Models/OperationSpec_oneOf_1.md",
+        "hash": "4869569021345135122"
+      },
+      {
+        "file": "docs/Models/OperationSpec_oneOf_2.md",
+        "hash": "16323971459437224989"
+      },
+      {
+        "file": "docs/Models/OperationSpec_oneOf_3.md",
+        "hash": "17528894416488189741"
+      },
+      {
+        "file": "docs/Models/PaginationMeta.md",
+        "hash": "10452200932494851834"
+      },
+      {
+        "file": "docs/Models/PluginCallRequest.md",
+        "hash": "11768188197475343173"
+      },
+      {
+        "file": "docs/Models/PluginCallResponse.md",
+        "hash": "10243977137015734842"
+      },
+      {
+        "file": "docs/Models/PrepareTransactionRequestParams.md",
+        "hash": "5869725330364881949"
+      },
+      {
+        "file": "docs/Models/PrepareTransactionResult.md",
+        "hash": "9500063802947845246"
+      },
+      {
+        "file": "docs/Models/RelayerEvmPolicy.md",
+        "hash": "13051359908945553678"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkPolicy.md",
+        "hash": "15163940408771762572"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkPolicyResponse.md",
+        "hash": "9337305097028987655"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkPolicy_oneOf.md",
+        "hash": "16991761077959131835"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkPolicy_oneOf_1.md",
+        "hash": "6115246229789871534"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkPolicy_oneOf_2.md",
+        "hash": "7214835104388077882"
+      },
+      {
+        "file": "docs/Models/RelayerNetworkType.md",
+        "hash": "16718544958823932302"
+      },
+      {
+        "file": "docs/Models/RelayerResponse.md",
+        "hash": "1000404488383021118"
+      },
+      {
+        "file": "docs/Models/RelayerSolanaPolicy.md",
+        "hash": "3861981054381431707"
+      },
+      {
+        "file": "docs/Models/RelayerSolanaSwapConfig.md",
+        "hash": "11750339380913687013"
+      },
+      {
+        "file": "docs/Models/RelayerSolanaSwapConfig_jupiter_swap_options.md",
+        "hash": "12121194444243823163"
+      },
+      {
+        "file": "docs/Models/RelayerSolanaSwapConfig_strategy.md",
+        "hash": "6814604980587870958"
+      },
+      {
+        "file": "docs/Models/RelayerStatus.md",
+        "hash": "15491421326456029968"
+      },
+      {
+        "file": "docs/Models/RelayerStellarPolicy.md",
+        "hash": "14722119391057720518"
+      },
+      {
+        "file": "docs/Models/RelayerUpdateRequest.md",
+        "hash": "7356791969488347543"
+      },
+      {
+        "file": "docs/Models/RpcConfig.md",
+        "hash": "6571139330186989098"
+      },
+      {
+        "file": "docs/Models/SignAndSendTransactionRequestParams.md",
+        "hash": "10653178211340734031"
+      },
+      {
+        "file": "docs/Models/SignAndSendTransactionResult.md",
+        "hash": "11471147229997879867"
+      },
+      {
+        "file": "docs/Models/SignDataRequest.md",
+        "hash": "18110547118700087040"
+      },
+      {
+        "file": "docs/Models/SignDataResponse.md",
+        "hash": "4769070131938619245"
+      },
+      {
+        "file": "docs/Models/SignDataResponseEvm.md",
+        "hash": "2549544180527599003"
+      },
+      {
+        "file": "docs/Models/SignDataResponseSolana.md",
+        "hash": "12340576264242884349"
+      },
+      {
+        "file": "docs/Models/SignTransactionRequest.md",
+        "hash": "3655863572291889228"
+      },
+      {
+        "file": "docs/Models/SignTransactionRequestParams.md",
+        "hash": "15310357633794802478"
+      },
+      {
+        "file": "docs/Models/SignTransactionRequestStellar.md",
+        "hash": "1467385684428433553"
+      },
+      {
+        "file": "docs/Models/SignTransactionResponse.md",
+        "hash": "1884243104327653975"
+      },
+      {
+        "file": "docs/Models/SignTransactionResponseStellar.md",
+        "hash": "15263617107403503771"
+      },
+      {
+        "file": "docs/Models/SignTransactionResult.md",
+        "hash": "13539573832708832543"
+      },
+      {
+        "file": "docs/Models/SignTypedDataRequest.md",
+        "hash": "13832446066852988166"
+      },
+      {
+        "file": "docs/Models/SignerConfigRequest.md",
+        "hash": "9826742688202719006"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse.md",
+        "hash": "432327718553007906"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse_oneOf.md",
+        "hash": "6577146946158656854"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse_oneOf_1.md",
+        "hash": "4036106741581274390"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse_oneOf_2.md",
+        "hash": "2080017484107190086"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse_oneOf_3.md",
+        "hash": "9455739581320458400"
+      },
+      {
+        "file": "docs/Models/SignerConfigResponse_oneOf_4.md",
+        "hash": "9812067484203066212"
+      },
+      {
+        "file": "docs/Models/SignerCreateRequest.md",
+        "hash": "12742704254099713979"
+      },
+      {
+        "file": "docs/Models/SignerResponse.md",
+        "hash": "15314824510758930740"
+      },
+      {
+        "file": "docs/Models/SignerType.md",
+        "hash": "3464390185492044343"
+      },
+      {
+        "file": "docs/Models/SignerTypeRequest.md",
+        "hash": "6845925553643478499"
+      },
+      {
+        "file": "docs/Models/SolanaAllowedTokensPolicy.md",
+        "hash": "17141549011440715247"
+      },
+      {
+        "file": "docs/Models/SolanaAllowedTokensSwapConfig.md",
+        "hash": "16350505805693166635"
+      },
+      {
+        "file": "docs/Models/SolanaFeePaymentStrategy.md",
+        "hash": "5767482155766452627"
+      },
+      {
+        "file": "docs/Models/SolanaPolicyResponse.md",
+        "hash": "2732866941434647677"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest.md",
+        "hash": "16194152646430374592"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf.md",
+        "hash": "8776544066274976495"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_1.md",
+        "hash": "6961363926707844425"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_2.md",
+        "hash": "11484601550328716986"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_3.md",
+        "hash": "7344779737632268681"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_4.md",
+        "hash": "6776560915577476767"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_5.md",
+        "hash": "16608518848740834803"
+      },
+      {
+        "file": "docs/Models/SolanaRpcRequest_oneOf_6.md",
+        "hash": "9493877803138464230"
+      },
+      {
+        "file": "docs/Models/SolanaRpcResult.md",
+        "hash": "9170427732176290065"
+      },
+      {
+        "file": "docs/Models/SolanaSwapStrategy.md",
+        "hash": "3976868687130795084"
+      },
+      {
+        "file": "docs/Models/SolanaTransactionRequest.md",
+        "hash": "11618196237996681776"
+      },
+      {
+        "file": "docs/Models/SolanaTransactionResponse.md",
+        "hash": "17392380312757808043"
+      },
+      {
+        "file": "docs/Models/Speed.md",
+        "hash": "16238891103548139111"
+      },
+      {
+        "file": "docs/Models/StellarPolicyResponse.md",
+        "hash": "16603434867814629901"
+      },
+      {
+        "file": "docs/Models/StellarRpcRequest.md",
+        "hash": "3726633318639108650"
+      },
+      {
+        "file": "docs/Models/StellarRpcRequest_oneOf.md",
+        "hash": "10848173861595076861"
+      },
+      {
+        "file": "docs/Models/StellarRpcResult.md",
+        "hash": "2855558177281859536"
+      },
+      {
+        "file": "docs/Models/StellarTransactionRequest.md",
+        "hash": "90497474802952169"
+      },
+      {
+        "file": "docs/Models/StellarTransactionResponse.md",
+        "hash": "9527426351726950428"
+      },
+      {
+        "file": "docs/Models/TransactionResponse.md",
+        "hash": "3214340010237033449"
+      },
+      {
+        "file": "docs/Models/TransactionStatus.md",
+        "hash": "4410294712447958115"
+      },
+      {
+        "file": "docs/Models/TransferTransactionRequestParams.md",
+        "hash": "11600532459931010412"
+      },
+      {
+        "file": "docs/Models/TransferTransactionResult.md",
+        "hash": "806904721456309077"
+      },
+      {
+        "file": "docs/Models/TurnkeySignerRequestConfig.md",
+        "hash": "2157316144936369073"
+      },
+      {
+        "file": "docs/Models/UpdateRelayerRequest.md",
+        "hash": "1031266128832886979"
+      },
+      {
+        "file": "docs/Models/VaultSignerRequestConfig.md",
+        "hash": "17327897914349187288"
+      },
+      {
+        "file": "docs/Models/VaultTransitSignerRequestConfig.md",
+        "hash": "11860315889217018643"
+      },
+      {
+        "file": "docs/Models/WasmSource.md",
+        "hash": "11764584737066425434"
+      },
+      {
+        "file": "docs/Models/WasmSource_oneOf.md",
+        "hash": "17815309350200912273"
+      },
+      {
+        "file": "docs/Models/WasmSource_oneOf_1.md",
+        "hash": "3181758591424911022"
+      },
+      {
+        "file": "docs/README.md",
+        "hash": "17404353513140207893"
+      },
+      {
+        "file": "eslint.config.js",
+        "hash": "5185731780613339829"
+      },
+      {
+        "file": "examples/notifications/createNotification.ts",
+        "hash": "4538631749846632035"
+      },
+      {
+        "file": "examples/notifications/deleteNotification.ts",
+        "hash": "11299803516806922765"
+      },
+      {
+        "file": "examples/notifications/getNotification.ts",
+        "hash": "5338203206555423638"
+      },
+      {
+        "file": "examples/notifications/listNotifications.ts",
+        "hash": "5544639807309703855"
+      },
+      {
+        "file": "examples/notifications/updateNotification.ts",
+        "hash": "5766976824547793550"
+      },
+      {
+        "file": "examples/plugins/callPlugin.ts",
+        "hash": "5439989710460641236"
+      },
+      {
+        "file": "examples/relayers/common/cancelTransactionById.ts",
+        "hash": "9742564022477666569"
+      },
+      {
+        "file": "examples/relayers/common/createRelayer.ts",
+        "hash": "3385331965603556722"
+      },
+      {
+        "file": "examples/relayers/common/deleteRelayer.ts",
+        "hash": "6714842713154445926"
+      },
+      {
+        "file": "examples/relayers/common/getRelayer.ts",
+        "hash": "12853996146581150034"
+      },
+      {
+        "file": "examples/relayers/common/getRelayerBalance.ts",
+        "hash": "5731515349313161885"
+      },
+      {
+        "file": "examples/relayers/common/getRelayerStatus.ts",
+        "hash": "7743933505780402704"
+      },
+      {
+        "file": "examples/relayers/common/getTransactionById.ts",
+        "hash": "3124096887928129041"
+      },
+      {
+        "file": "examples/relayers/common/getTransactionByNonce.ts",
+        "hash": "16212468160859951157"
+      },
+      {
+        "file": "examples/relayers/common/listRelayers.ts",
+        "hash": "6410843016511615882"
+      },
+      {
+        "file": "examples/relayers/common/listTransactions.ts",
+        "hash": "4269066037834092778"
+      },
+      {
+        "file": "examples/relayers/common/pauseRelayer.ts",
+        "hash": "2956875219079509915"
+      },
+      {
+        "file": "examples/relayers/evm/sendTransactionEIP1559.ts",
+        "hash": "3925426427953986681"
+      },
+      {
+        "file": "examples/relayers/evm/sendTransactionLegacy.ts",
+        "hash": "11076043688674262560"
+      },
+      {
+        "file": "examples/relayers/evm/sendTransactionSpeed.ts",
+        "hash": "10869417529125342403"
+      },
+      {
+        "file": "examples/relayers/solana/feeEstimate_rpc.ts",
+        "hash": "13297292115801969090"
+      },
+      {
+        "file": "examples/relayers/solana/getFeaturesEnabled_rpc.ts",
+        "hash": "14892138611655085048"
+      },
+      {
+        "file": "examples/relayers/solana/getSupportedTokens_rpc.ts",
+        "hash": "10908867237534615052"
+      },
+      {
+        "file": "examples/relayers/solana/prepareTransactionToken2022_rpc.ts",
+        "hash": "1456527297709865306"
+      },
+      {
+        "file": "examples/relayers/solana/prepareTransaction_rpc.ts",
+        "hash": "8676451582973070633"
+      },
+      {
+        "file": "examples/relayers/solana/signAndSendTransaction_rpc.ts",
+        "hash": "13899196932830672291"
+      },
+      {
+        "file": "examples/relayers/solana/signTransaction_rpc.ts",
+        "hash": "2113117144380915701"
+      },
+      {
+        "file": "examples/relayers/solana/transferTransaction_rpc.ts",
+        "hash": "9897259427731344491"
+      },
+      {
+        "file": "examples/relayers/solana/util.ts",
+        "hash": "7574369493746758074"
+      },
+      {
+        "file": "examples/relayers/stellar/package.json",
+        "hash": "5846079974236973635"
+      },
+      {
+        "file": "examples/relayers/stellar/pnpm-lock.yaml",
+        "hash": "1817336226176341579"
+      },
+      {
+        "file": "examples/relayers/stellar/src/createContract.ts",
+        "hash": "9351994093570911935"
+      },
+      {
+        "file": "examples/relayers/stellar/src/openZeppelinTokenContract.hex",
+        "hash": "9689115892458913801"
+      },
+      {
+        "file": "examples/relayers/stellar/src/sendFeeBumpTransaction.ts",
+        "hash": "981789807411032370"
+      },
+      {
+        "file": "examples/relayers/stellar/src/sendPayment.ts",
+        "hash": "12257930159275103769"
+      },
+      {
+        "file": "examples/relayers/stellar/src/sendTransactionXdr.ts",
+        "hash": "5620894729187978895"
+      },
+      {
+        "file": "examples/relayers/stellar/src/signTransaction.ts",
+        "hash": "5741428134105899528"
+      },
+      {
+        "file": "examples/relayers/stellar/src/uploadWasm.ts",
+        "hash": "5448305669407225859"
+      },
+      {
+        "file": "examples/relayers/stellar/src/useChannelAccounts.ts",
+        "hash": "1030296205654044102"
+      },
+      {
+        "file": "examples/relayers/stellar/tsconfig.json",
+        "hash": "9632769210682224250"
+      },
+      {
+        "file": "examples/signers/createSigner.ts",
+        "hash": "10922553520601880625"
+      },
+      {
+        "file": "examples/signers/deleteSigner.ts",
+        "hash": "7699182716158737310"
+      },
+      {
+        "file": "examples/signers/getSigner.ts",
+        "hash": "13898350643530782895"
+      },
+      {
+        "file": "examples/signers/listSigners.ts",
+        "hash": "4353260984238391132"
+      },
+      {
+        "file": "openapi.json",
+        "hash": "7566289749561561911"
+      },
+      {
+        "file": "openapitools.json",
+        "hash": "6282358958421921897"
+      },
+      {
+        "file": "package.json",
+        "hash": "5875765448391177182"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "2502763557448705255"
+      },
+      {
+        "file": "scripts/changelog.js",
+        "hash": "8013240818444606037"
+      },
+      {
+        "file": "scripts/github-release.js",
+        "hash": "12142264429737971674"
+      },
+      {
+        "file": "scripts/post-generate.js",
+        "hash": "14506537598208408706"
+      },
+      {
+        "file": "scripts/start.sh",
+        "hash": "7476328569276782356"
+      },
+      {
+        "file": "scripts/state.js",
+        "hash": "14696721226042470901"
+      },
+      {
+        "file": "scripts/tag.sh",
+        "hash": "17882543252782845334"
+      },
+      {
+        "file": "scripts/version.sh",
+        "hash": "8353871285430362579"
+      },
+      {
+        "file": "src/.gitignore",
+        "hash": "14031326617291468971"
+      },
+      {
+        "file": "src/.npmignore",
+        "hash": "9470206609760406689"
+      },
+      {
+        "file": "src/.openapi-generator-ignore",
+        "hash": "5921108589004068994"
+      },
+      {
+        "file": "src/.openapi-generator/FILES",
+        "hash": "435466464915785577"
+      },
+      {
+        "file": "src/.openapi-generator/VERSION",
+        "hash": "9242823447386782183"
+      },
+      {
+        "file": "src/README.md",
+        "hash": "2088654029834603266"
+      },
+      {
+        "file": "src/api.ts",
+        "hash": "6521206297099372461"
+      },
+      {
+        "file": "src/apis/health-api.ts",
+        "hash": "17620263488327689022"
+      },
+      {
+        "file": "src/apis/metrics-api.ts",
+        "hash": "8178921084734989184"
+      },
+      {
+        "file": "src/apis/notifications-api.ts",
+        "hash": "12928470609182820133"
+      },
+      {
+        "file": "src/apis/plugins-api.ts",
+        "hash": "15202278560739750970"
+      },
+      {
+        "file": "src/apis/relayers-api.ts",
+        "hash": "3228076865199125317"
+      },
+      {
+        "file": "src/apis/signers-api.ts",
+        "hash": "18164024500151008733"
+      },
+      {
+        "file": "src/base.ts",
+        "hash": "10847416406710398286"
+      },
+      {
+        "file": "src/common.ts",
+        "hash": "12966052825981228685"
+      },
+      {
+        "file": "src/configuration.ts",
+        "hash": "14247645095402735690"
+      },
+      {
+        "file": "src/git_push.sh",
+        "hash": "257268719382818012"
+      },
+      {
+        "file": "src/index.ts",
+        "hash": "2901747662610870468"
+      },
+      {
+        "file": "src/models/api-response-balance-response-data.ts",
+        "hash": "4730863475065624097"
+      },
+      {
+        "file": "src/models/api-response-balance-response.ts",
+        "hash": "8049746993609889231"
+      },
+      {
+        "file": "src/models/api-response-delete-pending-transactions-response-data.ts",
+        "hash": "8739387715044049226"
+      },
+      {
+        "file": "src/models/api-response-delete-pending-transactions-response.ts",
+        "hash": "5890150519092124264"
+      },
+      {
+        "file": "src/models/api-response-notification-response-data.ts",
+        "hash": "3211311954125159666"
+      },
+      {
+        "file": "src/models/api-response-notification-response.ts",
+        "hash": "14704250479289783193"
+      },
+      {
+        "file": "src/models/api-response-plugin-call-response-data.ts",
+        "hash": "17663131620656116150"
+      },
+      {
+        "file": "src/models/api-response-plugin-call-response.ts",
+        "hash": "3770438949056720829"
+      },
+      {
+        "file": "src/models/api-response-relayer-response-data.ts",
+        "hash": "11049362611898156041"
+      },
+      {
+        "file": "src/models/api-response-relayer-response.ts",
+        "hash": "9219136128956083518"
+      },
+      {
+        "file": "src/models/api-response-relayer-status-data-one-of.ts",
+        "hash": "16846438884902048971"
+      },
+      {
+        "file": "src/models/api-response-relayer-status-data-one-of1.ts",
+        "hash": "17705141099984588214"
+      },
+      {
+        "file": "src/models/api-response-relayer-status-data-one-of2.ts",
+        "hash": "9696335815813819019"
+      },
+      {
+        "file": "src/models/api-response-relayer-status-data.ts",
+        "hash": "10684491716547631776"
+      },
+      {
+        "file": "src/models/api-response-relayer-status.ts",
+        "hash": "14244697438587499897"
+      },
+      {
+        "file": "src/models/api-response-sign-data-response-data.ts",
+        "hash": "14785846575515332170"
+      },
+      {
+        "file": "src/models/api-response-sign-data-response.ts",
+        "hash": "14193612319893473611"
+      },
+      {
+        "file": "src/models/api-response-sign-transaction-response-data.ts",
+        "hash": "16377666714409514589"
+      },
+      {
+        "file": "src/models/api-response-sign-transaction-response.ts",
+        "hash": "11630009304773343580"
+      },
+      {
+        "file": "src/models/api-response-signer-response-data.ts",
+        "hash": "2512696982044590005"
+      },
+      {
+        "file": "src/models/api-response-signer-response.ts",
+        "hash": "14098030695510761686"
+      },
+      {
+        "file": "src/models/api-response-string.ts",
+        "hash": "12597861677846128217"
+      },
+      {
+        "file": "src/models/api-response-transaction-response-data.ts",
+        "hash": "4656734601978249917"
+      },
+      {
+        "file": "src/models/api-response-transaction-response.ts",
+        "hash": "15242770440686985996"
+      },
+      {
+        "file": "src/models/api-response-vec-notification-response.ts",
+        "hash": "10494232621099862973"
+      },
+      {
+        "file": "src/models/api-response-vec-relayer-response.ts",
+        "hash": "6076346254250220265"
+      },
+      {
+        "file": "src/models/api-response-vec-signer-response.ts",
+        "hash": "5448324553727366189"
+      },
+      {
+        "file": "src/models/api-response-vec-transaction-response.ts",
+        "hash": "11787675785600871400"
+      },
+      {
+        "file": "src/models/asset-spec-one-of.ts",
+        "hash": "341430696359193597"
+      },
+      {
+        "file": "src/models/asset-spec-one-of1.ts",
+        "hash": "12123981263773956844"
+      },
+      {
+        "file": "src/models/asset-spec-one-of2.ts",
+        "hash": "5769151919903954247"
+      },
+      {
+        "file": "src/models/asset-spec.ts",
+        "hash": "2427300568376718747"
+      },
+      {
+        "file": "src/models/auth-spec-one-of.ts",
+        "hash": "18368506946321401169"
+      },
+      {
+        "file": "src/models/auth-spec-one-of1.ts",
+        "hash": "12293892699012835172"
+      },
+      {
+        "file": "src/models/auth-spec-one-of2.ts",
+        "hash": "18174854003308830660"
+      },
+      {
+        "file": "src/models/auth-spec-one-of3.ts",
+        "hash": "13636733425867277264"
+      },
+      {
+        "file": "src/models/auth-spec.ts",
+        "hash": "7026266557654318591"
+      },
+      {
+        "file": "src/models/aws-kms-signer-request-config.ts",
+        "hash": "2094602497027955118"
+      },
+      {
+        "file": "src/models/balance-response.ts",
+        "hash": "17793025414146783867"
+      },
+      {
+        "file": "src/models/contract-source-one-of.ts",
+        "hash": "548804371578656613"
+      },
+      {
+        "file": "src/models/contract-source-one-of1.ts",
+        "hash": "17121095656430300817"
+      },
+      {
+        "file": "src/models/contract-source.ts",
+        "hash": "14570141605989642476"
+      },
+      {
+        "file": "src/models/create-relayer-policy-request-one-of.ts",
+        "hash": "307036876850932297"
+      },
+      {
+        "file": "src/models/create-relayer-policy-request-one-of1.ts",
+        "hash": "16506505407702907829"
+      },
+      {
+        "file": "src/models/create-relayer-policy-request-one-of2.ts",
+        "hash": "16093163128913452974"
+      },
+      {
+        "file": "src/models/create-relayer-policy-request.ts",
+        "hash": "1307479584466584038"
+      },
+      {
+        "file": "src/models/create-relayer-request.ts",
+        "hash": "7822119842585631187"
+      },
+      {
+        "file": "src/models/delete-pending-transactions-response.ts",
+        "hash": "12013259136800692549"
+      },
+      {
+        "file": "src/models/evm-policy-response.ts",
+        "hash": "8845478133284170697"
+      },
+      {
+        "file": "src/models/evm-rpc-request-one-of.ts",
+        "hash": "16507008223454787277"
+      },
+      {
+        "file": "src/models/evm-rpc-request-one-of1.ts",
+        "hash": "14770053603287010535"
+      },
+      {
+        "file": "src/models/evm-rpc-request.ts",
+        "hash": "5034854539863276212"
+      },
+      {
+        "file": "src/models/evm-transaction-data-signature.ts",
+        "hash": "8423363683455649840"
+      },
+      {
+        "file": "src/models/evm-transaction-request.ts",
+        "hash": "11457582021482557738"
+      },
+      {
+        "file": "src/models/evm-transaction-response.ts",
+        "hash": "2342244002961181475"
+      },
+      {
+        "file": "src/models/fee-estimate-request-params.ts",
+        "hash": "2226118265712950199"
+      },
+      {
+        "file": "src/models/fee-estimate-result.ts",
+        "hash": "6578668024129270896"
+      },
+      {
+        "file": "src/models/get-features-enabled-result.ts",
+        "hash": "10792919403383956607"
+      },
+      {
+        "file": "src/models/get-supported-tokens-item.ts",
+        "hash": "5814550610251743195"
+      },
+      {
+        "file": "src/models/get-supported-tokens-result.ts",
+        "hash": "9522219368233223504"
+      },
+      {
+        "file": "src/models/google-cloud-kms-signer-key-request-config.ts",
+        "hash": "17418783898380854729"
+      },
+      {
+        "file": "src/models/google-cloud-kms-signer-key-response-config.ts",
+        "hash": "1780997016003310768"
+      },
+      {
+        "file": "src/models/google-cloud-kms-signer-request-config.ts",
+        "hash": "8650959209740273756"
+      },
+      {
+        "file": "src/models/google-cloud-kms-signer-service-account-request-config.ts",
+        "hash": "15607795514453872835"
+      },
+      {
+        "file": "src/models/google-cloud-kms-signer-service-account-response-config.ts",
+        "hash": "12798363485550358656"
+      },
+      {
+        "file": "src/models/index.ts",
+        "hash": "10530870512282567443"
+      },
+      {
+        "file": "src/models/json-rpc-error.ts",
+        "hash": "8624043374581008030"
+      },
+      {
+        "file": "src/models/json-rpc-id.ts",
+        "hash": "12779295718140124109"
+      },
+      {
+        "file": "src/models/json-rpc-request-network-rpc-request.ts",
+        "hash": "3373645574799834095"
+      },
+      {
+        "file": "src/models/json-rpc-response-network-rpc-result-result.ts",
+        "hash": "8692514121793545029"
+      },
+      {
+        "file": "src/models/json-rpc-response-network-rpc-result.ts",
+        "hash": "16400660100228318895"
+      },
+      {
+        "file": "src/models/jupiter-swap-options.ts",
+        "hash": "9208093844671362602"
+      },
+      {
+        "file": "src/models/local-signer-request-config.ts",
+        "hash": "2588022451668712844"
+      },
+      {
+        "file": "src/models/log-entry.ts",
+        "hash": "16245252989438850776"
+      },
+      {
+        "file": "src/models/log-level.ts",
+        "hash": "12494820247473773903"
+      },
+      {
+        "file": "src/models/memo-spec-one-of.ts",
+        "hash": "14147916822524266610"
+      },
+      {
+        "file": "src/models/memo-spec-one-of1.ts",
+        "hash": "3151889330776472753"
+      },
+      {
+        "file": "src/models/memo-spec-one-of2.ts",
+        "hash": "13079906217618352649"
+      },
+      {
+        "file": "src/models/memo-spec-one-of3.ts",
+        "hash": "18309878554574844846"
+      },
+      {
+        "file": "src/models/memo-spec-one-of4.ts",
+        "hash": "13157977635610328390"
+      },
+      {
+        "file": "src/models/memo-spec.ts",
+        "hash": "11319817786730587"
+      },
+      {
+        "file": "src/models/network-policy-response.ts",
+        "hash": "226939567982165865"
+      },
+      {
+        "file": "src/models/network-rpc-request.ts",
+        "hash": "2250398065776958368"
+      },
+      {
+        "file": "src/models/network-rpc-result.ts",
+        "hash": "2224770908241895437"
+      },
+      {
+        "file": "src/models/network-transaction-request.ts",
+        "hash": "13589426330734219376"
+      },
+      {
+        "file": "src/models/notification-create-request.ts",
+        "hash": "7677258637498675876"
+      },
+      {
+        "file": "src/models/notification-response.ts",
+        "hash": "9815847000296022163"
+      },
+      {
+        "file": "src/models/notification-type.ts",
+        "hash": "4122495798826015250"
+      },
+      {
+        "file": "src/models/notification-update-request.ts",
+        "hash": "4116266628783915190"
+      },
+      {
+        "file": "src/models/operation-spec-one-of.ts",
+        "hash": "7978041004623622149"
+      },
+      {
+        "file": "src/models/operation-spec-one-of1.ts",
+        "hash": "13803814599657405507"
+      },
+      {
+        "file": "src/models/operation-spec-one-of2.ts",
+        "hash": "11686394541570291142"
+      },
+      {
+        "file": "src/models/operation-spec-one-of3.ts",
+        "hash": "17805666959697458510"
+      },
+      {
+        "file": "src/models/operation-spec.ts",
+        "hash": "18089630063849336019"
+      },
+      {
+        "file": "src/models/pagination-meta.ts",
+        "hash": "12178214591614362319"
+      },
+      {
+        "file": "src/models/plugin-api.ts",
+        "hash": "3057716291581896520"
+      },
+      {
+        "file": "src/models/plugin-call-request.ts",
+        "hash": "2115456467729218826"
+      },
+      {
+        "file": "src/models/plugin-call-response.ts",
+        "hash": "1912903819188712695"
+      },
+      {
+        "file": "src/models/prepare-transaction-request-params.ts",
+        "hash": "3531772060222394621"
+      },
+      {
+        "file": "src/models/prepare-transaction-result.ts",
+        "hash": "4216969733841651257"
+      },
+      {
+        "file": "src/models/relayer-evm-policy.ts",
+        "hash": "5605207296556466771"
+      },
+      {
+        "file": "src/models/relayer-network-policy-one-of.ts",
+        "hash": "7673829700644111550"
+      },
+      {
+        "file": "src/models/relayer-network-policy-one-of1.ts",
+        "hash": "18194459683286405021"
+      },
+      {
+        "file": "src/models/relayer-network-policy-one-of2.ts",
+        "hash": "12306552764463824621"
+      },
+      {
+        "file": "src/models/relayer-network-policy-response.ts",
+        "hash": "433793720992857783"
+      },
+      {
+        "file": "src/models/relayer-network-policy.ts",
+        "hash": "1481366765107573420"
+      },
+      {
+        "file": "src/models/relayer-network-type.ts",
+        "hash": "11956563505620926783"
+      },
+      {
+        "file": "src/models/relayer-response.ts",
+        "hash": "7134887479582998729"
+      },
+      {
+        "file": "src/models/relayer-solana-policy.ts",
+        "hash": "9236117238724540666"
+      },
+      {
+        "file": "src/models/relayer-solana-swap-config.ts",
+        "hash": "13837777421016501068"
+      },
+      {
+        "file": "src/models/relayer-status.ts",
+        "hash": "12851933663958906948"
+      },
+      {
+        "file": "src/models/relayer-stellar-policy.ts",
+        "hash": "10105663356710899141"
+      },
+      {
+        "file": "src/models/rpc-config.ts",
+        "hash": "3123399807095159104"
+      },
+      {
+        "file": "src/models/sign-and-send-transaction-request-params.ts",
+        "hash": "14333832371389217233"
+      },
+      {
+        "file": "src/models/sign-and-send-transaction-result.ts",
+        "hash": "18119388622773279020"
+      },
+      {
+        "file": "src/models/sign-data-request.ts",
+        "hash": "12960482023871084126"
+      },
+      {
+        "file": "src/models/sign-data-response-evm.ts",
+        "hash": "13880170525694430444"
+      },
+      {
+        "file": "src/models/sign-data-response-solana.ts",
+        "hash": "5543528557199535414"
+      },
+      {
+        "file": "src/models/sign-data-response.ts",
+        "hash": "6120244676079898108"
+      },
+      {
+        "file": "src/models/sign-transaction-request-params.ts",
+        "hash": "15335966897322113567"
+      },
+      {
+        "file": "src/models/sign-transaction-request-stellar.ts",
+        "hash": "9456520886159148840"
+      },
+      {
+        "file": "src/models/sign-transaction-request.ts",
+        "hash": "16049296701574371281"
+      },
+      {
+        "file": "src/models/sign-transaction-response-stellar.ts",
+        "hash": "10719764641946973992"
+      },
+      {
+        "file": "src/models/sign-transaction-response.ts",
+        "hash": "4437871822790494239"
+      },
+      {
+        "file": "src/models/sign-transaction-result.ts",
+        "hash": "9411242357508388706"
+      },
+      {
+        "file": "src/models/sign-typed-data-request.ts",
+        "hash": "10245342665598125512"
+      },
+      {
+        "file": "src/models/signer-config-request.ts",
+        "hash": "12203927156180883608"
+      },
+      {
+        "file": "src/models/signer-config-response-one-of.ts",
+        "hash": "16167058286388523283"
+      },
+      {
+        "file": "src/models/signer-config-response-one-of1.ts",
+        "hash": "3459570527463939741"
+      },
+      {
+        "file": "src/models/signer-config-response-one-of2.ts",
+        "hash": "2969959050381654115"
+      },
+      {
+        "file": "src/models/signer-config-response-one-of3.ts",
+        "hash": "433509075630446851"
+      },
+      {
+        "file": "src/models/signer-config-response-one-of4.ts",
+        "hash": "16837167436501938648"
+      },
+      {
+        "file": "src/models/signer-config-response.ts",
+        "hash": "11315310632413100175"
+      },
+      {
+        "file": "src/models/signer-create-request.ts",
+        "hash": "17782411781896406516"
+      },
+      {
+        "file": "src/models/signer-response.ts",
+        "hash": "5329690284392770827"
+      },
+      {
+        "file": "src/models/signer-type-request.ts",
+        "hash": "4648684629807141120"
+      },
+      {
+        "file": "src/models/signer-type.ts",
+        "hash": "432590172233112313"
+      },
+      {
+        "file": "src/models/solana-allowed-tokens-policy.ts",
+        "hash": "17838653697289116002"
+      },
+      {
+        "file": "src/models/solana-allowed-tokens-swap-config.ts",
+        "hash": "15737586785608526046"
+      },
+      {
+        "file": "src/models/solana-fee-payment-strategy.ts",
+        "hash": "17522063503889234689"
+      },
+      {
+        "file": "src/models/solana-policy-response.ts",
+        "hash": "3795545146979174552"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of.ts",
+        "hash": "11109115347004820298"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of1.ts",
+        "hash": "15027812602663057199"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of2.ts",
+        "hash": "14621466186620552950"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of3.ts",
+        "hash": "16365111123898512085"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of4.ts",
+        "hash": "15002501235233787423"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of5.ts",
+        "hash": "11901287192027898315"
+      },
+      {
+        "file": "src/models/solana-rpc-request-one-of6.ts",
+        "hash": "16340127146085132743"
+      },
+      {
+        "file": "src/models/solana-rpc-request.ts",
+        "hash": "12960423089926356651"
+      },
+      {
+        "file": "src/models/solana-rpc-result.ts",
+        "hash": "347558205798729146"
+      },
+      {
+        "file": "src/models/solana-swap-strategy.ts",
+        "hash": "16455396330790491279"
+      },
+      {
+        "file": "src/models/solana-transaction-request.ts",
+        "hash": "11152574818461869920"
+      },
+      {
+        "file": "src/models/solana-transaction-response.ts",
+        "hash": "1229437740973775854"
+      },
+      {
+        "file": "src/models/speed.ts",
+        "hash": "2392166430711398419"
+      },
+      {
+        "file": "src/models/stellar-policy-response.ts",
+        "hash": "17113874130741976847"
+      },
+      {
+        "file": "src/models/stellar-rpc-request-one-of.ts",
+        "hash": "7340531886104485407"
+      },
+      {
+        "file": "src/models/stellar-rpc-request.ts",
+        "hash": "15642517274420133706"
+      },
+      {
+        "file": "src/models/stellar-rpc-result.ts",
+        "hash": "10976999464209849647"
+      },
+      {
+        "file": "src/models/stellar-transaction-request.ts",
+        "hash": "13638213730511962739"
+      },
+      {
+        "file": "src/models/stellar-transaction-response.ts",
+        "hash": "9246987600852915086"
+      },
+      {
+        "file": "src/models/transaction-response.ts",
+        "hash": "7769773686671319201"
+      },
+      {
+        "file": "src/models/transaction-status.ts",
+        "hash": "6647808237098121118"
+      },
+      {
+        "file": "src/models/transfer-transaction-request-params.ts",
+        "hash": "15015894851723914969"
+      },
+      {
+        "file": "src/models/transfer-transaction-result.ts",
+        "hash": "7208204826232399018"
+      },
+      {
+        "file": "src/models/turnkey-signer-request-config.ts",
+        "hash": "15119136194312189112"
+      },
+      {
+        "file": "src/models/update-relayer-request.ts",
+        "hash": "17692059952936233735"
+      },
+      {
+        "file": "src/models/vault-signer-request-config.ts",
+        "hash": "10356440716050704756"
+      },
+      {
+        "file": "src/models/vault-transit-signer-request-config.ts",
+        "hash": "10074142608911770014"
+      },
+      {
+        "file": "src/models/wasm-source-one-of.ts",
+        "hash": "2938210257978978583"
+      },
+      {
+        "file": "src/models/wasm-source-one-of1.ts",
+        "hash": "3807705454455565486"
+      },
+      {
+        "file": "src/models/wasm-source.ts",
+        "hash": "4297493333563737199"
+      },
+      {
+        "file": "src/package.json",
+        "hash": "9206725214481268829"
+      },
+      {
+        "file": "src/tsconfig.esm.json",
+        "hash": "7022370158318588762"
+      },
+      {
+        "file": "src/tsconfig.json",
+        "hash": "7134418041556443112"
+      },
+      {
+        "file": "tsconfig.build.esm.json",
+        "hash": "11262345480775633526"
+      },
+      {
+        "file": "tsconfig.build.json",
+        "hash": "18146055573920298532"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "17121228787347805383"
+      }
+    ]
+  }
+}

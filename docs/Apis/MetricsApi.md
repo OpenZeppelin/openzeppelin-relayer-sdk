@@ -1,16 +1,17 @@
 # MetricsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to _http://localhost_
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**listMetrics**](MetricsApi.md#listMetrics) | **GET** /metrics | Metrics routes implementation |
-| [**metricDetail**](MetricsApi.md#metricDetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
-| [**scrapeMetrics**](MetricsApi.md#scrapeMetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
-
+| Method                                           | HTTP request                   | Description                                                                       |
+| ------------------------------------------------ | ------------------------------ | --------------------------------------------------------------------------------- |
+| [**listMetrics**](MetricsApi.md#listMetrics)     | **GET** /metrics               | Metrics routes implementation                                                     |
+| [**metricDetail**](MetricsApi.md#metricDetail)   | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format.                    |
+| [**scrapeMetrics**](MetricsApi.md#scrapeMetrics) | **GET** /debug/metrics/scrape  | Triggers an update of system metrics and returns the result in plain text format. |
 
 <a name="listMetrics"></a>
+
 # **listMetrics**
+
 > List listMetrics()
 
 Metrics routes implementation
@@ -18,6 +19,7 @@ Metrics routes implementation
     Note: OpenAPI documentation for these endpoints can be found in the &#x60;openapi.rs&#x60; file Returns a list of all available metric names in JSON format.  # Returns  An &#x60;HttpResponse&#x60; containing a JSON array of metric names.
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -34,8 +36,10 @@ No authorization required
 - **Accept**: application/json
 
 <a name="metricDetail"></a>
+
 # **metricDetail**
-> String metricDetail(metric\_name)
+
+> String metricDetail(metric_name)
 
 Returns the details of a specific metric in plain text format.
 
@@ -43,9 +47,9 @@ Returns the details of a specific metric in plain text format.
 
 ### Parameters
 
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **metric\_name** | **String**| Name of the metric to retrieve, e.g. utopia_transactions_total | [default to null] |
+| Name            | Type       | Description                                                    | Notes             |
+| --------------- | ---------- | -------------------------------------------------------------- | ----------------- |
+| **metric_name** | **String** | Name of the metric to retrieve, e.g. utopia_transactions_total | [default to null] |
 
 ### Return type
 
@@ -61,7 +65,9 @@ Returns the details of a specific metric in plain text format.
 - **Accept**: text/plain
 
 <a name="scrapeMetrics"></a>
+
 # **scrapeMetrics**
+
 > String scrapeMetrics()
 
 Triggers an update of system metrics and returns the result in plain text format.
@@ -69,6 +75,7 @@ Triggers an update of system metrics and returns the result in plain text format
     # Returns  An &#x60;HttpResponse&#x60; containing the updated metrics in plain text, or an error message if the update fails.
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -83,4 +90,3 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: text/plain
-

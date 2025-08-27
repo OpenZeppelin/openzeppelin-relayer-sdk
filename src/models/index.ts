@@ -167,3 +167,4 @@ export * from './vault-transit-signer-request-config';
 export * from './wasm-source';
 export * from './wasm-source-one-of';
 export * from './wasm-source-one-of1';
+export * from './plugin-api';

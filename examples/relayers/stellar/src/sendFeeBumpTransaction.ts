@@ -15,7 +15,7 @@
  * Usage:
  *   ts-node sendFeeBumpTransaction.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../../src';
+import { Configuration, RelayersApi, StellarTransactionRequest } from '@openzeppelin/relayer-sdk';
 
 // example dev config
 const config = new Configuration({
@@ -29,19 +29,19 @@ const relayersApi = new RelayersApi(config);
 const relayer_id = 'stellar-testnet';
 
 // Replace with your signed transaction XDR that needs fee bumping
-const UNSIGNED_XDR = '';
+const SIGNED_XDR = '';
 
 async function main() {
   try {
     const transaction: StellarTransactionRequest = {
       network: 'testnet',
-      transaction_xdr: UNSIGNED_XDR,
+      transaction_xdr: SIGNED_XDR,
       fee_bump: true,
       max_fee: 1000000, // 0.1 XLM
     };
 
     console.log('Sending fee bump transaction...');
-    console.log('Original signed XDR:', UNSIGNED_XDR);
+    console.log('Original signed XDR:', SIGNED_XDR);
     console.log('Max fee:', transaction.max_fee, 'stroops (', transaction.max_fee! / 10000000, 'XLM)');
 
     const response = await relayersApi.sendTransaction(relayer_id, transaction);

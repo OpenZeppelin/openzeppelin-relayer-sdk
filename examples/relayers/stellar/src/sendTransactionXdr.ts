@@ -14,7 +14,7 @@
  * Usage:
  *   ts-node sendTransactionXdr.ts
  */
-import { Configuration, RelayersApi, StellarTransactionRequest } from '../../../src';
+import { Configuration, RelayersApi, StellarTransactionRequest } from '@openzeppelin/relayer-sdk';
 
 // example dev config
 const config = new Configuration({

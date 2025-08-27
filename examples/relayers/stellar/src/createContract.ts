@@ -20,7 +20,7 @@ import {
   OperationSpecOneOf2TypeEnum,
   RelayersApi,
   StellarTransactionRequest,
-} from '../../../src';
+} from '@openzeppelin/relayer-sdk';
 
 // example dev config
 const config = new Configuration({
