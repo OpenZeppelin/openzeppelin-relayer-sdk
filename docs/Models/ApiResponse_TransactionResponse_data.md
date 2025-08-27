@@ -16,14 +16,13 @@
 | **nonce** | **Long** |  | [optional] [default to null] |
 | **relayer\_id** | **String** |  | [default to null] |
 | **sent\_at** | **String** |  | [optional] [default to null] |
-| **signature** | [**EvmTransactionDataSignature**](EvmTransactionDataSignature.md) |  | [optional] [default to null] |
+| **signature** | **String** |  | [optional] [default to null] |
 | **speed** | [**Speed**](Speed.md) |  | [optional] [default to null] |
 | **status** | [**TransactionStatus**](TransactionStatus.md) |  | [default to null] |
 | **status\_reason** | **String** |  | [optional] [default to null] |
 | **to** | **String** |  | [optional] [default to null] |
 | **value** | **String** |  | [default to null] |
-| **fee\_payer** | **String** |  | [default to null] |
-| **recent\_blockhash** | **String** |  | [default to null] |
+| **transaction** | **String** |  | [default to null] |
 | **fee** | **Integer** |  | [default to null] |
 | **sequence\_number** | **Long** |  | [default to null] |
 | **source\_account** | **String** |  | [default to null] |

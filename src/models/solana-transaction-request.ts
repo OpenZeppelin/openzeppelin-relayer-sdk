@@ -25,12 +25,6 @@ export interface SolanaTransactionRequest {
      * @type {string}
      * @memberof SolanaTransactionRequest
      */
-    'fee_payer': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SolanaTransactionRequest
-     */
-    'instructions': Array<string>;
+    'transaction': string;
 }
 

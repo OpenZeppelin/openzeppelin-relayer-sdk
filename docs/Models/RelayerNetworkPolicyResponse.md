@@ -9,6 +9,7 @@
 | **min\_balance** | **Long** |  | [optional] [default to null] |
 | **private\_transactions** | **Boolean** |  | [optional] [default to null] |
 | **whitelist\_receivers** | **List** |  | [optional] [default to null] |
+| **concurrent\_transactions** | **Boolean** |  | [optional] [default to null] |
 | **max\_fee** | **Integer** |  | [optional] [default to null] |
 | **timeout\_seconds** | **Long** |  | [optional] [default to null] |
 | **allowed\_accounts** | **List** |  | [optional] [default to null] |

@@ -31,9 +31,6 @@ models/api-response-relayer-status-data.ts
 models/api-response-relayer-status.ts
 models/api-response-sign-data-response-data.ts
 models/api-response-sign-data-response.ts
-models/api-response-sign-transaction-response-data-one-of.ts
-models/api-response-sign-transaction-response-data-one-of1.ts
-models/api-response-sign-transaction-response-data-one-of2.ts
 models/api-response-sign-transaction-response-data.ts
 models/api-response-sign-transaction-response.ts
 models/api-response-signer-response-data.ts

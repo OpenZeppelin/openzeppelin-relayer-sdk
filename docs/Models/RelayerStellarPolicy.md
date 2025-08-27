@@ -3,6 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+| **concurrent\_transactions** | **Boolean** |  | [optional] [default to null] |
 | **max\_fee** | **Integer** |  | [optional] [default to null] |
 | **min\_balance** | **Long** |  | [optional] [default to null] |
 | **timeout\_seconds** | **Long** |  | [optional] [default to null] |

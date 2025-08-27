@@ -40,31 +40,19 @@ export interface SolanaTransactionResponse {
      * @type {string}
      * @memberof SolanaTransactionResponse
      */
-    'fee_payer': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SolanaTransactionResponse
-     */
-    'hash'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SolanaTransactionResponse
-     */
     'id': string;
     /**
      * 
      * @type {string}
      * @memberof SolanaTransactionResponse
      */
-    'recent_blockhash': string;
+    'sent_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof SolanaTransactionResponse
      */
-    'sent_at'?: string;
+    'signature'?: string;
     /**
      * 
      * @type {TransactionStatus}
@@ -77,6 +65,12 @@ export interface SolanaTransactionResponse {
      * @memberof SolanaTransactionResponse
      */
     'status_reason'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SolanaTransactionResponse
+     */
+    'transaction': string;
 }
 
 
