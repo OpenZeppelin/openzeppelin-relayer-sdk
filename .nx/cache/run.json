@@ -1,9 +1,0 @@
-{
-  "run": {
-    "command": "nx run-many -t build --parallel=1 --output-style=static",
-    "startTime": "2025-08-27T21:21:17.030Z",
-    "endTime": "2025-08-27T21:21:17.102Z",
-    "inner": false
-  },
-  "tasks": []
-}
