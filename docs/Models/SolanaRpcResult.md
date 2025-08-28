@@ -5,6 +5,7 @@
 |------------ | ------------- | ------------- | -------------|
 | **conversion\_rate** | **String** |  | [default to null] |
 | **estimated\_fee** | **String** |  | [default to null] |
+| **method** | **String** |  | [default to null] |
 | **fee\_in\_lamports** | **String** |  | [default to null] |
 | **fee\_in\_spl** | **String** |  | [default to null] |
 | **fee\_token** | **String** |  | [default to null] |
