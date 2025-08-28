@@ -25,6 +25,12 @@ export interface SignAndSendTransactionResult {
      * @type {string}
      * @memberof SignAndSendTransactionResult
      */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignAndSendTransactionResult
+     */
     'signature': string;
     /**
      * 

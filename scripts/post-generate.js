@@ -24,20 +24,19 @@ try {
       const modelName = file.replace('.ts', '');
 
       console.log(`Processing custom model ${file} to ${destination}`);
-      
+
       // Read the source file content
       const content = fs.readFileSync(source, 'utf8');
-      
+
       // Normalize import paths from custom-models structure to src/models structure
-      const processedContent = content
-      .replace(
+      const processedContent = content.replace(
         /from\s+['"]\.\.\/src\/models\/([^'"]+)['"]/g,
-        (_match, mod) => `from './${mod}'`
+        (_match, mod) => `from './${mod}'`,
       );
-      
+
       // Write the processed content to destination
       fs.writeFileSync(destination, processedContent, 'utf8');
-      
+
       // Track custom model names for index.ts exports
       customModelNames.push(modelName);
     }
@@ -47,9 +46,9 @@ try {
   const indexPath = path.join(generatedModelsDir, 'index.ts');
   if (fs.existsSync(indexPath) && customModelNames.length > 0) {
     console.log('Updating models/index.ts with custom model exports...');
-    
+
     let indexContent = fs.readFileSync(indexPath, 'utf8');
-    
+
     // Parse existing exports to avoid duplicates
     const existingExports = new Set();
     const exportRegex = /^export \* from ['"]\.\/([^'"]+)['"];?\s*$/gm;
@@ -57,7 +56,7 @@ try {
     while ((match = exportRegex.exec(indexContent)) !== null) {
       existingExports.add(match[1]); // Add the module name (without quotes and path)
     }
-    
+
     customModelNames.forEach((modelName) => {
       if (!existingExports.has(modelName)) {
         const exportLine = `export * from './${modelName}';`;
@@ -68,7 +67,7 @@ try {
         console.log(`Export for ${modelName} already exists, skipping`);
       }
     });
-    
+
     fs.writeFileSync(indexPath, indexContent, 'utf8');
   }
 

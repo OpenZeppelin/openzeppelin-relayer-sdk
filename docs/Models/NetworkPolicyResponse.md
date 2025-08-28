@@ -20,6 +20,7 @@
 | **max\_signatures** | **Integer** |  | [optional] [default to null] |
 | **max\_tx\_data\_size** | **Integer** |  | [optional] [default to null] |
 | **swap\_config** | [**RelayerSolanaSwapConfig**](RelayerSolanaSwapConfig.md) |  | [optional] [default to null] |
+| **concurrent\_transactions** | **Boolean** |  | [optional] [default to null] |
 | **max\_fee** | **Integer** |  | [optional] [default to null] |
 | **timeout\_seconds** | **Long** |  | [optional] [default to null] |
 

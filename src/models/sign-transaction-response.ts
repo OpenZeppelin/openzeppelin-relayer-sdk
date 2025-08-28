@@ -15,18 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ApiResponseSignTransactionResponseDataOneOf } from './api-response-sign-transaction-response-data-one-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ApiResponseSignTransactionResponseDataOneOf1 } from './api-response-sign-transaction-response-data-one-of1';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ApiResponseSignTransactionResponseDataOneOf2 } from './api-response-sign-transaction-response-data-one-of2';
+import type { SignTransactionResponseStellar } from './sign-transaction-response-stellar';
 
 /**
  * @type SignTransactionResponse
  * @export
  */
-export type SignTransactionResponse = ApiResponseSignTransactionResponseDataOneOf | ApiResponseSignTransactionResponseDataOneOf1 | ApiResponseSignTransactionResponseDataOneOf2;
+export type SignTransactionResponse = Array<number> | SignTransactionResponseStellar;
 
 

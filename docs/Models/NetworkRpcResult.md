@@ -11,6 +11,7 @@
 | **transaction** | **String** |  | [default to null] |
 | **valid\_until\_blockheight** | **Long** |  | [default to null] |
 | **signature** | **String** |  | [default to null] |
+| **id** | **String** |  | [default to null] |
 | **tokens** | [**List**](GetSupportedTokensItem.md) |  | [default to null] |
 | **features** | **List** |  | [default to null] |
 
