@@ -8,7 +8,8 @@ dist_tag() {
   PACKAGE_JSON_VERSION="$(jq -r .version ./package.json)"
   
   if [ "$PRERELEASE" = "true" ]; then
-    echo "next"
+    echo "Skipping prerelease tag"
+    exit 0
   elif npx semver -r ">$LATEST_NPM_VERSION" "$PACKAGE_JSON_VERSION" > /dev/null; then
     echo "latest"
   else
