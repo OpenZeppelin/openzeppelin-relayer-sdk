@@ -1,5 +1,3 @@
-import * as solana from '@solana/web3.js';
-
 /**
  * Solana signAndSendTransaction RPC Example
  *
@@ -22,10 +20,10 @@ import * as solana from '@solana/web3.js';
  */
 import { Configuration, RelayersApi } from '../../../src';
 
-import { createTokenTransfer } from './util';
-import { getAssociatedTokenAddress } from '@solana/spl-token';
+import { createSolanaRpc } from '@solana/kit';
+import { getSerializedTokenTransfer } from './util';
 
-const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
+const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
 // example dev config
 const config = new Configuration({
@@ -37,37 +35,24 @@ const relayersApi = new RelayersApi(config);
 
 // Replace with your actual values
 const relayer_id = 'solana-example';
-const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
-const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
-const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
-
-const tokenMint = new solana.PublicKey(token);
-const sourceWalletAddress = new solana.PublicKey(source);
-const destinationWalletAddress = new solana.PublicKey(destination);
+const source = 'DiUZ95hZn7cJCY6THuuGQUPMv4bfTuSCUraunmD5PdoZ';
+const destination = '6S9v8CedUumV7qbqq37v2GfBRxWemA6zpVGjQsiVHSZ4';
+const token = '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'; // USDC token mint address
 
 async function signAndSendTransaction() {
   try {
-    const sourceTokenAccount = await getAssociatedTokenAddress(tokenMint, sourceWalletAddress);
-    const destinationTokenAccount = await getAssociatedTokenAddress(tokenMint, destinationWalletAddress);
-    // Get the latest blockhash from devnet
-    const { blockhash } = await connection.getLatestBlockhash();
-    console.log(`Latest blockhash: ${blockhash}`);
+    // Get latest blockhash
+    const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
+    console.log(`Latest blockhash: ${latestBlockhash.blockhash}`);
 
-    const transaction = createTokenTransfer(
+    // Create the serialized transaction using the util function
+    const serializedTransaction = await getSerializedTokenTransfer(
       source,
-      sourceTokenAccount,
-      destinationTokenAccount,
-      source,
+      destination,
+      token,
       1000000, // Amount (consider token decimals)
-      blockhash,
+      latestBlockhash.blockhash,
     );
-
-    const serializedTransaction = transaction
-      .serialize({
-        requireAllSignatures: false,
-        verifySignatures: false,
-      })
-      .toString('base64');
 
     // Sign and send transaction using the relayer
     const signAndSendTransaction = await relayersApi.rpc(relayer_id, {

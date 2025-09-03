@@ -1,110 +1,130 @@
-import * as solana from '@solana/web3.js';
+import { Address, address } from '@solana/addresses';
 import {
-  TOKEN_2022_PROGRAM_ID,
-  TOKEN_PROGRAM_ID,
-  createTransferCheckedInstruction,
-  createTransferInstruction,
-} from '@solana/spl-token';
+  appendTransactionMessageInstructions,
+  createTransactionMessage,
+  getBase64EncodedWireTransaction,
+  pipe,
+  setTransactionMessageLifetimeUsingBlockhash,
+  setTransactionMessageFeePayer,
+  compileTransaction,
+  type Blockhash,
+} from '@solana/kit';
+import { findAssociatedTokenPda, getTransferInstruction, TOKEN_PROGRAM_ADDRESS } from '@solana-program/token';
+import { getTransferCheckedInstruction, TOKEN_2022_PROGRAM_ADDRESS } from '@solana-program/token-2022';
 
-// util fn to create sol transfer transaction
-export function createSolTransfer(payer: string, recipient: string, amount: number, recentBlockhash: string) {
-  // Convert string addresses to PublicKey objects if needed
-  const payerPubkey = typeof payer === 'string' ? new solana.PublicKey(payer) : payer;
-  const recipientPubkey = typeof recipient === 'string' ? new solana.PublicKey(recipient) : recipient;
+/**
+ * Helper function to create a serialized transaction with the given instruction
+ * @param sourceAddress - Source wallet address (Address)
+ * @param instruction - The transfer instruction to include
+ * @param blockhash - Recent blockhash for transaction lifetime
+ * @returns Base64 encoded serialized transaction ready for submission
+ */
+function createSerializedTransaction(sourceAddress: Address<string>, instruction: any, blockhash: Blockhash): string {
+  const transactionMessage = pipe(
+    createTransactionMessage({ version: 'legacy' }),
+    (tx) => setTransactionMessageFeePayer(sourceAddress, tx),
+    (tx) => setTransactionMessageLifetimeUsingBlockhash({ blockhash, lastValidBlockHeight: 0n }, tx),
+    (tx) => appendTransactionMessageInstructions([instruction], tx),
+  );
 
-  // Create the transfer instruction
-  const transferIx = solana.SystemProgram.transfer({
-    fromPubkey: payerPubkey,
-    toPubkey: recipientPubkey,
-    lamports: amount,
+  const transaction = compileTransaction(transactionMessage);
+  return getBase64EncodedWireTransaction(transaction);
+}
+
+/**
+ * Creates a token transfer transaction and returns the serialized transaction
+ * @param source - Source wallet address (string)
+ * @param destination - Destination wallet address (string)
+ * @param token - Token mint address (string)
+ * @param amount - Amount to transfer (in smallest units)
+ * @param blockhash - Recent blockhash for transaction lifetime
+ * @returns Base64 encoded serialized transaction ready for submission
+ */
+export async function getSerializedTokenTransfer(
+  source: string,
+  destination: string,
+  token: string,
+  amount: number,
+  blockhash: Blockhash,
+): Promise<string> {
+  // Convert string addresses to Address objects
+  const sourceAddress = address(source);
+  const destinationAddress = address(destination);
+  const tokenAddress = address(token);
+
+  // Find associated token accounts
+  const [sourceAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: sourceAddress,
+    tokenProgram: TOKEN_PROGRAM_ADDRESS,
   });
 
-  // Create a new transaction with the transfer instruction
-  const transaction = new solana.Transaction().add(transferIx);
+  const [destinationAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: destinationAddress,
+    tokenProgram: TOKEN_PROGRAM_ADDRESS,
+  });
 
-  // Set the payer and recent blockhash
-  transaction.feePayer = payerPubkey;
-  transaction.recentBlockhash = recentBlockhash;
-
-  return transaction;
-}
-
-export function createTokenTransfer(
-  payer: string | solana.PublicKey,
-  sourceTokenAccount: string | solana.PublicKey,
-  destinationTokenAccount: string | solana.PublicKey,
-  ownerOrDelegate: string | solana.PublicKey,
-  amount: number,
-  recentBlockhash: string,
-  multiSigners: solana.Signer[] = [],
-): solana.Transaction {
-  // Convert string addresses to PublicKey objects
-  const payerPubkey = typeof payer === 'string' ? new solana.PublicKey(payer) : payer;
-  const sourcePubkey =
-    typeof sourceTokenAccount === 'string' ? new solana.PublicKey(sourceTokenAccount) : sourceTokenAccount;
-  const destinationPubkey =
-    typeof destinationTokenAccount === 'string'
-      ? new solana.PublicKey(destinationTokenAccount)
-      : destinationTokenAccount;
-  const ownerPubkey = typeof ownerOrDelegate === 'string' ? new solana.PublicKey(ownerOrDelegate) : ownerOrDelegate;
+  console.log('sourceAccount', sourceAccount);
+  console.log('destinationAccount', destinationAccount);
 
   // Create the transfer instruction
-  const transferIx = createTransferInstruction(
-    sourcePubkey,
-    destinationPubkey,
-    ownerPubkey,
-    amount,
-    multiSigners,
-    TOKEN_PROGRAM_ID,
-  );
+  const transferIx = getTransferInstruction({
+    source: sourceAccount,
+    destination: destinationAccount,
+    authority: sourceAddress,
+    amount: BigInt(amount),
+    multiSigners: [],
+  });
 
-  // Create a new transaction with the transfer instruction
-  const transaction = new solana.Transaction().add(transferIx);
-
-  // Set the payer and recent blockhash
-  transaction.feePayer = payerPubkey;
-  transaction.recentBlockhash = recentBlockhash;
-
-  return transaction;
+  return createSerializedTransaction(sourceAddress, transferIx, blockhash);
 }
 
-export function createToken2022Transfer(
-  payer: string | solana.PublicKey,
-  sourceTokenAccount: string | solana.PublicKey,
-  destinationTokenAccount: string | solana.PublicKey,
-  ownerOrDelegate: string | solana.PublicKey,
-  tokenMint: string | solana.PublicKey,
+/**
+ * Creates a Token2022 transfer transaction and returns the serialized transaction
+ * @param source - Source wallet address (string)
+ * @param destination - Destination wallet address (string)
+ * @param token - Token mint address (string)
+ * @param amount - Amount to transfer (in smallest units)
+ * @param decimals - Token decimals for checked transfer
+ * @param blockhash - Recent blockhash for transaction lifetime
+ * @returns Base64 encoded serialized transaction ready for submission
+ */
+export async function getSerializedToken2022Transfer(
+  source: string,
+  destination: string,
+  token: string,
   amount: number,
   decimals: number,
-  recentBlockhash: string,
-  multiSigners: solana.Signer[] = [],
-): solana.Transaction {
-  const payerPubkey = typeof payer === 'string' ? new solana.PublicKey(payer) : payer;
-  const sourcePubkey =
-    typeof sourceTokenAccount === 'string' ? new solana.PublicKey(sourceTokenAccount) : sourceTokenAccount;
-  const destinationPubkey =
-    typeof destinationTokenAccount === 'string'
-      ? new solana.PublicKey(destinationTokenAccount)
-      : destinationTokenAccount;
-  const ownerPubkey = typeof ownerOrDelegate === 'string' ? new solana.PublicKey(ownerOrDelegate) : ownerOrDelegate;
-  const mintPubkey = typeof tokenMint === 'string' ? new solana.PublicKey(tokenMint) : tokenMint;
+  blockhash: Blockhash,
+): Promise<string> {
+  // Convert string addresses to Address objects
+  const sourceAddress = address(source);
+  const destinationAddress = address(destination);
+  const tokenAddress = address(token);
 
-  const transferIx = createTransferCheckedInstruction(
-    sourcePubkey,
-    mintPubkey,
-    destinationPubkey,
-    ownerPubkey,
-    amount,
+  // Find associated token accounts for Token2022
+  const [sourceAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: sourceAddress,
+    tokenProgram: TOKEN_2022_PROGRAM_ADDRESS,
+  });
+
+  const [destinationAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: destinationAddress,
+    tokenProgram: TOKEN_2022_PROGRAM_ADDRESS,
+  });
+
+  // Create the transfer checked instruction for Token2022
+  const transferIx = getTransferCheckedInstruction({
+    source: sourceAccount,
+    mint: tokenAddress,
+    destination: destinationAccount,
+    authority: sourceAddress,
+    amount: BigInt(amount),
     decimals,
-    multiSigners,
-    TOKEN_2022_PROGRAM_ID,
-  );
+  });
 
-  const transaction = new solana.Transaction().add(transferIx);
-
-  // Set the payer and recent blockhash
-  transaction.feePayer = payerPubkey;
-  transaction.recentBlockhash = recentBlockhash;
-
-  return transaction;
+  return createSerializedTransaction(sourceAddress, transferIx, blockhash);
 }

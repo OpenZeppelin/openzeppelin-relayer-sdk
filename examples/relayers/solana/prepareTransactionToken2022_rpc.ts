@@ -1,10 +1,8 @@
-import * as solana from '@solana/web3.js';
-
 /**
  * Solana prepareTransactionToken2022 RPC Example
  *
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
- * transaction for sponsored submission.
+ * transaction for sponsored submission using Token2022.
  *
  * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
  * the fee payer and including relayer-specific instructions.
@@ -18,14 +16,14 @@ import * as solana from '@solana/web3.js';
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node prepareTransaction_rpc.ts
+ *   ts-node prepareTransactionToken2022_rpc.ts
  */
 import { Configuration, RelayersApi } from '../../../src';
-import { TOKEN_2022_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
 
-import { createToken2022Transfer } from './util';
+import { createSolanaRpc } from '@solana/kit';
+import { getSerializedToken2022Transfer } from './util';
 
-const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
+const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
 // example dev config
 const config = new Configuration({
@@ -41,47 +39,21 @@ const source = '';
 const destination = '';
 const token = ''; // Token2022 mint address
 
-const tokenMint = new solana.PublicKey(token);
-const sourceWalletAddress = new solana.PublicKey(source);
-const destinationWalletAddress = new solana.PublicKey(destination);
-
 async function prepareTransactionToken2022() {
   try {
-    const sourceTokenAccount = await getAssociatedTokenAddress(
-      tokenMint,
-      sourceWalletAddress,
-      true,
-      TOKEN_2022_PROGRAM_ID,
-    );
-    const destinationTokenAccount = await getAssociatedTokenAddress(
-      tokenMint,
-      destinationWalletAddress,
-      true,
-      TOKEN_2022_PROGRAM_ID,
-    );
+    // Get latest blockhash
+    const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
+    console.log(`Latest blockhash: ${latestBlockhash.blockhash}`);
 
-    console.log(`Source token account: ${sourceTokenAccount}`);
-    console.log(`Destination token account: ${destinationTokenAccount}`);
-    const { blockhash } = await connection.getLatestBlockhash();
-    console.log(`Latest blockhash: ${blockhash}`);
-
-    const transaction = createToken2022Transfer(
+    // Create the serialized Token2022 transaction using the util function
+    const serializedTransaction = await getSerializedToken2022Transfer(
       source,
-      sourceTokenAccount,
-      destinationTokenAccount,
-      source,
-      tokenMint,
+      destination,
+      token,
       1000000, // Amount (consider token decimals)
-      9,
-      blockhash,
+      9, // Token decimals
+      latestBlockhash.blockhash,
     );
-
-    const serializedTransaction = transaction
-      .serialize({
-        requireAllSignatures: false,
-        verifySignatures: false,
-      })
-      .toString('base64');
 
     // Prepare transaction using the relayer
     const prepareTransaction = await relayersApi.rpc(relayer_id, {
