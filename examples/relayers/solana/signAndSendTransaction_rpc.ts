@@ -51,7 +51,7 @@ async function signAndSendTransaction() {
       destination,
       token,
       1000000, // Amount (consider token decimals)
-      latestBlockhash.blockhash,
+      latestBlockhash,
     );
 
     // Sign and send transaction using the relayer

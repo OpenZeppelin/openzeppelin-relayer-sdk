@@ -12,18 +12,27 @@ import {
 import { findAssociatedTokenPda, getTransferInstruction, TOKEN_PROGRAM_ADDRESS } from '@solana-program/token';
 import { getTransferCheckedInstruction, TOKEN_2022_PROGRAM_ADDRESS } from '@solana-program/token-2022';
 
+type LatestBlockhash = Readonly<{
+  blockhash: Blockhash;
+  lastValidBlockHeight: bigint;
+}>;
+
 /**
  * Helper function to create a serialized transaction with the given instruction
  * @param sourceAddress - Source wallet address (Address)
  * @param instruction - The transfer instruction to include
- * @param blockhash - Recent blockhash for transaction lifetime
+ * @param latestBlockhash - Latest blockhash response
  * @returns Base64 encoded serialized transaction ready for submission
  */
-function createSerializedTransaction(sourceAddress: Address<string>, instruction: any, blockhash: Blockhash): string {
+function createSerializedTransaction(
+  sourceAddress: Address<string>,
+  instruction: any,
+  latestBlockhash: LatestBlockhash,
+): string {
   const transactionMessage = pipe(
     createTransactionMessage({ version: 'legacy' }),
     (tx) => setTransactionMessageFeePayer(sourceAddress, tx),
-    (tx) => setTransactionMessageLifetimeUsingBlockhash({ blockhash, lastValidBlockHeight: 0n }, tx),
+    (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
     (tx) => appendTransactionMessageInstructions([instruction], tx),
   );
 
@@ -37,7 +46,7 @@ function createSerializedTransaction(sourceAddress: Address<string>, instruction
  * @param destination - Destination wallet address (string)
  * @param token - Token mint address (string)
  * @param amount - Amount to transfer (in smallest units)
- * @param blockhash - Recent blockhash for transaction lifetime
+ * @param latestBlockhash - Latest blockhash response
  * @returns Base64 encoded serialized transaction ready for submission
  */
 export async function getSerializedTokenTransfer(
@@ -45,7 +54,7 @@ export async function getSerializedTokenTransfer(
   destination: string,
   token: string,
   amount: number,
-  blockhash: Blockhash,
+  latestBlockhash: LatestBlockhash,
 ): Promise<string> {
   // Convert string addresses to Address objects
   const sourceAddress = address(source);
@@ -77,7 +86,7 @@ export async function getSerializedTokenTransfer(
     multiSigners: [],
   });
 
-  return createSerializedTransaction(sourceAddress, transferIx, blockhash);
+  return createSerializedTransaction(sourceAddress, transferIx, latestBlockhash);
 }
 
 /**
@@ -87,7 +96,7 @@ export async function getSerializedTokenTransfer(
  * @param token - Token mint address (string)
  * @param amount - Amount to transfer (in smallest units)
  * @param decimals - Token decimals for checked transfer
- * @param blockhash - Recent blockhash for transaction lifetime
+ * @param latestBlockhash - Latest blockhash response
  * @returns Base64 encoded serialized transaction ready for submission
  */
 export async function getSerializedToken2022Transfer(
@@ -96,7 +105,7 @@ export async function getSerializedToken2022Transfer(
   token: string,
   amount: number,
   decimals: number,
-  blockhash: Blockhash,
+  latestBlockhash: LatestBlockhash,
 ): Promise<string> {
   // Convert string addresses to Address objects
   const sourceAddress = address(source);
@@ -126,5 +135,5 @@ export async function getSerializedToken2022Transfer(
     decimals,
   });
 
-  return createSerializedTransaction(sourceAddress, transferIx, blockhash);
+  return createSerializedTransaction(sourceAddress, transferIx, latestBlockhash);
 }

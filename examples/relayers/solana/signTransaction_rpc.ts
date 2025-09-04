@@ -50,7 +50,7 @@ async function signTransaction() {
       destination,
       token,
       1000000, // Amount (consider token decimals)
-      latestBlockhash.blockhash,
+      latestBlockhash,
     );
 
     // Sign transaction using the relayer

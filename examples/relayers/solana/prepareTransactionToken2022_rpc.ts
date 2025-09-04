@@ -52,7 +52,7 @@ async function prepareTransactionToken2022() {
       token,
       1000000, // Amount (consider token decimals)
       9, // Token decimals
-      latestBlockhash.blockhash,
+      latestBlockhash,
     );
 
     // Prepare transaction using the relayer

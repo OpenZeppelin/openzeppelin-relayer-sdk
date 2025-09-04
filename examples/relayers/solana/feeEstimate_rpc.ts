@@ -51,7 +51,7 @@ async function estimateFee() {
       destination,
       usdcToken,
       1000000, // Amount (consider token decimals)
-      latestBlockhash.blockhash,
+      latestBlockhash,
     );
 
     // Estimate fee using the relayer
