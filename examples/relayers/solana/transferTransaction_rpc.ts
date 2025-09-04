@@ -1,8 +1,8 @@
 /**
  * Solana transferTransaction RPC Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
- * transaction for sponsored submission.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to execute a simple
+ * token transfer using the relayer's built-in transferTransaction method.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -24,11 +24,12 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
-const relayer_id = 'solana-example';
 
-const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
-const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
-const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr';
+// Replace with your actual values
+const relayer_id = 'solana-example';
+const source = 'DiUZ95hZn7cJCY6THuuGQUPMv4bfTuSCUraunmD5PdoZ';
+const destination = '6S9v8CedUumV7qbqq37v2GfBRxWemA6zpVGjQsiVHSZ4';
+const token = '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU';
 
 async function transferTransaction() {
   try {
@@ -38,17 +39,17 @@ async function transferTransaction() {
       id: 1,
       jsonrpc: '2.0',
       params: {
-        token: token,
-        amount: 1,
-        source: source,
-        destination: destination,
+        token,
+        amount: 1000000,
+        source,
+        destination,
       },
     });
 
-    console.log('Transfer transaction:');
+    console.log('Transfer Transaction:');
     console.log(JSON.stringify(transferTransaction.data, null, 2));
   } catch (error) {
-    console.error('Error preparing transfer transaction:', error);
+    console.error('Error executing transfer transaction:', error);
   }
 }
 

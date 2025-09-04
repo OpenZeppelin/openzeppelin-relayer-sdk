@@ -1,5 +1,3 @@
-import * as solana from '@solana/web3.js';
-
 /**
  * Solana estimateFee RPC Example
  *
@@ -22,10 +20,10 @@ import * as solana from '@solana/web3.js';
  */
 import { Configuration, RelayersApi } from '../../../src';
 
-import { createTokenTransfer } from './util';
-import { getAssociatedTokenAddress } from '@solana/spl-token';
+import { createSolanaRpc } from '@solana/kit';
+import { getSerializedTokenTransfer } from './util';
 
-const connection = new solana.Connection(solana.clusterApiUrl('devnet'));
+const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
 // example dev config
 const config = new Configuration({
@@ -41,32 +39,20 @@ const source = 'EYsk8PduFSAt7W9dnvL2Pt7qcVsb5wAVCYbJ5UQaUpXf';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
 const usdcToken = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr';
 
-const usdcMint = new solana.PublicKey(usdcToken);
-const sourceWalletAddress = new solana.PublicKey(source);
-const destinationWalletAddress = new solana.PublicKey(destination);
-
 async function estimateFee() {
   try {
-    const sourceTokenAccount = await getAssociatedTokenAddress(usdcMint, sourceWalletAddress);
-    const destinationTokenAccount = await getAssociatedTokenAddress(usdcMint, destinationWalletAddress);
-    const { blockhash } = await connection.getLatestBlockhash();
-    console.log(`Latest blockhash: ${blockhash}`);
+    // Get latest blockhash
+    const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
+    console.log(`Latest blockhash: ${latestBlockhash.blockhash}`);
 
-    const transaction = createTokenTransfer(
+    // Create the serialized transaction using the util function
+    const serializedTransaction = await getSerializedTokenTransfer(
       source,
-      sourceTokenAccount,
-      destinationTokenAccount,
-      source,
+      destination,
+      usdcToken,
       1000000, // Amount (consider token decimals)
-      blockhash,
+      latestBlockhash,
     );
-
-    const serializedTransaction = transaction
-      .serialize({
-        requireAllSignatures: false,
-        verifySignatures: false,
-      })
-      .toString('base64');
 
     // Estimate fee using the relayer
     const feeEstimate = await relayersApi.rpc(relayer_id, {
