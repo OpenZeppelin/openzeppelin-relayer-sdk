@@ -26,7 +26,8 @@ export enum SignerType {
     GOOGLE_CLOUD_KMS = 'google_cloud_kms',
     VAULT = 'vault',
     VAULT_TRANSIT = 'vault_transit',
-    TURNKEY = 'turnkey'
+    TURNKEY = 'turnkey',
+    CDP = 'cdp'
 }
 
 

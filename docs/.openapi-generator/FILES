@@ -43,6 +43,7 @@ Models/AuthSpec_oneOf_2.md
 Models/AuthSpec_oneOf_3.md
 Models/AwsKmsSignerRequestConfig.md
 Models/BalanceResponse.md
+Models/CdpSignerRequestConfig.md
 Models/ContractSource.md
 Models/ContractSource_oneOf.md
 Models/ContractSource_oneOf_1.md
@@ -135,6 +136,7 @@ Models/SignerConfigResponse_oneOf_1.md
 Models/SignerConfigResponse_oneOf_2.md
 Models/SignerConfigResponse_oneOf_3.md
 Models/SignerConfigResponse_oneOf_4.md
+Models/SignerConfigResponse_oneOf_5.md
 Models/SignerCreateRequest.md
 Models/SignerResponse.md
 Models/SignerType.md
