@@ -53,6 +53,7 @@ models/auth-spec-one-of3.ts
 models/auth-spec.ts
 models/aws-kms-signer-request-config.ts
 models/balance-response.ts
+models/cdp-signer-request-config.ts
 models/contract-source-one-of.ts
 models/contract-source-one-of1.ts
 models/contract-source.ts
@@ -145,6 +146,7 @@ models/signer-config-response-one-of1.ts
 models/signer-config-response-one-of2.ts
 models/signer-config-response-one-of3.ts
 models/signer-config-response-one-of4.ts
+models/signer-config-response-one-of5.ts
 models/signer-config-response.ts
 models/signer-create-request.ts
 models/signer-response.ts
@@ -162,6 +164,13 @@ models/solana-rpc-request-one-of4.ts
 models/solana-rpc-request-one-of5.ts
 models/solana-rpc-request-one-of6.ts
 models/solana-rpc-request.ts
+models/solana-rpc-result-one-of.ts
+models/solana-rpc-result-one-of1.ts
+models/solana-rpc-result-one-of2.ts
+models/solana-rpc-result-one-of3.ts
+models/solana-rpc-result-one-of4.ts
+models/solana-rpc-result-one-of5.ts
+models/solana-rpc-result-one-of6.ts
 models/solana-rpc-result.ts
 models/solana-swap-strategy.ts
 models/solana-transaction-request.ts

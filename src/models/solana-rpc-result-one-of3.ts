@@ -13,22 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SignTransactionResult } from './sign-transaction-result';
 
 /**
- * Signer type enum used for validation and API responses
+ * @type SolanaRpcResultOneOf3
  * @export
- * @enum {string}
  */
-
-export enum SignerType {
-    LOCAL = 'local',
-    AWS_KMS = 'aws_kms',
-    GOOGLE_CLOUD_KMS = 'google_cloud_kms',
-    VAULT = 'vault',
-    VAULT_TRANSIT = 'vault_transit',
-    TURNKEY = 'turnkey',
-    CDP = 'cdp'
-}
-
+export type SolanaRpcResultOneOf3 = SignTransactionResult;
 
 

@@ -15,33 +15,33 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FeeEstimateResult } from './fee-estimate-result';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { GetFeaturesEnabledResult } from './get-features-enabled-result';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { GetSupportedTokensItem } from './get-supported-tokens-item';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { GetSupportedTokensResult } from './get-supported-tokens-result';
+import type { SolanaRpcResultOneOf } from './solana-rpc-result-one-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PrepareTransactionResult } from './prepare-transaction-result';
+import type { SolanaRpcResultOneOf1 } from './solana-rpc-result-one-of1';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SignAndSendTransactionResult } from './sign-and-send-transaction-result';
+import type { SolanaRpcResultOneOf2 } from './solana-rpc-result-one-of2';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SignTransactionResult } from './sign-transaction-result';
+import type { SolanaRpcResultOneOf3 } from './solana-rpc-result-one-of3';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TransferTransactionResult } from './transfer-transaction-result';
+import type { SolanaRpcResultOneOf4 } from './solana-rpc-result-one-of4';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaRpcResultOneOf5 } from './solana-rpc-result-one-of5';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaRpcResultOneOf6 } from './solana-rpc-result-one-of6';
 
 /**
  * @type SolanaRpcResult
  * @export
  */
-export type SolanaRpcResult = FeeEstimateResult | GetFeaturesEnabledResult | GetSupportedTokensResult | PrepareTransactionResult | SignAndSendTransactionResult | SignTransactionResult | TransferTransactionResult;
+export type SolanaRpcResult = SolanaRpcResultOneOf | SolanaRpcResultOneOf1 | SolanaRpcResultOneOf2 | SolanaRpcResultOneOf3 | SolanaRpcResultOneOf4 | SolanaRpcResultOneOf5 | SolanaRpcResultOneOf6;
 
 

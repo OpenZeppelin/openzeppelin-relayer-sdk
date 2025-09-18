@@ -14,6 +14,8 @@
 | **organization\_id** | **String** |  | [default to null] |
 | **private\_key\_id** | **String** |  | [default to null] |
 | **public\_key** | **String** |  | [default to null] |
+| **account\_address** | **String** |  | [default to null] |
+| **api\_key\_id** | **String** |  | [default to null] |
 | **key** | [**GoogleCloudKmsSignerKeyResponseConfig**](GoogleCloudKmsSignerKeyResponseConfig.md) |  | [default to null] |
 | **service\_account** | [**GoogleCloudKmsSignerServiceAccountResponseConfig**](GoogleCloudKmsSignerServiceAccountResponseConfig.md) |  | [default to null] |
 
