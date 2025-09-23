@@ -109,6 +109,81 @@ export type Relayer = {
   signTransaction: (payload: SignTransactionRequest) => Promise<SignTransactionResponse>;
 };
 
+export interface PluginKVStore {
+  /**
+   * Get and JSON-parse a value by key.
+   * @typeParam T - Expected value type after JSON parse.
+   * @param key - The key to retrieve.
+   * @returns Resolves to the parsed value, or null if missing.
+   */
+  get<T = unknown>(key: string): Promise<T | null>;
+
+  /**
+   * Set a JSON-encoded value.
+   * @param key - The key to set.
+   * @param value - Serializable value; must not be undefined.
+   * @param opts - Optional settings.
+   * @param opts.ttlSec - Time-to-live in seconds; if > 0, sets expiry.
+   * @returns True on success.
+   * @throws Error if `value` is undefined or the key is invalid.
+   */
+  set(key: string, value: unknown, opts?: { ttlSec?: number }): Promise<boolean>;
+
+  /**
+   * Delete a key.
+   * @param key - The key to remove.
+   * @returns True if exactly one key was removed.
+   */
+  del(key: string): Promise<boolean>;
+
+  /**
+   * Check whether a key exists.
+   * @param key - The key to check.
+   * @returns True if the key exists.
+   */
+  exists(key: string): Promise<boolean>;
+
+  /**
+   * List keys in this namespace matching `pattern`.
+   * @param pattern - Glob-like match pattern (default '*').
+   * @param batch - SCAN COUNT per iteration (default 500).
+   * @returns Array of bare keys (without the namespace prefix).
+   */
+  listKeys(pattern?: string, batch?: number): Promise<string[]>;
+
+  /**
+   * Remove all keys in this namespace.
+   * @returns The number of keys deleted.
+   */
+  clear(): Promise<number>;
+
+  /**
+   * Execute `fn` under a distributed lock for `key`.
+   * @typeParam T - The return type of `fn`.
+   * @param key - The lock key.
+   * @param fn - Async function to execute while holding the lock.
+   * @param opts - Lock options.
+   * @param opts.ttlSec - Lock expiry in seconds (default 30).
+   * @param opts.onBusy - Behavior when the lock is busy: 'throw' or 'skip'.
+   * @returns The result of `fn`, or null when skipped due to a busy lock.
+   * @throws Error if the lock is busy and `onBusy` is 'throw'.
+   */
+  withLock<T>(
+    key: string,
+    fn: () => Promise<T>,
+    opts?: { ttlSec?: number; onBusy?: 'throw' | 'skip' },
+  ): Promise<T | null>;
+}
+
+/**
+ * Plugin context with KV always available for modern plugins.
+ */
+export interface PluginContext {
+  api: PluginAPI;
+  kv: PluginKVStore;
+  params: any;
+}
+
 export interface PluginAPI {
   useRelayer(relayerId: string): Relayer;
   transactionWait(transaction: SendTransactionResult, options?: TransactionWaitOptions): Promise<TransactionResponse>;
