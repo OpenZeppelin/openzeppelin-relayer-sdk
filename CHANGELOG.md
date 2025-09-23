@@ -1,5 +1,12 @@
 # @openzeppelin/relayer-sdk
 
+
+## 1.5.0 (2025-09-23)
+
+- New examples + OpenApi spec updated to include newly exposed CRUD endpoints ([#134](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/134))
+- fix: fix style issue ([#192](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/192))
+- feat: add PluginKVStore and PluginContext interfaces ([#190](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/190))
+
 ## 1.4.0 (2025-08-07)
 
 - fix: plugin method response types ([#158](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/158))
