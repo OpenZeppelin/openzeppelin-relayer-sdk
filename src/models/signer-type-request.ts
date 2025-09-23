@@ -26,6 +26,7 @@ export enum SignerTypeRequest {
     VAULT = 'vault',
     VAULT_TRANSIT = 'vault_transit',
     TURNKEY = 'turnkey',
+    CDP = 'cdp',
     GOOGLE_CLOUD_KMS = 'google_cloud_kms'
 }
 

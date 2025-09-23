@@ -34,12 +34,15 @@ import type { SignerConfigResponseOneOf3 } from './signer-config-response-one-of
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SignerConfigResponseOneOf4 } from './signer-config-response-one-of4';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SignerConfigResponseOneOf5 } from './signer-config-response-one-of5';
 
 /**
  * @type SignerConfigResponse
  * Signer configuration response Does not include sensitive information like private keys
  * @export
  */
-export type SignerConfigResponse = SignerConfigResponseOneOf | SignerConfigResponseOneOf1 | SignerConfigResponseOneOf2 | SignerConfigResponseOneOf3 | SignerConfigResponseOneOf4 | object;
+export type SignerConfigResponse = SignerConfigResponseOneOf | SignerConfigResponseOneOf1 | SignerConfigResponseOneOf2 | SignerConfigResponseOneOf3 | SignerConfigResponseOneOf4 | SignerConfigResponseOneOf5 | object;
 
 

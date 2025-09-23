@@ -18,6 +18,9 @@
 import type { AwsKmsSignerRequestConfig } from './aws-kms-signer-request-config';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { CdpSignerRequestConfig } from './cdp-signer-request-config';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { GoogleCloudKmsSignerKeyRequestConfig } from './google-cloud-kms-signer-key-request-config';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -43,6 +46,6 @@ import type { VaultTransitSignerRequestConfig } from './vault-transit-signer-req
  * Signer configuration enum for API requests (without type discriminator)
  * @export
  */
-export type SignerConfigRequest = AwsKmsSignerRequestConfig | GoogleCloudKmsSignerRequestConfig | LocalSignerRequestConfig | TurnkeySignerRequestConfig | VaultSignerRequestConfig | VaultTransitSignerRequestConfig;
+export type SignerConfigRequest = AwsKmsSignerRequestConfig | CdpSignerRequestConfig | GoogleCloudKmsSignerRequestConfig | LocalSignerRequestConfig | TurnkeySignerRequestConfig | VaultSignerRequestConfig | VaultTransitSignerRequestConfig;
 
 

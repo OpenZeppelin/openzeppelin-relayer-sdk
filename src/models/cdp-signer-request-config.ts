@@ -15,22 +15,34 @@
 
 
 /**
- * 
+ * CDP signer configuration for API requests
  * @export
- * @interface SignerConfigResponseOneOf4
+ * @interface CdpSignerRequestConfig
  */
-export interface SignerConfigResponseOneOf4 {
+export interface CdpSignerRequestConfig {
     /**
      * 
      * @type {string}
-     * @memberof SignerConfigResponseOneOf4
+     * @memberof CdpSignerRequestConfig
      */
     'account_address': string;
     /**
      * 
      * @type {string}
-     * @memberof SignerConfigResponseOneOf4
+     * @memberof CdpSignerRequestConfig
      */
     'api_key_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CdpSignerRequestConfig
+     */
+    'api_key_secret': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CdpSignerRequestConfig
+     */
+    'wallet_secret': string;
 }
 

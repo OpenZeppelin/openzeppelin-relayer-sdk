@@ -1,0 +1,10 @@
+# SignerConfigResponse_oneOf_5
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+| **key** | [**GoogleCloudKmsSignerKeyResponseConfig**](GoogleCloudKmsSignerKeyResponseConfig.md) |  | [default to null] |
+| **service\_account** | [**GoogleCloudKmsSignerServiceAccountResponseConfig**](GoogleCloudKmsSignerServiceAccountResponseConfig.md) |  | [default to null] |
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

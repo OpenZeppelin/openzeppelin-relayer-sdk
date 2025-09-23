@@ -61,10 +61,10 @@ export interface EvmTransactionResponse {
     'gas_limit'?: number | null;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof EvmTransactionResponse
      */
-    'gas_price'?: number;
+    'gas_price'?: string;
     /**
      * 
      * @type {string}
@@ -79,16 +79,16 @@ export interface EvmTransactionResponse {
     'id': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof EvmTransactionResponse
      */
-    'max_fee_per_gas'?: number;
+    'max_fee_per_gas'?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof EvmTransactionResponse
      */
-    'max_priority_fee_per_gas'?: number;
+    'max_priority_fee_per_gas'?: string;
     /**
      * 
      * @type {number}
