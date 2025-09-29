@@ -405,7 +405,7 @@ jobs:
         run: echo "PACKAGE_VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
 
       - name: Generate SBOM
-        uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5
+        uses: anchore/sbom-action@f8bdd1d8ac5e901a77a92f111440fdb1b593736b
         with:
           artifact-name: sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
           output-file: /${{ steps.temp-dir.outputs.path }}/sbom-${{ github.event.repository.name }}-${{ env.PACKAGE_VERSION }}.spdx.json
