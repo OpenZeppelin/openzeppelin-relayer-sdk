@@ -120,7 +120,7 @@ jobs:
 
       - id: state
         name: Get state
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         env:
           TRIGGERING_ACTOR: ${{ github.triggering_actor }}
         with:
@@ -306,7 +306,7 @@ jobs:
           NPM_CONFIG_ACCESS: public
 
       - name: Create Github Release
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRERELEASE: ${{ needs.state.outputs.is_prerelease }}
         with:
