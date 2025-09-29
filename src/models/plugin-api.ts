@@ -194,3 +194,48 @@ type TransactionWaitOptions = {
   interval?: number;
   timeout?: number;
 };
+
+/**
+ * JSON-safe type for plugin returns and error details.
+ */
+export type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
+
+/**
+ * Error shape normalized by the runtime.
+ */
+export interface PluginErrorShape {
+  message: string;
+  code?: string;
+  status?: number;
+  details?: Json;
+}
+
+/**
+ * Minimal error class for plugin authors; SDK will mirror this.
+ * @property message - The error message.
+ * @property code - The error code.
+ * @property status - The HTTP status code.
+ * @property details - The error details.
+ */
+export class PluginError extends Error implements PluginErrorShape {
+  code?: string;
+  status?: number;
+  details?: Json;
+  constructor(message: string, opts?: { code?: string; status?: number; details?: Json }) {
+    super(message);
+    this.name = 'PluginError';
+    this.code = opts?.code;
+    this.status = opts?.status;
+    this.details = opts?.details;
+  }
+}
+
+/**
+ * Convenience helper.
+ * @param message - The error message.
+ * @param opts - The error options.
+ * @returns The error object.
+ */
+export function pluginError(message: string, opts?: { code?: string; status?: number; details?: Json }): PluginError {
+  return new PluginError(message, opts);
+}
