@@ -1,6 +1,10 @@
 # @openzeppelin/relayer-sdk
 
 
+## 1.6.0 (2025-09-30)
+
+- feat: add plugin error types ([#206](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/206))
+
 ## 1.5.0 (2025-09-23)
 
 - New examples + OpenApi spec updated to include newly exposed CRUD endpoints ([#134](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/134))
