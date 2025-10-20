@@ -20,8 +20,8 @@ models/api-response-delete-pending-transactions-response-data.ts
 models/api-response-delete-pending-transactions-response.ts
 models/api-response-notification-response-data.ts
 models/api-response-notification-response.ts
-models/api-response-plugin-call-response-data.ts
-models/api-response-plugin-call-response.ts
+models/api-response-plugin-handler-error-data.ts
+models/api-response-plugin-handler-error.ts
 models/api-response-relayer-response-data.ts
 models/api-response-relayer-response.ts
 models/api-response-relayer-status-data-one-of.ts
@@ -38,6 +38,7 @@ models/api-response-signer-response.ts
 models/api-response-string.ts
 models/api-response-transaction-response-data.ts
 models/api-response-transaction-response.ts
+models/api-response-value.ts
 models/api-response-vec-notification-response.ts
 models/api-response-vec-relayer-response.ts
 models/api-response-vec-signer-response.ts
@@ -63,6 +64,12 @@ models/create-relayer-policy-request-one-of2.ts
 models/create-relayer-policy-request.ts
 models/create-relayer-request.ts
 models/delete-pending-transactions-response.ts
+models/disabled-reason-one-of.ts
+models/disabled-reason-one-of1.ts
+models/disabled-reason-one-of2.ts
+models/disabled-reason-one-of3.ts
+models/disabled-reason-one-of4.ts
+models/disabled-reason.ts
 models/evm-policy-response.ts
 models/evm-rpc-request-one-of.ts
 models/evm-rpc-request-one-of1.ts
@@ -111,7 +118,8 @@ models/operation-spec-one-of3.ts
 models/operation-spec.ts
 models/pagination-meta.ts
 models/plugin-call-request.ts
-models/plugin-call-response.ts
+models/plugin-handler-error.ts
+models/plugin-metadata.ts
 models/prepare-transaction-request-params.ts
 models/prepare-transaction-result.ts
 models/relayer-evm-policy.ts
@@ -134,8 +142,10 @@ models/sign-data-response-evm.ts
 models/sign-data-response-solana.ts
 models/sign-data-response.ts
 models/sign-transaction-request-params.ts
+models/sign-transaction-request-solana.ts
 models/sign-transaction-request-stellar.ts
 models/sign-transaction-request.ts
+models/sign-transaction-response-solana.ts
 models/sign-transaction-response-stellar.ts
 models/sign-transaction-response.ts
 models/sign-transaction-result.ts
@@ -152,9 +162,11 @@ models/signer-create-request.ts
 models/signer-response.ts
 models/signer-type-request.ts
 models/signer-type.ts
+models/solana-account-meta.ts
 models/solana-allowed-tokens-policy.ts
 models/solana-allowed-tokens-swap-config.ts
 models/solana-fee-payment-strategy.ts
+models/solana-instruction-spec.ts
 models/solana-policy-response.ts
 models/solana-rpc-request-one-of.ts
 models/solana-rpc-request-one-of1.ts
