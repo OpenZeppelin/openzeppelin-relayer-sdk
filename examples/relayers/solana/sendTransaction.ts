@@ -1,11 +1,8 @@
 /**
- * Solana signAndSendTransaction RPC Example
+ * Solana sendTransaction Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign and submit a Solana
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to send a Solana
  * transaction.
- *
- * Sign a prepared transaction and immediately submit it to the Solana blockchain for
- * execution.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -16,7 +13,7 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node signAndSendTransaction_rpc.ts
+ *   ts-node sendTransaction.ts
  */
 import { Configuration, RelayersApi } from '../../../src';
 
@@ -28,18 +25,18 @@ const rpc = createSolanaRpc('https://api.devnet.solana.com');
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: '', // replace with your actual api key
+  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546', // replace with your actual api key
 });
 
 const relayersApi = new RelayersApi(config);
 
 // Replace with your actual values
 const relayer_id = 'solana-example';
-const source = 'DiUZ95hZn7cJCY6THuuGQUPMv4bfTuSCUraunmD5PdoZ';
-const destination = '6S9v8CedUumV7qbqq37v2GfBRxWemA6zpVGjQsiVHSZ4';
-const token = '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'; // USDC token mint address
+const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
+const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
+const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
 
-async function signAndSendTransaction() {
+async function sendTransaction() {
   try {
     // Get latest blockhash
     const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
@@ -55,20 +52,15 @@ async function signAndSendTransaction() {
     );
 
     // Sign and send transaction using the relayer
-    const signAndSendTransaction = await relayersApi.rpc(relayer_id, {
-      method: 'signAndSendTransaction',
-      id: 1,
-      jsonrpc: '2.0',
-      params: {
-        transaction: serializedTransaction,
-      },
+    const response = await relayersApi.sendTransaction(relayer_id, {
+      transaction: serializedTransaction,
     });
 
-    console.log('Sign and send transaction:');
-    console.log(JSON.stringify(signAndSendTransaction.data, null, 2));
+    console.log('Send transaction:');
+    console.log(JSON.stringify(response.data, null, 2));
   } catch (error) {
-    console.error('Error signing and sending transaction:', error);
+    console.error('Error sending transaction:', error);
   }
 }
 
-signAndSendTransaction();
+sendTransaction();

@@ -1,10 +1,10 @@
 /**
- * Solana getSupportedTokens RPC Example
+ * Solana getFeaturesEnabled RPC Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to query the tokens
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to query the features
  * enabled on a specified Solana relayer.
  *
- * Retrieve a list of tokens supported by the relayer for fee payments.
+ * Retrieve a list of features supported and enabled by the relayer.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -15,9 +15,9 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node getSupportedTokens_rpc.ts
+ *   ts-node getFeaturesEnabled_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 // example dev config
 const config = new Configuration({
@@ -31,10 +31,10 @@ const relayer_id = 'solana-example';
 
 relayersApi
   .rpc(relayer_id, {
-    method: 'getSupportedTokens',
+    method: 'getFeaturesEnabled',
     id: 1,
     jsonrpc: '2.0',
     params: {},
   })
-  .then((tokens) => console.log(JSON.stringify(tokens.data, null, 2)))
+  .then((features) => console.log(JSON.stringify(features.data, null, 2)))
   .catch(console.error);

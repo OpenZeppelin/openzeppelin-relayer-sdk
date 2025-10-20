@@ -18,10 +18,10 @@
  * Usage:
  *   ts-node prepareTransactionToken2022_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 import { createSolanaRpc } from '@solana/kit';
-import { getSerializedToken2022Transfer } from './util';
+import { getSerializedToken2022Transfer } from '../util';
 
 const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
