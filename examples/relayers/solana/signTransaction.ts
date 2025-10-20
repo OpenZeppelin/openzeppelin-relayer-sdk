@@ -6,6 +6,8 @@
  * 2. Submit the signed transaction directly to Solana devnet using bare bone RPC
  * 3. Confirm the transaction on the blockchain
  *
+ *  NOTE: sign transaction endpoint is enabled when "fee_payment_strategy" policy is set to "relayer".
+ *
  * This is useful when you want to separate the signing step from the submission step,
  * or when you need more control over the transaction submission process.
  *

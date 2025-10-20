@@ -4,6 +4,9 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to send a Solana
  * transaction.
  *
+ * NOTE: send transaction endpoint is enabled when "fee_payment_strategy" policy is set to "relayer".
+ *
+ *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
  * - Use proper error handling and transaction confirmation checks

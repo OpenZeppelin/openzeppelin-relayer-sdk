@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
  * transaction for sponsored submission.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
  * the fee payer and including relayer-specific instructions.
  *

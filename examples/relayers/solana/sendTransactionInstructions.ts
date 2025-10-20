@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to send a Solana
  * transaction using the instructions array instead of a pre-built transaction.
  *
+ *  NOTE: send transaction endpoint is enabled when "fee_payment_strategy" policy is set to "relayer".
+ *
  * The relayer will build the transaction from the provided instructions, sign it,
  * and submit it to the Solana blockchain for execution.
  *

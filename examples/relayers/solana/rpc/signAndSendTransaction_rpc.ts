@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign and submit a Solana
  * transaction.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Sign a prepared transaction and immediately submit it to the Solana blockchain for
  * execution.
  *

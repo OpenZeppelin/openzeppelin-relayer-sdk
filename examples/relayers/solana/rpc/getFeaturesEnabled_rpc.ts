@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to query the features
  * enabled on a specified Solana relayer.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Retrieve a list of features supported and enabled by the relayer.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
