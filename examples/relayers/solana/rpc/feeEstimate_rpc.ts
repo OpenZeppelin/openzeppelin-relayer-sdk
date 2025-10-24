@@ -1,11 +1,13 @@
 /**
- * Solana prepareTransaction RPC Example
+ * Solana estimateFee RPC Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
- * transaction for sponsored submission.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to estimate the fee in SPL token
+ * for a Solana transaction.
  *
- * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
- * the fee payer and including relayer-specific instructions.
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
+ * Estimate the fee for an arbitrary transaction using a specified token. This helps clients
+ * calculate costs before preparing or submitting the transaction.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -16,12 +18,12 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node prepareTransaction_rpc.ts
+ *   ts-node feeEstimate_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 import { createSolanaRpc } from '@solana/kit';
-import { getSerializedTokenTransfer } from './util';
+import { getSerializedTokenTransfer } from '../util';
 
 const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
@@ -37,9 +39,9 @@ const relayersApi = new RelayersApi(config);
 const relayer_id = 'solana-example';
 const source = 'EYsk8PduFSAt7W9dnvL2Pt7qcVsb5wAVCYbJ5UQaUpXf';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
-const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
+const usdcToken = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr';
 
-async function prepareTransaction() {
+async function estimateFee() {
   try {
     // Get latest blockhash
     const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
@@ -49,27 +51,27 @@ async function prepareTransaction() {
     const serializedTransaction = await getSerializedTokenTransfer(
       source,
       destination,
-      token,
+      usdcToken,
       1000000, // Amount (consider token decimals)
       latestBlockhash,
     );
 
-    // Prepare transaction using the relayer
-    const prepareTransaction = await relayersApi.rpc(relayer_id, {
-      method: 'prepareTransaction',
+    // Estimate fee using the relayer
+    const feeEstimate = await relayersApi.rpc(relayer_id, {
+      method: 'feeEstimate',
       id: 1,
       jsonrpc: '2.0',
       params: {
         transaction: serializedTransaction,
-        fee_token: token,
+        fee_token: usdcToken,
       },
     });
 
-    console.log('Prepare transaction:');
-    console.log(JSON.stringify(prepareTransaction.data, null, 2));
+    console.log('Fee Estimate:');
+    console.log(JSON.stringify(feeEstimate.data, null, 2));
   } catch (error) {
-    console.error('Error preparing transaction:', error);
+    console.error('Error estimating fee:', error);
   }
 }
 
-prepareTransaction();
+estimateFee();

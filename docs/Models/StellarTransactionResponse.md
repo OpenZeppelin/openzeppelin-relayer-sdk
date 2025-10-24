@@ -8,6 +8,7 @@
 | **fee** | **Integer** |  | [default to null] |
 | **hash** | **String** |  | [optional] [default to null] |
 | **id** | **String** |  | [default to null] |
+| **relayer\_id** | **String** |  | [default to null] |
 | **sent\_at** | **String** |  | [optional] [default to null] |
 | **sequence\_number** | **Long** |  | [default to null] |
 | **source\_account** | **String** |  | [default to null] |

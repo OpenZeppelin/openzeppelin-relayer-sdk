@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to query the tokens
  * enabled on a specified Solana relayer.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Retrieve a list of tokens supported by the relayer for fee payments.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
@@ -17,7 +19,7 @@
  * Usage:
  *   ts-node getSupportedTokens_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 // example dev config
 const config = new Configuration({

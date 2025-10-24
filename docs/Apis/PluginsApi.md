@@ -4,14 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**callPlugin**](PluginsApi.md#callPlugin) | **POST** /api/v1/plugins/{plugin_id}/call | Calls a plugin method. |
+| [**callPlugin**](PluginsApi.md#callPlugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin and receive the sanitized result |
 
 
 <a name="callPlugin"></a>
 # **callPlugin**
-> ApiResponse_PluginCallResponse callPlugin(plugin\_id, PluginCallRequest)
+> ApiResponse_Value callPlugin(plugin\_id, PluginCallRequest)
 
-Calls a plugin method.
+Execute a plugin and receive the sanitized result
+
+    Logs and traces are only returned when the plugin is configured with &#x60;emit_logs&#x60; / &#x60;emit_traces&#x60;. Plugin-provided errors are normalized into a consistent payload (&#x60;code&#x60;, &#x60;details&#x60;) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.
 
 ### Parameters
 
@@ -22,7 +24,7 @@ Calls a plugin method.
 
 ### Return type
 
-[**ApiResponse_PluginCallResponse**](../Models/ApiResponse_PluginCallResponse.md)
+[**ApiResponse_Value**](../Models/ApiResponse_Value.md)
 
 ### Authorization
 

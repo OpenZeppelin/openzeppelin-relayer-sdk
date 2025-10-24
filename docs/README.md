@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 *NotificationsApi* | [**getNotification**](Apis/NotificationsApi.md#getnotification) | **GET** /api/v1/notifications/{notification_id} | Retrieves details of a specific notification by ID. |
 *NotificationsApi* | [**listNotifications**](Apis/NotificationsApi.md#listnotifications) | **GET** /api/v1/notifications | Notification routes implementation |
 *NotificationsApi* | [**updateNotification**](Apis/NotificationsApi.md#updatenotification) | **PATCH** /api/v1/notifications/{notification_id} | Updates an existing notification. |
-| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Calls a plugin method. |
+| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin and receive the sanitized result |
 | *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
 *RelayersApi* | [**createRelayer**](Apis/RelayersApi.md#createrelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
 *RelayersApi* | [**deletePendingTransactions**](Apis/RelayersApi.md#deletependingtransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending | Deletes all pending transactions for a specific relayer. |
@@ -51,8 +51,8 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_DeletePendingTransactionsResponse_data](./Models/ApiResponse_DeletePendingTransactionsResponse_data.md)
  - [ApiResponse_NotificationResponse](./Models/ApiResponse_NotificationResponse.md)
  - [ApiResponse_NotificationResponse_data](./Models/ApiResponse_NotificationResponse_data.md)
- - [ApiResponse_PluginCallResponse](./Models/ApiResponse_PluginCallResponse.md)
- - [ApiResponse_PluginCallResponse_data](./Models/ApiResponse_PluginCallResponse_data.md)
+ - [ApiResponse_PluginHandlerError](./Models/ApiResponse_PluginHandlerError.md)
+ - [ApiResponse_PluginHandlerError_data](./Models/ApiResponse_PluginHandlerError_data.md)
  - [ApiResponse_RelayerResponse](./Models/ApiResponse_RelayerResponse.md)
  - [ApiResponse_RelayerResponse_data](./Models/ApiResponse_RelayerResponse_data.md)
  - [ApiResponse_RelayerStatus](./Models/ApiResponse_RelayerStatus.md)
@@ -69,6 +69,7 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_String](./Models/ApiResponse_String.md)
  - [ApiResponse_TransactionResponse](./Models/ApiResponse_TransactionResponse.md)
  - [ApiResponse_TransactionResponse_data](./Models/ApiResponse_TransactionResponse_data.md)
+ - [ApiResponse_Value](./Models/ApiResponse_Value.md)
  - [ApiResponse_Vec_NotificationResponse](./Models/ApiResponse_Vec_NotificationResponse.md)
  - [ApiResponse_Vec_RelayerResponse](./Models/ApiResponse_Vec_RelayerResponse.md)
  - [ApiResponse_Vec_SignerResponse](./Models/ApiResponse_Vec_SignerResponse.md)
@@ -94,6 +95,12 @@ All URIs are relative to *http://localhost*
  - [CreateRelayerPolicyRequest_oneOf_2](./Models/CreateRelayerPolicyRequest_oneOf_2.md)
  - [CreateRelayerRequest](./Models/CreateRelayerRequest.md)
  - [DeletePendingTransactionsResponse](./Models/DeletePendingTransactionsResponse.md)
+ - [DisabledReason](./Models/DisabledReason.md)
+ - [DisabledReason_oneOf](./Models/DisabledReason_oneOf.md)
+ - [DisabledReason_oneOf_1](./Models/DisabledReason_oneOf_1.md)
+ - [DisabledReason_oneOf_2](./Models/DisabledReason_oneOf_2.md)
+ - [DisabledReason_oneOf_3](./Models/DisabledReason_oneOf_3.md)
+ - [DisabledReason_oneOf_4](./Models/DisabledReason_oneOf_4.md)
  - [EvmPolicyResponse](./Models/EvmPolicyResponse.md)
  - [EvmRpcRequest](./Models/EvmRpcRequest.md)
  - [EvmRpcRequest_oneOf](./Models/EvmRpcRequest_oneOf.md)
@@ -141,7 +148,8 @@ All URIs are relative to *http://localhost*
  - [OperationSpec_oneOf_3](./Models/OperationSpec_oneOf_3.md)
  - [PaginationMeta](./Models/PaginationMeta.md)
  - [PluginCallRequest](./Models/PluginCallRequest.md)
- - [PluginCallResponse](./Models/PluginCallResponse.md)
+ - [PluginHandlerError](./Models/PluginHandlerError.md)
+ - [PluginMetadata](./Models/PluginMetadata.md)
  - [PrepareTransactionRequestParams](./Models/PrepareTransactionRequestParams.md)
  - [PrepareTransactionResult](./Models/PrepareTransactionResult.md)
  - [RelayerEvmPolicy](./Models/RelayerEvmPolicy.md)
@@ -165,8 +173,10 @@ All URIs are relative to *http://localhost*
  - [SignDataResponseSolana](./Models/SignDataResponseSolana.md)
  - [SignTransactionRequest](./Models/SignTransactionRequest.md)
  - [SignTransactionRequestParams](./Models/SignTransactionRequestParams.md)
+ - [SignTransactionRequestSolana](./Models/SignTransactionRequestSolana.md)
  - [SignTransactionRequestStellar](./Models/SignTransactionRequestStellar.md)
  - [SignTransactionResponse](./Models/SignTransactionResponse.md)
+ - [SignTransactionResponseSolana](./Models/SignTransactionResponseSolana.md)
  - [SignTransactionResponseStellar](./Models/SignTransactionResponseStellar.md)
  - [SignTransactionResult](./Models/SignTransactionResult.md)
  - [SignTypedDataRequest](./Models/SignTypedDataRequest.md)
@@ -182,9 +192,11 @@ All URIs are relative to *http://localhost*
  - [SignerResponse](./Models/SignerResponse.md)
  - [SignerType](./Models/SignerType.md)
  - [SignerTypeRequest](./Models/SignerTypeRequest.md)
+ - [SolanaAccountMeta](./Models/SolanaAccountMeta.md)
  - [SolanaAllowedTokensPolicy](./Models/SolanaAllowedTokensPolicy.md)
  - [SolanaAllowedTokensSwapConfig](./Models/SolanaAllowedTokensSwapConfig.md)
  - [SolanaFeePaymentStrategy](./Models/SolanaFeePaymentStrategy.md)
+ - [SolanaInstructionSpec](./Models/SolanaInstructionSpec.md)
  - [SolanaPolicyResponse](./Models/SolanaPolicyResponse.md)
  - [SolanaRpcRequest](./Models/SolanaRpcRequest.md)
  - [SolanaRpcRequest_oneOf](./Models/SolanaRpcRequest_oneOf.md)

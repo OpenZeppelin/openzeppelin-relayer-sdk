@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to execute a simple
  * token transfer using the relayer's built-in transferTransaction method.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
  * - Use proper error handling and transaction confirmation checks
@@ -15,7 +17,7 @@
  * Usage:
  *   ts-node transferTransaction_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 // example dev config
 const config = new Configuration({

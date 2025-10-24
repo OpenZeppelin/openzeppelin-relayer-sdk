@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
  * transaction for sponsored submission using Token2022.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
  * the fee payer and including relayer-specific instructions.
  *
@@ -18,10 +20,10 @@
  * Usage:
  *   ts-node prepareTransactionToken2022_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
+import { Configuration, RelayersApi } from '../../../../src';
 
 import { createSolanaRpc } from '@solana/kit';
-import { getSerializedToken2022Transfer } from './util';
+import { getSerializedToken2022Transfer } from '../util';
 
 const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
