@@ -22,6 +22,7 @@
 | **status\_reason** | **String** |  | [optional] [default to null] |
 | **to** | **String** |  | [optional] [default to null] |
 | **value** | **String** |  | [default to null] |
+| **instructions** | [**List**](SolanaInstructionSpec.md) |  | [optional] [default to null] |
 | **transaction** | **String** |  | [default to null] |
 | **fee** | **Integer** |  | [default to null] |
 | **sequence\_number** | **Long** |  | [default to null] |

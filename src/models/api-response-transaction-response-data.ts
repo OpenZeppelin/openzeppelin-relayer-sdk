@@ -18,6 +18,9 @@
 import type { EvmTransactionResponse } from './evm-transaction-response';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { SolanaInstructionSpec } from './solana-instruction-spec';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SolanaTransactionResponse } from './solana-transaction-response';
 // May contain unused imports in some cases
 // @ts-ignore
