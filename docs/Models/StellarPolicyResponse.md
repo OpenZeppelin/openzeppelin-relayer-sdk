@@ -1,12 +1,12 @@
 # StellarPolicyResponse
+
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-| **concurrent\_transactions** | **Boolean** |  | [optional] [default to null] |
-| **max\_fee** | **Integer** |  | [optional] [default to null] |
-| **min\_balance** | **Long** |  | [optional] [default to null] |
-| **timeout\_seconds** | **Long** |  | [optional] [default to null] |
+| Name                        | Type        | Description | Notes                        |
+| --------------------------- | ----------- | ----------- | ---------------------------- |
+| **concurrent_transactions** | **Boolean** |             | [optional] [default to null] |
+| **max_fee**                 | **Integer** |             | [optional] [default to null] |
+| **min_balance**             | **Long**    |             | [optional] [default to null] |
+| **timeout_seconds**         | **Long**    |             | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-

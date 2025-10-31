@@ -8,9 +8,26 @@ import {
   setTransactionMessageFeePayer,
   compileTransaction,
   type Blockhash,
+  createSolanaRpc,
 } from '@solana/kit';
 import { findAssociatedTokenPda, getTransferInstruction, TOKEN_PROGRAM_ADDRESS } from '@solana-program/token';
 import { getTransferCheckedInstruction, TOKEN_2022_PROGRAM_ADDRESS } from '@solana-program/token-2022';
+
+/**
+ * Creates a Solana relayer RPC client
+ * @param basePath - The base path of the relayer
+ * @param relayerId - The ID of the relayer
+ * @param apiKey - The API key for the relayer
+ * @returns A Solana relayer RPC client
+ */
+export function createSolanaRelayerRpcClient(basePath: string, relayerId: string, apiKey: string) {
+  const rpc = createSolanaRpc(`${basePath}/api/v1/relayers/${relayerId}/rpc`, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+  });
+  return rpc;
+}
 
 type LatestBlockhash = Readonly<{
   blockhash: Blockhash;

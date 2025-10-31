@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { EvmRpcResult } from './evm-rpc-result';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { GetSupportedTokensItem } from './get-supported-tokens-item';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,6 +30,6 @@ import type { StellarRpcResult } from './stellar-rpc-result';
  * @type JsonRpcResponseNetworkRpcResultResult
  * @export
  */
-export type JsonRpcResponseNetworkRpcResultResult = SolanaRpcResult | StellarRpcResult | string;
+export type JsonRpcResponseNetworkRpcResultResult = EvmRpcResult | SolanaRpcResult | StellarRpcResult;
 
 

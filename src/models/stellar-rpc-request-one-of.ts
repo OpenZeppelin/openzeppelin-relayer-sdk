@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarRpcRequestOneOfParams } from './stellar-rpc-request-one-of-params';
 
 /**
  * 
@@ -28,10 +31,10 @@ export interface StellarRpcRequestOneOf {
     'method': StellarRpcRequestOneOfMethodEnum;
     /**
      * 
-     * @type {string}
+     * @type {StellarRpcRequestOneOfParams}
      * @memberof StellarRpcRequestOneOf
      */
-    'params': string;
+    'params': StellarRpcRequestOneOfParams;
 }
 
 /**
@@ -39,7 +42,7 @@ export interface StellarRpcRequestOneOf {
     * @enum {string}
     */
 export enum StellarRpcRequestOneOfMethodEnum {
-    GENERIC_RPC_REQUEST = 'GenericRpcRequest'
+    RAW_RPC_REQUEST = 'RawRpcRequest'
 }
 
 

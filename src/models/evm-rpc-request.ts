@@ -16,14 +16,11 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { EvmRpcRequestOneOf } from './evm-rpc-request-one-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { EvmRpcRequestOneOf1 } from './evm-rpc-request-one-of1';
 
 /**
  * @type EvmRpcRequest
  * @export
  */
-export type EvmRpcRequest = EvmRpcRequestOneOf | EvmRpcRequestOneOf1;
+export type EvmRpcRequest = EvmRpcRequestOneOf;
 
 

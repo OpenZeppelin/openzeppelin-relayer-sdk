@@ -56,7 +56,7 @@ Models/DeletePendingTransactionsResponse.md
 Models/EvmPolicyResponse.md
 Models/EvmRpcRequest.md
 Models/EvmRpcRequest_oneOf.md
-Models/EvmRpcRequest_oneOf_1.md
+Models/EvmRpcResult.md
 Models/EvmTransactionDataSignature.md
 Models/EvmTransactionRequest.md
 Models/EvmTransactionResponse.md
@@ -153,6 +153,8 @@ Models/SolanaRpcRequest_oneOf_3.md
 Models/SolanaRpcRequest_oneOf_4.md
 Models/SolanaRpcRequest_oneOf_5.md
 Models/SolanaRpcRequest_oneOf_6.md
+Models/SolanaRpcRequest_oneOf_7.md
+Models/SolanaRpcRequest_oneOf_7_params.md
 Models/SolanaRpcResult.md
 Models/SolanaRpcResult_oneOf.md
 Models/SolanaRpcResult_oneOf_1.md
@@ -168,6 +170,7 @@ Models/Speed.md
 Models/StellarPolicyResponse.md
 Models/StellarRpcRequest.md
 Models/StellarRpcRequest_oneOf.md
+Models/StellarRpcRequest_oneOf_params.md
 Models/StellarRpcResult.md
 Models/StellarTransactionRequest.md
 Models/StellarTransactionResponse.md

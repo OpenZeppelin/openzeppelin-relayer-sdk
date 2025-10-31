@@ -15,7 +15,7 @@
 
 
 /**
- * 
+ * Unified raw request variant where params may be a JSON string or structured JSON value.
  * @export
  * @interface EvmRpcRequestOneOf
  */
@@ -28,9 +28,9 @@ export interface EvmRpcRequestOneOf {
     'method': string;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof EvmRpcRequestOneOf
      */
-    'params': string;
+    'params': any;
 }
 
