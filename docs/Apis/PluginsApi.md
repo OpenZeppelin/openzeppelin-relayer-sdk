@@ -1,25 +1,24 @@
 # PluginsApi
 
-All URIs are relative to _http://localhost_
+All URIs are relative to *http://localhost*
 
-| Method                                     | HTTP request                              | Description            |
-| ------------------------------------------ | ----------------------------------------- | ---------------------- |
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
 | [**callPlugin**](PluginsApi.md#callPlugin) | **POST** /api/v1/plugins/{plugin_id}/call | Calls a plugin method. |
 
+
 <a name="callPlugin"></a>
-
 # **callPlugin**
-
-> ApiResponse_PluginCallResponse callPlugin(plugin_id, PluginCallRequest)
+> ApiResponse_PluginCallResponse callPlugin(plugin\_id, PluginCallRequest)
 
 Calls a plugin method.
 
 ### Parameters
 
-| Name                  | Type                                                    | Description                         | Notes             |
-| --------------------- | ------------------------------------------------------- | ----------------------------------- | ----------------- |
-| **plugin_id**         | **String**                                              | The unique identifier of the plugin | [default to null] |
-| **PluginCallRequest** | [**PluginCallRequest**](../Models/PluginCallRequest.md) |                                     |                   |
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **plugin\_id** | **String**| The unique identifier of the plugin | [default to null] |
+| **PluginCallRequest** | [**PluginCallRequest**](../Models/PluginCallRequest.md)|  | |
 
 ### Return type
 
@@ -33,3 +32,4 @@ Calls a plugin method.
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
