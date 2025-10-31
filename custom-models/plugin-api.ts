@@ -9,12 +9,14 @@
  * normalized to relative paths when copied by scripts/post-generate.js
  */
 
-import { NetworkTransactionRequest } from '../src/models/network-transaction-request';
-import { TransactionResponse } from '../src/models/transaction-response';
-import { SignTransactionRequest } from '../src/models/sign-transaction-request';
-import { SignTransactionResponse } from '../src/models/sign-transaction-response';
 import { ApiResponseRelayerResponseData } from '../src/models/api-response-relayer-response-data';
 import { ApiResponseRelayerStatusData } from '../src/models/api-response-relayer-status-data';
+import { JsonRpcRequestNetworkRpcRequest } from '../src/models/json-rpc-request-network-rpc-request';
+import { JsonRpcResponseNetworkRpcResult } from '../src/models/json-rpc-response-network-rpc-result';
+import { NetworkTransactionRequest } from '../src/models/network-transaction-request';
+import { SignTransactionRequest } from '../src/models/sign-transaction-request';
+import { SignTransactionResponse } from '../src/models/sign-transaction-response';
+import { TransactionResponse } from '../src/models/transaction-response';
 
 /**
  * The result of a sendTransaction call.
@@ -107,6 +109,13 @@ export type Relayer = {
    * @returns The signed transaction XDR and signature.
    */
   signTransaction: (payload: SignTransactionRequest) => Promise<SignTransactionResponse>;
+
+  /**
+   * Performs an RPC call to the relayer.
+   * @param payload - The RPC request payload.
+   * @returns The RPC response.
+   */
+  rpc: (payload: JsonRpcRequestNetworkRpcRequest) => Promise<JsonRpcResponseNetworkRpcResult>;
 };
 
 export interface PluginKVStore {
