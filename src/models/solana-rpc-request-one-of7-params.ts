@@ -15,21 +15,21 @@
 
 
 /**
- * Unified raw request variant where params may be a JSON string or structured JSON value.
+ * 
  * @export
- * @interface EvmRpcRequestOneOf
+ * @interface SolanaRpcRequestOneOf7Params
  */
-export interface EvmRpcRequestOneOf {
+export interface SolanaRpcRequestOneOf7Params {
     /**
      * 
      * @type {string}
-     * @memberof EvmRpcRequestOneOf
+     * @memberof SolanaRpcRequestOneOf7Params
      */
     'method': string;
     /**
      * 
      * @type {any}
-     * @memberof EvmRpcRequestOneOf
+     * @memberof SolanaRpcRequestOneOf7Params
      */
     'params': any;
 }

@@ -34,11 +34,17 @@ import type { SolanaRpcRequestOneOf5 } from './solana-rpc-request-one-of5';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SolanaRpcRequestOneOf6 } from './solana-rpc-request-one-of6';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaRpcRequestOneOf7 } from './solana-rpc-request-one-of7';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaRpcRequestOneOf7Params } from './solana-rpc-request-one-of7-params';
 
 /**
  * @type SolanaRpcRequest
  * @export
  */
-export type SolanaRpcRequest = SolanaRpcRequestOneOf | SolanaRpcRequestOneOf1 | SolanaRpcRequestOneOf2 | SolanaRpcRequestOneOf3 | SolanaRpcRequestOneOf4 | SolanaRpcRequestOneOf5 | SolanaRpcRequestOneOf6;
+export type SolanaRpcRequest = SolanaRpcRequestOneOf | SolanaRpcRequestOneOf1 | SolanaRpcRequestOneOf2 | SolanaRpcRequestOneOf3 | SolanaRpcRequestOneOf4 | SolanaRpcRequestOneOf5 | SolanaRpcRequestOneOf6 | SolanaRpcRequestOneOf7;
 
 

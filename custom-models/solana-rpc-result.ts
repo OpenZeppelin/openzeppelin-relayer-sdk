@@ -27,38 +27,42 @@ import type { SignTransactionResult } from './sign-transaction-result';
 import type { TransferTransactionResult } from './transfer-transaction-result';
 
 type TransferTransactionResultWithMethod = TransferTransactionResult & {
-    method: 'transferTransaction';
-}
+  method: 'transferTransaction';
+};
 
 type FeeEstimateResultWithMethod = FeeEstimateResult & {
-    method: 'feeEstimate';
-}
+  method: 'feeEstimate';
+};
 
 type GetFeaturesEnabledResultWithMethod = GetFeaturesEnabledResult & {
-    method: 'getFeaturesEnabled';
-}
+  method: 'getFeaturesEnabled';
+};
 
 type PrepareTransactionResultWithMethod = PrepareTransactionResult & {
-    method: 'prepareTransaction';
-}
+  method: 'prepareTransaction';
+};
 
 type GetSupportedTokensResultWithMethod = GetSupportedTokensResult & {
-    method: 'getSupportedTokens';
-}
+  method: 'getSupportedTokens';
+};
 
 type SignAndSendTransactionResultWithMethod = SignAndSendTransactionResult & {
-    method: 'signAndSendTransaction';
-}
+  method: 'signAndSendTransaction';
+};
 
 type SignTransactionResultWithMethod = SignTransactionResult & {
-    method: 'signTransaction';
-}
-
-
+  method: 'signTransaction';
+};
 
 /**
  * @type SolanaRpcResult
  * @export
  */
-export type SolanaRpcResult = FeeEstimateResultWithMethod | GetFeaturesEnabledResultWithMethod | GetSupportedTokensResultWithMethod | PrepareTransactionResultWithMethod | SignAndSendTransactionResultWithMethod | SignTransactionResultWithMethod | TransferTransactionResultWithMethod;
-
+export type SolanaRpcResult =
+  | FeeEstimateResultWithMethod
+  | GetFeaturesEnabledResultWithMethod
+  | GetSupportedTokensResultWithMethod
+  | PrepareTransactionResultWithMethod
+  | SignAndSendTransactionResultWithMethod
+  | SignTransactionResultWithMethod
+  | TransferTransactionResultWithMethod;

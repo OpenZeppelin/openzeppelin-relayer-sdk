@@ -1,6 +1,5 @@
 # @openzeppelin/relayer-sdk
 
-
 ## 1.6.0 (2025-09-30)
 
 - feat: add plugin error types ([#206](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/206))

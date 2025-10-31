@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { StellarRpcRequestOneOf } from './stellar-rpc-request-one-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarRpcRequestOneOfParams } from './stellar-rpc-request-one-of-params';
 
 /**
  * @type StellarRpcRequest

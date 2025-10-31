@@ -15,21 +15,21 @@
 
 
 /**
- * Unified raw request variant where params may be a JSON string or structured JSON value.
+ * Raw request where params can be any JSON value (string or structured).
  * @export
- * @interface EvmRpcRequestOneOf
+ * @interface StellarRpcRequestOneOfParams
  */
-export interface EvmRpcRequestOneOf {
+export interface StellarRpcRequestOneOfParams {
     /**
      * 
      * @type {string}
-     * @memberof EvmRpcRequestOneOf
+     * @memberof StellarRpcRequestOneOfParams
      */
     'method': string;
     /**
      * 
      * @type {any}
-     * @memberof EvmRpcRequestOneOf
+     * @memberof StellarRpcRequestOneOfParams
      */
     'params': any;
 }

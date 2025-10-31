@@ -15,22 +15,9 @@
 
 
 /**
- * 
+ * @type EvmRpcResult
  * @export
- * @interface EvmRpcRequestOneOf1
  */
-export interface EvmRpcRequestOneOf1 {
-    /**
-     * 
-     * @type {string}
-     * @memberof EvmRpcRequestOneOf1
-     */
-    'method': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof EvmRpcRequestOneOf1
-     */
-    'params': any;
-}
+export type EvmRpcResult = any;
+
 

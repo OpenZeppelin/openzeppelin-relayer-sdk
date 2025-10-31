@@ -1,56 +1,68 @@
 // This file is a workaround to generate the desired output.
 // Workaround for https://github.com/OpenAPITools/openapi-generator/issues/13417
 
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { FeeEstimateResult } from './fee-estimate-result';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { GetFeaturesEnabledResult } from './get-features-enabled-result';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// May contain unused imports in some cases
+// @ts-ignore
 import type { GetSupportedTokensItem } from './get-supported-tokens-item';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { GetSupportedTokensResult } from './get-supported-tokens-result';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { PrepareTransactionResult } from './prepare-transaction-result';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SignAndSendTransactionResult } from './sign-and-send-transaction-result';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SignTransactionResult } from './sign-transaction-result';
-// @ts-expect-error - May contain unused imports in some cases
+// May contain unused imports in some cases
+// @ts-ignore
 import type { TransferTransactionResult } from './transfer-transaction-result';
 
 type TransferTransactionResultWithMethod = TransferTransactionResult & {
-    method: 'transferTransaction';
-}
+  method: 'transferTransaction';
+};
 
 type FeeEstimateResultWithMethod = FeeEstimateResult & {
-    method: 'feeEstimate';
-}
+  method: 'feeEstimate';
+};
 
 type GetFeaturesEnabledResultWithMethod = GetFeaturesEnabledResult & {
-    method: 'getFeaturesEnabled';
-}
+  method: 'getFeaturesEnabled';
+};
 
 type PrepareTransactionResultWithMethod = PrepareTransactionResult & {
-    method: 'prepareTransaction';
-}
+  method: 'prepareTransaction';
+};
 
 type GetSupportedTokensResultWithMethod = GetSupportedTokensResult & {
-    method: 'getSupportedTokens';
-}
+  method: 'getSupportedTokens';
+};
 
 type SignAndSendTransactionResultWithMethod = SignAndSendTransactionResult & {
-    method: 'signAndSendTransaction';
-}
+  method: 'signAndSendTransaction';
+};
 
 type SignTransactionResultWithMethod = SignTransactionResult & {
-    method: 'signTransaction';
-}
-
-
+  method: 'signTransaction';
+};
 
 /**
  * @type SolanaRpcResult
  * @export
  */
-export type SolanaRpcResult = FeeEstimateResultWithMethod | GetFeaturesEnabledResultWithMethod | GetSupportedTokensResultWithMethod | PrepareTransactionResultWithMethod | SignAndSendTransactionResultWithMethod | SignTransactionResultWithMethod | TransferTransactionResultWithMethod;
-
+export type SolanaRpcResult =
+  | FeeEstimateResultWithMethod
+  | GetFeaturesEnabledResultWithMethod
+  | GetSupportedTokensResultWithMethod
+  | PrepareTransactionResultWithMethod
+  | SignAndSendTransactionResultWithMethod
+  | SignTransactionResultWithMethod
+  | TransferTransactionResultWithMethod;

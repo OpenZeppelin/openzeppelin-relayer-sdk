@@ -15,34 +15,34 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { StellarRpcRequestOneOfParams } from './stellar-rpc-request-one-of-params';
+import type { SolanaRpcRequestOneOf7Params } from './solana-rpc-request-one-of7-params';
 
 /**
  * 
  * @export
- * @interface StellarRpcRequestOneOf
+ * @interface SolanaRpcRequestOneOf7
  */
-export interface StellarRpcRequestOneOf {
+export interface SolanaRpcRequestOneOf7 {
     /**
      * 
      * @type {string}
-     * @memberof StellarRpcRequestOneOf
+     * @memberof SolanaRpcRequestOneOf7
      */
-    'method': StellarRpcRequestOneOfMethodEnum;
+    'method': SolanaRpcRequestOneOf7MethodEnum;
     /**
      * 
-     * @type {StellarRpcRequestOneOfParams}
-     * @memberof StellarRpcRequestOneOf
+     * @type {SolanaRpcRequestOneOf7Params}
+     * @memberof SolanaRpcRequestOneOf7
      */
-    'params': StellarRpcRequestOneOfParams;
+    'params': SolanaRpcRequestOneOf7Params;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum StellarRpcRequestOneOfMethodEnum {
-    RAW_RPC_REQUEST = 'RawRpcRequest'
+export enum SolanaRpcRequestOneOf7MethodEnum {
+    RAW_RPC_REQUEST = 'rawRpcRequest'
 }
 
 
