@@ -59,6 +59,7 @@
     "@solana-program/token-2022": "^0.4.2",
     "@solana/addresses": "^2.3.0",
     "@solana/kit": "^2.3.0",
+    "@stellar/stellar-sdk": "^14.3.0",
     "@types/node": "^22.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -75,7 +76,8 @@
     "ts-node": "^10.9.2",
     "typescript": "5.8.3",
     "typescript-eslint": "8.44.1",
-    "undici": "^7.4.0"
+    "undici": "^7.4.0",
+    "viem": "^2.38.0"
   },
   "dependencies": {
     "axios": "^1.7.7"

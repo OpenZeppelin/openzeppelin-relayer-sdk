@@ -34,7 +34,7 @@ relayersApi
     method: 'eth_blockNumber',
     id: 1,
     jsonrpc: '2.0',
-    params: [''],
+    params: [],
   })
   .then((transaction) => console.log('EVM RPC Response:', JSON.stringify(transaction.data, null, 2)))
   .catch(console.error);
