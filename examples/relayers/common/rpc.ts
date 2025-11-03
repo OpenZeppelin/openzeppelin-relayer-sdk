@@ -2,6 +2,8 @@
  * Multi-Chain RPC Example
  *
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to perform an RPC calls.
+ * This example uses raw RPC requests to the relayer.
+ * You can also use the rpc clients to perform RPC calls to the relayer. Check network specific examples for more details.
  *  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Use proper error handling and transaction confirmation checks

@@ -26,4 +26,19 @@ const server = new rpc.Server(`http://localhost:8080/api/v1/relayers/${relayer_i
   allowHttp: true,
 });
 
-server.getLedgerEntries().then((account) => console.log('Ledger Entries:', JSON.stringify(account, null, 2)));
+// Simple RPC calls for demo purposes:
+
+// 1. Get latest ledger info
+server.getLatestLedger()
+  .then((ledger) => console.log('Latest Ledger:', JSON.stringify(ledger, null, 2)))
+  .catch(console.error);
+
+// 2. Get network info
+server.getNetwork()
+  .then((network) => console.log('Network Info:', JSON.stringify(network, null, 2)))
+  .catch(console.error);
+
+// 3. Get health status
+server.getHealth()
+  .then((health) => console.log('Health:', JSON.stringify(health, null, 2)))
+  .catch(console.error);
