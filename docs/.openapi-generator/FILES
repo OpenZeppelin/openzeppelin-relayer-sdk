@@ -10,8 +10,8 @@ Models/ApiResponse_DeletePendingTransactionsResponse.md
 Models/ApiResponse_DeletePendingTransactionsResponse_data.md
 Models/ApiResponse_NotificationResponse.md
 Models/ApiResponse_NotificationResponse_data.md
-Models/ApiResponse_PluginCallResponse.md
-Models/ApiResponse_PluginCallResponse_data.md
+Models/ApiResponse_PluginHandlerError.md
+Models/ApiResponse_PluginHandlerError_data.md
 Models/ApiResponse_RelayerResponse.md
 Models/ApiResponse_RelayerResponse_data.md
 Models/ApiResponse_RelayerStatus.md
@@ -28,6 +28,7 @@ Models/ApiResponse_SignerResponse_data.md
 Models/ApiResponse_String.md
 Models/ApiResponse_TransactionResponse.md
 Models/ApiResponse_TransactionResponse_data.md
+Models/ApiResponse_Value.md
 Models/ApiResponse_Vec_NotificationResponse.md
 Models/ApiResponse_Vec_RelayerResponse.md
 Models/ApiResponse_Vec_SignerResponse.md
@@ -53,6 +54,12 @@ Models/CreateRelayerPolicyRequest_oneOf_1.md
 Models/CreateRelayerPolicyRequest_oneOf_2.md
 Models/CreateRelayerRequest.md
 Models/DeletePendingTransactionsResponse.md
+Models/DisabledReason.md
+Models/DisabledReason_oneOf.md
+Models/DisabledReason_oneOf_1.md
+Models/DisabledReason_oneOf_2.md
+Models/DisabledReason_oneOf_3.md
+Models/DisabledReason_oneOf_4.md
 Models/EvmPolicyResponse.md
 Models/EvmRpcRequest.md
 Models/EvmRpcRequest_oneOf.md
@@ -100,7 +107,8 @@ Models/OperationSpec_oneOf_2.md
 Models/OperationSpec_oneOf_3.md
 Models/PaginationMeta.md
 Models/PluginCallRequest.md
-Models/PluginCallResponse.md
+Models/PluginHandlerError.md
+Models/PluginMetadata.md
 Models/PrepareTransactionRequestParams.md
 Models/PrepareTransactionResult.md
 Models/RelayerEvmPolicy.md
@@ -163,6 +171,7 @@ Models/SolanaRpcResult_oneOf_3.md
 Models/SolanaRpcResult_oneOf_4.md
 Models/SolanaRpcResult_oneOf_5.md
 Models/SolanaRpcResult_oneOf_6.md
+Models/SolanaRpcResult_oneOf_7.md
 Models/SolanaSwapStrategy.md
 Models/SolanaTransactionRequest.md
 Models/SolanaTransactionResponse.md
@@ -170,7 +179,6 @@ Models/Speed.md
 Models/StellarPolicyResponse.md
 Models/StellarRpcRequest.md
 Models/StellarRpcRequest_oneOf.md
-Models/StellarRpcRequest_oneOf_params.md
 Models/StellarRpcResult.md
 Models/StellarTransactionRequest.md
 Models/StellarTransactionResponse.md
