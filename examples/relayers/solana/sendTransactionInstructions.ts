@@ -27,7 +27,7 @@ import { getTokenTransferInstruction } from './util';
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546', // replace with your actual api key
+  accessToken: '', // replace with your actual api key
 });
 
 const relayersApi = new RelayersApi(config);
