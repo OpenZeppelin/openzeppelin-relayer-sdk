@@ -5,6 +5,7 @@
 |------------ | ------------- | ------------- | -------------|
 | **address** | **String** |  | [optional] [default to null] |
 | **custom\_rpc\_urls** | [**List**](RpcConfig.md) |  | [optional] [default to null] |
+| **disabled\_reason** | [**DisabledReason**](DisabledReason.md) |  | [optional] [default to null] |
 | **id** | **String** |  | [default to null] |
 | **name** | **String** |  | [default to null] |
 | **network** | **String** |  | [default to null] |

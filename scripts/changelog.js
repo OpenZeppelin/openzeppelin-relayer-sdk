@@ -31,4 +31,3 @@ const formatted = changelog
   .replace(/^## \d\.\d\.\d-rc\S+[^]+?(?=^#)/gm, (section) => (isPrerelease ? '' : section));
 
 fs.writeFileSync('CHANGELOG.md', formatted);
-

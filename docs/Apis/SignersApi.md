@@ -116,7 +116,7 @@ Signer routes implementation
 
 <a name="updateSigner"></a>
 # **updateSigner**
-> ApiResponse_SignerResponse updateSigner(signer\_id, body)
+> ApiResponse_SignerResponse updateSigner(signer\_id, request\_body)
 
 Updates an existing signer.
 
@@ -125,7 +125,7 @@ Updates an existing signer.
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **signer\_id** | **String**| Signer ID | [default to null] |
-| **body** | **Object**|  | |
+| **request\_body** | [**Map**](../Models/AnyType.md)|  | |
 
 ### Return type
 
