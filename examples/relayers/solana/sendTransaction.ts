@@ -19,25 +19,19 @@
  *   ts-node sendTransaction.ts
  */
 import { Configuration, RelayersApi } from '../../../src';
-
-import { createSolanaRpc } from '@solana/kit';
-import { getSerializedTokenTransfer } from './util';
-
-const rpc = createSolanaRpc('https://api.devnet.solana.com');
-
-// example dev config
-const config = new Configuration({
-  basePath: 'http://localhost:8080',
-  accessToken: '', // replace with your actual api key
-});
-
-const relayersApi = new RelayersApi(config);
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from './util';
 
 // Replace with your actual values
+const basePath = 'http://localhost:8080';
+const accessToken = ''; // replace with your actual api key
 const relayer_id = 'solana-example';
 const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
 const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
+
+const rpc = createSolanaRelayerRpcClient(basePath, relayer_id, accessToken);
+
+const relayersApi = new RelayersApi(new Configuration({ basePath, accessToken }));
 
 async function sendTransaction() {
   try {
