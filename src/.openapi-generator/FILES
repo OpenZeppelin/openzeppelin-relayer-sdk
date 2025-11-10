@@ -72,8 +72,8 @@ models/disabled-reason-one-of4.ts
 models/disabled-reason.ts
 models/evm-policy-response.ts
 models/evm-rpc-request-one-of.ts
-models/evm-rpc-request-one-of1.ts
 models/evm-rpc-request.ts
+models/evm-rpc-result.ts
 models/evm-transaction-data-signature.ts
 models/evm-transaction-request.ts
 models/evm-transaction-response.ts
@@ -175,6 +175,8 @@ models/solana-rpc-request-one-of3.ts
 models/solana-rpc-request-one-of4.ts
 models/solana-rpc-request-one-of5.ts
 models/solana-rpc-request-one-of6.ts
+models/solana-rpc-request-one-of7-params.ts
+models/solana-rpc-request-one-of7.ts
 models/solana-rpc-request.ts
 models/solana-rpc-result-one-of.ts
 models/solana-rpc-result-one-of1.ts
@@ -183,6 +185,7 @@ models/solana-rpc-result-one-of3.ts
 models/solana-rpc-result-one-of4.ts
 models/solana-rpc-result-one-of5.ts
 models/solana-rpc-result-one-of6.ts
+models/solana-rpc-result-one-of7.ts
 models/solana-rpc-result.ts
 models/solana-swap-strategy.ts
 models/solana-transaction-request.ts

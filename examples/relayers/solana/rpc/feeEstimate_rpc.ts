@@ -21,25 +21,25 @@
  *   ts-node feeEstimate_rpc.ts
  */
 import { Configuration, RelayersApi } from '../../../../src';
-
-import { createSolanaRpc } from '@solana/kit';
-import { getSerializedTokenTransfer } from '../util';
-
-const rpc = createSolanaRpc('https://api.devnet.solana.com');
-
-// example dev config
-const config = new Configuration({
-  basePath: 'http://localhost:8080',
-  accessToken: '', // replace with your actual api key
-});
-
-const relayersApi = new RelayersApi(config);
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
 // Replace with your actual values
+const basePath = 'http://localhost:8080';
+const accessToken = ''; // replace with your actual api key
 const relayer_id = 'solana-example';
 const source = 'EYsk8PduFSAt7W9dnvL2Pt7qcVsb5wAVCYbJ5UQaUpXf';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
 const usdcToken = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr';
+
+const rpc = createSolanaRelayerRpcClient(basePath, relayer_id, accessToken);
+
+// example dev config
+const config = new Configuration({
+  basePath,
+  accessToken,
+});
+
+const relayersApi = new RelayersApi(config);
 
 async function estimateFee() {
   try {

@@ -63,7 +63,7 @@ Models/DisabledReason_oneOf_4.md
 Models/EvmPolicyResponse.md
 Models/EvmRpcRequest.md
 Models/EvmRpcRequest_oneOf.md
-Models/EvmRpcRequest_oneOf_1.md
+Models/EvmRpcResult.md
 Models/EvmTransactionDataSignature.md
 Models/EvmTransactionRequest.md
 Models/EvmTransactionResponse.md
@@ -165,6 +165,8 @@ Models/SolanaRpcRequest_oneOf_3.md
 Models/SolanaRpcRequest_oneOf_4.md
 Models/SolanaRpcRequest_oneOf_5.md
 Models/SolanaRpcRequest_oneOf_6.md
+Models/SolanaRpcRequest_oneOf_7.md
+Models/SolanaRpcRequest_oneOf_7_params.md
 Models/SolanaRpcResult.md
 Models/SolanaRpcResult_oneOf.md
 Models/SolanaRpcResult_oneOf_1.md
@@ -173,6 +175,7 @@ Models/SolanaRpcResult_oneOf_3.md
 Models/SolanaRpcResult_oneOf_4.md
 Models/SolanaRpcResult_oneOf_5.md
 Models/SolanaRpcResult_oneOf_6.md
+Models/SolanaRpcResult_oneOf_7.md
 Models/SolanaSwapStrategy.md
 Models/SolanaTransactionRequest.md
 Models/SolanaTransactionResponse.md

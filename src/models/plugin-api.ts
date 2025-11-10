@@ -9,12 +9,14 @@
  * normalized to relative paths when copied by scripts/post-generate.js
  */
 
-import { NetworkTransactionRequest } from './network-transaction-request';
-import { TransactionResponse } from './transaction-response';
-import { SignTransactionRequest } from './sign-transaction-request';
-import { SignTransactionResponse } from './sign-transaction-response';
 import { ApiResponseRelayerResponseData } from './api-response-relayer-response-data';
 import { ApiResponseRelayerStatusData } from './api-response-relayer-status-data';
+import { JsonRpcRequestNetworkRpcRequest } from './json-rpc-request-network-rpc-request';
+import { JsonRpcResponseNetworkRpcResult } from './json-rpc-response-network-rpc-result';
+import { NetworkTransactionRequest } from './network-transaction-request';
+import { SignTransactionRequest } from './sign-transaction-request';
+import { SignTransactionResponse } from './sign-transaction-response';
+import { TransactionResponse } from './transaction-response';
 
 /**
  * The result of a sendTransaction call.
@@ -107,6 +109,13 @@ export type Relayer = {
    * @returns The signed transaction XDR and signature.
    */
   signTransaction: (payload: SignTransactionRequest) => Promise<SignTransactionResponse>;
+
+  /**
+   * Performs an RPC call to the relayer.
+   * @param payload - The RPC request payload.
+   * @returns The RPC response.
+   */
+  rpc: (payload: JsonRpcRequestNetworkRpcRequest) => Promise<JsonRpcResponseNetworkRpcResult>;
 };
 
 export interface PluginKVStore {

@@ -15,22 +15,25 @@
 
 
 /**
- * Raw request where params can be any JSON value (string or structured).
+ * 
  * @export
- * @interface StellarRpcRequestOneOf
+ * @interface SolanaRpcResultOneOf7
  */
-export interface StellarRpcRequestOneOf {
+export interface SolanaRpcResultOneOf7 {
     /**
      * 
      * @type {string}
-     * @memberof StellarRpcRequestOneOf
+     * @memberof SolanaRpcResultOneOf7
      */
-    'method': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof StellarRpcRequestOneOf
-     */
-    'params': any;
+    'method': SolanaRpcResultOneOf7MethodEnum;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum SolanaRpcResultOneOf7MethodEnum {
+    RAW_RPC = 'rawRpc'
+}
+
 

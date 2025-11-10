@@ -18,6 +18,6 @@
  * @type StellarRpcResult
  * @export
  */
-export type StellarRpcResult = string;
+export type StellarRpcResult = any;
 
 
