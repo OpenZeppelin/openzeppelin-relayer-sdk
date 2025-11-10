@@ -1,5 +1,13 @@
 # @openzeppelin/relayer-sdk
 
+
+## 1.7.0 (2025-11-10)
+
+- feat: introduce rpc client logic and examples ([#225](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/225))
+  feat: Solana send tx endpoint
+
+- fix: fix lint build issues ([#227](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/227))
+
 ## 1.6.0 (2025-09-30)
 
 - feat: add plugin error types ([#206](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/206))
