@@ -1,13 +1,4 @@
-import {
-  Address,
-  Contract,
-  Keypair,
-  Networks,
-  Operation,
-  TransactionBuilder,
-  rpc,
-  xdr
-} from '@stellar/stellar-sdk';
+import { Address, Contract, Keypair, Networks, Operation, TransactionBuilder, rpc, xdr } from '@stellar/stellar-sdk';
 
 import axios from 'axios';
 import { execSync } from 'child_process';
