@@ -1,11 +1,13 @@
 /**
- * Solana prepareTransaction RPC Example
+ * Solana signAndSendTransaction RPC Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
- * transaction for sponsored submission.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign and submit a Solana
+ * transaction.
  *
- * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
- * the fee payer and including relayer-specific instructions.
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
+ * Sign a prepared transaction and immediately submit it to the Solana blockchain for
+ * execution.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -16,29 +18,29 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node prepareTransaction_rpc.ts
+ *   ts-node signAndSendTransaction_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
-import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from './util';
+import { Configuration, RelayersApi } from '../../../../src';
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
 // Replace with your actual values
 const basePath = 'http://localhost:8080';
 const accessToken = ''; // replace with your actual api key
 const relayer_id = 'solana-example';
-const source = 'EYsk8PduFSAt7W9dnvL2Pt7qcVsb5wAVCYbJ5UQaUpXf';
+const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
 const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
 
 const rpc = createSolanaRelayerRpcClient(basePath, relayer_id, accessToken);
 
-// example dev config
 const config = new Configuration({
   basePath,
   accessToken,
 });
 
 const relayersApi = new RelayersApi(config);
-async function prepareTransaction() {
+
+async function signAndSendTransaction() {
   try {
     // Get latest blockhash
     const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
@@ -53,22 +55,21 @@ async function prepareTransaction() {
       latestBlockhash,
     );
 
-    // Prepare transaction using the relayer
-    const prepareTransaction = await relayersApi.rpc(relayer_id, {
-      method: 'prepareTransaction',
+    // Sign and send transaction using the relayer
+    const signAndSendTransaction = await relayersApi.rpc(relayer_id, {
+      method: 'signAndSendTransaction',
       id: 1,
       jsonrpc: '2.0',
       params: {
         transaction: serializedTransaction,
-        fee_token: token,
       },
     });
 
-    console.log('Prepare transaction:');
-    console.log(JSON.stringify(prepareTransaction.data, null, 2));
+    console.log('Sign and send transaction:');
+    console.log(JSON.stringify(signAndSendTransaction.data, null, 2));
   } catch (error) {
-    console.error('Error preparing transaction:', error);
+    console.error('Error signing and sending transaction:', error);
   }
 }
 
-prepareTransaction();
+signAndSendTransaction();

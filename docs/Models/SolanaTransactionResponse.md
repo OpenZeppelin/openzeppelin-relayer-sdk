@@ -6,6 +6,7 @@
 | **confirmed\_at** | **String** |  | [optional] [default to null] |
 | **created\_at** | **String** |  | [default to null] |
 | **id** | **String** |  | [default to null] |
+| **instructions** | [**List**](SolanaInstructionSpec.md) |  | [optional] [default to null] |
 | **sent\_at** | **String** |  | [optional] [default to null] |
 | **signature** | **String** |  | [optional] [default to null] |
 | **status** | [**TransactionStatus**](TransactionStatus.md) |  | [default to null] |

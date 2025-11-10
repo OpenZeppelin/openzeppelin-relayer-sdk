@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SolanaInstructionSpec } from './solana-instruction-spec';
 
 /**
  * 
@@ -21,10 +24,22 @@
  */
 export interface SolanaTransactionRequest {
     /**
+     * Instructions to build transaction from (mutually exclusive with transaction)
+     * @type {Array<SolanaInstructionSpec>}
+     * @memberof SolanaTransactionRequest
+     */
+    'instructions'?: Array<SolanaInstructionSpec> | null;
+    /**
      * 
      * @type {string}
      * @memberof SolanaTransactionRequest
      */
-    'transaction': string;
+    'transaction'?: string;
+    /**
+     * Optional RFC3339 timestamp when transaction should expire
+     * @type {string}
+     * @memberof SolanaTransactionRequest
+     */
+    'valid_until'?: string | null;
 }
 

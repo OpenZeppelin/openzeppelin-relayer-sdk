@@ -15,12 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { SignTransactionResponseSolana } from './sign-transaction-response-solana';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SignTransactionResponseStellar } from './sign-transaction-response-stellar';
 
 /**
  * @type SignTransactionResponse
  * @export
  */
-export type SignTransactionResponse = Array<number> | SignTransactionResponseStellar;
+export type SignTransactionResponse = Array<number> | SignTransactionResponseSolana | SignTransactionResponseStellar;
 
 

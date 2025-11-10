@@ -15,7 +15,7 @@
 
 
 /**
- * Solana fee payment strategy
+ * Solana fee payment strategy  Determines who pays transaction fees: - `User`: User must include fee payment to relayer in transaction (for custom RPC methods) - `Relayer`: Relayer pays all transaction fees (recommended for send transaction endpoint)  Default is `User`.
  * @export
  * @enum {string}
  */

@@ -107,6 +107,72 @@ export async function getSerializedTokenTransfer(
 }
 
 /**
+ * Helper function to convert a Solana instruction to API format
+ * @param instruction - The Solana instruction to convert
+ * @returns Instruction object in API format with program_id, data, and accounts
+ */
+function formatInstructionForApi(source: string, instruction: any) {
+  return {
+    program_id: instruction.programAddress,
+    data: Buffer.from(instruction.data).toString('base64'),
+    accounts: instruction.accounts.map((account: any) => ({
+      pubkey: account.address,
+      is_signer: account.address === source,
+      is_writable: account.role === 1 || account.role === 2,
+    })),
+  };
+}
+
+/**
+ * Creates a token transfer instruction in API format
+ * @param source - Source wallet address (string)
+ * @param destination - Destination wallet address (string)
+ * @param token - Token mint address (string)
+ * @param amount - Amount to transfer (in smallest units)
+ * @returns Instruction object ready for API submission
+ */
+export async function getTokenTransferInstruction(source: string, destination: string, token: string, amount: number) {
+  // Convert string addresses to Address objects
+  const sourceAddress = address(source);
+  const destinationAddress = address(destination);
+  const tokenAddress = address(token);
+
+  // Find associated token accounts
+  const [sourceAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: sourceAddress,
+    tokenProgram: TOKEN_PROGRAM_ADDRESS,
+  });
+
+  const [destinationAccount] = await findAssociatedTokenPda({
+    mint: tokenAddress,
+    owner: destinationAddress,
+    tokenProgram: TOKEN_PROGRAM_ADDRESS,
+  });
+
+  // Create the transfer instruction
+  const transferIx = getTransferInstruction({
+    source: sourceAccount,
+    destination: destinationAccount,
+    authority: sourceAddress,
+    amount: BigInt(amount),
+    multiSigners: [],
+  });
+
+  console.log('yyyy', transferIx);
+
+  console.log('=== RAW instruction from SDK ===');
+  console.log('Accounts:');
+  transferIx.accounts.forEach((acc, i) => {
+    console.log(`${i}: address=${acc.address}, role=${acc.role}`);
+  });
+
+  // Then format it
+
+  return formatInstructionForApi(source, transferIx);
+}
+
+/**
  * Creates a Token2022 transfer transaction and returns the serialized transaction
  * @param source - Source wallet address (string)
  * @param destination - Destination wallet address (string)

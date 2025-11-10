@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { SolanaInstructionSpec } from './solana-instruction-spec';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { TransactionStatus } from './transaction-status';
 
 /**
@@ -41,6 +44,12 @@ export interface SolanaTransactionResponse {
      * @memberof SolanaTransactionResponse
      */
     'id': string;
+    /**
+     * 
+     * @type {Array<SolanaInstructionSpec>}
+     * @memberof SolanaTransactionResponse
+     */
+    'instructions'?: Array<SolanaInstructionSpec>;
     /**
      * 
      * @type {string}

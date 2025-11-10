@@ -142,8 +142,10 @@ models/sign-data-response-evm.ts
 models/sign-data-response-solana.ts
 models/sign-data-response.ts
 models/sign-transaction-request-params.ts
+models/sign-transaction-request-solana.ts
 models/sign-transaction-request-stellar.ts
 models/sign-transaction-request.ts
+models/sign-transaction-response-solana.ts
 models/sign-transaction-response-stellar.ts
 models/sign-transaction-response.ts
 models/sign-transaction-result.ts
@@ -160,9 +162,11 @@ models/signer-create-request.ts
 models/signer-response.ts
 models/signer-type-request.ts
 models/signer-type.ts
+models/solana-account-meta.ts
 models/solana-allowed-tokens-policy.ts
 models/solana-allowed-tokens-swap-config.ts
 models/solana-fee-payment-strategy.ts
+models/solana-instruction-spec.ts
 models/solana-policy-response.ts
 models/solana-rpc-request-one-of.ts
 models/solana-rpc-request-one-of1.ts

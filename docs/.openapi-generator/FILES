@@ -132,8 +132,10 @@ Models/SignDataResponseEvm.md
 Models/SignDataResponseSolana.md
 Models/SignTransactionRequest.md
 Models/SignTransactionRequestParams.md
+Models/SignTransactionRequestSolana.md
 Models/SignTransactionRequestStellar.md
 Models/SignTransactionResponse.md
+Models/SignTransactionResponseSolana.md
 Models/SignTransactionResponseStellar.md
 Models/SignTransactionResult.md
 Models/SignTypedDataRequest.md
@@ -149,9 +151,11 @@ Models/SignerCreateRequest.md
 Models/SignerResponse.md
 Models/SignerType.md
 Models/SignerTypeRequest.md
+Models/SolanaAccountMeta.md
 Models/SolanaAllowedTokensPolicy.md
 Models/SolanaAllowedTokensSwapConfig.md
 Models/SolanaFeePaymentStrategy.md
+Models/SolanaInstructionSpec.md
 Models/SolanaPolicyResponse.md
 Models/SolanaRpcRequest.md
 Models/SolanaRpcRequest_oneOf.md

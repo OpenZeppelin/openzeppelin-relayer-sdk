@@ -24,6 +24,9 @@ import type { MemoSpec } from './memo-spec';
 import type { OperationSpec } from './operation-spec';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { SolanaInstructionSpec } from './solana-instruction-spec';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { SolanaTransactionRequest } from './solana-transaction-request';
 // May contain unused imports in some cases
 // @ts-ignore

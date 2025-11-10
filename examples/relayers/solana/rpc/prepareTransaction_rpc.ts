@@ -1,8 +1,10 @@
 /**
- * Solana prepareTransactionToken2022 RPC Example
+ * Solana prepareTransaction RPC Example
  *
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to prepare a Solana
- * transaction for sponsored submission using Token2022.
+ * transaction for sponsored submission.
+ *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
  *
  * Prepare a transaction to be signed by adding relayer-specific instructions, such as updating
  * the fee payer and including relayer-specific instructions.
@@ -16,10 +18,10 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node prepareTransactionToken2022_rpc.ts
+ *   ts-node prepareTransaction_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
-import { createSolanaRelayerRpcClient, getSerializedToken2022Transfer } from './util';
+import { Configuration, RelayersApi } from '../../../../src';
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
 // Replace with your actual values
 const basePath = 'http://localhost:8080';
@@ -38,20 +40,18 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
-
-async function prepareTransactionToken2022() {
+async function prepareTransaction() {
   try {
     // Get latest blockhash
     const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
     console.log(`Latest blockhash: ${latestBlockhash.blockhash}`);
 
-    // Create the serialized Token2022 transaction using the util function
-    const serializedTransaction = await getSerializedToken2022Transfer(
+    // Create the serialized transaction using the util function
+    const serializedTransaction = await getSerializedTokenTransfer(
       source,
       destination,
       token,
       1000000, // Amount (consider token decimals)
-      9, // Token decimals
       latestBlockhash,
     );
 
@@ -73,4 +73,4 @@ async function prepareTransactionToken2022() {
   }
 }
 
-prepareTransactionToken2022();
+prepareTransaction();

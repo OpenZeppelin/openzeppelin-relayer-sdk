@@ -1,11 +1,12 @@
 /**
- * Solana signAndSendTransaction RPC Example
+ * Solana signTransaction RPC Example
  *
- * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign and submit a Solana
- * transaction.
+ * This example demonstrates how to use the OpenZeppelin Relayer SDK to sign a transaction.
  *
- * Sign a prepared transaction and immediately submit it to the Solana blockchain for
- * execution.
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
+ * Sign a prepared transaction without submitting it to the blockchain. This ensures the
+ * transaction is valid and ready for later submission.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
@@ -16,18 +17,18 @@
  * - Use https connection for production applications
  *
  * Usage:
- *   ts-node signAndSendTransaction_rpc.ts
+ *   ts-node signTransaction_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
-import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from './util';
+import { Configuration, RelayersApi } from '../../../../src';
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
 // Replace with your actual values
 const basePath = 'http://localhost:8080';
 const accessToken = ''; // replace with your actual api key
 const relayer_id = 'solana-example';
-const source = 'DiUZ95hZn7cJCY6THuuGQUPMv4bfTuSCUraunmD5PdoZ';
-const destination = '6S9v8CedUumV7qbqq37v2GfBRxWemA6zpVGjQsiVHSZ4';
-const token = '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'; // USDC token mint address
+const source = 'C6VBV1EK2Jx7kFgCkCD5wuDeQtEH8ct2hHGUPzEhUSc8';
+const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
+const token = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
 
 const rpc = createSolanaRelayerRpcClient(basePath, relayer_id, accessToken);
 
@@ -38,7 +39,7 @@ const config = new Configuration({
 
 const relayersApi = new RelayersApi(config);
 
-async function signAndSendTransaction() {
+async function signTransaction() {
   try {
     // Get latest blockhash
     const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
@@ -53,9 +54,9 @@ async function signAndSendTransaction() {
       latestBlockhash,
     );
 
-    // Sign and send transaction using the relayer
-    const signAndSendTransaction = await relayersApi.rpc(relayer_id, {
-      method: 'signAndSendTransaction',
+    // Sign transaction using the relayer
+    const signTransaction = await relayersApi.rpc(relayer_id, {
+      method: 'signTransaction',
       id: 1,
       jsonrpc: '2.0',
       params: {
@@ -63,11 +64,11 @@ async function signAndSendTransaction() {
       },
     });
 
-    console.log('Sign and send transaction:');
-    console.log(JSON.stringify(signAndSendTransaction.data, null, 2));
+    console.log('Sign Transaction:');
+    console.log(JSON.stringify(signTransaction.data, null, 2));
   } catch (error) {
-    console.error('Error signing and sending transaction:', error);
+    console.error('Error signing transaction:', error);
   }
 }
 
-signAndSendTransaction();
+signTransaction();

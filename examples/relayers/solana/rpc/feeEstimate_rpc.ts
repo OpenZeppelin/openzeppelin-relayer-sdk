@@ -4,6 +4,8 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to estimate the fee in SPL token
  * for a Solana transaction.
  *
+ *  NOTE: Solana RPC methods are designed to be used with "fee_payment_strategy" policy set to "user".
+ *
  * Estimate the fee for an arbitrary transaction using a specified token. This helps clients
  * calculate costs before preparing or submitting the transaction.
  *
@@ -18,8 +20,8 @@
  * Usage:
  *   ts-node feeEstimate_rpc.ts
  */
-import { Configuration, RelayersApi } from '../../../src';
-import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from './util';
+import { Configuration, RelayersApi } from '../../../../src';
+import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
 // Replace with your actual values
 const basePath = 'http://localhost:8080';
