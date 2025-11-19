@@ -15,7 +15,7 @@
 
 
 /**
- * Raw request where params can be any JSON value (string or structured).
+ * 
  * @export
  * @interface StellarRpcRequestOneOf
  */

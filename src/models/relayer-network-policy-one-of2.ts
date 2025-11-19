@@ -16,6 +16,15 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { RelayerStellarPolicy } from './relayer-stellar-policy';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RelayerStellarSwapConfig } from './relayer-stellar-swap-config';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarAllowedTokensPolicy } from './stellar-allowed-tokens-policy';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarFeePaymentStrategy } from './stellar-fee-payment-strategy';
 
 /**
  * @type RelayerNetworkPolicyOneOf2

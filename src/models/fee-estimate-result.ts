@@ -21,13 +21,13 @@
  */
 export interface FeeEstimateResult {
     /**
-     * 
+     * Conversion rate from XLM to token (as string)
      * @type {string}
      * @memberof FeeEstimateResult
      */
     'conversion_rate': string;
     /**
-     * 
+     * Estimated fee in token amount (as string for precision)
      * @type {string}
      * @memberof FeeEstimateResult
      */

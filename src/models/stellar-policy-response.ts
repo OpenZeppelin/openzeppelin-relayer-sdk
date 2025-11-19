@@ -13,6 +13,15 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RelayerStellarSwapConfig } from './relayer-stellar-swap-config';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarAllowedTokensPolicy } from './stellar-allowed-tokens-policy';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarFeePaymentStrategy } from './stellar-fee-payment-strategy';
 
 /**
  * Stellar policy response model for OpenAPI documentation
@@ -24,10 +33,28 @@ export interface StellarPolicyResponse {
 
     /**
      * 
+     * @type {Array<StellarAllowedTokensPolicy>}
+     * @memberof StellarPolicyResponse
+     */
+    'allowed_tokens'?: Array<StellarAllowedTokensPolicy>;
+    /**
+     * 
      * @type {boolean}
      * @memberof StellarPolicyResponse
      */
     'concurrent_transactions'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof StellarPolicyResponse
+     */
+    'fee_margin_percentage'?: number;
+    /**
+     * 
+     * @type {StellarFeePaymentStrategy}
+     * @memberof StellarPolicyResponse
+     */
+    'fee_payment_strategy'?: StellarFeePaymentStrategy;
     /**
      * 
      * @type {number}
@@ -45,6 +72,20 @@ export interface StellarPolicyResponse {
      * @type {number}
      * @memberof StellarPolicyResponse
      */
+    'slippage_percentage'?: number;
+    /**
+     * 
+     * @type {RelayerStellarSwapConfig}
+     * @memberof StellarPolicyResponse
+     */
+    'swap_config'?: RelayerStellarSwapConfig;
+    /**
+     * 
+     * @type {number}
+     * @memberof StellarPolicyResponse
+     */
     'timeout_seconds'?: number;
 }
+
+
 

@@ -17,13 +17,15 @@ All URIs are relative to *http://localhost*
 *NotificationsApi* | [**listNotifications**](Apis/NotificationsApi.md#listnotifications) | **GET** /api/v1/notifications | Notification routes implementation |
 *NotificationsApi* | [**updateNotification**](Apis/NotificationsApi.md#updatenotification) | **PATCH** /api/v1/notifications/{notification_id} | Updates an existing notification. |
 | *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin and receive the sanitized result |
-| *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
+| *RelayersApi* | [**buildSponsoredTransaction**](Apis/RelayersApi.md#buildsponsoredtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/build | Prepares a sponsored (gasless) transaction with fee payments. |
+*RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
 *RelayersApi* | [**createRelayer**](Apis/RelayersApi.md#createrelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
 *RelayersApi* | [**deletePendingTransactions**](Apis/RelayersApi.md#deletependingtransactions) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/pending | Deletes all pending transactions for a specific relayer. |
 *RelayersApi* | [**deleteRelayer**](Apis/RelayersApi.md#deleterelayer) | **DELETE** /api/v1/relayers/{relayer_id} | Deletes a relayer by ID. |
 *RelayersApi* | [**getRelayer**](Apis/RelayersApi.md#getrelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
 *RelayersApi* | [**getRelayerBalance**](Apis/RelayersApi.md#getrelayerbalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
 *RelayersApi* | [**getRelayerStatus**](Apis/RelayersApi.md#getrelayerstatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
+*RelayersApi* | [**getSponsoredTransactionQuote**](Apis/RelayersApi.md#getsponsoredtransactionquote) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/quote | Estimates fees for a sponsored (gasless) transaction. |
 *RelayersApi* | [**getTransactionById**](Apis/RelayersApi.md#gettransactionbyid) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
 *RelayersApi* | [**getTransactionByNonce**](Apis/RelayersApi.md#gettransactionbynonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
 *RelayersApi* | [**listRelayers**](Apis/RelayersApi.md#listrelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
@@ -66,6 +68,10 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_SignTransactionResponse_data](./Models/ApiResponse_SignTransactionResponse_data.md)
  - [ApiResponse_SignerResponse](./Models/ApiResponse_SignerResponse.md)
  - [ApiResponse_SignerResponse_data](./Models/ApiResponse_SignerResponse_data.md)
+ - [ApiResponse_SponsoredTransactionBuildResponse](./Models/ApiResponse_SponsoredTransactionBuildResponse.md)
+ - [ApiResponse_SponsoredTransactionBuildResponse_data](./Models/ApiResponse_SponsoredTransactionBuildResponse_data.md)
+ - [ApiResponse_SponsoredTransactionQuoteResponse](./Models/ApiResponse_SponsoredTransactionQuoteResponse.md)
+ - [ApiResponse_SponsoredTransactionQuoteResponse_data](./Models/ApiResponse_SponsoredTransactionQuoteResponse_data.md)
  - [ApiResponse_String](./Models/ApiResponse_String.md)
  - [ApiResponse_TransactionResponse](./Models/ApiResponse_TransactionResponse.md)
  - [ApiResponse_TransactionResponse_data](./Models/ApiResponse_TransactionResponse_data.md)
@@ -164,6 +170,7 @@ All URIs are relative to *http://localhost*
  - [RelayerSolanaSwapConfig](./Models/RelayerSolanaSwapConfig.md)
  - [RelayerStatus](./Models/RelayerStatus.md)
  - [RelayerStellarPolicy](./Models/RelayerStellarPolicy.md)
+ - [RelayerStellarSwapConfig](./Models/RelayerStellarSwapConfig.md)
  - [RpcConfig](./Models/RpcConfig.md)
  - [SignAndSendTransactionRequestParams](./Models/SignAndSendTransactionRequestParams.md)
  - [SignAndSendTransactionResult](./Models/SignAndSendTransactionResult.md)
@@ -221,10 +228,24 @@ All URIs are relative to *http://localhost*
  - [SolanaTransactionRequest](./Models/SolanaTransactionRequest.md)
  - [SolanaTransactionResponse](./Models/SolanaTransactionResponse.md)
  - [Speed](./Models/Speed.md)
+ - [SponsoredTransactionBuildRequest](./Models/SponsoredTransactionBuildRequest.md)
+ - [SponsoredTransactionBuildResponse](./Models/SponsoredTransactionBuildResponse.md)
+ - [SponsoredTransactionQuoteRequest](./Models/SponsoredTransactionQuoteRequest.md)
+ - [SponsoredTransactionQuoteResponse](./Models/SponsoredTransactionQuoteResponse.md)
+ - [StellarAllowedTokensPolicy](./Models/StellarAllowedTokensPolicy.md)
+ - [StellarAllowedTokensSwapConfig](./Models/StellarAllowedTokensSwapConfig.md)
+ - [StellarFeePaymentStrategy](./Models/StellarFeePaymentStrategy.md)
  - [StellarPolicyResponse](./Models/StellarPolicyResponse.md)
  - [StellarRpcRequest](./Models/StellarRpcRequest.md)
  - [StellarRpcRequest_oneOf](./Models/StellarRpcRequest_oneOf.md)
  - [StellarRpcResult](./Models/StellarRpcResult.md)
+ - [StellarSwapStrategy](./Models/StellarSwapStrategy.md)
+ - [StellarTokenKind](./Models/StellarTokenKind.md)
+ - [StellarTokenKind_oneOf](./Models/StellarTokenKind_oneOf.md)
+ - [StellarTokenKind_oneOf_1](./Models/StellarTokenKind_oneOf_1.md)
+ - [StellarTokenKind_oneOf_1_contract](./Models/StellarTokenKind_oneOf_1_contract.md)
+ - [StellarTokenKind_oneOf_classic](./Models/StellarTokenKind_oneOf_classic.md)
+ - [StellarTokenMetadata](./Models/StellarTokenMetadata.md)
  - [StellarTransactionRequest](./Models/StellarTransactionRequest.md)
  - [StellarTransactionResponse](./Models/StellarTransactionResponse.md)
  - [TransactionResponse](./Models/TransactionResponse.md)

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OperationSpec } from './operation-spec';
 
 /**
  * 
@@ -23,16 +26,22 @@ export interface FeeEstimateRequestParams {
     [key: string]: any;
 
     /**
-     * 
+     * Asset identifier for fee token (e.g., \"native\" or \"USDC:GA5Z...\")
      * @type {string}
      * @memberof FeeEstimateRequestParams
      */
     'fee_token': string;
     /**
-     * 
+     * Operations array to build transaction from Mutually exclusive with transaction_xdr field
+     * @type {Array<OperationSpec>}
+     * @memberof FeeEstimateRequestParams
+     */
+    'operations'?: Array<OperationSpec>;
+    /**
+     * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field
      * @type {string}
      * @memberof FeeEstimateRequestParams
      */
-    'transaction': string;
+    'transaction_xdr'?: string;
 }
 

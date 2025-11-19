@@ -24,13 +24,13 @@ import type { RelayerNetworkPolicyOneOf1 } from './relayer-network-policy-one-of
 import type { RelayerNetworkPolicyOneOf2 } from './relayer-network-policy-one-of2';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { RelayerSolanaSwapConfig } from './relayer-solana-swap-config';
+import type { RelayerStellarSwapConfig } from './relayer-stellar-swap-config';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SolanaAllowedTokensPolicy } from './solana-allowed-tokens-policy';
+import type { StellarAllowedTokensPolicy } from './stellar-allowed-tokens-policy';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SolanaFeePaymentStrategy } from './solana-fee-payment-strategy';
+import type { StellarFeePaymentStrategy } from './stellar-fee-payment-strategy';
 
 /**
  * @type RelayerNetworkPolicy
