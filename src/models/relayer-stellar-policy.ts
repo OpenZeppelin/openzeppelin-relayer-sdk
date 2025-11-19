@@ -13,6 +13,15 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RelayerStellarSwapConfig } from './relayer-stellar-swap-config';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarAllowedTokensPolicy } from './stellar-allowed-tokens-policy';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarFeePaymentStrategy } from './stellar-fee-payment-strategy';
 
 /**
  * Stellar-specific relayer policy configuration
@@ -24,10 +33,28 @@ export interface RelayerStellarPolicy {
 
     /**
      * 
+     * @type {Array<StellarAllowedTokensPolicy>}
+     * @memberof RelayerStellarPolicy
+     */
+    'allowed_tokens'?: Array<StellarAllowedTokensPolicy>;
+    /**
+     * 
      * @type {boolean}
      * @memberof RelayerStellarPolicy
      */
     'concurrent_transactions'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RelayerStellarPolicy
+     */
+    'fee_margin_percentage'?: number;
+    /**
+     * Fee payment strategy - determines who pays transaction fees (optional)
+     * @type {StellarFeePaymentStrategy}
+     * @memberof RelayerStellarPolicy
+     */
+    'fee_payment_strategy'?: StellarFeePaymentStrategy;
     /**
      * 
      * @type {number}
@@ -45,6 +72,20 @@ export interface RelayerStellarPolicy {
      * @type {number}
      * @memberof RelayerStellarPolicy
      */
+    'slippage_percentage'?: number;
+    /**
+     * 
+     * @type {RelayerStellarSwapConfig}
+     * @memberof RelayerStellarPolicy
+     */
+    'swap_config'?: RelayerStellarSwapConfig;
+    /**
+     * 
+     * @type {number}
+     * @memberof RelayerStellarPolicy
+     */
     'timeout_seconds'?: number;
 }
+
+
 

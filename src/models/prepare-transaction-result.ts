@@ -21,34 +21,34 @@
  */
 export interface PrepareTransactionResult {
     /**
-     * 
+     * Fee amount in stroops (as string)
      * @type {string}
      * @memberof PrepareTransactionResult
      */
-    'fee_in_lamports': string;
+    'fee_in_stroops': string;
     /**
-     * 
+     * Fee amount in token (as string)
      * @type {string}
      * @memberof PrepareTransactionResult
      */
-    'fee_in_spl': string;
+    'fee_in_token': string;
     /**
-     * 
+     * Asset identifier for fee token
      * @type {string}
      * @memberof PrepareTransactionResult
      */
     'fee_token': string;
     /**
-     * 
+     * Extended transaction XDR (base64 encoded)
      * @type {string}
      * @memberof PrepareTransactionResult
      */
     'transaction': string;
     /**
-     * 
-     * @type {number}
+     * Transaction validity timestamp (ISO 8601 format)
+     * @type {string}
      * @memberof PrepareTransactionResult
      */
-    'valid_until_blockheight': number;
+    'valid_until': string;
 }
 

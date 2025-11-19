@@ -34,6 +34,10 @@ import type { ApiResponseSignDataResponse } from '../models';
 // @ts-ignore
 import type { ApiResponseSignTransactionResponse } from '../models';
 // @ts-ignore
+import type { ApiResponseSponsoredTransactionBuildResponse } from '../models';
+// @ts-ignore
+import type { ApiResponseSponsoredTransactionQuoteResponse } from '../models';
+// @ts-ignore
 import type { ApiResponseString } from '../models';
 // @ts-ignore
 import type { ApiResponseTransactionResponse } from '../models';
@@ -56,6 +60,10 @@ import type { SignTransactionRequest } from '../models';
 // @ts-ignore
 import type { SignTypedDataRequest } from '../models';
 // @ts-ignore
+import type { SponsoredTransactionBuildRequest } from '../models';
+// @ts-ignore
+import type { SponsoredTransactionQuoteRequest } from '../models';
+// @ts-ignore
 import type { UpdateRelayerRequest } from '../models';
 /**
  * RelayersApi - axios parameter creator
@@ -63,6 +71,50 @@ import type { UpdateRelayerRequest } from '../models';
  */
 export const RelayersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * This endpoint builds a transaction where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency.  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns a prepared transaction that includes: - The transaction XDR (base64 encoded) ready for signing - The fee amount in both the fee token and native currency (stroops for Stellar) - The fee token identifier - The transaction validity timestamp  After receiving the prepared transaction, the user must sign it and submit it through the standard transaction submission endpoint. For Stellar, the transaction will be wrapped in a fee-bump transaction where the relayer pays the network fees.
+         * @summary Prepares a sponsored (gasless) transaction with fee payments.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionBuildRequest} sponsoredTransactionBuildRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buildSponsoredTransaction: async (relayerId: string, sponsoredTransactionBuildRequest: SponsoredTransactionBuildRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'relayerId' is not null or undefined
+            assertParamExists('buildSponsoredTransaction', 'relayerId', relayerId)
+            // verify required parameter 'sponsoredTransactionBuildRequest' is not null or undefined
+            assertParamExists('buildSponsoredTransaction', 'sponsoredTransactionBuildRequest', sponsoredTransactionBuildRequest)
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/sponsored/build`
+                .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(sponsoredTransactionBuildRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary Cancels a specific transaction by its ID.
@@ -329,6 +381,50 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
+         * @summary Estimates fees for a sponsored (gasless) transaction.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionQuoteRequest} sponsoredTransactionQuoteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSponsoredTransactionQuote: async (relayerId: string, sponsoredTransactionQuoteRequest: SponsoredTransactionQuoteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'relayerId' is not null or undefined
+            assertParamExists('getSponsoredTransactionQuote', 'relayerId', relayerId)
+            // verify required parameter 'sponsoredTransactionQuoteRequest' is not null or undefined
+            assertParamExists('getSponsoredTransactionQuote', 'sponsoredTransactionQuoteRequest', sponsoredTransactionQuoteRequest)
+            const localVarPath = `/api/v1/relayers/{relayer_id}/transactions/sponsored/quote`
+                .replace(`{${"relayer_id"}}`, encodeURIComponent(String(relayerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(sponsoredTransactionQuoteRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -834,6 +930,20 @@ export const RelayersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = RelayersApiAxiosParamCreator(configuration)
     return {
         /**
+         * This endpoint builds a transaction where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency.  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns a prepared transaction that includes: - The transaction XDR (base64 encoded) ready for signing - The fee amount in both the fee token and native currency (stroops for Stellar) - The fee token identifier - The transaction validity timestamp  After receiving the prepared transaction, the user must sign it and submit it through the standard transaction submission endpoint. For Stellar, the transaction will be wrapped in a fee-bump transaction where the relayer pays the network fees.
+         * @summary Prepares a sponsored (gasless) transaction with fee payments.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionBuildRequest} sponsoredTransactionBuildRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async buildSponsoredTransaction(relayerId: string, sponsoredTransactionBuildRequest: SponsoredTransactionBuildRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseSponsoredTransactionBuildResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.buildSponsoredTransaction(relayerId, sponsoredTransactionBuildRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RelayersApi.buildSponsoredTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 
          * @summary Cancels a specific transaction by its ID.
          * @param {string} relayerId The unique identifier of the relayer
@@ -923,6 +1033,20 @@ export const RelayersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRelayerStatus(relayerId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.getRelayerStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
+         * @summary Estimates fees for a sponsored (gasless) transaction.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionQuoteRequest} sponsoredTransactionQuoteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSponsoredTransactionQuote(relayerId: string, sponsoredTransactionQuoteRequest: SponsoredTransactionQuoteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseSponsoredTransactionQuoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSponsoredTransactionQuote(relayerId, sponsoredTransactionQuoteRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RelayersApi.getSponsoredTransactionQuote']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1092,6 +1216,17 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = RelayersApiFp(configuration)
     return {
         /**
+         * This endpoint builds a transaction where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency.  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns a prepared transaction that includes: - The transaction XDR (base64 encoded) ready for signing - The fee amount in both the fee token and native currency (stroops for Stellar) - The fee token identifier - The transaction validity timestamp  After receiving the prepared transaction, the user must sign it and submit it through the standard transaction submission endpoint. For Stellar, the transaction will be wrapped in a fee-bump transaction where the relayer pays the network fees.
+         * @summary Prepares a sponsored (gasless) transaction with fee payments.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionBuildRequest} sponsoredTransactionBuildRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        buildSponsoredTransaction(relayerId: string, sponsoredTransactionBuildRequest: SponsoredTransactionBuildRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseSponsoredTransactionBuildResponse> {
+            return localVarFp.buildSponsoredTransaction(relayerId, sponsoredTransactionBuildRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @summary Cancels a specific transaction by its ID.
          * @param {string} relayerId The unique identifier of the relayer
@@ -1161,6 +1296,17 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
          */
         getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseRelayerStatus> {
             return localVarFp.getRelayerStatus(relayerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
+         * @summary Estimates fees for a sponsored (gasless) transaction.
+         * @param {string} relayerId The unique identifier of the relayer
+         * @param {SponsoredTransactionQuoteRequest} sponsoredTransactionQuoteRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSponsoredTransactionQuote(relayerId: string, sponsoredTransactionQuoteRequest: SponsoredTransactionQuoteRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseSponsoredTransactionQuoteResponse> {
+            return localVarFp.getSponsoredTransactionQuote(relayerId, sponsoredTransactionQuoteRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1296,6 +1442,19 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
  */
 export class RelayersApi extends BaseAPI {
     /**
+     * This endpoint builds a transaction where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency.  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns a prepared transaction that includes: - The transaction XDR (base64 encoded) ready for signing - The fee amount in both the fee token and native currency (stroops for Stellar) - The fee token identifier - The transaction validity timestamp  After receiving the prepared transaction, the user must sign it and submit it through the standard transaction submission endpoint. For Stellar, the transaction will be wrapped in a fee-bump transaction where the relayer pays the network fees.
+     * @summary Prepares a sponsored (gasless) transaction with fee payments.
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {SponsoredTransactionBuildRequest} sponsoredTransactionBuildRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RelayersApi
+     */
+    public buildSponsoredTransaction(relayerId: string, sponsoredTransactionBuildRequest: SponsoredTransactionBuildRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).buildSponsoredTransaction(relayerId, sponsoredTransactionBuildRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
      * @summary Cancels a specific transaction by its ID.
      * @param {string} relayerId The unique identifier of the relayer
@@ -1378,6 +1537,19 @@ export class RelayersApi extends BaseAPI {
      */
     public getRelayerStatus(relayerId: string, options?: RawAxiosRequestConfig) {
         return RelayersApiFp(this.configuration).getRelayerStatus(relayerId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
+     * @summary Estimates fees for a sponsored (gasless) transaction.
+     * @param {string} relayerId The unique identifier of the relayer
+     * @param {SponsoredTransactionQuoteRequest} sponsoredTransactionQuoteRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RelayersApi
+     */
+    public getSponsoredTransactionQuote(relayerId: string, sponsoredTransactionQuoteRequest: SponsoredTransactionQuoteRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).getSponsoredTransactionQuote(relayerId, sponsoredTransactionQuoteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

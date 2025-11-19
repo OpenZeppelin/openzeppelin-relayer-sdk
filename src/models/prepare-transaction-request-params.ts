@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OperationSpec } from './operation-spec';
 
 /**
  * 
@@ -23,16 +26,28 @@ export interface PrepareTransactionRequestParams {
     [key: string]: any;
 
     /**
-     * 
+     * Asset identifier for fee token
      * @type {string}
      * @memberof PrepareTransactionRequestParams
      */
     'fee_token': string;
     /**
-     * 
+     * Operations array to build transaction from Mutually exclusive with transaction_xdr field
+     * @type {Array<OperationSpec>}
+     * @memberof PrepareTransactionRequestParams
+     */
+    'operations'?: Array<OperationSpec>;
+    /**
+     * Source account address (required when operations are provided) For gasless transactions, this should be the user\'s account address
      * @type {string}
      * @memberof PrepareTransactionRequestParams
      */
-    'transaction': string;
+    'source_account'?: string;
+    /**
+     * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field
+     * @type {string}
+     * @memberof PrepareTransactionRequestParams
+     */
+    'transaction_xdr'?: string;
 }
 
