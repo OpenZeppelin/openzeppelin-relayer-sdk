@@ -53,9 +53,6 @@ Models/ContractSource.md
 Models/ContractSource_oneOf.md
 Models/ContractSource_oneOf_1.md
 Models/CreateRelayerPolicyRequest.md
-Models/CreateRelayerPolicyRequest_oneOf.md
-Models/CreateRelayerPolicyRequest_oneOf_1.md
-Models/CreateRelayerPolicyRequest_oneOf_2.md
 Models/CreateRelayerRequest.md
 Models/DeletePendingTransactionsResponse.md
 Models/DisabledReason.md

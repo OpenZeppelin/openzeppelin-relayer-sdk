@@ -25,11 +25,11 @@ All URIs are relative to *http://localhost*
 *RelayersApi* | [**getRelayer**](Apis/RelayersApi.md#getrelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
 *RelayersApi* | [**getRelayerBalance**](Apis/RelayersApi.md#getrelayerbalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
 *RelayersApi* | [**getRelayerStatus**](Apis/RelayersApi.md#getrelayerstatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
-*RelayersApi* | [**getSponsoredTransactionQuote**](Apis/RelayersApi.md#getsponsoredtransactionquote) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/quote | Estimates fees for a sponsored (gasless) transaction. |
 *RelayersApi* | [**getTransactionById**](Apis/RelayersApi.md#gettransactionbyid) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
 *RelayersApi* | [**getTransactionByNonce**](Apis/RelayersApi.md#gettransactionbynonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
 *RelayersApi* | [**listRelayers**](Apis/RelayersApi.md#listrelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
 *RelayersApi* | [**listTransactions**](Apis/RelayersApi.md#listtransactions) | **GET** /api/v1/relayers/{relayer_id}/transactions/ | Lists all transactions for a specific relayer with pagination. |
+*RelayersApi* | [**quoteSponsoredTransaction**](Apis/RelayersApi.md#quotesponsoredtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/quote | Estimates fees for a sponsored (gasless) transaction. |
 *RelayersApi* | [**replaceTransaction**](Apis/RelayersApi.md#replacetransaction) | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Replaces a specific transaction with a new one. |
 *RelayersApi* | [**rpc**](Apis/RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
 *RelayersApi* | [**sendTransaction**](Apis/RelayersApi.md#sendtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
@@ -96,9 +96,6 @@ All URIs are relative to *http://localhost*
  - [ContractSource_oneOf](./Models/ContractSource_oneOf.md)
  - [ContractSource_oneOf_1](./Models/ContractSource_oneOf_1.md)
  - [CreateRelayerPolicyRequest](./Models/CreateRelayerPolicyRequest.md)
- - [CreateRelayerPolicyRequest_oneOf](./Models/CreateRelayerPolicyRequest_oneOf.md)
- - [CreateRelayerPolicyRequest_oneOf_1](./Models/CreateRelayerPolicyRequest_oneOf_1.md)
- - [CreateRelayerPolicyRequest_oneOf_2](./Models/CreateRelayerPolicyRequest_oneOf_2.md)
  - [CreateRelayerRequest](./Models/CreateRelayerRequest.md)
  - [DeletePendingTransactionsResponse](./Models/DeletePendingTransactionsResponse.md)
  - [DisabledReason](./Models/DisabledReason.md)

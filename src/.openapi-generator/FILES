@@ -62,9 +62,6 @@ models/cdp-signer-request-config.ts
 models/contract-source-one-of.ts
 models/contract-source-one-of1.ts
 models/contract-source.ts
-models/create-relayer-policy-request-one-of.ts
-models/create-relayer-policy-request-one-of1.ts
-models/create-relayer-policy-request-one-of2.ts
 models/create-relayer-policy-request.ts
 models/create-relayer-request.ts
 models/delete-pending-transactions-response.ts

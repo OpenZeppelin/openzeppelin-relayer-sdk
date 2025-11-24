@@ -12,11 +12,11 @@ All URIs are relative to *http://localhost*
 | [**getRelayer**](RelayersApi.md#getRelayer) | **GET** /api/v1/relayers/{relayer_id} | Retrieves details of a specific relayer by ID. |
 | [**getRelayerBalance**](RelayersApi.md#getRelayerBalance) | **GET** /api/v1/relayers/{relayer_id}/balance | Retrieves the balance of a specific relayer. |
 | [**getRelayerStatus**](RelayersApi.md#getRelayerStatus) | **GET** /api/v1/relayers/{relayer_id}/status | Fetches the current status of a specific relayer. |
-| [**getSponsoredTransactionQuote**](RelayersApi.md#getSponsoredTransactionQuote) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/quote | Estimates fees for a sponsored (gasless) transaction. |
 | [**getTransactionById**](RelayersApi.md#getTransactionById) | **GET** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Retrieves a specific transaction by its ID. |
 | [**getTransactionByNonce**](RelayersApi.md#getTransactionByNonce) | **GET** /api/v1/relayers/{relayer_id}/transactions/by-nonce/{nonce} | Retrieves a transaction by its nonce value. |
 | [**listRelayers**](RelayersApi.md#listRelayers) | **GET** /api/v1/relayers | Relayer routes implementation |
 | [**listTransactions**](RelayersApi.md#listTransactions) | **GET** /api/v1/relayers/{relayer_id}/transactions/ | Lists all transactions for a specific relayer with pagination. |
+| [**quoteSponsoredTransaction**](RelayersApi.md#quoteSponsoredTransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/quote | Estimates fees for a sponsored (gasless) transaction. |
 | [**replaceTransaction**](RelayersApi.md#replaceTransaction) | **PUT** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Replaces a specific transaction with a new one. |
 | [**rpc**](RelayersApi.md#rpc) | **POST** /api/v1/relayers/{relayer_id}/rpc | Performs a JSON-RPC call using the specified relayer. |
 | [**sendTransaction**](RelayersApi.md#sendTransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions | Sends a transaction through the specified relayer. |
@@ -230,34 +230,6 @@ Fetches the current status of a specific relayer.
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="getSponsoredTransactionQuote"></a>
-# **getSponsoredTransactionQuote**
-> ApiResponse_SponsoredTransactionQuoteResponse getSponsoredTransactionQuote(relayer\_id, SponsoredTransactionQuoteRequest)
-
-Estimates fees for a sponsored (gasless) transaction.
-
-    This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
-| **SponsoredTransactionQuoteRequest** | [**SponsoredTransactionQuoteRequest**](../Models/SponsoredTransactionQuoteRequest.md)|  | |
-
-### Return type
-
-[**ApiResponse_SponsoredTransactionQuoteResponse**](../Models/ApiResponse_SponsoredTransactionQuoteResponse.md)
-
-### Authorization
-
-[bearer_auth](../README.md#bearer_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
 <a name="getTransactionById"></a>
 # **getTransactionById**
 > ApiResponse_TransactionResponse getTransactionById(relayer\_id, transaction\_id)
@@ -363,6 +335,34 @@ Lists all transactions for a specific relayer with pagination.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="quoteSponsoredTransaction"></a>
+# **quoteSponsoredTransaction**
+> ApiResponse_SponsoredTransactionQuoteResponse quoteSponsoredTransaction(relayer\_id, SponsoredTransactionQuoteRequest)
+
+Estimates fees for a sponsored (gasless) transaction.
+
+    This endpoint provides fee estimation for transactions where the relayer will pay the network fees on behalf of the user. The user pays fees in a token of their choice (e.g., USDC) instead of the native network currency (e.g., XLM for Stellar).  The endpoint accepts either a pre-built transaction XDR or a set of operations to build a transaction from. It returns the estimated fee amount in the specified fee token and the conversion rate from the native currency.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
+| **SponsoredTransactionQuoteRequest** | [**SponsoredTransactionQuoteRequest**](../Models/SponsoredTransactionQuoteRequest.md)|  | |
+
+### Return type
+
+[**ApiResponse_SponsoredTransactionQuoteResponse**](../Models/ApiResponse_SponsoredTransactionQuoteResponse.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 <a name="replaceTransaction"></a>
