@@ -13,14 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SolanaPrepareTransactionResult } from './solana-prepare-transaction-result';
 
 /**
- * @type SolanaRpcResultOneOf2
+ * 
  * @export
+ * @interface SolanaFeeEstimateResult
  */
-export type SolanaRpcResultOneOf2 = SolanaPrepareTransactionResult;
-
+export interface SolanaFeeEstimateResult {
+    /**
+     * 
+     * @type {string}
+     * @memberof SolanaFeeEstimateResult
+     */
+    'conversion_rate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SolanaFeeEstimateResult
+     */
+    'estimated_fee': string;
+}
 

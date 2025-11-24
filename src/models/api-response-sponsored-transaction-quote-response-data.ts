@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FeeEstimateResult } from './fee-estimate-result';
+import type { SolanaFeeEstimateResult } from './solana-fee-estimate-result';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarFeeEstimateResult } from './stellar-fee-estimate-result';
 
 /**
  * @type ApiResponseSponsoredTransactionQuoteResponseData
  * Network-agnostic fee estimate response for gasless transactions. Contains network-specific fee estimate results.
  * @export
  */
-export type ApiResponseSponsoredTransactionQuoteResponseData = FeeEstimateResult;
+export type ApiResponseSponsoredTransactionQuoteResponseData = SolanaFeeEstimateResult | StellarFeeEstimateResult;
 
 

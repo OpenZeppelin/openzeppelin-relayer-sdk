@@ -20,33 +20,33 @@ import type { OperationSpec } from './operation-spec';
 /**
  * 
  * @export
- * @interface PrepareTransactionRequestParams
+ * @interface StellarFeeEstimateRequestParams
  */
-export interface PrepareTransactionRequestParams {
+export interface StellarFeeEstimateRequestParams {
     [key: string]: any;
 
     /**
-     * Asset identifier for fee token
+     * Asset identifier for fee token (e.g., \"native\" or \"USDC:GA5Z...\")
      * @type {string}
-     * @memberof PrepareTransactionRequestParams
+     * @memberof StellarFeeEstimateRequestParams
      */
     'fee_token': string;
     /**
      * Operations array to build transaction from Mutually exclusive with transaction_xdr field
      * @type {Array<OperationSpec>}
-     * @memberof PrepareTransactionRequestParams
+     * @memberof StellarFeeEstimateRequestParams
      */
     'operations'?: Array<OperationSpec>;
     /**
-     * Source account address (required when operations are provided) For gasless transactions, this should be the user\'s account address
+     * Source account address (required when operations are provided) For sponsored transactions, this should be the user\'s account address
      * @type {string}
-     * @memberof PrepareTransactionRequestParams
+     * @memberof StellarFeeEstimateRequestParams
      */
     'source_account'?: string;
     /**
      * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field
      * @type {string}
-     * @memberof PrepareTransactionRequestParams
+     * @memberof StellarFeeEstimateRequestParams
      */
     'transaction_xdr'?: string;
 }

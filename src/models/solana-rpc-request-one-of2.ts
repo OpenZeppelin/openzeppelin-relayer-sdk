@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PrepareTransactionRequestParams } from './prepare-transaction-request-params';
+import type { SolanaPrepareTransactionRequestParams } from './solana-prepare-transaction-request-params';
 
 /**
  * 
@@ -31,10 +31,10 @@ export interface SolanaRpcRequestOneOf2 {
     'method': SolanaRpcRequestOneOf2MethodEnum;
     /**
      * 
-     * @type {PrepareTransactionRequestParams}
+     * @type {SolanaPrepareTransactionRequestParams}
      * @memberof SolanaRpcRequestOneOf2
      */
-    'params': PrepareTransactionRequestParams;
+    'params': SolanaPrepareTransactionRequestParams;
 }
 
 /**

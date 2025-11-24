@@ -17,20 +17,22 @@
 /**
  * 
  * @export
- * @interface FeeEstimateResult
+ * @interface SolanaPrepareTransactionRequestParams
  */
-export interface FeeEstimateResult {
+export interface SolanaPrepareTransactionRequestParams {
+    [key: string]: any;
+
     /**
-     * Conversion rate from XLM to token (as string)
+     * 
      * @type {string}
-     * @memberof FeeEstimateResult
+     * @memberof SolanaPrepareTransactionRequestParams
      */
-    'conversion_rate': string;
+    'fee_token': string;
     /**
-     * Estimated fee in token amount (as string for precision)
+     * 
      * @type {string}
-     * @memberof FeeEstimateResult
+     * @memberof SolanaPrepareTransactionRequestParams
      */
-    'estimated_fee': string;
+    'transaction': string;
 }
 

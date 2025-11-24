@@ -15,12 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FeeEstimateResult } from './fee-estimate-result';
+import type { SolanaFeeEstimateResult } from './solana-fee-estimate-result';
 
 /**
  * @type SolanaRpcResultOneOf
  * @export
  */
-export type SolanaRpcResultOneOf = FeeEstimateResult;
+export type SolanaRpcResultOneOf = SolanaFeeEstimateResult;
 
 

@@ -18,13 +18,16 @@
 import type { OperationSpec } from './operation-spec';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PrepareTransactionRequestParams } from './prepare-transaction-request-params';
+import type { SolanaPrepareTransactionRequestParams } from './solana-prepare-transaction-request-params';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarPrepareTransactionRequestParams } from './stellar-prepare-transaction-request-params';
 
 /**
  * @type SponsoredTransactionBuildRequest
  * Network-agnostic prepare transaction request parameters for gasless transactions. Contains network-specific request parameters for preparing transactions with fee payments. The network type is inferred from the relayer\'s network configuration.
  * @export
  */
-export type SponsoredTransactionBuildRequest = PrepareTransactionRequestParams;
+export type SponsoredTransactionBuildRequest = SolanaPrepareTransactionRequestParams | StellarPrepareTransactionRequestParams;
 
 

@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PrepareTransactionResult } from './prepare-transaction-result';
+import type { SolanaPrepareTransactionResult } from './solana-prepare-transaction-result';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarPrepareTransactionResult } from './stellar-prepare-transaction-result';
 
 /**
  * @type SponsoredTransactionBuildResponse
  * Network-agnostic prepare transaction response for gasless transactions. Contains network-specific prepare transaction results.
  * @export
  */
-export type SponsoredTransactionBuildResponse = PrepareTransactionResult;
+export type SponsoredTransactionBuildResponse = SolanaPrepareTransactionResult | StellarPrepareTransactionResult;
 
 

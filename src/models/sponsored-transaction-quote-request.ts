@@ -15,16 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FeeEstimateRequestParams } from './fee-estimate-request-params';
+import type { OperationSpec } from './operation-spec';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OperationSpec } from './operation-spec';
+import type { SolanaFeeEstimateRequestParams } from './solana-fee-estimate-request-params';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StellarFeeEstimateRequestParams } from './stellar-fee-estimate-request-params';
 
 /**
  * @type SponsoredTransactionQuoteRequest
  * Network-agnostic fee estimate request parameters for gasless transactions. Contains network-specific request parameters for fee estimation. The network type is inferred from the relayer\'s network configuration.
  * @export
  */
-export type SponsoredTransactionQuoteRequest = FeeEstimateRequestParams;
+export type SponsoredTransactionQuoteRequest = SolanaFeeEstimateRequestParams | StellarFeeEstimateRequestParams;
 
 

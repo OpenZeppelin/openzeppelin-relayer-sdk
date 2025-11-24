@@ -78,8 +78,6 @@ models/evm-rpc-result.ts
 models/evm-transaction-data-signature.ts
 models/evm-transaction-request.ts
 models/evm-transaction-response.ts
-models/fee-estimate-request-params.ts
-models/fee-estimate-result.ts
 models/get-features-enabled-result.ts
 models/get-supported-tokens-item.ts
 models/get-supported-tokens-result.ts
@@ -121,8 +119,6 @@ models/pagination-meta.ts
 models/plugin-call-request.ts
 models/plugin-handler-error.ts
 models/plugin-metadata.ts
-models/prepare-transaction-request-params.ts
-models/prepare-transaction-result.ts
 models/relayer-evm-policy.ts
 models/relayer-network-policy-one-of.ts
 models/relayer-network-policy-one-of1.ts
@@ -167,9 +163,13 @@ models/signer-type.ts
 models/solana-account-meta.ts
 models/solana-allowed-tokens-policy.ts
 models/solana-allowed-tokens-swap-config.ts
+models/solana-fee-estimate-request-params.ts
+models/solana-fee-estimate-result.ts
 models/solana-fee-payment-strategy.ts
 models/solana-instruction-spec.ts
 models/solana-policy-response.ts
+models/solana-prepare-transaction-request-params.ts
+models/solana-prepare-transaction-result.ts
 models/solana-rpc-request-one-of.ts
 models/solana-rpc-request-one-of1.ts
 models/solana-rpc-request-one-of2.ts
@@ -199,8 +199,12 @@ models/sponsored-transaction-quote-request.ts
 models/sponsored-transaction-quote-response.ts
 models/stellar-allowed-tokens-policy.ts
 models/stellar-allowed-tokens-swap-config.ts
+models/stellar-fee-estimate-request-params.ts
+models/stellar-fee-estimate-result.ts
 models/stellar-fee-payment-strategy.ts
 models/stellar-policy-response.ts
+models/stellar-prepare-transaction-request-params.ts
+models/stellar-prepare-transaction-result.ts
 models/stellar-rpc-request-one-of.ts
 models/stellar-rpc-request.ts
 models/stellar-rpc-result.ts

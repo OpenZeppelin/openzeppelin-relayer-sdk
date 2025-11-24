@@ -17,37 +17,43 @@
 /**
  * 
  * @export
- * @interface PrepareTransactionResult
+ * @interface StellarPrepareTransactionResult
  */
-export interface PrepareTransactionResult {
+export interface StellarPrepareTransactionResult {
     /**
      * Fee amount in stroops (as string)
      * @type {string}
-     * @memberof PrepareTransactionResult
+     * @memberof StellarPrepareTransactionResult
      */
     'fee_in_stroops': string;
     /**
-     * Fee amount in token (as string)
+     * Fee amount in token (raw units as string)
      * @type {string}
-     * @memberof PrepareTransactionResult
+     * @memberof StellarPrepareTransactionResult
      */
     'fee_in_token': string;
     /**
+     * Fee amount in token (decimal UI representation as string)
+     * @type {string}
+     * @memberof StellarPrepareTransactionResult
+     */
+    'fee_in_token_ui': string;
+    /**
      * Asset identifier for fee token
      * @type {string}
-     * @memberof PrepareTransactionResult
+     * @memberof StellarPrepareTransactionResult
      */
     'fee_token': string;
     /**
      * Extended transaction XDR (base64 encoded)
      * @type {string}
-     * @memberof PrepareTransactionResult
+     * @memberof StellarPrepareTransactionResult
      */
     'transaction': string;
     /**
      * Transaction validity timestamp (ISO 8601 format)
      * @type {string}
-     * @memberof PrepareTransactionResult
+     * @memberof StellarPrepareTransactionResult
      */
     'valid_until': string;
 }
