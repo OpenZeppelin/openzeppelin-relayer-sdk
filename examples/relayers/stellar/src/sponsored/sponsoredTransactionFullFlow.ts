@@ -10,8 +10,8 @@ import { createUnsignedXdrWithCustomAsset } from '../utils.js';
  * 1. Build an unsigned transaction for USDC transfer from user to user
  * 2. Get a sponsored transaction quote using the sponsored relayer
  * 3. Build a sponsored transaction using the sponsored relayer
- * 4. Sign the sponsored transaction using the user relayer
- * 4. Send the sponsored transaction via the sponsored relayer
+ * 4. Sign the sponsored transaction using the user relayer (fee_payment_strategy: 'relayer')
+ * 5. Send the sponsored transaction via the sponsored relayer (fee_payment_strategy: 'user')
  *
  * Architecture:
  * - User Relayer: Signs transactions on behalf of the user (mimics user wallet)
@@ -28,7 +28,7 @@ import { createUnsignedXdrWithCustomAsset } from '../utils.js';
  *   ts-node sponsoredTransactionFullFlow.ts
  */
 
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
@@ -38,12 +38,12 @@ const config = new Configuration({
 const relayersApi = new RelayersApi(config);
 
 // Two relayers: one for user signing, one for sponsored transactions
-const USER_RELAYER_ID = 'stellar-example-2'; // Relayer that mimics user wallet, fee_payment_strategy: 'relayer'
-const SPONSORED_RELAYER_ID = 'stellar-example'; // Relayer that sponsors fees, fee_payment_strategy: 'user'
+const USER_RELAYER_ID = ''; // Relayer that mimics user wallet, fee_payment_strategy: 'relayer'
+const SPONSORED_RELAYER_ID = ''; // Relayer that sponsors fees, fee_payment_strategy: 'user'
 
 // Replace with your actual addresses
-const USER_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
-const DESTINATION_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
+const USER_ACCOUNT = '';
+const DESTINATION_ACCOUNT = '';
 
 // USDC asset configuration
 const USDC_ASSET_CODE = 'USDC';

@@ -4,9 +4,9 @@
  * This example demonstrates the complete flow for a sponsored (gasless) transaction on Solana:
  * 1. Create an unsigned transaction for USDC transfer from user to user
  * 2. Get a sponsored transaction quote using the sponsored relayer
- * 3. Build a sponsored transaction using the sponsored relayer
- * 4. Sign the sponsored transaction using the user relayer
- * 5. Send the sponsored transaction via the sponsored relayer
+ * 3. Build a sponsored transaction using the sponsored relayer (fee_payment_strategy: 'user')
+ * 4. Sign the sponsored transaction using the user relayer (fee_payment_strategy: 'relayer')
+ * 5. Send the sponsored transaction via the sponsored relayer (fee_payment_strategy: 'user')
  *
  * Architecture:
  * - User Relayer: Signs transactions on behalf of the user (mimics user wallet)
@@ -31,7 +31,16 @@ import {
 } from '../../../../src';
 import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../util';
 
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
+// Replace with your actual addresses
+const SOURCE_ADDRESS = 'Ejj3VH5ACFUoGqGmGHNobwdD4aPzrExohqr8WmDjfRGY';
+const DESTINATION_ADDRESS = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
+const USDC_TOKEN = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
+const TRANSFER_AMOUNT = 1000000; // Amount in smallest units (consider token decimals)
+// Two relayers: one for user signing, one for sponsored transactions
+const USER_RELAYER_ID = ''; // Relayer that mimics user wallet, fee_payment_strategy: 'relayer'
+const SPONSORED_RELAYER_ID = ''; // Relayer that sponsors fees, fee_payment_strategy: 'user'
+
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
@@ -39,16 +48,6 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
-
-// Two relayers: one for user signing, one for sponsored transactions
-const USER_RELAYER_ID = 'solana-example-user'; // Relayer that mimics user wallet, fee_payment_strategy: 'relayer'
-const SPONSORED_RELAYER_ID = 'solana-example'; // Relayer that sponsors fees, fee_payment_strategy: 'user'
-
-// Replace with your actual addresses
-const SOURCE_ADDRESS = 'Ejj3VH5ACFUoGqGmGHNobwdD4aPzrExohqr8WmDjfRGY';
-const DESTINATION_ADDRESS = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';
-const USDC_TOKEN = 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'; // USDC token mint address
-const TRANSFER_AMOUNT = 1000000; // Amount in smallest units (consider token decimals)
 
 // Initialize Solana RPC client for the sponsored relayer
 const rpc = createSolanaRelayerRpcClient('http://localhost:8080', SPONSORED_RELAYER_ID, accessToken);

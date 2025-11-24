@@ -29,8 +29,15 @@ import { Configuration, RelayersApi, StellarTransactionRequest } from '@openzepp
  *   ts-node createTrustline.ts
  */
 
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
 const BASE_PATH = 'http://localhost:8080';
+// Replace with your actual relayer ID
+const RELAYER_ID = 'stellar-example'
+// Replace with your actual address
+const USER_ACCOUNT = '';
+// USDC asset configuration (replace with your desired asset)
+const USDC_ASSET_CODE = 'USDC';
+const USDC_ASSET_ISSUER = 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5';
 
 // example dev config
 const config = new Configuration({
@@ -39,16 +46,6 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
-
-// Replace with your actual relayer ID
-const RELAYER_ID = 'stellar-example';
-
-// Replace with your actual address
-const USER_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
-
-// USDC asset configuration (replace with your desired asset)
-const USDC_ASSET_CODE = 'USDC';
-const USDC_ASSET_ISSUER = 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5';
 
 // Initialize Stellar server via relayer RPC endpoint
 const server = new rpc.Server(`${BASE_PATH}/api/v1/relayers/${RELAYER_ID}/rpc`, {

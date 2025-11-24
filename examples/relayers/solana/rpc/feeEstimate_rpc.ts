@@ -25,7 +25,7 @@ import { createSolanaRelayerRpcClient, getSerializedTokenTransfer } from '../uti
 
 // Replace with your actual values
 const basePath = 'http://localhost:8080';
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
 const relayer_id = 'solana-example';
 const source = 'EYsk8PduFSAt7W9dnvL2Pt7qcVsb5wAVCYbJ5UQaUpXf';
 const destination = 'Gt6wiPeC3XqNZKnMcM2dbRZCkKr1PtytBxf9hhV7Hxew';

@@ -25,9 +25,18 @@ import { createUnsignedXdrWithCustomAsset } from '../utils.js';
  *   ts-node buildSponsoredTransaction.ts
  */
 
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
 const BASE_PATH = 'http://localhost:8080';
+// Replace with your actual relayer ID (must have fee_payment_strategy: 'user')
+const SPONSORED_RELAYER_ID = 'stellar-example';
+// Replace with your actual addresses
+const USER_ACCOUNT = '';
+const DESTINATION_ACCOUNT = '';
+const TRANSFER_AMOUNT = '0.1';
 
+// USDC asset configuration
+const USDC_ASSET_CODE = 'USDC';
+const USDC_ASSET_ISSUER = 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5';
 // example dev config
 const config = new Configuration({
   basePath: BASE_PATH,
@@ -35,18 +44,6 @@ const config = new Configuration({
 });
 
 const relayersApi = new RelayersApi(config);
-
-// Replace with your actual relayer ID (must have fee_payment_strategy: 'user')
-const SPONSORED_RELAYER_ID = 'stellar-example';
-
-// Replace with your actual addresses
-const USER_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
-const DESTINATION_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
-
-// USDC asset configuration
-const USDC_ASSET_CODE = 'USDC';
-const USDC_ASSET_ISSUER = 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5';
-const TRANSFER_AMOUNT = '0.1';
 
 // Initialize Stellar server via relayer RPC endpoint
 const server = new rpc.Server(`${BASE_PATH}/api/v1/relayers/${SPONSORED_RELAYER_ID}/rpc`, {

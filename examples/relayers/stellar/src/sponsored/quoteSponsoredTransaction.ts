@@ -25,7 +25,7 @@ import { createUnsignedXdrWithCustomAsset } from '../utils.js';
  *   ts-node quoteSponsoredTransaction.ts
  */
 
-const accessToken = 'EDD3252B-32DD-485B-A618-C1C8CBFC546'; // replace with your actual api key
+const accessToken = ''; // replace with your actual api key
 const BASE_PATH = 'http://localhost:8080';
 
 // example dev config
@@ -40,8 +40,8 @@ const relayersApi = new RelayersApi(config);
 const SPONSORED_RELAYER_ID = 'stellar-example';
 
 // Replace with your actual addresses
-const USER_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
-const DESTINATION_ACCOUNT = 'GDGBTXFQSQOZ2NHLHFXQILDFWZIOG4EGX3CT34ZXHOIVO32NJDWXKZNF';
+const USER_ACCOUNT = '';
+const DESTINATION_ACCOUNT = '';
 
 // USDC asset configuration
 const USDC_ASSET_CODE = 'USDC';
