@@ -18,11 +18,11 @@ import { Configuration, RelayersApi, StellarFeePaymentStrategy } from '../../../
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: 'EDD3252B-32DD-485B-A618-C1C8CBFC546', // replace with your actual api key
+  accessToken: '', // replace with your actual api key
 });
 
 const relayersApi = new RelayersApi(config);
-const relayer_id = '6a782af4-231e-4a09-9d64-e557af14bb9f'; // Replace with your actual relayer id
+const relayer_id = ''; // Replace with your actual relayer id
 
 relayersApi
   .updateRelayer(relayer_id, {
