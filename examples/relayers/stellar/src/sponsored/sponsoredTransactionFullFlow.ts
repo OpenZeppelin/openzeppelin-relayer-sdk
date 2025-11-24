@@ -152,7 +152,7 @@ async function main() {
       transaction_xdr: unsignedXdr,
     };
 
-    const quoteResponse = await relayersApi.getSponsoredTransactionQuote(SPONSORED_RELAYER_ID, quoteRequest);
+    const quoteResponse = await relayersApi.quoteSponsoredTransaction(SPONSORED_RELAYER_ID, quoteRequest);
 
     if (!quoteResponse.data.data) {
       throw new Error('Failed to get sponsored transaction quote');

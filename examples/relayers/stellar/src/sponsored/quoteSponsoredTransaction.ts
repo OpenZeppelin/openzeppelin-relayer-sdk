@@ -90,7 +90,7 @@ async function main() {
       transaction_xdr: unsignedXdr,
     };
 
-    const quoteResponse = await relayersApi.getSponsoredTransactionQuote(SPONSORED_RELAYER_ID, quoteRequest);
+    const quoteResponse = await relayersApi.quoteSponsoredTransaction(SPONSORED_RELAYER_ID, quoteRequest);
 
     if (!quoteResponse.data.data) {
       throw new Error('Failed to get sponsored transaction quote: no data in response');
@@ -102,11 +102,8 @@ async function main() {
 
     // Extract and display key quote information
     const quoteData = quoteResponse.data.data;
-    if ('fee_amount' in quoteData && quoteData.fee_amount) {
-      console.log(`\n💵 Estimated fee: ${quoteData.fee_amount} ${USDC_ASSET_CODE}`);
-    }
-    if ('fee_token' in quoteData && quoteData.fee_token) {
-      console.log(`   Fee token: ${quoteData.fee_token}`);
+    if ('fee_in_token' in quoteData && quoteData.fee_in_token) {
+      console.log(`\n💵 Estimated fee: ${quoteData.fee_in_token} ${USDC_ASSET_CODE}`);
     }
 
     console.log('\n' + '='.repeat(80));
