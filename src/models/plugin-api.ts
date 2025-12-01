@@ -185,12 +185,18 @@ export interface PluginKVStore {
 }
 
 /**
+ * HTTP headers from the incoming request.
+ * Each header name maps to an array of values (since HTTP headers can have multiple values).
+ */
+export type PluginHeaders = Record<string, string[]>;
+
+/**
  * Plugin context with KV always available for modern plugins.
  */
 export interface PluginContext {
   api: PluginAPI;
   kv: PluginKVStore;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  headers: PluginHeaders;
   params: any;
 }
 
