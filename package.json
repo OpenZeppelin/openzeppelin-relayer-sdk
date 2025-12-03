@@ -77,7 +77,9 @@
     "typescript": "5.8.3",
     "typescript-eslint": "8.44.1",
     "undici": "^7.4.0",
-    "viem": "^2.38.0"
+    "viem": "^2.38.0",
+    "@zama-fhe/relayer-sdk": "0.3.0-6",
+    "ethers": "^6.15.0"
   },
   "dependencies": {
     "axios": "^1.7.7"
