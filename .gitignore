@@ -218,3 +218,5 @@ env.d.ts
 dist/
 
 .qodo
+
+.nx/
