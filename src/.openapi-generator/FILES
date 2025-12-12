@@ -20,6 +20,9 @@ models/api-response-delete-pending-transactions-response-data.ts
 models/api-response-delete-pending-transactions-response.ts
 models/api-response-notification-response-data.ts
 models/api-response-notification-response.ts
+models/api-response-paginated-result-plugin-model-data-items-inner.ts
+models/api-response-paginated-result-plugin-model-data.ts
+models/api-response-paginated-result-plugin-model.ts
 models/api-response-plugin-handler-error-data.ts
 models/api-response-plugin-handler-error.ts
 models/api-response-relayer-response-data.ts
@@ -119,6 +122,7 @@ models/pagination-meta.ts
 models/plugin-call-request.ts
 models/plugin-handler-error.ts
 models/plugin-metadata.ts
+models/plugin-model.ts
 models/relayer-evm-policy.ts
 models/relayer-network-policy-one-of.ts
 models/relayer-network-policy-one-of1.ts

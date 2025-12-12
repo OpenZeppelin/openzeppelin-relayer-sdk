@@ -16,7 +16,9 @@ All URIs are relative to *http://localhost*
 *NotificationsApi* | [**getNotification**](Apis/NotificationsApi.md#getnotification) | **GET** /api/v1/notifications/{notification_id} | Retrieves details of a specific notification by ID. |
 *NotificationsApi* | [**listNotifications**](Apis/NotificationsApi.md#listnotifications) | **GET** /api/v1/notifications | Notification routes implementation |
 *NotificationsApi* | [**updateNotification**](Apis/NotificationsApi.md#updatenotification) | **PATCH** /api/v1/notifications/{notification_id} | Updates an existing notification. |
-| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin and receive the sanitized result |
+| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call{route} | Execute a plugin with optional wildcard route routing |
+*PluginsApi* | [**callPluginGet**](Apis/PluginsApi.md#callpluginget) | **GET** /api/v1/plugins/{plugin_id}/call{route} | Execute a plugin via GET (must be enabled per plugin) |
+*PluginsApi* | [**listPlugins**](Apis/PluginsApi.md#listplugins) | **GET** /api/v1/plugins | List plugins. |
 | *RelayersApi* | [**buildSponsoredTransaction**](Apis/RelayersApi.md#buildsponsoredtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/build | Prepares a sponsored (gasless) transaction with fee payments. |
 *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
 *RelayersApi* | [**createRelayer**](Apis/RelayersApi.md#createrelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
@@ -53,6 +55,9 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_DeletePendingTransactionsResponse_data](./Models/ApiResponse_DeletePendingTransactionsResponse_data.md)
  - [ApiResponse_NotificationResponse](./Models/ApiResponse_NotificationResponse.md)
  - [ApiResponse_NotificationResponse_data](./Models/ApiResponse_NotificationResponse_data.md)
+ - [ApiResponse_PaginatedResult_PluginModel](./Models/ApiResponse_PaginatedResult_PluginModel.md)
+ - [ApiResponse_PaginatedResult_PluginModel_data](./Models/ApiResponse_PaginatedResult_PluginModel_data.md)
+ - [ApiResponse_PaginatedResult_PluginModel_data_items_inner](./Models/ApiResponse_PaginatedResult_PluginModel_data_items_inner.md)
  - [ApiResponse_PluginHandlerError](./Models/ApiResponse_PluginHandlerError.md)
  - [ApiResponse_PluginHandlerError_data](./Models/ApiResponse_PluginHandlerError_data.md)
  - [ApiResponse_RelayerResponse](./Models/ApiResponse_RelayerResponse.md)
@@ -151,6 +156,7 @@ All URIs are relative to *http://localhost*
  - [PluginCallRequest](./Models/PluginCallRequest.md)
  - [PluginHandlerError](./Models/PluginHandlerError.md)
  - [PluginMetadata](./Models/PluginMetadata.md)
+ - [PluginModel](./Models/PluginModel.md)
  - [RelayerEvmPolicy](./Models/RelayerEvmPolicy.md)
  - [RelayerNetworkPolicy](./Models/RelayerNetworkPolicy.md)
  - [RelayerNetworkPolicyResponse](./Models/RelayerNetworkPolicyResponse.md)
