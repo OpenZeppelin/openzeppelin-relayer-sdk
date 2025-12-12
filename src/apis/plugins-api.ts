@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
+import type { ApiResponsePaginatedResultPluginModel } from '../models';
+// @ts-ignore
 import type { ApiResponsePluginHandlerError } from '../models';
 // @ts-ignore
 import type { ApiResponseString } from '../models';
@@ -36,20 +38,24 @@ import type { PluginCallRequest } from '../models';
 export const PluginsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.
-         * @summary Execute a plugin and receive the sanitized result
+         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.  The endpoint supports wildcard route routing, allowing plugins to implement custom routing logic: - `/api/v1/plugins/{plugin_id}/call` - Default endpoint (route = \"\") - `/api/v1/plugins/{plugin_id}/call/verify` - Custom route (route = \"/verify\") - `/api/v1/plugins/{plugin_id}/call/settle` - Custom route (route = \"/settle\") - `/api/v1/plugins/{plugin_id}/call/api/v1/action` - Nested route (route = \"/api/v1/action\")  The route is passed to the plugin handler via the `context.route` field.
+         * @summary Execute a plugin with optional wildcard route routing
          * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/verify\&#39;). May include additional slashes for nested routes (e.g. \&#39;/api/v1/action\&#39;).
          * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        callPlugin: async (pluginId: string, pluginCallRequest: PluginCallRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        callPlugin: async (pluginId: string, route: string, pluginCallRequest: PluginCallRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'pluginId' is not null or undefined
             assertParamExists('callPlugin', 'pluginId', pluginId)
+            // verify required parameter 'route' is not null or undefined
+            assertParamExists('callPlugin', 'route', route)
             // verify required parameter 'pluginCallRequest' is not null or undefined
             assertParamExists('callPlugin', 'pluginCallRequest', pluginCallRequest)
-            const localVarPath = `/api/v1/plugins/{plugin_id}/call`
-                .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)));
+            const localVarPath = `/api/v1/plugins/{plugin_id}/call{route}`
+                .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)))
+                .replace(`{${"route"}}`, encodeURIComponent(String(route)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -79,6 +85,92 @@ export const PluginsApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * This endpoint is disabled by default. To enable it for a given plugin, set `allow_get_invocation: true` in the plugin configuration.  When invoked via GET: - `params` is an empty object (`{}`) - query parameters are passed to the plugin handler via `context.query` - wildcard route routing is supported the same way as POST (see `doc_call_plugin`)
+         * @summary Execute a plugin via GET (must be enabled per plugin)
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/supported\&#39;). May include additional slashes for nested routes.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        callPluginGet: async (pluginId: string, route: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pluginId' is not null or undefined
+            assertParamExists('callPluginGet', 'pluginId', pluginId)
+            // verify required parameter 'route' is not null or undefined
+            assertParamExists('callPluginGet', 'route', route)
+            const localVarPath = `/api/v1/plugins/{plugin_id}/call{route}`
+                .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)))
+                .replace(`{${"route"}}`, encodeURIComponent(String(route)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List plugins.
+         * @param {number} [page] Page number for pagination (starts at 1)
+         * @param {number} [perPage] Number of items per page (default: 10)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPlugins: async (page?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/plugins`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['per_page'] = perPage;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -90,17 +182,46 @@ export const PluginsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PluginsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.
-         * @summary Execute a plugin and receive the sanitized result
+         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.  The endpoint supports wildcard route routing, allowing plugins to implement custom routing logic: - `/api/v1/plugins/{plugin_id}/call` - Default endpoint (route = \"\") - `/api/v1/plugins/{plugin_id}/call/verify` - Custom route (route = \"/verify\") - `/api/v1/plugins/{plugin_id}/call/settle` - Custom route (route = \"/settle\") - `/api/v1/plugins/{plugin_id}/call/api/v1/action` - Nested route (route = \"/api/v1/action\")  The route is passed to the plugin handler via the `context.route` field.
+         * @summary Execute a plugin with optional wildcard route routing
          * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/verify\&#39;). May include additional slashes for nested routes (e.g. \&#39;/api/v1/action\&#39;).
          * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseValue>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.callPlugin(pluginId, pluginCallRequest, options);
+        async callPlugin(pluginId: string, route: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseValue>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.callPlugin(pluginId, route, pluginCallRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PluginsApi.callPlugin']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint is disabled by default. To enable it for a given plugin, set `allow_get_invocation: true` in the plugin configuration.  When invoked via GET: - `params` is an empty object (`{}`) - query parameters are passed to the plugin handler via `context.query` - wildcard route routing is supported the same way as POST (see `doc_call_plugin`)
+         * @summary Execute a plugin via GET (must be enabled per plugin)
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/supported\&#39;). May include additional slashes for nested routes.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async callPluginGet(pluginId: string, route: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseValue>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.callPluginGet(pluginId, route, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PluginsApi.callPluginGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List plugins.
+         * @param {number} [page] Page number for pagination (starts at 1)
+         * @param {number} [perPage] Number of items per page (default: 10)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listPlugins(page?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponsePaginatedResultPluginModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPlugins(page, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PluginsApi.listPlugins']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -114,15 +235,38 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = PluginsApiFp(configuration)
     return {
         /**
-         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.
-         * @summary Execute a plugin and receive the sanitized result
+         * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.  The endpoint supports wildcard route routing, allowing plugins to implement custom routing logic: - `/api/v1/plugins/{plugin_id}/call` - Default endpoint (route = \"\") - `/api/v1/plugins/{plugin_id}/call/verify` - Custom route (route = \"/verify\") - `/api/v1/plugins/{plugin_id}/call/settle` - Custom route (route = \"/settle\") - `/api/v1/plugins/{plugin_id}/call/api/v1/action` - Nested route (route = \"/api/v1/action\")  The route is passed to the plugin handler via the `context.route` field.
+         * @summary Execute a plugin with optional wildcard route routing
          * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/verify\&#39;). May include additional slashes for nested routes (e.g. \&#39;/api/v1/action\&#39;).
          * @param {PluginCallRequest} pluginCallRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseValue> {
-            return localVarFp.callPlugin(pluginId, pluginCallRequest, options).then((request) => request(axios, basePath));
+        callPlugin(pluginId: string, route: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseValue> {
+            return localVarFp.callPlugin(pluginId, route, pluginCallRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint is disabled by default. To enable it for a given plugin, set `allow_get_invocation: true` in the plugin configuration.  When invoked via GET: - `params` is an empty object (`{}`) - query parameters are passed to the plugin handler via `context.query` - wildcard route routing is supported the same way as POST (see `doc_call_plugin`)
+         * @summary Execute a plugin via GET (must be enabled per plugin)
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/supported\&#39;). May include additional slashes for nested routes.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        callPluginGet(pluginId: string, route: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseValue> {
+            return localVarFp.callPluginGet(pluginId, route, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List plugins.
+         * @param {number} [page] Page number for pagination (starts at 1)
+         * @param {number} [perPage] Number of items per page (default: 10)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listPlugins(page?: number, perPage?: number, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePaginatedResultPluginModel> {
+            return localVarFp.listPlugins(page, perPage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -135,16 +279,43 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
  */
 export class PluginsApi extends BaseAPI {
     /**
-     * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.
-     * @summary Execute a plugin and receive the sanitized result
+     * Logs and traces are only returned when the plugin is configured with `emit_logs` / `emit_traces`. Plugin-provided errors are normalized into a consistent payload (`code`, `details`) and a derived message so downstream clients receive a stable shape regardless of how the handler threw.  The endpoint supports wildcard route routing, allowing plugins to implement custom routing logic: - `/api/v1/plugins/{plugin_id}/call` - Default endpoint (route = \"\") - `/api/v1/plugins/{plugin_id}/call/verify` - Custom route (route = \"/verify\") - `/api/v1/plugins/{plugin_id}/call/settle` - Custom route (route = \"/settle\") - `/api/v1/plugins/{plugin_id}/call/api/v1/action` - Nested route (route = \"/api/v1/action\")  The route is passed to the plugin handler via the `context.route` field.
+     * @summary Execute a plugin with optional wildcard route routing
      * @param {string} pluginId The unique identifier of the plugin
+     * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/verify\&#39;). May include additional slashes for nested routes (e.g. \&#39;/api/v1/action\&#39;).
      * @param {PluginCallRequest} pluginCallRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PluginsApi
      */
-    public callPlugin(pluginId: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig) {
-        return PluginsApiFp(this.configuration).callPlugin(pluginId, pluginCallRequest, options).then((request) => request(this.axios, this.basePath));
+    public callPlugin(pluginId: string, route: string, pluginCallRequest: PluginCallRequest, options?: RawAxiosRequestConfig) {
+        return PluginsApiFp(this.configuration).callPlugin(pluginId, route, pluginCallRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint is disabled by default. To enable it for a given plugin, set `allow_get_invocation: true` in the plugin configuration.  When invoked via GET: - `params` is an empty object (`{}`) - query parameters are passed to the plugin handler via `context.query` - wildcard route routing is supported the same way as POST (see `doc_call_plugin`)
+     * @summary Execute a plugin via GET (must be enabled per plugin)
+     * @param {string} pluginId The unique identifier of the plugin
+     * @param {string} route Optional route suffix captured by the server. Use an empty string for the default route, or include a leading slash (e.g. \&#39;/supported\&#39;). May include additional slashes for nested routes.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PluginsApi
+     */
+    public callPluginGet(pluginId: string, route: string, options?: RawAxiosRequestConfig) {
+        return PluginsApiFp(this.configuration).callPluginGet(pluginId, route, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List plugins.
+     * @param {number} [page] Page number for pagination (starts at 1)
+     * @param {number} [perPage] Number of items per page (default: 10)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PluginsApi
+     */
+    public listPlugins(page?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return PluginsApiFp(this.configuration).listPlugins(page, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

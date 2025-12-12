@@ -25,6 +25,6 @@ export interface PluginCallRequest {
      * @type {any}
      * @memberof PluginCallRequest
      */
-    'params': any;
+    'params'?: any;
 }
 
