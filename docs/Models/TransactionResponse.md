@@ -27,6 +27,7 @@
 | **fee** | **Integer** |  | [default to null] |
 | **sequence\_number** | **Long** |  | [default to null] |
 | **source\_account** | **String** |  | [default to null] |
+| **transaction\_result\_xdr** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
