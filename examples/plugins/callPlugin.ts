@@ -23,12 +23,15 @@ const config = new Configuration({
 
 const pluginsApi = new PluginsApi(config);
 
-const plugin_id = 'example';
+const plugin_id = 'plugin-example'; // replace with your actual plugin id
 
-pluginsApi.callPlugin(plugin_id, {
-  // these params will be passed to the plugin.
-  params: {
-    foo: 'bar',
-    baz: 123,
-  },
-});
+pluginsApi
+  .callPlugin(plugin_id, {
+    // these params will be passed to the plugin.
+    params: {
+      foo: 'bar',
+      baz: 123,
+    },
+  })
+  .then((response) => console.log(JSON.stringify(response.data, null, 2)))
+  .catch(console.error);

@@ -198,6 +198,10 @@ export interface PluginContext {
   kv: PluginKVStore;
   headers: PluginHeaders;
   params: any;
+  route: string;
+  config?: Record<string, any>;
+  method: string;
+  query: Record<string, string[]>;
 }
 
 export interface PluginAPI {
