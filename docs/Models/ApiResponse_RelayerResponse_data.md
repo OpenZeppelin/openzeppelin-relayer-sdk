@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **address** | **String** |  | [optional] [default to null] |
-| **custom\_rpc\_urls** | [**List**](RpcConfig.md) |  | [optional] [default to null] |
+| **custom\_rpc\_urls** | [**List**](MaskedRpcConfig.md) | Custom RPC URLs with sensitive path/query parameters masked for security. The domain is visible to identify providers (e.g., Alchemy, Infura) but API keys embedded in paths are hidden. | [optional] [default to null] |
 | **disabled\_reason** | [**DisabledReason**](DisabledReason.md) |  | [optional] [default to null] |
 | **id** | **String** |  | [default to null] |
 | **name** | **String** |  | [default to null] |

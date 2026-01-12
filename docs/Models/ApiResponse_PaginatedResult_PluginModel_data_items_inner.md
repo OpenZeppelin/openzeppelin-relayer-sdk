@@ -7,6 +7,7 @@
 | **config** | [**Map**](AnyType.md) | User-defined configuration accessible to the plugin (must be a JSON object) | [optional] [default to null] |
 | **emit\_logs** | **Boolean** | Whether to include logs in the HTTP response | [optional] [default to null] |
 | **emit\_traces** | **Boolean** | Whether to include traces in the HTTP response | [optional] [default to null] |
+| **forward\_logs** | **Boolean** | Whether to forward plugin logs into the relayer&#39;s tracing output | [optional] [default to null] |
 | **id** | **String** | Plugin ID | [default to null] |
 | **path** | **String** | Plugin path | [default to null] |
 | **raw\_response** | **Boolean** | Whether to return raw plugin response without ApiResponse wrapper | [optional] [default to null] |
