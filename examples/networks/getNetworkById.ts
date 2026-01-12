@@ -18,7 +18,7 @@ import { Configuration, NetworksApi } from '../../src';
 // example dev config
 const config = new Configuration({
   basePath: 'http://localhost:8080',
-  accessToken: '2cc7ec17-45ca-4498-ba86-517ef0788b8c', // replace with your actual api key
+  accessToken: '', // replace with your actual api key
 });
 
 const networksApi = new NetworksApi(config);
