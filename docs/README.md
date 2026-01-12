@@ -11,6 +11,9 @@ All URIs are relative to *http://localhost*
 | *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Metrics routes implementation |
 *MetricsApi* | [**metricDetail**](Apis/MetricsApi.md#metricdetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 *MetricsApi* | [**scrapeMetrics**](Apis/MetricsApi.md#scrapemetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
+| *NetworksApi* | [**getNetwork**](Apis/NetworksApi.md#getnetwork) | **GET** /api/v1/networks/{network_id} | Retrieves details of a specific network by ID. |
+*NetworksApi* | [**listNetworks**](Apis/NetworksApi.md#listnetworks) | **GET** /api/v1/networks | Network routes implementation |
+*NetworksApi* | [**updateNetwork**](Apis/NetworksApi.md#updatenetwork) | **PATCH** /api/v1/networks/{network_id} | Updates a network's configuration. Currently supports updating RPC URLs only. Can be extended to support other fields. |
 | *NotificationsApi* | [**createNotification**](Apis/NotificationsApi.md#createnotification) | **POST** /api/v1/notifications | Creates a new notification. |
 *NotificationsApi* | [**deleteNotification**](Apis/NotificationsApi.md#deletenotification) | **DELETE** /api/v1/notifications/{notification_id} | Deletes a notification by ID. |
 *NotificationsApi* | [**getNotification**](Apis/NotificationsApi.md#getnotification) | **GET** /api/v1/notifications/{notification_id} | Retrieves details of a specific notification by ID. |
@@ -51,6 +54,8 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_BalanceResponse_data](./Models/ApiResponse_BalanceResponse_data.md)
  - [ApiResponse_DeletePendingTransactionsResponse](./Models/ApiResponse_DeletePendingTransactionsResponse.md)
  - [ApiResponse_DeletePendingTransactionsResponse_data](./Models/ApiResponse_DeletePendingTransactionsResponse_data.md)
+ - [ApiResponse_NetworkResponse](./Models/ApiResponse_NetworkResponse.md)
+ - [ApiResponse_NetworkResponse_data](./Models/ApiResponse_NetworkResponse_data.md)
  - [ApiResponse_NotificationResponse](./Models/ApiResponse_NotificationResponse.md)
  - [ApiResponse_NotificationResponse_data](./Models/ApiResponse_NotificationResponse_data.md)
  - [ApiResponse_PluginHandlerError](./Models/ApiResponse_PluginHandlerError.md)
@@ -76,6 +81,7 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_TransactionResponse](./Models/ApiResponse_TransactionResponse.md)
  - [ApiResponse_TransactionResponse_data](./Models/ApiResponse_TransactionResponse_data.md)
  - [ApiResponse_Value](./Models/ApiResponse_Value.md)
+ - [ApiResponse_Vec_NetworkResponse](./Models/ApiResponse_Vec_NetworkResponse.md)
  - [ApiResponse_Vec_NotificationResponse](./Models/ApiResponse_Vec_NotificationResponse.md)
  - [ApiResponse_Vec_RelayerResponse](./Models/ApiResponse_Vec_RelayerResponse.md)
  - [ApiResponse_Vec_SignerResponse](./Models/ApiResponse_Vec_SignerResponse.md)
@@ -128,6 +134,7 @@ All URIs are relative to *http://localhost*
  - [LocalSignerRequestConfig](./Models/LocalSignerRequestConfig.md)
  - [LogEntry](./Models/LogEntry.md)
  - [LogLevel](./Models/LogLevel.md)
+ - [MaskedRpcConfig](./Models/MaskedRpcConfig.md)
  - [MemoSpec](./Models/MemoSpec.md)
  - [MemoSpec_oneOf](./Models/MemoSpec_oneOf.md)
  - [MemoSpec_oneOf_1](./Models/MemoSpec_oneOf_1.md)
@@ -135,6 +142,7 @@ All URIs are relative to *http://localhost*
  - [MemoSpec_oneOf_3](./Models/MemoSpec_oneOf_3.md)
  - [MemoSpec_oneOf_4](./Models/MemoSpec_oneOf_4.md)
  - [NetworkPolicyResponse](./Models/NetworkPolicyResponse.md)
+ - [NetworkResponse](./Models/NetworkResponse.md)
  - [NetworkRpcRequest](./Models/NetworkRpcRequest.md)
  - [NetworkRpcResult](./Models/NetworkRpcResult.md)
  - [NetworkTransactionRequest](./Models/NetworkTransactionRequest.md)
@@ -165,6 +173,7 @@ All URIs are relative to *http://localhost*
  - [RelayerStellarPolicy](./Models/RelayerStellarPolicy.md)
  - [RelayerStellarSwapConfig](./Models/RelayerStellarSwapConfig.md)
  - [RpcConfig](./Models/RpcConfig.md)
+ - [RpcUrlEntry](./Models/RpcUrlEntry.md)
  - [SignAndSendTransactionRequestParams](./Models/SignAndSendTransactionRequestParams.md)
  - [SignAndSendTransactionResult](./Models/SignAndSendTransactionResult.md)
  - [SignDataRequest](./Models/SignDataRequest.md)
@@ -254,6 +263,7 @@ All URIs are relative to *http://localhost*
  - [TransferTransactionRequestParams](./Models/TransferTransactionRequestParams.md)
  - [TransferTransactionResult](./Models/TransferTransactionResult.md)
  - [TurnkeySignerRequestConfig](./Models/TurnkeySignerRequestConfig.md)
+ - [UpdateNetworkRequest](./Models/UpdateNetworkRequest.md)
  - [UpdateRelayerRequest](./Models/UpdateRelayerRequest.md)
  - [VaultSignerRequestConfig](./Models/VaultSignerRequestConfig.md)
  - [VaultTransitSignerRequestConfig](./Models/VaultTransitSignerRequestConfig.md)
