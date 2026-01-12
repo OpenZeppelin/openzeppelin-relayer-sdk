@@ -1,5 +1,6 @@
 Apis/HealthApi.md
 Apis/MetricsApi.md
+Apis/NetworksApi.md
 Apis/NotificationsApi.md
 Apis/PluginsApi.md
 Apis/RelayersApi.md
@@ -8,6 +9,8 @@ Models/ApiResponse_BalanceResponse.md
 Models/ApiResponse_BalanceResponse_data.md
 Models/ApiResponse_DeletePendingTransactionsResponse.md
 Models/ApiResponse_DeletePendingTransactionsResponse_data.md
+Models/ApiResponse_NetworkResponse.md
+Models/ApiResponse_NetworkResponse_data.md
 Models/ApiResponse_NotificationResponse.md
 Models/ApiResponse_NotificationResponse_data.md
 Models/ApiResponse_PluginHandlerError.md
@@ -33,6 +36,7 @@ Models/ApiResponse_String.md
 Models/ApiResponse_TransactionResponse.md
 Models/ApiResponse_TransactionResponse_data.md
 Models/ApiResponse_Value.md
+Models/ApiResponse_Vec_NetworkResponse.md
 Models/ApiResponse_Vec_NotificationResponse.md
 Models/ApiResponse_Vec_RelayerResponse.md
 Models/ApiResponse_Vec_SignerResponse.md
@@ -85,6 +89,7 @@ Models/JupiterSwapOptions.md
 Models/LocalSignerRequestConfig.md
 Models/LogEntry.md
 Models/LogLevel.md
+Models/MaskedRpcConfig.md
 Models/MemoSpec.md
 Models/MemoSpec_oneOf.md
 Models/MemoSpec_oneOf_1.md
@@ -92,6 +97,7 @@ Models/MemoSpec_oneOf_2.md
 Models/MemoSpec_oneOf_3.md
 Models/MemoSpec_oneOf_4.md
 Models/NetworkPolicyResponse.md
+Models/NetworkResponse.md
 Models/NetworkRpcRequest.md
 Models/NetworkRpcResult.md
 Models/NetworkTransactionRequest.md
@@ -122,6 +128,7 @@ Models/RelayerStatus.md
 Models/RelayerStellarPolicy.md
 Models/RelayerStellarSwapConfig.md
 Models/RpcConfig.md
+Models/RpcUrlEntry.md
 Models/SignAndSendTransactionRequestParams.md
 Models/SignAndSendTransactionResult.md
 Models/SignDataRequest.md
@@ -211,6 +218,7 @@ Models/TransactionStatus.md
 Models/TransferTransactionRequestParams.md
 Models/TransferTransactionResult.md
 Models/TurnkeySignerRequestConfig.md
+Models/UpdateNetworkRequest.md
 Models/UpdateRelayerRequest.md
 Models/VaultSignerRequestConfig.md
 Models/VaultTransitSignerRequestConfig.md
