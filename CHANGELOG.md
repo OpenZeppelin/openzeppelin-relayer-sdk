@@ -1,5 +1,10 @@
 # @openzeppelin/relayer-sdk
 
+
+## 1.9.0 (2026-01-16)
+
+- fear: stellar gas abstraction ([#244](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/244))
+
 ## 1.8.0 (2025-12-02)
 
 - feat: add headers to plugin context type ([#233](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/233))
