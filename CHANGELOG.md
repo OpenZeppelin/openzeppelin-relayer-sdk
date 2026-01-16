@@ -1,14 +1,19 @@
 # @openzeppelin/relayer-sdk
 
-<<<<<<< HEAD
-=======
+
+## 1.9.0 (2026-01-16)
+
+- fear: stellar gas abstraction ([#244](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/244))
+
+# <<<<<<< HEAD
 
 ## 1.8.0 (2025-12-02)
 
 - feat: add headers to plugin context type ([#233](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/233))
 - fix: fix the failing build ([#236](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/236))
 
->>>>>>> main
+> > > > > > > main
+
 ## 1.7.0 (2025-11-10)
 
 - feat: introduce rpc client logic and examples ([#225](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/225))
