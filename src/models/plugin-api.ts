@@ -196,11 +196,8 @@ export type PluginHeaders = Record<string, string[]>;
 export interface PluginContext {
   api: PluginAPI;
   kv: PluginKVStore;
-<<<<<<< HEAD
-=======
   headers: PluginHeaders;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
->>>>>>> main
   params: any;
 }
 
