@@ -45,7 +45,7 @@ import { createSorobanInvocationXdr, addressToScVal, parseAuthEntry, authEntryTo
  *   2. Fill in your configuration values (including USER_SECRET_KEY)
  *
  * Usage:
- *   npx ts-node sorobanGasAbstractionFullFlow.ts
+ *   npx tsx sorobanGasAbstractionFullFlow.ts
  */
 
 // Load configuration from environment variables

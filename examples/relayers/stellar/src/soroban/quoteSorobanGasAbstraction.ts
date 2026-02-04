@@ -30,7 +30,7 @@ import { createSorobanInvocationXdr, addressToScVal } from './utils.js';
  *   2. Fill in your configuration values
  *
  * Usage:
- *   npx ts-node quoteSorobanGasAbstraction.ts
+ *   npx tsx quoteSorobanGasAbstraction.ts
  */
 
 // Load configuration from environment variables
