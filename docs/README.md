@@ -7,16 +7,24 @@ All URIs are relative to *http://localhost*
 
 | Class | Method | HTTP request | Description |
 |------------ | ------------- | ------------- | -------------|
-| *HealthApi* | [**health**](Apis/HealthApi.md#health) | **GET** /v1/health | Health routes implementation |
+| *HealthApi* | [**health**](Apis/HealthApi.md#health) | **GET** /api/v1/health | Health routes implementation |
+*HealthApi* | [**readiness**](Apis/HealthApi.md#readiness) | **GET** /api/v1/ready | Readiness endpoint that checks system resources, Redis, Queue, and plugins. |
 | *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Metrics routes implementation |
 *MetricsApi* | [**metricDetail**](Apis/MetricsApi.md#metricdetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 *MetricsApi* | [**scrapeMetrics**](Apis/MetricsApi.md#scrapemetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
+| *NetworksApi* | [**getNetwork**](Apis/NetworksApi.md#getnetwork) | **GET** /api/v1/networks/{network_id} | Retrieves details of a specific network by ID. |
+*NetworksApi* | [**listNetworks**](Apis/NetworksApi.md#listnetworks) | **GET** /api/v1/networks | Network routes implementation |
+*NetworksApi* | [**updateNetwork**](Apis/NetworksApi.md#updatenetwork) | **PATCH** /api/v1/networks/{network_id} | Updates a network's configuration. Currently supports updating RPC URLs only. Can be extended to support other fields. |
 | *NotificationsApi* | [**createNotification**](Apis/NotificationsApi.md#createnotification) | **POST** /api/v1/notifications | Creates a new notification. |
 *NotificationsApi* | [**deleteNotification**](Apis/NotificationsApi.md#deletenotification) | **DELETE** /api/v1/notifications/{notification_id} | Deletes a notification by ID. |
 *NotificationsApi* | [**getNotification**](Apis/NotificationsApi.md#getnotification) | **GET** /api/v1/notifications/{notification_id} | Retrieves details of a specific notification by ID. |
 *NotificationsApi* | [**listNotifications**](Apis/NotificationsApi.md#listnotifications) | **GET** /api/v1/notifications | Notification routes implementation |
 *NotificationsApi* | [**updateNotification**](Apis/NotificationsApi.md#updatenotification) | **PATCH** /api/v1/notifications/{notification_id} | Updates an existing notification. |
-| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin and receive the sanitized result |
+| *PluginsApi* | [**callPlugin**](Apis/PluginsApi.md#callplugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin with optional wildcard route routing |
+*PluginsApi* | [**callPluginGet**](Apis/PluginsApi.md#callpluginget) | **GET** /api/v1/plugins/{plugin_id}/call | Execute a plugin via GET (must be enabled per plugin) |
+*PluginsApi* | [**getPlugin**](Apis/PluginsApi.md#getplugin) | **GET** /api/v1/plugins/{plugin_id} | Get plugin by ID |
+*PluginsApi* | [**listPlugins**](Apis/PluginsApi.md#listplugins) | **GET** /api/v1/plugins | List plugins. |
+*PluginsApi* | [**updatePlugin**](Apis/PluginsApi.md#updateplugin) | **PATCH** /api/v1/plugins/{plugin_id} | Update plugin configuration |
 | *RelayersApi* | [**buildSponsoredTransaction**](Apis/RelayersApi.md#buildsponsoredtransaction) | **POST** /api/v1/relayers/{relayer_id}/transactions/sponsored/build | Prepares a sponsored (gasless) transaction with fee payments. |
 *RelayersApi* | [**cancelTransaction**](Apis/RelayersApi.md#canceltransaction) | **DELETE** /api/v1/relayers/{relayer_id}/transactions/{transaction_id} | Cancels a specific transaction by its ID. |
 *RelayersApi* | [**createRelayer**](Apis/RelayersApi.md#createrelayer) | **POST** /api/v1/relayers | Creates a new relayer. |
@@ -51,10 +59,16 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_BalanceResponse_data](./Models/ApiResponse_BalanceResponse_data.md)
  - [ApiResponse_DeletePendingTransactionsResponse](./Models/ApiResponse_DeletePendingTransactionsResponse.md)
  - [ApiResponse_DeletePendingTransactionsResponse_data](./Models/ApiResponse_DeletePendingTransactionsResponse_data.md)
+ - [ApiResponse_NetworkResponse](./Models/ApiResponse_NetworkResponse.md)
+ - [ApiResponse_NetworkResponse_data](./Models/ApiResponse_NetworkResponse_data.md)
  - [ApiResponse_NotificationResponse](./Models/ApiResponse_NotificationResponse.md)
  - [ApiResponse_NotificationResponse_data](./Models/ApiResponse_NotificationResponse_data.md)
+ - [ApiResponse_PaginatedResult_PluginModel](./Models/ApiResponse_PaginatedResult_PluginModel.md)
+ - [ApiResponse_PaginatedResult_PluginModel_data](./Models/ApiResponse_PaginatedResult_PluginModel_data.md)
+ - [ApiResponse_PaginatedResult_PluginModel_data_items_inner](./Models/ApiResponse_PaginatedResult_PluginModel_data_items_inner.md)
  - [ApiResponse_PluginHandlerError](./Models/ApiResponse_PluginHandlerError.md)
  - [ApiResponse_PluginHandlerError_data](./Models/ApiResponse_PluginHandlerError_data.md)
+ - [ApiResponse_PluginModel](./Models/ApiResponse_PluginModel.md)
  - [ApiResponse_RelayerResponse](./Models/ApiResponse_RelayerResponse.md)
  - [ApiResponse_RelayerResponse_data](./Models/ApiResponse_RelayerResponse_data.md)
  - [ApiResponse_RelayerStatus](./Models/ApiResponse_RelayerStatus.md)
@@ -76,6 +90,7 @@ All URIs are relative to *http://localhost*
  - [ApiResponse_TransactionResponse](./Models/ApiResponse_TransactionResponse.md)
  - [ApiResponse_TransactionResponse_data](./Models/ApiResponse_TransactionResponse_data.md)
  - [ApiResponse_Value](./Models/ApiResponse_Value.md)
+ - [ApiResponse_Vec_NetworkResponse](./Models/ApiResponse_Vec_NetworkResponse.md)
  - [ApiResponse_Vec_NotificationResponse](./Models/ApiResponse_Vec_NotificationResponse.md)
  - [ApiResponse_Vec_RelayerResponse](./Models/ApiResponse_Vec_RelayerResponse.md)
  - [ApiResponse_Vec_SignerResponse](./Models/ApiResponse_Vec_SignerResponse.md)
@@ -92,6 +107,8 @@ All URIs are relative to *http://localhost*
  - [AwsKmsSignerRequestConfig](./Models/AwsKmsSignerRequestConfig.md)
  - [BalanceResponse](./Models/BalanceResponse.md)
  - [CdpSignerRequestConfig](./Models/CdpSignerRequestConfig.md)
+ - [ComponentStatus](./Models/ComponentStatus.md)
+ - [Components](./Models/Components.md)
  - [ContractSource](./Models/ContractSource.md)
  - [ContractSource_oneOf](./Models/ContractSource_oneOf.md)
  - [ContractSource_oneOf_1](./Models/ContractSource_oneOf_1.md)
@@ -128,6 +145,7 @@ All URIs are relative to *http://localhost*
  - [LocalSignerRequestConfig](./Models/LocalSignerRequestConfig.md)
  - [LogEntry](./Models/LogEntry.md)
  - [LogLevel](./Models/LogLevel.md)
+ - [MaskedRpcConfig](./Models/MaskedRpcConfig.md)
  - [MemoSpec](./Models/MemoSpec.md)
  - [MemoSpec_oneOf](./Models/MemoSpec_oneOf.md)
  - [MemoSpec_oneOf_1](./Models/MemoSpec_oneOf_1.md)
@@ -135,6 +153,7 @@ All URIs are relative to *http://localhost*
  - [MemoSpec_oneOf_3](./Models/MemoSpec_oneOf_3.md)
  - [MemoSpec_oneOf_4](./Models/MemoSpec_oneOf_4.md)
  - [NetworkPolicyResponse](./Models/NetworkPolicyResponse.md)
+ - [NetworkResponse](./Models/NetworkResponse.md)
  - [NetworkRpcRequest](./Models/NetworkRpcRequest.md)
  - [NetworkRpcResult](./Models/NetworkRpcResult.md)
  - [NetworkTransactionRequest](./Models/NetworkTransactionRequest.md)
@@ -150,7 +169,13 @@ All URIs are relative to *http://localhost*
  - [PaginationMeta](./Models/PaginationMeta.md)
  - [PluginCallRequest](./Models/PluginCallRequest.md)
  - [PluginHandlerError](./Models/PluginHandlerError.md)
+ - [PluginHealth](./Models/PluginHealth.md)
  - [PluginMetadata](./Models/PluginMetadata.md)
+ - [PluginModel](./Models/PluginModel.md)
+ - [PoolStatus](./Models/PoolStatus.md)
+ - [QueueHealth](./Models/QueueHealth.md)
+ - [ReadinessResponse](./Models/ReadinessResponse.md)
+ - [RedisHealth](./Models/RedisHealth.md)
  - [RelayerEvmPolicy](./Models/RelayerEvmPolicy.md)
  - [RelayerNetworkPolicy](./Models/RelayerNetworkPolicy.md)
  - [RelayerNetworkPolicyResponse](./Models/RelayerNetworkPolicyResponse.md)
@@ -165,6 +190,7 @@ All URIs are relative to *http://localhost*
  - [RelayerStellarPolicy](./Models/RelayerStellarPolicy.md)
  - [RelayerStellarSwapConfig](./Models/RelayerStellarSwapConfig.md)
  - [RpcConfig](./Models/RpcConfig.md)
+ - [RpcUrlEntry](./Models/RpcUrlEntry.md)
  - [SignAndSendTransactionRequestParams](./Models/SignAndSendTransactionRequestParams.md)
  - [SignAndSendTransactionResult](./Models/SignAndSendTransactionResult.md)
  - [SignDataRequest](./Models/SignDataRequest.md)
@@ -249,11 +275,14 @@ All URIs are relative to *http://localhost*
  - [StellarTokenMetadata](./Models/StellarTokenMetadata.md)
  - [StellarTransactionRequest](./Models/StellarTransactionRequest.md)
  - [StellarTransactionResponse](./Models/StellarTransactionResponse.md)
+ - [SystemHealth](./Models/SystemHealth.md)
  - [TransactionResponse](./Models/TransactionResponse.md)
  - [TransactionStatus](./Models/TransactionStatus.md)
  - [TransferTransactionRequestParams](./Models/TransferTransactionRequestParams.md)
  - [TransferTransactionResult](./Models/TransferTransactionResult.md)
  - [TurnkeySignerRequestConfig](./Models/TurnkeySignerRequestConfig.md)
+ - [UpdateNetworkRequest](./Models/UpdateNetworkRequest.md)
+ - [UpdatePluginRequest](./Models/UpdatePluginRequest.md)
  - [UpdateRelayerRequest](./Models/UpdateRelayerRequest.md)
  - [VaultSignerRequestConfig](./Models/VaultSignerRequestConfig.md)
  - [VaultTransitSignerRequestConfig](./Models/VaultTransitSignerRequestConfig.md)
