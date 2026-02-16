@@ -1,13 +1,9 @@
 # @openzeppelin/relayer-sdk
 
-# <<<<<<< HEAD
-
 ## 1.8.0 (2025-12-02)
 
 - feat: add headers to plugin context type ([#233](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/233))
 - fix: fix the failing build ([#236](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/236))
-
-> > > > > > > main
 
 ## 1.7.0 (2025-11-10)
 
