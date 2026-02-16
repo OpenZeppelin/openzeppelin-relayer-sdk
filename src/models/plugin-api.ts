@@ -197,6 +197,7 @@ export interface PluginContext {
   api: PluginAPI;
   kv: PluginKVStore;
   headers: PluginHeaders;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   params: any;
 }
 

@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "@openzeppelin/relayer-sdk": "file:../../..",
-    "@stellar/stellar-sdk": "^13.0.0"
+    "@stellar/stellar-sdk": "^13.0.0",
+    "dotenv": "^16.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.0.0"
   }
 }
