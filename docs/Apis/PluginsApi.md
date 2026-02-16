@@ -6,7 +6,9 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**callPlugin**](PluginsApi.md#callPlugin) | **POST** /api/v1/plugins/{plugin_id}/call | Execute a plugin with optional wildcard route routing |
 | [**callPluginGet**](PluginsApi.md#callPluginGet) | **GET** /api/v1/plugins/{plugin_id}/call | Execute a plugin via GET (must be enabled per plugin) |
+| [**getPlugin**](PluginsApi.md#getPlugin) | **GET** /api/v1/plugins/{plugin_id} | Get plugin by ID |
 | [**listPlugins**](PluginsApi.md#listPlugins) | **GET** /api/v1/plugins | List plugins. |
+| [**updatePlugin**](PluginsApi.md#updatePlugin) | **PATCH** /api/v1/plugins/{plugin_id} | Update plugin configuration |
 
 
 <a name="callPlugin"></a>
@@ -66,6 +68,31 @@ Execute a plugin via GET (must be enabled per plugin)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getPlugin"></a>
+# **getPlugin**
+> ApiResponse_PluginModel getPlugin(plugin\_id)
+
+Get plugin by ID
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **plugin\_id** | **String**| The unique identifier of the plugin | [default to null] |
+
+### Return type
+
+[**ApiResponse_PluginModel**](../Models/ApiResponse_PluginModel.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="listPlugins"></a>
 # **listPlugins**
 > ApiResponse_PaginatedResult_PluginModel listPlugins(page, per\_page)
@@ -90,5 +117,33 @@ List plugins.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="updatePlugin"></a>
+# **updatePlugin**
+> ApiResponse_PluginModel updatePlugin(plugin\_id, UpdatePluginRequest)
+
+Update plugin configuration
+
+    Updates mutable plugin fields such as timeout, emit_logs, emit_traces, raw_response, allow_get_invocation, config, and forward_logs. The plugin id and path cannot be changed after creation.  All fields are optional - only the provided fields will be updated. To clear the &#x60;config&#x60; field, pass &#x60;\&quot;config\&quot;: null&#x60;.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **plugin\_id** | **String**| The unique identifier of the plugin | [default to null] |
+| **UpdatePluginRequest** | [**UpdatePluginRequest**](../Models/UpdatePluginRequest.md)| Plugin configuration update. All fields are optional. | |
+
+### Return type
+
+[**ApiResponse_PluginModel**](../Models/ApiResponse_PluginModel.md)
+
+### Authorization
+
+[bearer_auth](../README.md#bearer_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 

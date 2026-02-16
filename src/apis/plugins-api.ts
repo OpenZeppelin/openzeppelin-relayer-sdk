@@ -26,11 +26,15 @@ import type { ApiResponsePaginatedResultPluginModel } from '../models';
 // @ts-ignore
 import type { ApiResponsePluginHandlerError } from '../models';
 // @ts-ignore
+import type { ApiResponsePluginModel } from '../models';
+// @ts-ignore
 import type { ApiResponseString } from '../models';
 // @ts-ignore
 import type { ApiResponseValue } from '../models';
 // @ts-ignore
 import type { PluginCallRequest } from '../models';
+// @ts-ignore
+import type { UpdatePluginRequest } from '../models';
 /**
  * PluginsApi - axios parameter creator
  * @export
@@ -131,6 +135,44 @@ export const PluginsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Get plugin by ID
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlugin: async (pluginId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pluginId' is not null or undefined
+            assertParamExists('getPlugin', 'pluginId', pluginId)
+            const localVarPath = `/api/v1/plugins/{plugin_id}`
+                .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary List plugins.
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
@@ -167,6 +209,50 @@ export const PluginsApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates mutable plugin fields such as timeout, emit_logs, emit_traces, raw_response, allow_get_invocation, config, and forward_logs. The plugin id and path cannot be changed after creation.  All fields are optional - only the provided fields will be updated. To clear the `config` field, pass `\"config\": null`.
+         * @summary Update plugin configuration
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {UpdatePluginRequest} updatePluginRequest Plugin configuration update. All fields are optional.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlugin: async (pluginId: string, updatePluginRequest: UpdatePluginRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pluginId' is not null or undefined
+            assertParamExists('updatePlugin', 'pluginId', pluginId)
+            // verify required parameter 'updatePluginRequest' is not null or undefined
+            assertParamExists('updatePlugin', 'updatePluginRequest', updatePluginRequest)
+            const localVarPath = `/api/v1/plugins/{plugin_id}`
+                .replace(`{${"plugin_id"}}`, encodeURIComponent(String(pluginId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer_auth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updatePluginRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -214,6 +300,19 @@ export const PluginsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get plugin by ID
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPlugin(pluginId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponsePluginModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlugin(pluginId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PluginsApi.getPlugin']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary List plugins.
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
@@ -224,6 +323,20 @@ export const PluginsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listPlugins(page, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PluginsApi.listPlugins']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates mutable plugin fields such as timeout, emit_logs, emit_traces, raw_response, allow_get_invocation, config, and forward_logs. The plugin id and path cannot be changed after creation.  All fields are optional - only the provided fields will be updated. To clear the `config` field, pass `\"config\": null`.
+         * @summary Update plugin configuration
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {UpdatePluginRequest} updatePluginRequest Plugin configuration update. All fields are optional.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updatePlugin(pluginId: string, updatePluginRequest: UpdatePluginRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponsePluginModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlugin(pluginId, updatePluginRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PluginsApi.updatePlugin']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -261,6 +374,16 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Get plugin by ID
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlugin(pluginId: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePluginModel> {
+            return localVarFp.getPlugin(pluginId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary List plugins.
          * @param {number} [page] Page number for pagination (starts at 1)
          * @param {number} [perPage] Number of items per page (default: 10)
@@ -269,6 +392,17 @@ export const PluginsApiFactory = function (configuration?: Configuration, basePa
          */
         listPlugins(page?: number, perPage?: number, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePaginatedResultPluginModel> {
             return localVarFp.listPlugins(page, perPage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates mutable plugin fields such as timeout, emit_logs, emit_traces, raw_response, allow_get_invocation, config, and forward_logs. The plugin id and path cannot be changed after creation.  All fields are optional - only the provided fields will be updated. To clear the `config` field, pass `\"config\": null`.
+         * @summary Update plugin configuration
+         * @param {string} pluginId The unique identifier of the plugin
+         * @param {UpdatePluginRequest} updatePluginRequest Plugin configuration update. All fields are optional.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlugin(pluginId: string, updatePluginRequest: UpdatePluginRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponsePluginModel> {
+            return localVarFp.updatePlugin(pluginId, updatePluginRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -309,6 +443,18 @@ export class PluginsApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get plugin by ID
+     * @param {string} pluginId The unique identifier of the plugin
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PluginsApi
+     */
+    public getPlugin(pluginId: string, options?: RawAxiosRequestConfig) {
+        return PluginsApiFp(this.configuration).getPlugin(pluginId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary List plugins.
      * @param {number} [page] Page number for pagination (starts at 1)
      * @param {number} [perPage] Number of items per page (default: 10)
@@ -318,6 +464,19 @@ export class PluginsApi extends BaseAPI {
      */
     public listPlugins(page?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return PluginsApiFp(this.configuration).listPlugins(page, perPage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates mutable plugin fields such as timeout, emit_logs, emit_traces, raw_response, allow_get_invocation, config, and forward_logs. The plugin id and path cannot be changed after creation.  All fields are optional - only the provided fields will be updated. To clear the `config` field, pass `\"config\": null`.
+     * @summary Update plugin configuration
+     * @param {string} pluginId The unique identifier of the plugin
+     * @param {UpdatePluginRequest} updatePluginRequest Plugin configuration update. All fields are optional.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PluginsApi
+     */
+    public updatePlugin(pluginId: string, updatePluginRequest: UpdatePluginRequest, options?: RawAxiosRequestConfig) {
+        return PluginsApiFp(this.configuration).updatePlugin(pluginId, updatePluginRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
