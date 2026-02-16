@@ -26,7 +26,7 @@ export interface StellarFeeEstimateRequestParams {
     [key: string]: any;
 
     /**
-     * Asset identifier for fee token (e.g., \"native\" or \"USDC:GA5Z...\")
+     * Asset identifier for fee token. For classic: \"native\" or \"USDC:GA5Z...\" format. For Soroban: contract address (C...) format.
      * @type {string}
      * @memberof StellarFeeEstimateRequestParams
      */
@@ -44,7 +44,7 @@ export interface StellarFeeEstimateRequestParams {
      */
     'source_account'?: string;
     /**
-     * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field
+     * Pre-built transaction XDR (base64 encoded, signed or unsigned) Mutually exclusive with operations field. For Soroban gas abstraction: pass XDR containing InvokeHostFunction operation.
      * @type {string}
      * @memberof StellarFeeEstimateRequestParams
      */

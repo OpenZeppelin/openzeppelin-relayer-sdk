@@ -7,7 +7,8 @@ All URIs are relative to *http://localhost*
 
 | Class | Method | HTTP request | Description |
 |------------ | ------------- | ------------- | -------------|
-| *HealthApi* | [**health**](Apis/HealthApi.md#health) | **GET** /v1/health | Health routes implementation |
+| *HealthApi* | [**health**](Apis/HealthApi.md#health) | **GET** /api/v1/health | Health routes implementation |
+*HealthApi* | [**readiness**](Apis/HealthApi.md#readiness) | **GET** /api/v1/ready | Readiness endpoint that checks system resources, Redis, Queue, and plugins. |
 | *MetricsApi* | [**listMetrics**](Apis/MetricsApi.md#listmetrics) | **GET** /metrics | Metrics routes implementation |
 *MetricsApi* | [**metricDetail**](Apis/MetricsApi.md#metricdetail) | **GET** /metrics/{metric_name} | Returns the details of a specific metric in plain text format. |
 *MetricsApi* | [**scrapeMetrics**](Apis/MetricsApi.md#scrapemetrics) | **GET** /debug/metrics/scrape | Triggers an update of system metrics and returns the result in plain text format. |
@@ -106,6 +107,8 @@ All URIs are relative to *http://localhost*
  - [AwsKmsSignerRequestConfig](./Models/AwsKmsSignerRequestConfig.md)
  - [BalanceResponse](./Models/BalanceResponse.md)
  - [CdpSignerRequestConfig](./Models/CdpSignerRequestConfig.md)
+ - [ComponentStatus](./Models/ComponentStatus.md)
+ - [Components](./Models/Components.md)
  - [ContractSource](./Models/ContractSource.md)
  - [ContractSource_oneOf](./Models/ContractSource_oneOf.md)
  - [ContractSource_oneOf_1](./Models/ContractSource_oneOf_1.md)
@@ -166,8 +169,13 @@ All URIs are relative to *http://localhost*
  - [PaginationMeta](./Models/PaginationMeta.md)
  - [PluginCallRequest](./Models/PluginCallRequest.md)
  - [PluginHandlerError](./Models/PluginHandlerError.md)
+ - [PluginHealth](./Models/PluginHealth.md)
  - [PluginMetadata](./Models/PluginMetadata.md)
  - [PluginModel](./Models/PluginModel.md)
+ - [PoolStatus](./Models/PoolStatus.md)
+ - [QueueHealth](./Models/QueueHealth.md)
+ - [ReadinessResponse](./Models/ReadinessResponse.md)
+ - [RedisHealth](./Models/RedisHealth.md)
  - [RelayerEvmPolicy](./Models/RelayerEvmPolicy.md)
  - [RelayerNetworkPolicy](./Models/RelayerNetworkPolicy.md)
  - [RelayerNetworkPolicyResponse](./Models/RelayerNetworkPolicyResponse.md)
@@ -267,6 +275,7 @@ All URIs are relative to *http://localhost*
  - [StellarTokenMetadata](./Models/StellarTokenMetadata.md)
  - [StellarTransactionRequest](./Models/StellarTransactionRequest.md)
  - [StellarTransactionResponse](./Models/StellarTransactionResponse.md)
+ - [SystemHealth](./Models/SystemHealth.md)
  - [TransactionResponse](./Models/TransactionResponse.md)
  - [TransactionStatus](./Models/TransactionStatus.md)
  - [TransferTransactionRequestParams](./Models/TransferTransactionRequestParams.md)

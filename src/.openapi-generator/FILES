@@ -67,6 +67,8 @@ models/auth-spec.ts
 models/aws-kms-signer-request-config.ts
 models/balance-response.ts
 models/cdp-signer-request-config.ts
+models/component-status.ts
+models/components.ts
 models/contract-source-one-of.ts
 models/contract-source-one-of1.ts
 models/contract-source.ts
@@ -128,8 +130,13 @@ models/operation-spec.ts
 models/pagination-meta.ts
 models/plugin-call-request.ts
 models/plugin-handler-error.ts
+models/plugin-health.ts
 models/plugin-metadata.ts
 models/plugin-model.ts
+models/pool-status.ts
+models/queue-health.ts
+models/readiness-response.ts
+models/redis-health.ts
 models/relayer-evm-policy.ts
 models/relayer-network-policy-one-of.ts
 models/relayer-network-policy-one-of1.ts
@@ -229,6 +236,7 @@ models/stellar-token-kind.ts
 models/stellar-token-metadata.ts
 models/stellar-transaction-request.ts
 models/stellar-transaction-response.ts
+models/system-health.ts
 models/transaction-response.ts
 models/transaction-status.ts
 models/transfer-transaction-request-params.ts

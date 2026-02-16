@@ -38,5 +38,17 @@ export interface StellarFeeEstimateResult {
      * @memberof StellarFeeEstimateResult
      */
     'fee_in_token_ui': string;
+    /**
+     * Maximum fee in token amount (raw units as string). Only present for Soroban gas abstraction - includes slippage buffer.
+     * @type {string}
+     * @memberof StellarFeeEstimateResult
+     */
+    'max_fee_in_token'?: string | null;
+    /**
+     * Maximum fee in token amount (decimal UI representation as string). Only present for Soroban gas abstraction - includes slippage buffer.
+     * @type {string}
+     * @memberof StellarFeeEstimateResult
+     */
+    'max_fee_in_token_ui'?: string | null;
 }
 

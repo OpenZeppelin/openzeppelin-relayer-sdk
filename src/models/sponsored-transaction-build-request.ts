@@ -25,7 +25,7 @@ import type { StellarPrepareTransactionRequestParams } from './stellar-prepare-t
 
 /**
  * @type SponsoredTransactionBuildRequest
- * Network-agnostic prepare transaction request parameters for gasless transactions. Contains network-specific request parameters for preparing transactions with fee payments. The network type is inferred from the relayer\'s network configuration.
+ * Network-agnostic prepare transaction request parameters for gasless transactions. Contains network-specific request parameters for preparing transactions with fee payments. The network type is inferred from the relayer\'s network configuration.  For Stellar, supports both classic and Soroban gas abstraction: - Classic: Pass operations or transaction_xdr with classic fee token - Soroban: Pass transaction_xdr containing InvokeHostFunction, user_address, and contract fee token
  * @export
  */
 export type SponsoredTransactionBuildRequest = SolanaPrepareTransactionRequestParams | StellarPrepareTransactionRequestParams;
