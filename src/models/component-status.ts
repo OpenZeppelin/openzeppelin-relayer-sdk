@@ -15,16 +15,16 @@
 
 
 /**
- * 
+ * Component health status levels.
  * @export
- * @interface PluginCallRequest
+ * @enum {string}
  */
-export interface PluginCallRequest {
-    /**
-     * 
-     * @type {any}
-     * @memberof PluginCallRequest
-     */
-    'params'?: any;
+
+export enum ComponentStatus {
+    HEALTHY = 'healthy',
+    DEGRADED = 'degraded',
+    UNHEALTHY = 'unhealthy'
 }
+
+
 
