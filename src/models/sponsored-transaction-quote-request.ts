@@ -25,7 +25,7 @@ import type { StellarFeeEstimateRequestParams } from './stellar-fee-estimate-req
 
 /**
  * @type SponsoredTransactionQuoteRequest
- * Network-agnostic fee estimate request parameters for gasless transactions. Contains network-specific request parameters for fee estimation. The network type is inferred from the relayer\'s network configuration.
+ * Network-agnostic fee estimate request parameters for gasless transactions. Contains network-specific request parameters for fee estimation. The network type is inferred from the relayer\'s network configuration.  For Stellar, supports both classic and Soroban gas abstraction: - Classic: Pass operations or transaction_xdr with classic fee token (native/USDC:GA...) - Soroban: Pass transaction_xdr containing InvokeHostFunction, user_address, and contract fee token (C...)
  * @export
  */
 export type SponsoredTransactionQuoteRequest = SolanaFeeEstimateRequestParams | StellarFeeEstimateRequestParams;

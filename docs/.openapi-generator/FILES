@@ -1,5 +1,6 @@
 Apis/HealthApi.md
 Apis/MetricsApi.md
+Apis/NetworksApi.md
 Apis/NotificationsApi.md
 Apis/PluginsApi.md
 Apis/RelayersApi.md
@@ -8,10 +9,16 @@ Models/ApiResponse_BalanceResponse.md
 Models/ApiResponse_BalanceResponse_data.md
 Models/ApiResponse_DeletePendingTransactionsResponse.md
 Models/ApiResponse_DeletePendingTransactionsResponse_data.md
+Models/ApiResponse_NetworkResponse.md
+Models/ApiResponse_NetworkResponse_data.md
 Models/ApiResponse_NotificationResponse.md
 Models/ApiResponse_NotificationResponse_data.md
+Models/ApiResponse_PaginatedResult_PluginModel.md
+Models/ApiResponse_PaginatedResult_PluginModel_data.md
+Models/ApiResponse_PaginatedResult_PluginModel_data_items_inner.md
 Models/ApiResponse_PluginHandlerError.md
 Models/ApiResponse_PluginHandlerError_data.md
+Models/ApiResponse_PluginModel.md
 Models/ApiResponse_RelayerResponse.md
 Models/ApiResponse_RelayerResponse_data.md
 Models/ApiResponse_RelayerStatus.md
@@ -33,6 +40,7 @@ Models/ApiResponse_String.md
 Models/ApiResponse_TransactionResponse.md
 Models/ApiResponse_TransactionResponse_data.md
 Models/ApiResponse_Value.md
+Models/ApiResponse_Vec_NetworkResponse.md
 Models/ApiResponse_Vec_NotificationResponse.md
 Models/ApiResponse_Vec_RelayerResponse.md
 Models/ApiResponse_Vec_SignerResponse.md
@@ -49,6 +57,8 @@ Models/AuthSpec_oneOf_3.md
 Models/AwsKmsSignerRequestConfig.md
 Models/BalanceResponse.md
 Models/CdpSignerRequestConfig.md
+Models/ComponentStatus.md
+Models/Components.md
 Models/ContractSource.md
 Models/ContractSource_oneOf.md
 Models/ContractSource_oneOf_1.md
@@ -85,6 +95,7 @@ Models/JupiterSwapOptions.md
 Models/LocalSignerRequestConfig.md
 Models/LogEntry.md
 Models/LogLevel.md
+Models/MaskedRpcConfig.md
 Models/MemoSpec.md
 Models/MemoSpec_oneOf.md
 Models/MemoSpec_oneOf_1.md
@@ -92,6 +103,7 @@ Models/MemoSpec_oneOf_2.md
 Models/MemoSpec_oneOf_3.md
 Models/MemoSpec_oneOf_4.md
 Models/NetworkPolicyResponse.md
+Models/NetworkResponse.md
 Models/NetworkRpcRequest.md
 Models/NetworkRpcResult.md
 Models/NetworkTransactionRequest.md
@@ -107,7 +119,13 @@ Models/OperationSpec_oneOf_3.md
 Models/PaginationMeta.md
 Models/PluginCallRequest.md
 Models/PluginHandlerError.md
+Models/PluginHealth.md
 Models/PluginMetadata.md
+Models/PluginModel.md
+Models/PoolStatus.md
+Models/QueueHealth.md
+Models/ReadinessResponse.md
+Models/RedisHealth.md
 Models/RelayerEvmPolicy.md
 Models/RelayerNetworkPolicy.md
 Models/RelayerNetworkPolicyResponse.md
@@ -122,6 +140,7 @@ Models/RelayerStatus.md
 Models/RelayerStellarPolicy.md
 Models/RelayerStellarSwapConfig.md
 Models/RpcConfig.md
+Models/RpcUrlEntry.md
 Models/SignAndSendTransactionRequestParams.md
 Models/SignAndSendTransactionResult.md
 Models/SignDataRequest.md
@@ -206,11 +225,14 @@ Models/StellarTokenKind_oneOf_classic.md
 Models/StellarTokenMetadata.md
 Models/StellarTransactionRequest.md
 Models/StellarTransactionResponse.md
+Models/SystemHealth.md
 Models/TransactionResponse.md
 Models/TransactionStatus.md
 Models/TransferTransactionRequestParams.md
 Models/TransferTransactionResult.md
 Models/TurnkeySignerRequestConfig.md
+Models/UpdateNetworkRequest.md
+Models/UpdatePluginRequest.md
 Models/UpdateRelayerRequest.md
 Models/VaultSignerRequestConfig.md
 Models/VaultTransitSignerRequestConfig.md

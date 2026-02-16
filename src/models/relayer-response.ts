@@ -18,13 +18,13 @@
 import type { DisabledReason } from './disabled-reason';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { MaskedRpcConfig } from './masked-rpc-config';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { RelayerNetworkPolicyResponse } from './relayer-network-policy-response';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { RelayerNetworkType } from './relayer-network-type';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { RpcConfig } from './rpc-config';
 
 /**
  * Relayer response model for API endpoints
@@ -39,11 +39,11 @@ export interface RelayerResponse {
      */
     'address'?: string;
     /**
-     * 
-     * @type {Array<RpcConfig>}
+     * Custom RPC URLs with sensitive path/query parameters masked for security. The domain is visible to identify providers (e.g., Alchemy, Infura) but API keys embedded in paths are hidden.
+     * @type {Array<MaskedRpcConfig>}
      * @memberof RelayerResponse
      */
-    'custom_rpc_urls'?: Array<RpcConfig>;
+    'custom_rpc_urls'?: Array<MaskedRpcConfig>;
     /**
      * 
      * @type {DisabledReason}
