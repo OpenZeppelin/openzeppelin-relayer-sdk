@@ -1,6 +1,13 @@
 # @openzeppelin/relayer-sdk
 
 
+## 1.10.0 (2026-02-19)
+
+- - feat: Soroban gas abstraction support ([#250](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/250))
+  - feat: RPC improvements
+  - feat: Extend PluginContext
+  - feat: Update latest openapi spec
+
 ## 1.9.0 (2026-01-16)
 
 - fear: stellar gas abstraction ([#244](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/244))
