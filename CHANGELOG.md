@@ -1,6 +1,5 @@
 # @openzeppelin/relayer-sdk
 
-
 ## 1.10.0 (2026-02-19)
 
 - - feat: Soroban gas abstraction support ([#250](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/250))
