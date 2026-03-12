@@ -15,34 +15,90 @@
  * Usage:
  *   ts-node counter.ts
  */
+import { config as loadEnv } from 'dotenv';
 import { Configuration, EvmTransactionResponse, RelayersApi, SignDataResponseEvm, Speed } from '../../../src';
 import { DecryptionKeypair, EIP712 } from './types';
 import { Interface, JsonRpcProvider, TypedDataEncoder, getAddress } from 'ethers';
-import { SepoliaConfig, createInstance } from '@zama-fhe/relayer-sdk/node';
+import { SepoliaConfig, createInstance, type FhevmInstance } from '@zama-fhe/relayer-sdk/node';
+import { join } from 'node:path';
 
 import ABI from './abi.json';
 
-// Replace with your actual contract address and relayer id
-const contractAddress = '0x861Ae8202EcCc10779289F5026b46506904BFEEC'; // Sepolia host chain contract address
-const relayerId = 'sepolia-example'; // Sepolia relayer id
-const basePath = 'http://localhost:8080';
-const accessToken = '';
+loadEnv({ path: join(__dirname, '.env'), quiet: true });
 
-const zamaPublicKey = undefined; // Optional: Replace with your Zama public key. Will generate a new keypair if not provided.
-const zamaPrivateKey = undefined; // Optional: Replace with your Zama private key. Will generate a new keypair if not provided.
+const transactionPollingIntervalMs = 2000;
+const transactionPollingMaxAttempts = 60;
+const iface = new Interface(ABI);
+
+type Config = {
+  apiKey: string;
+  basePath: string;
+  contractAddress: string;
+  relayerId: string;
+  zamaPrivateKey?: string;
+  zamaPublicKey?: string;
+};
+
+function getRequiredEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+}
+
+function loadConfig(): Config {
+  return {
+    apiKey: getRequiredEnv('RELAYER_API_KEY'),
+    basePath: process.env.RELAYER_BASE_PATH ?? 'http://localhost:8080',
+    contractAddress: getRequiredEnv('ZAMA_CONTRACT_ADDRESS'),
+    relayerId: getRequiredEnv('RELAYER_ID'),
+    zamaPrivateKey: process.env.ZAMA_PRIVATE_KEY,
+    zamaPublicKey: process.env.ZAMA_PUBLIC_KEY,
+  };
+}
+
+const configValues = loadConfig();
 
 // Configuration
 const config = new Configuration({
-  basePath,
-  accessToken,
+  basePath: configValues.basePath,
+  accessToken: configValues.apiKey,
 });
 const relayersApi = new RelayersApi(config);
+
+async function waitForTransactionConfirmation(transactionId: string): Promise<string | undefined> {
+  for (let attempt = 1; attempt <= transactionPollingMaxAttempts; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, transactionPollingIntervalMs));
+
+    const txStatus = await relayersApi.getTransactionById(configValues.relayerId, transactionId);
+    const transaction = txStatus.data.data as EvmTransactionResponse | undefined;
+
+    if (!transaction) {
+      throw new Error(`Transaction "${transactionId}" was not returned by the relayer`);
+    }
+
+    console.log(`⏳ Status: ${transaction.status} (${attempt}/${transactionPollingMaxAttempts})`);
+
+    if (transaction.status === 'mined' || transaction.status === 'confirmed') {
+      return transaction.hash;
+    }
+
+    if (transaction.status === 'failed' || transaction.status === 'canceled' || transaction.status === 'expired') {
+      const reason = transaction.status_reason ? ` Reason: ${transaction.status_reason}` : '';
+      throw new Error(`Transaction ${transaction.status}.${reason}`);
+    }
+  }
+
+  throw new Error(
+    `Transaction confirmation timed out after ${transactionPollingMaxAttempts * transactionPollingIntervalMs}ms`,
+  );
+}
 
 /**
  * Reads the encrypted count from the contract
  */
 async function getCount(provider: JsonRpcProvider, contractAddress: string): Promise<string> {
-  const iface = new Interface(ABI);
   const data = iface.encodeFunctionData('getCount', []);
   const result = await provider.call({ to: contractAddress, data });
   const decoded = iface.decodeFunctionResult('getCount', result);
@@ -52,11 +108,13 @@ async function getCount(provider: JsonRpcProvider, contractAddress: string): Pro
 /**
  * Attempts to decrypt using public decryption (no permissions required)
  */
-async function tryPublicDecrypt(instance: any, encryptedHandle: string): Promise<bigint | null> {
+async function tryPublicDecrypt(instance: FhevmInstance, encryptedHandle: string): Promise<bigint | null> {
   try {
     const result = await instance.publicDecrypt([encryptedHandle]);
-    return result?.[encryptedHandle] || null;
+    const value = result.clearValues[encryptedHandle as `0x${string}`];
+    return typeof value === 'bigint' ? value : null;
   } catch (error) {
+    console.error('Public decryption failed:', error instanceof Error ? error.message : error);
     return null;
   }
 }
@@ -64,7 +122,7 @@ async function tryPublicDecrypt(instance: any, encryptedHandle: string): Promise
 /**
  * Signs the EIP712 message with the relayer
  */
-async function signTypedData(eip712: EIP712, relayerId: string): Promise<string | null> {
+async function signTypedData(eip712: EIP712, relayerId: string): Promise<string> {
   // Hash for signing
   const domainSeparator = TypedDataEncoder.hashDomain(eip712.domain);
   // Extract only the types needed for the struct (exclude EIP712Domain)
@@ -89,7 +147,7 @@ async function signTypedData(eip712: EIP712, relayerId: string): Promise<string 
  * Decrypts using user decryption with relayer signature
  */
 async function tryUserDecrypt(
-  instance: any,
+  instance: FhevmInstance,
   encryptedHandle: string,
   contractAddress: string,
   relayerAddress: string,
@@ -113,10 +171,10 @@ async function tryUserDecrypt(
     const eip712 = instance.createEIP712(keypair.publicKey, contractAddresses, startTimeStamp, durationDays);
 
     // Sign EIP712 message with relayer
-    const signature = await signTypedData(eip712, relayerId);
+    const signature = await signTypedData(eip712, configValues.relayerId);
 
     // Decrypt
-    const result = await instance.userDecrypt(
+    const result = (await instance.userDecrypt(
       handleContractPairs,
       keypair.privateKey,
       keypair.publicKey,
@@ -125,9 +183,9 @@ async function tryUserDecrypt(
       relayerAddress,
       startTimeStamp,
       durationDays,
-    );
+    )) as Record<string, bigint | undefined>;
 
-    return result[encryptedHandle] || null;
+    return result[encryptedHandle] ?? null;
   } catch (error) {
     console.error('User decryption failed:', error instanceof Error ? error.message : error);
     return null;
@@ -138,7 +196,7 @@ async function tryUserDecrypt(
  * Attempts to decrypt (tries public first, then user)
  */
 async function tryDecrypt(
-  instance: any,
+  instance: FhevmInstance,
   encryptedHandle: string,
   contractAddress: string,
   relayerAddress: string,
@@ -165,7 +223,7 @@ async function tryDecrypt(
 /**
  * Increments the counter
  */
-async function incrementCount(instance: any, contractAddress: string, relayerAddress: string): Promise<void> {
+async function incrementCount(instance: FhevmInstance, contractAddress: string, relayerAddress: string): Promise<void> {
   console.log('\n🔼 Incrementing counter...');
   // Create encrypted input
   const encInput = instance.createEncryptedInput(contractAddress, relayerAddress);
@@ -173,11 +231,10 @@ async function incrementCount(instance: any, contractAddress: string, relayerAdd
   const { handles, inputProof } = await encInput.encrypt();
 
   // Encode transaction data
-  const iface = new Interface(ABI);
   const data = iface.encodeFunctionData('increment', [handles[0], inputProof]);
 
   // Send transaction using relayer
-  const txResponse = await relayersApi.sendTransaction(relayerId, {
+  const txResponse = await relayersApi.sendTransaction(configValues.relayerId, {
     to: contractAddress,
     data,
     value: 0,
@@ -192,33 +249,13 @@ async function incrementCount(instance: any, contractAddress: string, relayerAdd
 
   console.log('📝 Transaction submitted with ID:', transactionId);
 
-  // Poll until status is mined, confirmed, or failed
-  let status: string | undefined;
-  let txHash: string | undefined;
-
-  while (true) {
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait 2 seconds
-
-    const txStatus = await relayersApi.getTransactionById(relayerId, transactionId);
-    status = txStatus.data.data?.status;
-    txHash = (txStatus.data.data as EvmTransactionResponse).hash;
-
-    console.log(`⏳ Status: ${status}`);
-
-    if (status === 'mined' || status === 'confirmed') {
-      console.log('✅ Transaction confirmed! Hash:', txHash);
-      break;
-    }
-
-    if (status === 'failed') {
-      throw new Error('Transaction failed');
-    }
-  }
+  const txHash = await waitForTransactionConfirmation(transactionId);
+  console.log('✅ Transaction confirmed! Hash:', txHash);
 }
 
-function retrieveOrGenerateKeypair(instance: any): DecryptionKeypair {
-  if (zamaPublicKey && zamaPrivateKey) {
-    return { publicKey: zamaPublicKey, privateKey: zamaPrivateKey };
+function retrieveOrGenerateKeypair(instance: FhevmInstance): DecryptionKeypair {
+  if (configValues.zamaPublicKey && configValues.zamaPrivateKey) {
+    return { publicKey: configValues.zamaPublicKey, privateKey: configValues.zamaPrivateKey };
   }
   return instance.generateKeypair();
 }
@@ -229,6 +266,8 @@ function retrieveOrGenerateKeypair(instance: any): DecryptionKeypair {
 async function main() {
   try {
     console.log('🚀 Zama FHE Counter Example\n');
+    console.log(`Relayer: ${configValues.relayerId}`);
+    console.log(`Contract: ${configValues.contractAddress}\n`);
     // Initialize
     const provider = new JsonRpcProvider(SepoliaConfig.network as string);
     const instance = await createInstance(SepoliaConfig);
@@ -237,11 +276,15 @@ async function main() {
 
     // Optional: Generate and reuse keypair for all decryptions
     const keypair = retrieveOrGenerateKeypair(instance);
-    console.log('🔑 Generated keypair for decryption\n');
-    console.log(keypair);
+    console.log('🔑 Decryption keypair ready\n');
+    console.log('Public key:', keypair.publicKey);
 
-    const relayerInfo = await relayersApi.getRelayer(relayerId);
-    const relayerAddress = getAddress(relayerInfo.data.data?.address || '');
+    const relayerInfo = await relayersApi.getRelayer(configValues.relayerId);
+    const rawRelayerAddress = relayerInfo.data.data?.address;
+    if (!rawRelayerAddress) {
+      throw new Error(`Relayer "${configValues.relayerId}" did not return an address`);
+    }
+    const relayerAddress = getAddress(rawRelayerAddress);
     console.log('🔑 Relayer address:', relayerAddress);
 
     // Step 1: Get count and decrypt
@@ -249,41 +292,41 @@ async function main() {
     console.log('📊 STEP 1: Get initial count');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
-    let encryptedCount = await getCount(provider, contractAddress);
+    let encryptedCount = await getCount(provider, configValues.contractAddress);
     console.log('Encrypted handle:', encryptedCount);
-    await tryDecrypt(instance, encryptedCount, contractAddress, relayerAddress, keypair);
+    await tryDecrypt(instance, encryptedCount, configValues.contractAddress, relayerAddress, keypair);
 
     // Step 2: Increment
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📊 STEP 2: Increment counter');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
-    await incrementCount(instance, contractAddress, relayerAddress);
+    await incrementCount(instance, configValues.contractAddress, relayerAddress);
 
     // Step 3: Get count and decrypt
-    console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📊 STEP 3: Get count after first increment');
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
-    encryptedCount = await getCount(provider, contractAddress);
+    encryptedCount = await getCount(provider, configValues.contractAddress);
     console.log('Encrypted handle:', encryptedCount);
-    await tryDecrypt(instance, encryptedCount, contractAddress, relayerAddress, keypair);
+    await tryDecrypt(instance, encryptedCount, configValues.contractAddress, relayerAddress, keypair);
 
     // Step 4: Increment again
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📊 STEP 4: Increment counter again');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
-    await incrementCount(instance, contractAddress, relayerAddress);
+    await incrementCount(instance, configValues.contractAddress, relayerAddress);
 
     // Step 5: Get final count and decrypt
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📊 STEP 5: Get final count');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
-    encryptedCount = await getCount(provider, contractAddress);
+    encryptedCount = await getCount(provider, configValues.contractAddress);
     console.log('Encrypted handle:', encryptedCount);
-    await tryDecrypt(instance, encryptedCount, contractAddress, relayerAddress, keypair);
+    await tryDecrypt(instance, encryptedCount, configValues.contractAddress, relayerAddress, keypair);
 
     console.log('\n✨ Script completed successfully');
   } catch (error) {

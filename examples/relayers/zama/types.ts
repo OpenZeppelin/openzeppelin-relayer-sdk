@@ -10,7 +10,7 @@ export type EIP712 = {
     verifyingContract: string;
     version: string;
   };
-  message: any;
+  message: Record<string, unknown>;
   primaryType: string;
   types: {
     [key: string]: EIP712Type[];
