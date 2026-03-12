@@ -20,7 +20,7 @@ env:
 
 jobs:
   provenance:
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@f7dd8c54c2067bafc12ca7a55595d5ee9b75204a  # v2.1.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@f7dd8c54c2067bafc12ca7a55595d5ee9b75204a # v2.1.0
     with:
       run-scripts: 'install-pnpm, install-deps, style, nx-build-skip-cache, nx-test-skip-cache, generate'
       node-version: '22.14.0'
@@ -238,6 +238,7 @@ jobs:
           version: pnpm ci:version
           title: 'ci: update the version packages'
           commit: 'ci: update the version packages'
+          setupGitUser: false
 
       - name: Changesets Job Slack Notification
         uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
