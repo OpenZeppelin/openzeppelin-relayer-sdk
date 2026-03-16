@@ -17,9 +17,14 @@
  */
 import { config as loadEnv } from 'dotenv';
 import { Configuration, EvmTransactionResponse, RelayersApi, SignDataResponseEvm, Speed } from '../../../src';
-import { DecryptionKeypair, EIP712 } from './types';
+import { DecryptionKeypair } from './types';
 import { Interface, JsonRpcProvider, TypedDataEncoder, getAddress } from 'ethers';
-import { SepoliaConfig, createInstance, type FhevmInstance } from '@zama-fhe/relayer-sdk/node';
+import {
+  SepoliaConfig,
+  createInstance,
+  type FhevmInstance,
+  type FhevmInstanceConfig,
+} from '@zama-fhe/relayer-sdk/node';
 import { join } from 'node:path';
 
 import ABI from './abi.json';
@@ -35,6 +40,7 @@ type Config = {
   basePath: string;
   contractAddress: string;
   relayerId: string;
+  rpcUrl: string;
   zamaPrivateKey?: string;
   zamaPublicKey?: string;
 };
@@ -53,6 +59,7 @@ function loadConfig(): Config {
     basePath: process.env.RELAYER_BASE_PATH ?? 'http://localhost:8080',
     contractAddress: getRequiredEnv('ZAMA_CONTRACT_ADDRESS'),
     relayerId: getRequiredEnv('RELAYER_ID'),
+    rpcUrl: process.env.RPC_URL ?? 'https://ethereum-sepolia-rpc.publicnode.com',
     zamaPrivateKey: process.env.ZAMA_PRIVATE_KEY,
     zamaPublicKey: process.env.ZAMA_PUBLIC_KEY,
   };
@@ -119,15 +126,20 @@ async function tryPublicDecrypt(instance: FhevmInstance, encryptedHandle: string
   }
 }
 
+type UserDecryptEip712 = ReturnType<FhevmInstance['createEIP712']>;
+
 /**
  * Signs the EIP712 message with the relayer
  */
-async function signTypedData(eip712: EIP712, relayerId: string): Promise<string> {
+async function signTypedData(eip712: UserDecryptEip712, relayerId: string): Promise<string> {
   // Hash for signing
   const domainSeparator = TypedDataEncoder.hashDomain(eip712.domain);
   // Extract only the types needed for the struct (exclude EIP712Domain)
   const { EIP712Domain, ...structTypes } = eip712.types;
-  const messageHash = TypedDataEncoder.hashStruct(eip712.primaryType, structTypes, eip712.message);
+  const normalizedStructTypes = Object.fromEntries(
+    Object.entries(structTypes).map(([typeName, fields]) => [typeName, [...fields]]),
+  );
+  const messageHash = TypedDataEncoder.hashStruct(eip712.primaryType, normalizedStructTypes, eip712.message);
 
   // Sign with relayer
   const signResponse = await relayersApi.signTypedData(relayerId, {
@@ -163,7 +175,7 @@ async function tryUserDecrypt(
       },
     ];
 
-    const startTimeStamp = Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000).toString();
+    const startTimeStamp = Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000);
     const durationDays = 365;
     const contractAddresses = [contractAddress];
 
@@ -269,8 +281,12 @@ async function main() {
     console.log(`Relayer: ${configValues.relayerId}`);
     console.log(`Contract: ${configValues.contractAddress}\n`);
     // Initialize
-    const provider = new JsonRpcProvider(SepoliaConfig.network as string);
-    const instance = await createInstance(SepoliaConfig);
+    const zamaConfig: FhevmInstanceConfig = {
+      ...SepoliaConfig,
+      network: configValues.rpcUrl,
+    };
+    const provider = new JsonRpcProvider(configValues.rpcUrl);
+    const instance = await createInstance(zamaConfig);
 
     console.log('✅ FHE instance created\n');
 

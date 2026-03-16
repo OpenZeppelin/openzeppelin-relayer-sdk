@@ -28,6 +28,7 @@ pnpm install
 - `RELAYER_API_KEY`
 - `RELAYER_ID`
 - `ZAMA_CONTRACT_ADDRESS`
+- `RPC_URL`
 - `RELAYER_BASE_PATH` if you are not using the default
 
 4. Run the example from the repository root:
@@ -100,6 +101,7 @@ Copy [`.env.example`](./.env.example) to `.env` in this directory and fill in th
 RELAYER_API_KEY=
 RELAYER_ID=
 ZAMA_CONTRACT_ADDRESS=
+RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
 RELAYER_BASE_PATH=http://localhost:8080
 
 # Optional: reuse an existing keypair for user decryption
@@ -110,6 +112,7 @@ RELAYER_BASE_PATH=http://localhost:8080
 Notes:
 
 - `RELAYER_BASE_PATH` defaults to `http://localhost:8080` in the script.
+- `RPC_URL` defaults to `https://ethereum-sepolia-rpc.publicnode.com` in the script. Point it to the RPC for the network you are targeting.
 - If `ZAMA_PUBLIC_KEY` and `ZAMA_PRIVATE_KEY` are not set, the script generates a fresh decryption keypair.
 - Reusing the same decryption keypair is useful if you want consistent user decryption behavior across runs.
 
@@ -147,7 +150,7 @@ That is the main integration point this example should teach.
 
 ## Current Limitations
 
-- The example is hardcoded for Sepolia via `SepoliaConfig`.
+- The example is hardcoded for Sepolia via `SepoliaConfig`, plus an explicit Sepolia RPC URL.
 - It assumes a counter contract shape compatible with the included ABI.
 - It is a demo script, so logging and error handling are intentionally simple.
 - It does not cover relayer creation or contract deployment.
