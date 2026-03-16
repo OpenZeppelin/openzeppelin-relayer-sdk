@@ -62,7 +62,7 @@
     "@solana/kit": "^2.3.0",
     "@stellar/stellar-sdk": "^14.3.0",
     "@types/node": "^22.0.0",
-    "@zama-fhe/relayer-sdk": "0.3.0-6",
+    "@zama-fhe/relayer-sdk": "0.4.2",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^17.3.1",
