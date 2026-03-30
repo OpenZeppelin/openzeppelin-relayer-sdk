@@ -31,13 +31,21 @@ pnpm install
 - `RPC_URL`
 - `RELAYER_BASE_PATH` if you are not using the default
 
-4. Run the example from the repository root:
+4. (Optional) Generate a reusable decryption keypair:
+
+```bash
+npx ts-node examples/relayers/zama/generate-keypair.ts
+```
+
+Copy the output `ZAMA_PUBLIC_KEY` and `ZAMA_PRIVATE_KEY` values into your `.env` file. If you skip this step, the counter script will generate a fresh keypair on each run.
+
+5. Run the example from the repository root:
 
 ```bash
 npx ts-node examples/relayers/zama/counter.ts
 ```
 
-5. Check that the script:
+6. Check that the script:
 
 - reads the encrypted counter value
 - decrypts it
@@ -79,6 +87,7 @@ The important boundary is that the relayer is not doing the encryption itself. T
 ## Files
 
 - [counter.ts](./counter.ts): main end-to-end example.
+- [generate-keypair.ts](./generate-keypair.ts): generates a Zama decryption keypair for reuse across runs.
 - [types.ts](./types.ts): local typings for the decryption keypair and EIP-712 payload.
 - [abi.json](./abi.json): ABI for the example counter contract.
 - [.env.example](./.env.example): required environment variables.

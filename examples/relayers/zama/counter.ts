@@ -22,6 +22,7 @@ import { Interface, JsonRpcProvider, TypedDataEncoder, getAddress } from 'ethers
 import {
   SepoliaConfig,
   createInstance,
+  // MainnetConfig,
   type FhevmInstance,
   type FhevmInstanceConfig,
 } from '@zama-fhe/relayer-sdk/node';
@@ -284,6 +285,9 @@ async function main() {
     const zamaConfig: FhevmInstanceConfig = {
       ...SepoliaConfig,
       network: configValues.rpcUrl,
+      // Uncomment to use API key authentication for Ethereum mainnet
+      // MainnetConfig
+      // auth: { __type: 'ApiKeyHeader', value: ZAMA_FHEVM_API_KEY },
     };
     const provider = new JsonRpcProvider(configValues.rpcUrl);
     const instance = await createInstance(zamaConfig);
