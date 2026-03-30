@@ -5,6 +5,9 @@
  * across example scripts. Set the output values as ZAMA_PUBLIC_KEY and
  * ZAMA_PRIVATE_KEY in your .env file.
  *
+ * For more information on the Zama Relayer SDK, see:
+ * https://docs.zama.org/protocol/relayer-sdk-guides
+ *
  * Usage:
  *   ts-node generate-keypair.ts
  */

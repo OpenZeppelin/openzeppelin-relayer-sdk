@@ -4,6 +4,9 @@
  * This example demonstrates how to use the OpenZeppelin Relayer SDK to interact with the Zama FHE contracts.
  * Counter contract is deployed with the template at https://github.com/zama-ai/fhevm-hardhat-template
  *
+ * For more information on the Zama Relayer SDK, see:
+ * https://docs.zama.org/protocol/relayer-sdk-guides
+ *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Replace the hardcoded addresses with your actual addresses
  * - Use proper error handling and transaction confirmation checks

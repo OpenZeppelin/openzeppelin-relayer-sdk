@@ -157,6 +157,48 @@ In this example, the relayer is responsible for two separate concerns:
 
 That is the main integration point this example should teach.
 
+## References
+
+- [Zama Relayer SDK Guides](https://docs.zama.org/protocol/relayer-sdk-guides) — official documentation for the Zama relayer SDK, including setup, encryption, and decryption flows.
+
+## Using on Mainnet
+
+The example defaults to Sepolia. To run against Ethereum mainnet:
+
+1. In `counter.ts`, replace `SepoliaConfig` with `MainnetConfig` in the Zama instance configuration:
+
+```ts
+import {
+  MainnetConfig,
+  createInstance,
+  type FhevmInstance,
+  type FhevmInstanceConfig,
+} from '@zama-fhe/relayer-sdk/node';
+```
+
+```ts
+const zamaConfig: FhevmInstanceConfig = {
+  ...MainnetConfig,
+  network: configValues.rpcUrl,
+  auth: { __type: 'ApiKeyHeader', value: process.env.ZAMA_FHEVM_API_KEY! },
+};
+```
+
+2. Add the following to your `.env`:
+
+```bash
+# Zama FHE API key for mainnet (required for mainnet access)
+ZAMA_FHEVM_API_KEY=
+# Mainnet RPC URL
+RPC_URL=https://ethereum-rpc.publicnode.com
+```
+
+3. Update `ZAMA_CONTRACT_ADDRESS` to point to your mainnet contract.
+
+4. Make sure your relayer is configured for Ethereum mainnet.
+
+> **Note:** Mainnet requires API key authentication with Zama's gateway. See the [mainnet API key guide](https://github.com/zama-ai/relayer-sdk/blob/main/docs/mainnet-api-key.md) for instructions on obtaining an API key.
+
 ## Current Limitations
 
 - The example is hardcoded for Sepolia via `SepoliaConfig`, plus an explicit Sepolia RPC URL.
