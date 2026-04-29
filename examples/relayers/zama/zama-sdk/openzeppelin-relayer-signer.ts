@@ -127,12 +127,14 @@ export class OpenZeppelinRelayerSigner implements GenericSigner {
     const mutableTypes = Object.fromEntries(Object.entries(types).map(([key, fields]) => [key, [...fields]]));
     const { EIP712Domain: _ignored, ...structTypes } = mutableTypes;
 
+    const structTypeNames = Object.keys(structTypes);
     // `RelayerNode.createEIP712` in @zama-fhe/sdk@3.0.0 omits primaryType.
-    // The payload always has exactly one user struct, matching what upstream
-    // ViemSigner / EthersSigner assume.
-    const resolvedPrimaryType = primaryType ?? Object.keys(structTypes)[0];
+    // Only infer it when the payload has exactly one user-defined struct.
+    const resolvedPrimaryType = primaryType ?? (structTypeNames.length === 1 ? structTypeNames[0] : undefined);
     if (!resolvedPrimaryType) {
-      throw new Error('signTypedData: typedData has no user-defined struct type');
+      throw new Error(
+        `signTypedData: typedData must include primaryType when it has ${structTypeNames.length} user-defined struct types`,
+      );
     }
 
     const domainSeparator = hashDomain({ domain, types: mutableTypes });

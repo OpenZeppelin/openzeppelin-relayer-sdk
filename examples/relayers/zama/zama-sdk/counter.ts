@@ -15,7 +15,7 @@
  */
 import { config as loadEnv } from 'dotenv';
 import { join } from 'node:path';
-import { type Hex, bytesToHex, getAddress } from 'viem';
+import { type Abi, type Hex, bytesToHex, getAddress } from 'viem';
 
 import { MemoryStorage, ZamaSDK } from '@zama-fhe/sdk';
 import { RelayerNode, SepoliaConfig } from '@zama-fhe/sdk/node';
@@ -23,6 +23,8 @@ import { RelayerNode, SepoliaConfig } from '@zama-fhe/sdk/node';
 import { Configuration, RelayersApi } from '../../../../src';
 import counterAbi from './abi.json';
 import { OpenZeppelinRelayerSigner } from './openzeppelin-relayer-signer';
+
+const typedCounterAbi = counterAbi as Abi;
 
 loadEnv({ path: join(__dirname, '..', '.env'), quiet: true });
 
@@ -72,7 +74,7 @@ async function main() {
     const readCount = async (): Promise<Hex> => {
       const encrypted = await signer.readContract({
         address: contractAddress,
-        abi: counterAbi as never,
+        abi: typedCounterAbi,
         functionName: 'getCount',
         args: [],
       });
@@ -123,7 +125,7 @@ async function main() {
     });
     const txHash = await signer.writeContract({
       address: contractAddress,
-      abi: counterAbi as never,
+      abi: typedCounterAbi,
       functionName: 'increment',
       args: [bytesToHex(encrypted.handles[0]), bytesToHex(encrypted.inputProof)],
     });
