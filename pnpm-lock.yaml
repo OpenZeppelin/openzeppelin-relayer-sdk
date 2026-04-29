@@ -57,6 +57,9 @@ importers:
       '@zama-fhe/relayer-sdk':
         specifier: 0.4.2
         version: 0.4.2
+      '@zama-fhe/sdk':
+        specifier: ^3.0.0
+        version: 3.0.0(ethers@6.15.0)(viem@2.38.6(typescript@5.8.3))
       commitizen:
         specifier: ^4.3.1
         version: 4.3.1(@types/node@22.18.6)(typescript@5.8.3)
@@ -908,6 +911,21 @@ packages:
     resolution: {integrity: sha512-3Q0tINKxz6YseaDxOrNP/648j5Wr2C4Utnjx5npZESjLAc20tWgWFE7BOfx0Kjhs8cx/ykU+tMZBq40+DsiUvA==}
     engines: {node: '>=22'}
     hasBin: true
+
+  '@zama-fhe/sdk@3.0.0':
+    resolution: {integrity: sha512-43G5css2FWe6+Q4hRlU8DFQvIeC7HybjGY6dYVF3CEb7iv0KAruYGaf0Pf9rMTvY5i7IMGMVhgm1vAl9q1BsZQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      '@tanstack/query-core': '>=5'
+      ethers: '>=6'
+      viem: '>=2'
+    peerDependenciesMeta:
+      '@tanstack/query-core':
+        optional: true
+      ethers:
+        optional: true
+      viem:
+        optional: true
 
   '@zkochan/js-yaml@0.0.7':
     resolution: {integrity: sha512-nrUSn7hzt7J6JWgWGz78ZYI8wj+gdIJdk0Ynjpp8l+trkn58Uqsf6RYrYkEK+3X18EX+TNdtJI0WxAtc+L84SQ==}
@@ -3994,6 +4012,16 @@ snapshots:
       tfhe: 1.4.0-alpha.3
       tkms: 0.12.5
       wasm-feature-detect: 1.8.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@zama-fhe/sdk@3.0.0(ethers@6.15.0)(viem@2.38.6(typescript@5.8.3))':
+    dependencies:
+      '@zama-fhe/relayer-sdk': 0.4.2
+    optionalDependencies:
+      ethers: 6.15.0
+      viem: 2.38.6(typescript@5.8.3)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate

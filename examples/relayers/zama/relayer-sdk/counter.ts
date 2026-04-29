@@ -19,7 +19,7 @@
  *   ts-node counter.ts
  */
 import { config as loadEnv } from 'dotenv';
-import { Configuration, EvmTransactionResponse, RelayersApi, SignDataResponseEvm, Speed } from '../../../src';
+import { Configuration, EvmTransactionResponse, RelayersApi, SignDataResponseEvm, Speed } from '../../../../src';
 import { DecryptionKeypair } from './types';
 import { Interface, JsonRpcProvider, TypedDataEncoder, getAddress } from 'ethers';
 import {
@@ -33,7 +33,7 @@ import { join } from 'node:path';
 
 import ABI from './abi.json';
 
-loadEnv({ path: join(__dirname, '.env'), quiet: true });
+loadEnv({ path: join(__dirname, '..', '.env'), quiet: true });
 
 const transactionPollingIntervalMs = 2000;
 const transactionPollingMaxAttempts = 60;
@@ -244,8 +244,10 @@ async function incrementCount(instance: FhevmInstance, contractAddress: string, 
   // Create encrypted input
   const encInput = instance.createEncryptedInput(contractAddress, relayerAddress);
   encInput.add32(1);
-  const { handles, inputProof } = await encInput.encrypt();
-
+  const { handles, inputProof } = await encInput.encrypt({
+    timeout: 90_000,
+    onProgress: (progress: unknown) => console.log('Encrypt progress:', progress),
+  });
   // Encode transaction data
   const data = iface.encodeFunctionData('increment', [handles[0], inputProof]);
 

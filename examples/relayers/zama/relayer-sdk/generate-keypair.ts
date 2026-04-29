@@ -15,7 +15,7 @@ import { config as loadEnv } from 'dotenv';
 import { SepoliaConfig, createInstance, type FhevmInstanceConfig } from '@zama-fhe/relayer-sdk/node';
 import { join } from 'node:path';
 
-loadEnv({ path: join(__dirname, '.env'), quiet: true });
+loadEnv({ path: join(__dirname, '..', '.env'), quiet: true });
 
 async function main() {
   const rpcUrl = process.env.RPC_URL ?? 'https://ethereum-sepolia-rpc.publicnode.com';
