@@ -85,11 +85,25 @@
   "dependencies": {
     "axios": "^1.7.7"
   },
+  "packageManager": "pnpm@11.1.0",
   "engines": {
     "node": ">=22.14.0",
     "npm": "use pnpm",
-    "pnpm": ">=9",
+    "pnpm": ">=11",
     "yarn": "use pnpm"
+  },
+  "pnpm": {
+    "minimumReleaseAge": 10080,
+    "minimumReleaseAgeExclude": [
+      "@openzeppelin/*"
+    ],
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@openapitools/openapi-generator-cli",
+      "@stellar/stellar-sdk",
+      "keccak",
+      "nx"
+    ]
   },
   "config": {
     "commitizen": {
