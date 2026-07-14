@@ -162,6 +162,8 @@ That is the main integration point this example should teach.
 ## References
 
 - [Zama Relayer SDK Guides](https://docs.zama.org/protocol/relayer-sdk-guides) — official documentation for the Zama relayer SDK, including setup, encryption, and decryption flows.
+- [Zama Protocol SDK docs](https://docs.zama.org/protocol/sdk) — the newer top-level `@zama-fhe/sdk` used by the [`../zama-sdk/`](../zama-sdk/) example.
+- [OpenZeppelin Relayer docs](https://docs.openzeppelin.com/relayer) — relayer setup and API reference.
 
 ## Using on Mainnet
 

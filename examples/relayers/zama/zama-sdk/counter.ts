@@ -1,11 +1,13 @@
 /**
  * Zama FHE Counter Example — `@zama-fhe/sdk` integration
  *
- * Demonstrates using the OpenZeppelin Relayer SDK with the new top-level Zama
- * SDK (`@zama-fhe/sdk`, v3.x). The relayer is plugged in as a `GenericSigner`
- * via `OpenZeppelinRelayerSigner`, so the application code only deals with the
- * high-level `ZamaSDK` API. EIP-712 hashing, signature requests, transaction
- * submission, and confirmation polling are all handled inside the adapter.
+ * Demonstrates using the OpenZeppelin Relayer SDK with Zama's top-level FHE SDK
+ * (`@zama-fhe/sdk`, v3.x). The relayer is plugged in as a `GenericSigner` via
+ * `OpenZeppelinRelayerSigner`, so application code only deals with the
+ * high-level `ZamaSDK` API. Reads go through the SDK's built-in `ViemProvider`
+ * (a viem `PublicClient`); signing and submission flow through the relayer.
+ * EIP-712 hashing, signature requests, transaction submission, and confirmation
+ * polling are all handled inside the adapter or the SDK.
  *
  * Counter contract is deployed with the template at
  * https://github.com/zama-ai/fhevm-hardhat-template
@@ -15,10 +17,12 @@
  */
 import { config as loadEnv } from 'dotenv';
 import { join } from 'node:path';
-import { type Abi, type Hex, bytesToHex, getAddress } from 'viem';
+import { type Abi, type Hex, createPublicClient, getAddress, http } from 'viem';
 
-import { MemoryStorage, ZamaSDK } from '@zama-fhe/sdk';
-import { RelayerNode, SepoliaConfig } from '@zama-fhe/sdk/node';
+import { MemoryStorage, ZamaSDK, createConfig } from '@zama-fhe/sdk';
+import { sepolia } from '@zama-fhe/sdk/chains';
+import { node } from '@zama-fhe/sdk/node';
+import { ViemProvider } from '@zama-fhe/sdk/viem';
 
 import { Configuration, RelayersApi } from '../../../../src';
 import counterAbi from './abi.json';
@@ -51,28 +55,32 @@ async function main() {
   // 1. OZ relayer client
   const relayersApi = new RelayersApi(new Configuration({ basePath, accessToken: apiKey }));
 
-  // 2. GenericSigner backed by OZ relayer
-  const signer = new OpenZeppelinRelayerSigner({ relayersApi, relayerId, rpcUrl });
-  const [relayerAddress, chainId] = await Promise.all([signer.getAddress(), signer.getChainId()]);
+  // 2. GenericProvider — all read-only RPC (chain id, reads, receipts) via viem.
+  const publicClient = createPublicClient({ transport: http(rpcUrl) });
+  const provider = new ViemProvider({ publicClient });
+  const chainId = await provider.getChainId();
+
+  // 3. GenericSigner — signing + submission via the OZ relayer.
+  const signer = await OpenZeppelinRelayerSigner.create({ relayersApi, relayerId, chainId });
+  const relayerAddress = signer.address;
   console.log(`🔑 Relayer address: ${relayerAddress}`);
   console.log(`⛓  Chain id:       ${chainId}\n`);
 
-  // 3. Zama FHE backend (worker pool, no signer)
-  const relayer = new RelayerNode({
-    transports: { [chainId]: { ...SepoliaConfig, network: rpcUrl } },
-    getChainId: () => Promise.resolve(chainId),
-  });
-
-  // 4. Compose ZamaSDK — relayer + signer + storage
-  const sdk = new ZamaSDK({
-    relayer,
-    signer,
-    storage: new MemoryStorage(),
-  });
+  // 4. Compose ZamaSDK — chain, relayer transport, signer, provider, storage.
+  const chain = { ...sepolia, network: rpcUrl };
+  const sdk = new ZamaSDK(
+    createConfig({
+      chains: [chain],
+      signer,
+      provider,
+      storage: new MemoryStorage(),
+      relayers: { [chain.id]: node() },
+    }),
+  );
 
   try {
     const readCount = async (): Promise<Hex> => {
-      const encrypted = await signer.readContract({
+      const encrypted = await provider.readContract({
         address: contractAddress,
         abi: typedCounterAbi,
         functionName: 'getCount',
@@ -82,8 +90,10 @@ async function main() {
     };
 
     const decrypt = async (handle: Hex): Promise<bigint | null> => {
+      // Public decryption — no signature required. Works when the handle is
+      // marked publicly decryptable on-chain.
       try {
-        const pub = await sdk.publicDecrypt([handle]);
+        const pub = await sdk.decryption.decryptPublicValues([handle]);
         const value = pub.clearValues[handle];
         if (typeof value === 'bigint') {
           console.log(`✅ Decrypted (public): ${value}`);
@@ -92,8 +102,10 @@ async function main() {
       } catch (err) {
         console.warn('Public decryption failed:', err instanceof Error ? err.message : err);
       }
+      // User decryption — the SDK creates the EIP-712 request, has the relayer
+      // (our signer) authorize it, and caches the decrypt session in storage.
       try {
-        const result = await sdk.userDecrypt([{ handle, contractAddress }]);
+        const result = await sdk.decryption.decryptValues([{ encryptedValue: handle, contractAddress }]);
         const value = result[handle];
         if (typeof value === 'bigint') {
           console.log(`✅ Decrypted (user): ${value}`);
@@ -118,7 +130,7 @@ async function main() {
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📊 STEP 2: increment counter');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    const encrypted = await relayer.encrypt({
+    const { encryptedValues, inputProof } = await sdk.encrypt({
       values: [{ value: 1n, type: 'euint32' }],
       contractAddress,
       userAddress: relayerAddress,
@@ -127,10 +139,10 @@ async function main() {
       address: contractAddress,
       abi: typedCounterAbi,
       functionName: 'increment',
-      args: [bytesToHex(encrypted.handles[0]), bytesToHex(encrypted.inputProof)],
+      args: [encryptedValues[0], inputProof],
     });
     console.log(`📝 Submitted tx: ${txHash}`);
-    await signer.waitForTransactionReceipt(txHash);
+    await provider.waitForTransactionReceipt(txHash);
     console.log('✅ Confirmed on chain');
 
     // STEP 3: read & decrypt final count
@@ -143,7 +155,8 @@ async function main() {
 
     console.log('\n✨ Script completed successfully');
   } finally {
-    relayer.terminate();
+    // Tear down the FHE worker pool so the process can exit.
+    sdk.terminate();
   }
 }
 
