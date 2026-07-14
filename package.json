@@ -96,14 +96,5 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@nestjs/core",
-      "@openapitools/openapi-generator-cli",
-      "@stellar/stellar-sdk",
-      "keccak",
-      "nx"
-    ]
   }
 }
