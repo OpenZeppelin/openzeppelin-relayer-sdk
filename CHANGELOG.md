@@ -1,5 +1,9 @@
 # @openzeppelin/relayer-sdk
 
+## Unreleased
+
+- feat: add `mergeSendTransactionOptions` helper so `sendTransaction` callers can set the Relayer `Idempotency-Key` header (#893) via a typed `idempotencyKey` option (see `examples/relayers/evm/sendTransactionIdempotency.ts`)
+
 ## 1.10.0 (2026-02-19)
 
 - - feat: Soroban gas abstraction support ([#250](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/250))

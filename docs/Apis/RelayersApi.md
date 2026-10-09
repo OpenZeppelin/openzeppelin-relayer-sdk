@@ -425,6 +425,11 @@ Performs a JSON-RPC call using the specified relayer.
 
 Sends a transaction through the specified relayer.
 
+Optional HTTP header **Idempotency-Key** (Relayer #893): pass a stable key so
+retries reuse the same transaction. Use the typed helper
+`mergeSendTransactionOptions({ idempotencyKey })` from this SDK (see
+`examples/relayers/evm/sendTransactionIdempotency.ts`) instead of hand-rolling axios headers.
+
 ### Parameters
 
 |Name | Type | Description  | Notes |
@@ -445,6 +450,7 @@ Sends a transaction through the specified relayer.
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+- **Idempotency-Key**: optional; set via `mergeSendTransactionOptions({ idempotencyKey })`
 
 <a name="sign"></a>
 # **sign**
