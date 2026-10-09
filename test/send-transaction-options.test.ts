@@ -30,4 +30,9 @@ describe('mergeSendTransactionOptions', () => {
     assert.equal(cfg.headers?.['X-Custom'], '1');
     assert.equal(cfg.headers?.['Idempotency-Key'], undefined);
   });
+
+  it('forwards an explicitly empty idempotencyKey for Relayer validation', () => {
+    const cfg = mergeSendTransactionOptions({ idempotencyKey: '' });
+    assert.equal(cfg.headers?.['Idempotency-Key'], '');
+  });
 });

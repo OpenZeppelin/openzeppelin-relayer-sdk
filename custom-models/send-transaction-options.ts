@@ -41,7 +41,8 @@ export function mergeSendTransactionOptions(
     ...rest,
     headers: {
       ...(headers as Record<string, string> | undefined),
-      ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+      // Presence check (not truthiness): forward '' so Relayer can reject invalid keys.
+      ...(idempotencyKey !== undefined ? { 'Idempotency-Key': idempotencyKey } : {}),
     },
   };
 }

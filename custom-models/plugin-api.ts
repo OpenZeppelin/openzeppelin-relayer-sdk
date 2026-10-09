@@ -77,13 +77,22 @@ type GetTransactionRequest = {
  * @property signTransaction - Signs a transaction (Stellar).
  * @property getRelayer - Gets the relayer info including address.
  */
+/** Optional overrides for Relayer.sendTransaction (plugin socket → Relayer #893). */
+export type SendTransactionOptions = {
+  idempotencyKey?: string;
+};
+
 export type Relayer = {
   /**
    * Sends a transaction to the relayer.
    * @param payload - The transaction request payload.
+   * @param options - Optional overrides (e.g. idempotencyKey for Idempotency-Key).
    * @returns The transaction result.
    */
-  sendTransaction: (payload: NetworkTransactionRequest) => Promise<SendTransactionResult>;
+  sendTransaction: (
+    payload: NetworkTransactionRequest,
+    options?: SendTransactionOptions,
+  ) => Promise<SendTransactionResult>;
 
   /**
    * Fetches a transaction from the relayer.
