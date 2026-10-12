@@ -23,12 +23,16 @@ export type RelayerSendTransactionOptions = {
  * Convert typed sendTransaction options into a plain `RawAxiosRequestConfig`.
  * Strips `idempotencyKey` and sets `Idempotency-Key` when provided.
  *
+ * Prefer the generated third argument: `sendTransaction(relayerId, body, idempotencyKey, options)`.
+ * Use this helper only when the key must be folded into an axios config passed as the fourth argument.
+ *
  * @example
  * ```ts
  * await api.sendTransaction(
  *   relayerId,
  *   body,
- *   mergeSendTransactionOptions({ idempotencyKey: 'my-key' }),
+ *   undefined,
+ *   mergeSendTransactionOptions({ idempotencyKey: 'my-key', timeout: 1000 }),
  * );
  * ```
  */

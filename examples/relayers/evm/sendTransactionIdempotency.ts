@@ -1,8 +1,8 @@
 /**
  * Send Transaction with Idempotency-Key Example
  *
- * Demonstrates mergeSendTransactionOptions so clients set the Idempotency-Key
- * header (Relayer #893) without hand-rolling axios config.
+ * Demonstrates the generated Idempotency-Key argument on sendTransaction
+ * (Relayer #893). Pass the key before any axios options.
  *
  * IMPORTANT: This is provided as a demonstration only. For production use:
  * - Use proper error handling and transaction confirmation checks
@@ -14,7 +14,7 @@
  * Usage:
  *   ts-node sendTransactionIdempotency.ts
  */
-import { Configuration, RelayersApi, Speed, mergeSendTransactionOptions } from '../../../src';
+import { Configuration, RelayersApi, Speed } from '../../../src';
 
 // example dev config
 const config = new Configuration({
@@ -38,7 +38,7 @@ relayersApi
       gas_limit: 21000,
       speed: Speed.FAST,
     },
-    mergeSendTransactionOptions({ idempotencyKey }),
+    idempotencyKey,
   )
   .then((transaction) => console.log(JSON.stringify(transaction.data, null, 2)))
   .catch(console.error);
