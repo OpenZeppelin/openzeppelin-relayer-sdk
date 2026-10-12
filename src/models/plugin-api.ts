@@ -206,9 +206,9 @@ export interface PluginContext {
   api: PluginAPI;
   kv: PluginKVStore;
   headers: PluginHeaders;
-  params: any;
+  params: unknown;
   route: string;
-  config?: Record<string, any>;
+  config?: Record<string, unknown>;
   method: string;
   query: Record<string, string[]>;
 }
