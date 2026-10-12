@@ -2,8 +2,7 @@
 
 ## Unreleased
 
-- feat: HTTP `sendTransaction` takes `idempotencyKey` before axios options (Relayer OpenAPI 1.8.0, #893). See `examples/relayers/evm/sendTransactionIdempotency.ts`. `mergeSendTransactionOptions` remains for callers who also pass axios options.
-- feat: plugin `Relayer.sendTransaction` accepts optional `{ idempotencyKey }` (types in `custom-models/plugin-api.ts`)
+- feat: plugin `Relayer.sendTransaction` accepts optional `{ idempotencyKey }` (types in `custom-models/plugin-api.ts`). HTTP `sendTransaction` takes the key as its generated third argument.
 
 ## 1.10.0 (2026-02-19)
 

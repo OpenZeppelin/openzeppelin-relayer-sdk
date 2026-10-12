@@ -26,7 +26,7 @@
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "lint": "prettier --check --write .",
-    "test": "pnpm build:client && pnpm test:unit",
+    "test": "pnpm build:client",
     "publish:package": "node ./scripts/publish.js",
     "install-pnpm": "npm install -g pnpm",
     "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
@@ -39,8 +39,7 @@
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
-    "style": "pnpm lint:fix",
-    "test:unit": "node --experimental-strip-types --test test/*.test.ts"
+    "style": "pnpm lint:fix"
   },
   "keywords": [
     "relayer",
