@@ -323,7 +323,7 @@ Lists all transactions for a specific relayer with pagination.
 | **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
 | **page** | **Integer**| Page number for pagination (starts at 1) | [optional] [default to null] |
 | **per\_page** | **Integer**| Number of items per page (default: 10) | [optional] [default to null] |
-| **status** | [**TransactionStatus**](../Models/.md)| Optional status filter, accepted case-insensitively (e.g. pending, submitted, confirmed, canceled). Cancelled-in-progress transactions are excluded from active-status results until their replacement mines. | [optional] [default to null] [enum: canceled, pending, sent, submitted, mined, confirmed, failed, expired] |
+| **status** | [**TransactionStatus**](../Models/TransactionStatus.md)| Optional status filter, accepted case-insensitively (e.g. pending, submitted, confirmed, canceled). Cancelled-in-progress transactions are excluded from active-status results until their replacement mines. | [optional] [default to null] [enum: canceled, pending, sent, submitted, mined, confirmed, failed, expired] |
 
 ### Return type
 
