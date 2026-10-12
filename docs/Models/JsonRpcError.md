@@ -4,6 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **code** | **Integer** |  | [default to null] |
+| **data** | [**oas_any_type_not_mapped**](.md) |  | [optional] [default to null] |
 | **description** | **String** |  | [default to null] |
 | **message** | **String** |  | [default to null] |
 

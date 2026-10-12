@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **amount** | **Long** |  | [default to null] |
+| **amount** | **String** | Amount in stroops, encoded as a decimal string to preserve precision. | [default to null] |
 | **asset** | [**AssetSpec**](AssetSpec.md) |  | [default to null] |
 | **destination** | **String** |  | [default to null] |
 | **type** | **String** |  | [default to null] |
