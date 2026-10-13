@@ -1,9 +1,5 @@
 # @openzeppelin/relayer-sdk
 
-## Unreleased
-
-- feat: plugin `Relayer.sendTransaction` accepts optional `{ idempotencyKey }` (types in `custom-models/plugin-api.ts`). HTTP `sendTransaction` takes the key as its generated third argument.
-
 ## 1.10.0 (2026-02-19)
 
 - - feat: Soroban gas abstraction support ([#250](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/250))

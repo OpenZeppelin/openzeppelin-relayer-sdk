@@ -67,6 +67,11 @@ type GetTransactionRequest = {
   transactionId: string;
 };
 
+/** Optional overrides for Relayer.sendTransaction (plugin socket → Relayer #893). */
+export type SendTransactionOptions = {
+  idempotencyKey?: string;
+};
+
 /**
  * The relayer API.
  *
@@ -77,11 +82,6 @@ type GetTransactionRequest = {
  * @property signTransaction - Signs a transaction (Stellar).
  * @property getRelayer - Gets the relayer info including address.
  */
-/** Optional overrides for Relayer.sendTransaction (plugin socket → Relayer #893). */
-export type SendTransactionOptions = {
-  idempotencyKey?: string;
-};
-
 export type Relayer = {
   /**
    * Sends a transaction to the relayer.
