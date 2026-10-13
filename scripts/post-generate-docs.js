@@ -8,10 +8,7 @@ if (!fs.existsSync(filePath)) {
 }
 
 const original = fs.readFileSync(filePath, 'utf8');
-const fixed = original.replaceAll(
-  '](../Models/.md)',
-  '](../Models/TransactionStatus.md)',
-);
+const fixed = original.replaceAll('](../Models/.md)', '](../Models/TransactionStatus.md)');
 if (fixed !== original) {
   fs.writeFileSync(filePath, fixed);
   console.log('Fixed TransactionStatus doc link in RelayersApi.md');

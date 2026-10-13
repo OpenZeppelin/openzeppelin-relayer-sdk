@@ -13,12 +13,12 @@ import type { AzureKeyVaultSignerRequestConfigAuthType } from './azure-key-vault
  * Matches the OpenAPI schema: explicit nulls are valid on the optional credentials.
  */
 export interface AzureKeyVaultSignerRequestConfig {
-    'auth_type'?: AzureKeyVaultSignerRequestConfigAuthType;
-    'client_id'?: string | null;
-    'client_secret'?: string | null;
-    'federated_token_file'?: string | null;
-    'key_name': string;
-    'key_version'?: string;
-    'tenant_id'?: string | null;
-    'vault_url': string;
+  auth_type?: AzureKeyVaultSignerRequestConfigAuthType;
+  client_id?: string | null;
+  client_secret?: string | null;
+  federated_token_file?: string | null;
+  key_name: string;
+  key_version?: string;
+  tenant_id?: string | null;
+  vault_url: string;
 }
