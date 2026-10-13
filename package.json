@@ -19,14 +19,14 @@
     "clean:client": "rimraf ./src",
     "clean:dist": "rimraf ./dist",
     "generate:client": "pnpm clean:client && pnpm openapi-generator-cli generate -i ./openapi.json -g typescript-axios -o ./src  -c ./config.json",
-    "generate:docs": "pnpm openapi-generator-cli generate -i ./openapi.json -g markdown -o docs",
+    "generate:docs": "pnpm openapi-generator-cli generate -i ./openapi.json -g markdown -o docs && node scripts/post-generate-docs.js",
     "post:generate:client": "node scripts/post-generate.js",
     "build:client": "pnpm clean:dist && tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json",
     "generate": "pnpm generate:client && pnpm post:generate:client && pnpm build:client && pnpm generate:docs",
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "lint": "prettier --check --write .",
-    "test": "pnpm build:client",
+    "test": "pnpm build:client && pnpm test:unit",
     "publish:package": "node ./scripts/publish.js",
     "install-pnpm": "npm install -g pnpm",
     "install-deps": "pnpm install --frozen-lockfile --ignore-scripts --prefer-offline",
@@ -39,7 +39,8 @@
     "lint:fix": "pnpm prettier:fix && pnpm lint:check && pnpm prettier:check",
     "prettier:check": "prettier -u --check '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
     "prettier:fix": "prettier -u --write '**/*.{js,ts,tsx,md}' '!**/.nx/**'",
-    "style": "pnpm lint:fix"
+    "style": "pnpm lint:fix",
+    "test:unit": "node --experimental-strip-types --test test/*.test.ts"
   },
   "keywords": [
     "relayer",

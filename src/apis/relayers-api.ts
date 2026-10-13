@@ -707,15 +707,14 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Accepts an optional `Idempotency-Key` header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @summary Sends a transaction through the specified relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
-         * @param {string | null} [idempotencyKey] Optional client-generated unique key (max 255 chars) to make the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendTransaction: async (relayerId: string, networkTransactionRequest: NetworkTransactionRequest, idempotencyKey?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendTransaction: async (relayerId: string, networkTransactionRequest: NetworkTransactionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'relayerId' is not null or undefined
             assertParamExists('sendTransaction', 'relayerId', relayerId)
             // verify required parameter 'networkTransactionRequest' is not null or undefined
@@ -741,9 +740,6 @@ export const RelayersApiAxiosParamCreator = function (configuration?: Configurat
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            if (idempotencyKey != null) {
-                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1148,16 +1144,15 @@ export const RelayersApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
+         * Accepts an optional `Idempotency-Key` header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @summary Sends a transaction through the specified relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
-         * @param {string | null} [idempotencyKey] Optional client-generated unique key (max 255 chars) to make the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, idempotencyKey?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseTransactionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendTransaction(relayerId, networkTransactionRequest, idempotencyKey, options);
+        async sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendTransaction(relayerId, networkTransactionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RelayersApi.sendTransaction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1391,16 +1386,15 @@ export const RelayersApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.rpc(relayerId, jsonRpcRequestNetworkRpcRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Accepts an optional `Idempotency-Key` header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @summary Sends a transaction through the specified relayer.
          * @param {string} relayerId The unique identifier of the relayer
          * @param {NetworkTransactionRequest} networkTransactionRequest 
-         * @param {string | null} [idempotencyKey] Optional client-generated unique key (max 255 chars) to make the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, idempotencyKey?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseTransactionResponse> {
-            return localVarFp.sendTransaction(relayerId, networkTransactionRequest, idempotencyKey, options).then((request) => request(axios, basePath));
+        sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseTransactionResponse> {
+            return localVarFp.sendTransaction(relayerId, networkTransactionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1649,17 +1643,16 @@ export class RelayersApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Accepts an optional `Idempotency-Key` header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
      * @summary Sends a transaction through the specified relayer.
      * @param {string} relayerId The unique identifier of the relayer
      * @param {NetworkTransactionRequest} networkTransactionRequest 
-     * @param {string | null} [idempotencyKey] Optional client-generated unique key (max 255 chars) to make the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RelayersApi
      */
-    public sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, idempotencyKey?: string | null, options?: RawAxiosRequestConfig) {
-        return RelayersApiFp(this.configuration).sendTransaction(relayerId, networkTransactionRequest, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
+    public sendTransaction(relayerId: string, networkTransactionRequest: NetworkTransactionRequest, options?: RawAxiosRequestConfig) {
+        return RelayersApiFp(this.configuration).sendTransaction(relayerId, networkTransactionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
