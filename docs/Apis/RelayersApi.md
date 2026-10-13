@@ -421,9 +421,11 @@ Performs a JSON-RPC call using the specified relayer.
 
 <a name="sendTransaction"></a>
 # **sendTransaction**
-> ApiResponse_TransactionResponse sendTransaction(relayer\_id, NetworkTransactionRequest, Idempotency-Key)
+> ApiResponse_TransactionResponse sendTransaction(relayer\_id, NetworkTransactionRequest)
 
 Sends a transaction through the specified relayer.
+
+    Accepts an optional &#x60;Idempotency-Key&#x60; header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
 
 ### Parameters
 
@@ -431,7 +433,6 @@ Sends a transaction through the specified relayer.
 |------------- | ------------- | ------------- | -------------|
 | **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
 | **NetworkTransactionRequest** | [**NetworkTransactionRequest**](../Models/NetworkTransactionRequest.md)|  | |
-| **Idempotency-Key** | **String**| Optional client-generated unique key (max 255 chars) to make the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h). | [optional] [default to null] |
 
 ### Return type
 
