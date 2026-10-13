@@ -197,8 +197,11 @@ export interface PluginContext {
   api: PluginAPI;
   kv: PluginKVStore;
   headers: PluginHeaders;
+  // Request JSON, typed by each plugin. `any` keeps `params.field` access compiling.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   params: any;
   route: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   config?: Record<string, any>;
   method: string;
   query: Record<string, string[]>;
