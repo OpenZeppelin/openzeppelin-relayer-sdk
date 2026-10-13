@@ -6,8 +6,15 @@
 | **key** | [**GoogleCloudKmsSignerKeyRequestConfig**](GoogleCloudKmsSignerKeyRequestConfig.md) |  | [default to null] |
 | **key\_id** | **String** |  | [default to null] |
 | **region** | **String** |  | [default to null] |
-| **address** | **String** |  | [default to null] |
+| **auth\_type** | [**AzureKeyVaultSignerRequestConfig_auth_type**](AzureKeyVaultSignerRequestConfig_auth_type.md) |  | [optional] [default to null] |
+| **client\_id** | **String** |  | [optional] [default to null] |
+| **client\_secret** | **String** |  | [optional] [default to null] |
+| **federated\_token\_file** | **String** |  | [optional] [default to null] |
 | **key\_name** | **String** |  | [default to null] |
+| **key\_version** | **String** |  | [optional] [default to null] |
+| **tenant\_id** | **String** |  | [optional] [default to null] |
+| **vault\_url** | **String** |  | [default to null] |
+| **address** | **String** |  | [default to null] |
 | **mount\_point** | **String** |  | [optional] [default to null] |
 | **namespace** | **String** |  | [optional] [default to null] |
 | **role\_id** | **String** |  | [default to null] |

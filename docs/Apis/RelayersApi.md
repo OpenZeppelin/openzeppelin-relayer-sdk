@@ -312,7 +312,7 @@ Relayer routes implementation
 
 <a name="listTransactions"></a>
 # **listTransactions**
-> ApiResponse_Vec_TransactionResponse listTransactions(relayer\_id, page, per\_page)
+> ApiResponse_Vec_TransactionResponse listTransactions(relayer\_id, page, per\_page, status)
 
 Lists all transactions for a specific relayer with pagination.
 
@@ -323,6 +323,7 @@ Lists all transactions for a specific relayer with pagination.
 | **relayer\_id** | **String**| The unique identifier of the relayer | [default to null] |
 | **page** | **Integer**| Page number for pagination (starts at 1) | [optional] [default to null] |
 | **per\_page** | **Integer**| Number of items per page (default: 10) | [optional] [default to null] |
+| **status** | [**TransactionStatus**](../Models/TransactionStatus.md)| Optional status filter, accepted case-insensitively (e.g. pending, submitted, confirmed, canceled). Cancelled-in-progress transactions are excluded from active-status results until their replacement mines. | [optional] [default to null] [enum: canceled, pending, sent, submitted, mined, confirmed, failed, expired] |
 
 ### Return type
 
@@ -423,6 +424,8 @@ Performs a JSON-RPC call using the specified relayer.
 > ApiResponse_TransactionResponse sendTransaction(relayer\_id, NetworkTransactionRequest)
 
 Sends a transaction through the specified relayer.
+
+    Accepts an optional &#x60;Idempotency-Key&#x60; header: a client-generated unique key (max 255 chars) that makes the request idempotent. Repeating a request with the same key returns the original transaction. Keys expire after IDEMPOTENCY_KEY_TTL_SECONDS (default 24h).
 
 ### Parameters
 

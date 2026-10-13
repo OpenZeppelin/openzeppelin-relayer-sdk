@@ -10,7 +10,7 @@
 | **id** | **String** |  | [default to null] |
 | **relayer\_id** | **String** |  | [default to null] |
 | **sent\_at** | **String** |  | [optional] [default to null] |
-| **sequence\_number** | **Long** |  | [default to null] |
+| **sequence\_number** | **String** | Stellar sequence number encoded as a decimal string to preserve precision. | [default to null] |
 | **source\_account** | **String** |  | [default to null] |
 | **status** | [**TransactionStatus**](TransactionStatus.md) |  | [default to null] |
 | **status\_reason** | **String** |  | [optional] [default to null] |
