@@ -1,0 +1,6 @@
+allowBuilds:
+  '@nestjs/core': true
+  '@openapitools/openapi-generator-cli': true
+  '@stellar/stellar-sdk': true
+  keccak: true
+  nx: true
