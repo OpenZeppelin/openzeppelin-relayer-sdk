@@ -239,6 +239,7 @@ jobs:
           title: 'ci: update the version packages'
           commit: 'ci: update the version packages'
           setupGitUser: false
+          commitMode: github
 
       - name: Changesets Job Slack Notification
         uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
