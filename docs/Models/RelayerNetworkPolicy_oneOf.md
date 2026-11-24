@@ -6,6 +6,7 @@
 | **eip1559\_pricing** | **Boolean** |  | [optional] [default to null] |
 | **gas\_limit\_estimation** | **Boolean** |  | [optional] [default to null] |
 | **gas\_price\_cap** | **Integer** |  | [optional] [default to null] |
+| **include\_revert\_data** | **Boolean** |  | [optional] [default to null] |
 | **min\_balance** | **Integer** |  | [optional] [default to null] |
 | **private\_transactions** | **Boolean** |  | [optional] [default to null] |
 | **whitelist\_receivers** | **List** |  | [optional] [default to null] |

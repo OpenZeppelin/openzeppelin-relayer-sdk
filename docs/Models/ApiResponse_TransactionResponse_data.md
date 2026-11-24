@@ -11,6 +11,7 @@
 | **gas\_price** | **String** |  | [optional] [default to null] |
 | **hash** | **String** |  | [optional] [default to null] |
 | **id** | **String** |  | [default to null] |
+| **is\_canceled** | **Boolean** | Whether this transaction was cancelled by the user. While true and still in a non-terminal status, it is being replaced on-chain by a NOOP that consumes its nonce; it terminates as &#x60;canceled&#x60; once that NOOP mines. | [optional] [default to null] |
 | **max\_fee\_per\_gas** | **String** |  | [optional] [default to null] |
 | **max\_priority\_fee\_per\_gas** | **String** |  | [optional] [default to null] |
 | **nonce** | **Long** |  | [optional] [default to null] |
@@ -25,7 +26,7 @@
 | **instructions** | [**List**](SolanaInstructionSpec.md) |  | [optional] [default to null] |
 | **transaction** | **String** |  | [default to null] |
 | **fee** | **Integer** |  | [default to null] |
-| **sequence\_number** | **Long** |  | [default to null] |
+| **sequence\_number** | **String** | Stellar sequence number encoded as a decimal string to preserve precision. | [default to null] |
 | **source\_account** | **String** |  | [default to null] |
 | **transaction\_result\_xdr** | **String** |  | [optional] [default to null] |
 

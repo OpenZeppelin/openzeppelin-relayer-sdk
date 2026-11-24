@@ -3,10 +3,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **api\_public\_key** | **String** |  | [default to null] |
-| **organization\_id** | **String** |  | [default to null] |
-| **private\_key\_id** | **String** |  | [default to null] |
-| **public\_key** | **String** |  | [default to null] |
+| **auth\_type** | [**AzureKeyVaultAuthType**](AzureKeyVaultAuthType.md) |  | [default to null] |
+| **client\_id** | **String** |  | [optional] [default to null] |
+| **key\_name** | **String** |  | [default to null] |
+| **key\_version** | **String** |  | [optional] [default to null] |
+| **tenant\_id** | **String** |  | [optional] [default to null] |
+| **vault\_url** | **String** |  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

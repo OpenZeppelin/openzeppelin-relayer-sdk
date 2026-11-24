@@ -72,6 +72,18 @@ try {
   }
 
   console.log('Successfully processed and replaced generated models with custom ones.');
+
+  // OpenAPI Generator emits `| Null` for OAS 3.1 nullable unions. `Null` is not a type.
+  const generatedFiles = fs.readdirSync(generatedModelsDir).filter((file) => file.endsWith('.ts'));
+  for (const file of generatedFiles) {
+    const filePath = path.join(generatedModelsDir, file);
+    const original = fs.readFileSync(filePath, 'utf8');
+    const fixed = original.replace(/ \| Null\b/g, ' | null');
+    if (fixed !== original) {
+      fs.writeFileSync(filePath, fixed, 'utf8');
+      console.log(`Replaced bare Null union in ${file}`);
+    }
+  }
 } catch (error) {
   console.error('Error during post-generation script:', error);
   process.exit(1);

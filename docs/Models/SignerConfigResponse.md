@@ -10,6 +10,11 @@
 | **pubkey** | **String** |  | [default to null] |
 | **key\_id** | **String** |  | [default to null] |
 | **region** | **String** |  | [optional] [default to null] |
+| **auth\_type** | [**AzureKeyVaultAuthType**](AzureKeyVaultAuthType.md) |  | [default to null] |
+| **client\_id** | **String** |  | [optional] [default to null] |
+| **key\_version** | **String** |  | [optional] [default to null] |
+| **tenant\_id** | **String** |  | [optional] [default to null] |
+| **vault\_url** | **String** |  | [default to null] |
 | **api\_public\_key** | **String** |  | [default to null] |
 | **organization\_id** | **String** |  | [default to null] |
 | **private\_key\_id** | **String** |  | [default to null] |

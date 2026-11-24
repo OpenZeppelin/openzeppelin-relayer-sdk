@@ -15,6 +15,7 @@
 | **passphrase** | **String** | Stellar-specific: Network passphrase | [optional] [default to null] |
 | **required\_confirmations** | **Long** | EVM-specific: Required confirmations | [optional] [default to null] |
 | **rpc\_urls** | [**List**](RpcConfig.md) | List of RPC endpoint configurations | [optional] [default to null] |
+| **status\_check** | [**StatusCheckResponse**](StatusCheckResponse.md) | EVM-specific: Effective transaction status-check settings after inheritance and defaults are applied. Always present for EVM networks so operators can verify the timing in effect, even when nothing was configured. | [optional] [default to null] |
 | **symbol** | **String** | EVM-specific: Native token symbol | [optional] [default to null] |
 | **tags** | **List** | List of arbitrary tags for categorizing or filtering networks | [optional] [default to null] |
 

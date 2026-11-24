@@ -43,8 +43,11 @@ jobs:
         run: npm install -g pnpm
 
       # Install dependencies
+      # --ignore-scripts: skip dependency build/postinstall scripts. pnpm 10+
+      # otherwise fails with ERR_PNPM_IGNORED_BUILDS on packages with build
+      # scripts (keccak, nx, etc.) unless they are explicitly approved.
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       # Run linting
       - name: Run lint
@@ -86,8 +89,9 @@ jobs:
         run: npm install -g pnpm
 
       # Install dependencies (this will be fast if cache is hit)
+      # --ignore-scripts: see note in the lint-format job above.
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       # Build the project
       - name: Build
