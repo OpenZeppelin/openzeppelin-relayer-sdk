@@ -1,5 +1,17 @@
 # @openzeppelin/relayer-sdk
 
+
+## 1.11.0 (2026-11-24)
+
+- Plugin `Relayer.sendTransaction(payload, { idempotencyKey })` accepts an optional `SendTransactionOptions`, matching the Relayer plugin socket API (openzeppelin-relayer#917). HTTP callers set the header with `withIdempotencyKey`. ([#259](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/259))
+- Add Zama integration example ([#239](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/239))
+- Regenerate the client from Relayer OpenAPI 1.8.0. Adds Azure Key Vault signer models, `StatusCheckResponse`, JSON-RPC error `data`, and an optional `status` filter on `listTransactions`. `sendTransaction(relayerId, body, options)` is unchanged; set `Idempotency-Key` through options. ([#259](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/259))
+
+  Breaking for TypeScript callers: `listTransactions` now takes `status` before `options`, so `listTransactions(id, page, perPage, options)` must become `listTransactions(id, page, perPage, undefined, options)`. Stellar `MemoSpec` id `value`, payment `amount` and `StellarTransactionResponse.sequence_number` are now typed `string`, which matches what the Relayer has returned since v1.6.0 (openzeppelin-relayer#789); the Relayer still accepts numbers in requests.
+
+- Add `withIdempotencyKey` helper that sets the `Idempotency-Key` header in axios options for `RelayersApi.sendTransaction` ([#260](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/260))
+- Restore `any` for `PluginContext.params` and `PluginContext.config` so plugins that read fields without a cast keep compiling ([#261](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/261))
+
 ## 1.10.0 (2026-02-19)
 
 - - feat: Soroban gas abstraction support ([#250](https://github.com/OpenZeppelin/openzeppelin-relayer-sdk/pull/250))
